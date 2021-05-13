@@ -1,4 +1,4 @@
-package com.Coderium;
+package com.reservation;
 
 import java.awt.EventQueue;
 
