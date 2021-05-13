@@ -1,0 +1,30 @@
+package com.day;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class lb_zone extends JFrame {
+	
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		
+	private Image screenImage;
+		private Graphics screenGraphic;
+		
+		private ImageIcon library_zone = new ImageIcon("../")
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 102));
+		panel.setBounds(0, 0, 685, 120);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+
+
+}

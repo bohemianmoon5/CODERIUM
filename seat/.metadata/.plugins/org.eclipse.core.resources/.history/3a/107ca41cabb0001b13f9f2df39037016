@@ -1,0 +1,215 @@
+package com.day;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class StudyCafe {
+
+	JFrame frame;
+	JPanel panel_1;
+	JPanel lb_zone = new JPanel();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					StudyCafe window = new StudyCafe();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public StudyCafe() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(0, 0, 700, 1080);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 102));
+		panel.setBounds(0, 0, 685, 120);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		/*
+		 * 상단 번호 출력을 위한 메서드 입니다.
+		 */
+		JButton homeBtn = new JButton("홈");
+		homeBtn.setBackground(new Color(255, 255, 102));
+		homeBtn.setFont(new Font("티웨이_항공", Font.BOLD, 18));
+		homeBtn.setBounds(60, 21, 125, 70);
+		panel.add(homeBtn);
+
+		JButton sitChange = new JButton("자리변경");
+		sitChange.setBackground(new Color(255, 255, 102));
+		sitChange.setFont(new Font("티웨이_항공", Font.BOLD, 15));
+		sitChange.setBounds(280, 22, 125, 70);
+		panel.add(sitChange);
+
+		JButton backBtn = new JButton("뒤로");
+		backBtn.setBackground(new Color(255, 255, 102));
+		backBtn.setFont(new Font("티웨이_항공", Font.BOLD, 18));
+		backBtn.setBounds(500, 22, 125, 70);
+		panel.add(backBtn);
+		/*
+		 * 첫 번째 panel입니다.
+		 */
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(0, 120, 685, 720);
+		frame.getContentPane().add(panel_1);
+
+		ImagePanel sitting_table = new ImagePanel(new ImageIcon("./image/sitting_table_1.jpg").getImage());
+		panel_1.add(sitting_table);
+		panel_1.setLayout(null);
+
+		/*
+		 * 라이브러리,카페,스터디룸 이미지 판넬입니다.
+		 */
+		JPanel lb_zone = new JPanel();
+		lb_zone.setBounds(0, 120, 685, 720);
+		frame.getContentPane().add(lb_zone);
+
+		ImagePanel lb_img = new ImagePanel(new ImageIcon("./image/lb_zone_1.jpg").getImage());
+		lb_zone.add(lb_img);
+		lb_zone.setLayout(null);
+
+		JPanel cf_zone = new JPanel();
+		cf_zone.setBounds(0, 120, 685, 720);
+		frame.getContentPane().add(cf_zone);
+
+		ImagePanel cf_img = new ImagePanel(new ImageIcon("./image/cf_zone_1.jpg").getImage());
+		cf_zone.add(cf_img);
+		cf_zone.setLayout(null);
+
+		JPanel sr_zone = new JPanel();
+		sr_zone.setBounds(0, 120, 685, 720);
+		frame.getContentPane().add(sr_zone);
+
+		ImagePanel sr_img = new ImagePanel(new ImageIcon("./image/sr_zone_1.jpg").getImage());
+		sr_zone.add(sr_img);
+		sr_zone.setLayout(null);
+		
+		//lb_zone이 처음에 켜져 있으면 카페존을 눌러도 lb_zone화면이 출력되어 꺼줌!
+		lb_zone.setVisible(false);
+
+		/*
+		 * 각각 룸의 버튼을 누르면 각 방의 도면 확대됩니다.
+		 */
+		
+		//라이브러리존 선택 버튼
+		JButton lb_btn = new JButton("\uB77C\uC774\uBE0C\uB7EC\uB9AC\uC874");
+		lb_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel_1.setVisible(false);
+				lb_zone.setVisible(true);
+			}
+		});
+		lb_btn.setBackground(new Color(255, 255, 102));
+		lb_btn.setFont(new Font("티웨이_항공", Font.BOLD, 15));
+		lb_btn.setBounds(260, 220, 165, 65);
+		panel_1.add(lb_btn);
+
+		//카페존 선택 버튼
+		JButton cf_btn = new JButton("\uCE74\uD398\uC874");
+		cf_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel_1.setVisible(false);
+				cf_zone.setVisible(true);
+			}
+		});
+		cf_btn.setBackground(new Color(255, 255, 102));
+		cf_btn.setFont(new Font("티웨이_항공", Font.BOLD, 15));
+		cf_btn.setBounds(82, 645, 165, 65);
+		panel_1.add(cf_btn);
+		
+		//스터디룸 선택 버튼
+		JButton sr_btn = new JButton("\uC2A4\uD130\uB514\uB8F8");
+		sr_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel_1.setVisible(false);
+				sr_btn.setVisible(true);
+			}
+		});
+		sr_btn.setBackground(new Color(255, 255, 102));
+		sr_btn.setFont(new Font("티웨이_항공", Font.BOLD, 15));
+		sr_btn.setBounds(444, 645, 165, 65);
+		panel_1.add(sr_btn);
+		
+		// 라이브러리 존 안에 좌석표 버튼 입니다.
+		JButton lbBtn = new JButton("45");
+		lbBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				lbBtn.setText(null);
+//				lbBtn.setFont(new Font("티웨이_항공", Font.BOLD, 10));
+				lbBtn.setBackground(new Color(000, 153, 102));
+				JLabel used_lb_label = new JLabel("사용중");
+				used_lb_label.setLayout(null);
+				used_lb_label.setBounds(13, 18, 55, 75);
+				used_lb_label.setHorizontalAlignment(SwingConstants.CENTER);
+				used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 8));
+				lbBtn.add(used_lb_label);
+				if() {
+					JOptionPane.showMessageDialog(null, "이미 예약된 자리입니다.");
+				}
+			}
+		});
+		lbBtn.setBounds(13, 18, 55, 75);
+		lb_zone.add(lbBtn);
+
+		/*
+		 * 메인의 뒤로가기 버튼 구현이비다.
+		 */
+		backBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (lb_zone.isVisible() == true) {
+					lb_zone.setVisible(false);
+					panel_1.setVisible(true);
+
+				} else if (cf_zone.isVisible() == true) {
+					cf_zone.setVisible(false);
+					panel_1.setVisible(true);
+
+				} else if (sr_zone.isVisible() == true) {
+					sr_zone.setVisible(false);
+					panel_1.setVisible(true);
+				}
+					
+
+			}
+		});
+		
+	}
+}
+
+
+

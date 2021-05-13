@@ -1,0 +1,50 @@
+package seatingTable;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+
+public class seatButton implements ActionListener {
+	JButton btn = null;
+	int i = 0; 
+	public seatButton(JButton btn) {
+		this.btn = btn;
+	}
+	
+	public seatButton(JButton btn, int i) {
+		this.btn = btn;
+		this.i = i;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		btn.setText(null);
+		if (btn.getBackground().getBlue() == 102) {
+			JOptionPane.showMessageDialog(null, "이미 예약된 자리입니다.");
+		} else {
+			btn.setBackground(new Color(000, 153, 102));
+
+//			btn.setText("<HTML><body><left>현재<br>사용중</left><body></HTML>");
+//			btn.setHorizontalAlignment(SwingConstants.LEFT);
+//			btn.setFont(new Font("티웨이_항공", Font.BOLD, 8));
+			JLabel used_lb_label = new JLabel("<HTML>"+i+"번"+"<br>"+"2시간"+"</HTML>");
+			used_lb_label.setLayout(null);
+			used_lb_label.setHorizontalAlignment(SwingConstants.LEFT);
+			used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 12));
+//			used_lb_label.setPreferredSize(new Dimension(53, 90));
+			used_lb_label.setSize(53, 90);
+			btn.add(used_lb_label);
+
+		}
+
+	}
+}

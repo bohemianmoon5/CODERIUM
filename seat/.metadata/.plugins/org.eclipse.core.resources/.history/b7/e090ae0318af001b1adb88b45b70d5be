@@ -1,0 +1,145 @@
+package com.day;
+
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.Color;
+
+public class STUI {
+
+	private JFrame frame;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					STUI window = new STUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public STUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 1000);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(12, 10, 680, 980);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+				
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.DARK_GRAY);
+		panel_1.setBounds(0, 0, 668, 120);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JButton btnNewButton = new JButton("back");
+		btnNewButton.setBounds(100, 26, 150, 70);
+		panel_1.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("home");
+		btnNewButton_1.setBounds(411, 26, 150, 70);
+		panel_1.add(btnNewButton_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(0, 120, 668, 720);
+		panel.add(panel_2);
+		
+		ImagePanel panel_img = new ImagePanel(new ImageIcon("./image/img3_1.jpg").getImage());
+//		panel.add(panel_img);
+		panel_2.add(panel_img);
+		panel_2.setLayout(null);
+		
+		JButton lb_btn = new JButton("\uB77C\uC774\uBE0C\uB7EC\uB9AC\uC874");
+		lb_btn.setBounds(248, 178, 160, 70);
+		panel_2.add(lb_btn);
+		
+		JButton cf_Btn = new JButton("\uCE74\uD398\uC874");
+		cf_Btn.setBounds(71, 623, 160, 70);
+		panel_2.add(cf_Btn);
+		
+		JButton sz_btn = new JButton("\uC2A4\uD130\uB514\uC874(\uB2E8\uCCB4)");
+		sz_btn.setBounds(452, 623, 160, 70);
+		panel_2.add(sz_btn);
+		
+//		JButton btnNewButton = new JButton("New button");
+//		btnNewButton.setBounds(17, 14, 51, 47);
+//		panel.add(btnNewButton);
+//		
+//		JButton btnNewButton_1 = new JButton("New button");
+//		btnNewButton_1.setBounds(70, 14, 51, 47);
+//		panel.add(btnNewButton_1);
+//		
+//		JButton btnNewButton_2 = new JButton("New button");
+//		btnNewButton_2.setBounds(123, 14, 51, 47);
+//		panel.add(btnNewButton_2);
+//		
+//		JButton btnNewButton_1_1_1 = new JButton("New button");
+//		btnNewButton_1_1_1.setBounds(176, 14, 52, 47);
+//		panel.add(btnNewButton_1_1_1);
+//		
+//		JButton btnNewButton_1_1_1_1 = new JButton("New button");
+//		btnNewButton_1_1_1_1.setBounds(229, 14, 51, 47);
+//		panel.add(btnNewButton_1_1_1_1);
+//		
+//		JButton btnNewButton_1_1_1_1_1 = new JButton("New button");
+//		btnNewButton_1_1_1_1_1.setBounds(282, 14, 51, 47);
+//		panel.add(btnNewButton_1_1_1_1_1);
+//		
+//		JButton btnNewButton_1_1_1_1_2 = new JButton("New button");
+//		btnNewButton_1_1_1_1_2.setBounds(335, 14, 51, 47);
+//		panel.add(btnNewButton_1_1_1_1_2);
+//		
+//		JButton btnNewButton_1_1_1_1_3 = new JButton("New button");
+//		btnNewButton_1_1_1_1_3.setBounds(388, 14, 51, 47);
+//		panel.add(btnNewButton_1_1_1_1_3);
+//		
+//		JButton btnNewButton_1_1_1_1_4 = new JButton("New button");
+//		btnNewButton_1_1_1_1_4.setBounds(440, 14, 51, 47);
+//		panel.add(btnNewButton_1_1_1_1_4);
+//		
+//		JButton btnNewButton_1_1_1_1_5 = new JButton("New button");
+//		btnNewButton_1_1_1_1_5.setBounds(493, 14, 51, 47);
+//		panel.add(btnNewButton_1_1_1_1_5);
+//		
+//		JButton btnNewButton_1_1_1_1_6 = new JButton("New button");
+//		btnNewButton_1_1_1_1_6.setBounds(546, 14, 51, 47);
+//		panel.add(btnNewButton_1_1_1_1_6);
+//		
+//		JButton btnNewButton_1_1_1_1_7 = new JButton("New button");
+//		btnNewButton_1_1_1_1_7.setBounds(599, 14, 51, 47);
+//		panel.add(btnNewButton_1_1_1_1_7);
+//		
+//		JButton btnNewButton_1_2 = new JButton("New button");
+//		btnNewButton_1_2.setBounds(79, 150, 51, 47);
+//		panel.add(btnNewButton_1_2);
+//		
+		
+	}
+}
+

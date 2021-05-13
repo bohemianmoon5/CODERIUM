@@ -1,0 +1,35 @@
+package com.day;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class lb_zone extends JPanel {
+	
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		
+//	private Image screenImage;
+//	private Graphics screenGraphic;
+	
+//	private ImageIcon library_zone = new ImageIcon("../")
+	public void library_zone(){
+		System.out.println("Test");
+		setBounds(0, 0, 685, 720);
+		setLayout(null);
+		
+		ImagePanel panel_img = new ImagePanel(new ImageIcon("./image/lb_zone_1.jpg").getImage());
+		add(panel_img);
+		setLayout(null);
+		
+	
+		
+	}
+}
+
+public class lb_zone_button extends JButton{
+	
+}
+

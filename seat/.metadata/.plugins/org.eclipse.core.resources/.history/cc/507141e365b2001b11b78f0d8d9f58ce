@@ -1,0 +1,122 @@
+package seatingTable;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class cfZone extends JPanel {
+
+	public cfZone(JFrame frame) {
+		setBounds(20, 130, 660, 870);
+		setLayout(null);
+
+		seatingImage seatImg = new seatingImage(new ImageIcon("./image/cf_zone_1.jpg").getImage());
+		this.add(seatImg);
+
+		this.setVisible(false);
+	}
+
+	void btn(JButton[] btn, JPanel cfZone) {
+		btn[0] = new JButton("1");
+		btn[0].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				btn[0].setText(null);
+				if (btn[0].getBackground().getBlue() == 102) {
+					JOptionPane.showMessageDialog(null, "이미 예약된 자리입니다.");
+				} else {
+					btn[0].setBackground(new Color(000, 153, 102));
+					JLabel used_lb_label = new JLabel("사용중");
+					used_lb_label.setLayout(null);
+//					used_lb_label.setBounds(13, 23, 53, 90);
+					used_lb_label.setHorizontalAlignment(SwingConstants.CENTER);
+					used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 8));
+					btn[0].add(used_lb_label);
+				}
+			}
+		});
+		btn[0].setBounds(19, 34, 75, 75);
+		cfZone.add(btn[0]);
+
+		btn[1] = new JButton("2");
+		btn[1].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				btn[1].setText(null);
+				if (btn[1].getBackground().getBlue() == 102) {
+					JOptionPane.showMessageDialog(null, "이미 예약된 자리입니다.");
+				} else {
+					btn[1].setBackground(new Color(000, 153, 102));
+					JLabel used_lb_label = new JLabel("사용중");
+					used_lb_label.setLayout(null);
+//					used_lb_label.setBounds(13, 23, 53, 90);
+					used_lb_label.setHorizontalAlignment(SwingConstants.CENTER);
+					used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 8));
+					btn[1].add(used_lb_label);
+				}
+			}
+		});
+		btn[1].setBounds(19, 149, 75, 75);
+		cfZone.add(btn[1]);
+
+		btn[2] = new JButton("3");
+		btn[2].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				btn[2].setText(null);
+				if (btn[2].getBackground().getBlue() == 102) {
+					JOptionPane.showMessageDialog(null, "이미 예약된 자리입니다.");
+				} else {
+					btn[2].setBackground(new Color(000, 153, 102));
+					JLabel used_lb_label = new JLabel("사용중");
+					used_lb_label.setLayout(null);
+//					used_lb_label.setBounds(13, 23, 53, 90);
+					used_lb_label.setHorizontalAlignment(SwingConstants.CENTER);
+					used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 8));
+					btn[2].add(used_lb_label);
+				}
+			}
+		});
+		btn[2].setBounds(165, 34, 75, 75);
+		cfZone.add(btn[2]);
+		
+		btn[3] = new JButton("4");
+		btn[3].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				btn[3].setText(null);
+				if (btn[3].getBackground().getBlue() == 102) {
+					JOptionPane.showMessageDialog(null, "이미 예약된 자리입니다.");
+				} else {
+					btn[3].setBackground(new Color(000, 153, 102));
+					JLabel used_lb_label = new JLabel("사용중");
+					used_lb_label.setLayout(null);
+//					used_lb_label.setBounds(13, 23, 53, 90);
+					used_lb_label.setHorizontalAlignment(SwingConstants.CENTER);
+					used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 8));
+					btn[3].add(used_lb_label);
+				}
+			}
+		});
+		btn[3].setBounds(165, 149, 75, 75);
+		cfZone.add(btn[3]);
+	}
+
+}

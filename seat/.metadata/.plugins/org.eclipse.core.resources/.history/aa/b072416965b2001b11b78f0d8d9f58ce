@@ -1,0 +1,7 @@
+package seatingTable;
+
+import javax.swing.JButton;
+
+public class seatButton extends J {
+
+}

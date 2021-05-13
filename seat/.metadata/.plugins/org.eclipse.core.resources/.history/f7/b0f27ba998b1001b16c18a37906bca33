@@ -1,0 +1,44 @@
+package seatingTable;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class subPanel extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public subPanel(JFrame frame) {
+		
+		setBounds(20, 130, 660, 870);
+		setBackground(Color.white);
+		setLayout(null);
+		frame.getContentPane().add(this);
+		
+		seatingImage seatImg = new seatingImage(new ImageIcon("./image/seatting_table_1.jpg").getImage());
+		this.add(seatImg);
+		
+	}
+	
+	void lb_btn(JButton btn,JPanel subPanel) {
+//		btn.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				btn.setVisible(false);
+//				panel.setVisible(true);
+//			}
+//		});
+		btn.setBackground(new Color(0, 191, 255));
+		btn.setFont(new Font("티웨이_항공", Font.BOLD, 15));
+		btn.setBounds(260, 220, 165, 65);
+		subPanel.add(btn);
+	}
+}

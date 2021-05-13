@@ -1,0 +1,30 @@
+package seatingTable;
+
+import java.awt.Color;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class subPanel extends JPanel{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public subPanel(JFrame frame) {
+		
+		setBounds(20, 130, 660, 870);
+		setBackground(Color.white);
+		setLayout(null);
+		frame.getContentPane().add(this);
+		
+		seatingImage seatImg = new seatingImage(new ImageIcon("./image/seatting_table_1.jpg").getImage());
+		this.add(seatImg);
+		
+		
+		
+		
+	}
+}

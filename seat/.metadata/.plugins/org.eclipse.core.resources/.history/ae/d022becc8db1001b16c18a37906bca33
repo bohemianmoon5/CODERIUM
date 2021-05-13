@@ -1,0 +1,31 @@
+package seatingTable;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class mainPanel extends JPanel{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public mainPanel(JFrame jframe) {
+		// TODO Auto-generated constructor stub
+		setLayout(null);
+		setBounds(0, 0, 685, 120);
+		jframe.getContentPane().add(this);
+		
+		seatingImage home_img = new seatingImage(new ImageIcon("./image/sub_background.png").getImage());
+		this.add(home_img);
+		
+	}
+	
+	public void main_btn(JButton btn) {
+//		btn.setBackground(new Color());
+		System.out.println("잘들어가니?");
+	}
+	
+}

@@ -1,2 +1,0 @@
-# CODERIUM
-Team Project(GUI)

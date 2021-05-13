@@ -1,0 +1,65 @@
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.util.Iterator;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Locker_design {
+
+	private JFrame frame;
+	private JPanel panel;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Locker_design window = new Locker_design();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Locker_design() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+//		frame = new JFrame();
+//		frame.setBounds(0, 0, 685, 720);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		
+//		panel = new JPanel();
+//		panel.setLayout(new GridLayout(10, 5));
+//		panel.setBounds(0, 0, 685, 720);
+//		
+//		JButton[] bt = new JButton[50];
+//		
+//		for (int i = 0; i < bt.length; i++) {
+//			System.out.println(i);
+//			bt[i] = new JButton((i+1)+"번");
+//			bt[i].setFont(new Font("티웨이_항공", Font.BOLD, 15));
+//			panel.add(bt[i]);
+//		}
+//		frame.setContentPane(panel);
+		frame = new JFrame();
+		panel = new JPanel();
+		Locker_Frame locker = new Locker_Frame(frame, panel);
+		
+	}
+
+}

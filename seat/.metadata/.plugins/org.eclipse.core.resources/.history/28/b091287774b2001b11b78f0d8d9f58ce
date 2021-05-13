@@ -1,0 +1,112 @@
+package seatingTable;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class cfZone extends JPanel {
+
+	public cfZone(JFrame frame) {
+		setBounds(20, 130, 660, 870);
+		setLayout(null);
+
+		seatingImage seatImg = new seatingImage(new ImageIcon("./image/cf_zone_1.jpg").getImage());
+		this.add(seatImg);
+
+		this.setVisible(false);
+	}
+
+	void btn(JButton[] btn, JPanel cfZone) {
+		btn[0] = new JButton("1");
+		btn[0].addActionListener(new seatButton(btn[0]));
+		btn[0].setBounds(29, 40, 65, 65);
+		cfZone.add(btn[0]);
+
+		btn[1] = new JButton("2");
+		btn[1].addActionListener(new seatButton(btn[1]));
+		btn[1].setBounds(29, 152, 65, 65);
+		cfZone.add(btn[1]);
+
+		btn[2] = new JButton("3");
+		btn[2].addActionListener(new seatButton(btn[2]));
+		btn[2].setBounds(167, 40, 65, 65);
+		cfZone.add(btn[2]);
+		
+		btn[3] = new JButton("4");
+		btn[3].addActionListener(new seatButton(btn[3]));
+		btn[3].setBounds(167, 152, 65, 65);
+		cfZone.add(btn[3]);
+		
+		btn[4] = new JButton("5");
+		btn[4].addActionListener(new seatButton(btn[4]));
+		btn[4].setBounds(235, 40, 65, 65);
+		cfZone.add(btn[4]);
+		
+		btn[5] = new JButton("6");
+		btn[5].addActionListener(new seatButton(btn[5]));
+		btn[5].setBounds(235, 152, 65, 65);
+		cfZone.add(btn[5]);
+		
+		btn[6] = new JButton("7");
+		btn[6].addActionListener(new seatButton(btn[6]));
+		btn[6].setBounds(373, 40, 65, 65);
+		cfZone.add(btn[6]);
+		
+		btn[7] = new JButton("8");
+		btn[7].addActionListener(new seatButton(btn[7]));
+		btn[7].setBounds(373, 152, 65, 65);
+		cfZone.add(btn[7]);
+		
+		btn[8] = new JButton("9");
+		btn[8].addActionListener(new seatButton(btn[8]));
+		btn[8].setBounds(550, 80, 75, 75);
+		cfZone.add(btn[8]);
+		
+		btn[9] = new JButton("10");
+		btn[9].addActionListener(new seatButton(btn[9]));
+		btn[9].setBounds(550, 258, 75, 75);
+		cfZone.add(btn[9]);
+		
+		btn[10] = new JButton("11");
+		btn[10].addActionListener(new seatButton(btn[10]));
+		btn[10].setBounds(38, 600, 75, 75);
+		cfZone.add(btn[10]);
+		
+		btn[11] = new JButton("12");
+		btn[11].addActionListener(new seatButton(btn[11]));
+		btn[11].setBounds(38, 720, 75, 75);
+		cfZone.add(btn[11]);
+		
+		btn[12] = new JButton("13");
+		btn[12].addActionListener(new seatButton(btn[12]));
+		btn[12].setBounds(550, 258, 75, 75);
+		cfZone.add(btn[12]);
+		
+		btn[13] = new JButton("14");
+		btn[13].addActionListener(new seatButton(btn[13]));
+		btn[13].setBounds(550, 258, 75, 75);
+		cfZone.add(btn[13]);
+		
+		btn[14] = new JButton("15");
+		btn[14].addActionListener(new seatButton(btn[14]));
+		btn[14].setBounds(550, 258, 75, 75);
+		cfZone.add(btn[14]);
+		
+		btn[15] = new JButton("16");
+		btn[15].addActionListener(new seatButton(btn[15]));
+		btn[15].setBounds(550, 258, 75, 75);
+		cfZone.add(btn[15]);
+		
+		
+	}
+
+}
