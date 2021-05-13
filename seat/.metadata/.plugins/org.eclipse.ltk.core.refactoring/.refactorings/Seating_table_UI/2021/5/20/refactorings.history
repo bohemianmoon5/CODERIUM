@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 6 elements to &apos;Kiosk/Image&apos;&#x0D;&#x0A;- Original project: &apos;Seating_table_UI&apos;&#x0D;&#x0A;- Destination element: &apos;Kiosk/Image&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     home_background.png&#x0D;&#x0A;     cf_zone_1.jpg&#x0D;&#x0A;     sitting_table_1.jpg&#x0D;&#x0A;     sub_background.png&#x0D;&#x0A;     lb_zone_1.jpg&#x0D;&#x0A;     sr_zone_1.jpg" description="Copy files" destination="=Kiosk/Image" element1="image/home_background.png" element2="image/cf_zone_1.jpg" element3="image/sitting_table_1.jpg" element4="image/sub_background.png" element5="image/lb_zone_1.jpg" element6="image/sr_zone_1.jpg" files="6" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1620636002172" units="0" version="1.0"/>
-</session>

@@ -1,5 +1,0 @@
-INDEX VERSION 1.131+C:\Users\kosta\Desktop\swing_project\.metadata\.plugins\org.eclipse.jdt.core
-312798685.index
-2066690656.index
-3513877992.index
-1048225286.index
