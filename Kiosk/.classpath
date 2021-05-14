@@ -7,5 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Image"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/coderium"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/plject"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

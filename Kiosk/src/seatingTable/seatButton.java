@@ -1,6 +1,7 @@
 package seatingTable;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+
+import main.pay.payment;
 
 public class seatButton implements ActionListener {
 	JButton btn = null;
@@ -27,6 +30,19 @@ public class seatButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		payment p = new payment();
+		p.getFrame().setVisible(true);
+		p.setInfo(i+1+"");
+
+		// seatPanel에 있는 자식 컴포넌트 저장 후 payment로 넘김
+		// c에 저장 시 결제창이 열리므로 버튼 비활성화 하기
+//		Component[] c = new Component[p.getSeatPanel().getComponentCount()];
+//		c=p.getSeatPanel().getComponents();
+//		for(int i=0; i<p.getSeatPanel().getComponentCount();i++) {
+//			c[i].setEnabled(false);
+//		}
+//		payment.setSeatCom(c);
+//		
 		btn.setText(null);
 		if (btn.getBackground().getBlue() == 102) {
 			JOptionPane.showMessageDialog(null, "이미 예약된 자리입니다.");
