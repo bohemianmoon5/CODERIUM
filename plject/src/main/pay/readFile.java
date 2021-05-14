@@ -17,8 +17,8 @@ public class readFile {
 	
 	// 파일 읽어와 arrayList에 저장한 후 arrayList 반환하는 함수
 	public ArrayList<String> readFileFunc(ArrayList<String> arr) {
-		String path = "C:\\Users\\JISU\\Desktop\\JAVAW_OJS\\workspace\\coderium\\plject\\src\\data";
-		File file = new File(path+"/"+title+".txt");
+		String path = "../plject/src/data";
+		File file = new File(path+"\\"+title+".txt");
 		String str = "";
 		try {
 			FileReader fr = new FileReader(file);

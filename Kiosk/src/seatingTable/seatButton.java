@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 
 import main.pay.payment;
 
+
 public class seatButton implements ActionListener {
 	JButton btn = null;
 	int i = 0; 
