@@ -11,8 +11,7 @@ public class srZone extends JPanel {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
 
-		seatingImage seatImg = new seatingImage(new ImageIcon("./image/sr_zone_1.jpg").getImage());
-		this.add(seatImg);
+		
 
 		this.setVisible(false);
 	}
