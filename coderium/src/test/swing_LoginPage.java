@@ -45,8 +45,6 @@ public class swing_LoginPage {
 	 * @param hashMap 
 	 */
 	
-	HashMap<String, String> loginInfo = new HashMap<String, String>();
-	
 	JButton loginButton = new JButton("Login");
 	JButton resetButton = new JButton("Reset");
 	JTextField userIDField = new JTextField();
@@ -57,11 +55,6 @@ public class swing_LoginPage {
 	private final JPanel LogIn = new JPanel();
 	private JTextField textField;
 	
-	public swing_LoginPage(HashMap<String, String> loginInfoOriginal) {
-		
-		loginInfo = loginInfoOriginal;
-		
-	}
 
 	public swing_LoginPage() {
 		initialize();
@@ -84,31 +77,43 @@ public class swing_LoginPage {
 		LogIn.setToolTipText("");
 		LogIn.setBackground(new Color(220, 220, 220));
 		LogIn.setBounds(139, 222, 470, 266);
+		LogIn.setLayout(null);
 		
 		panel.add(LogIn);
 		
-		LogIn.setLayout(null);
+		// ID
 		userIDLabel.setBounds(60, 63, 91, 25);
+		userIDLabel.setFont(new Font("twayair", Font.PLAIN, 20));
 		LogIn.add(userIDLabel);
 		
-		userIDLabel.setFont(new Font("twayair", Font.PLAIN, 20));
+		// ID TextField
 		userIDField.setBounds(60, 90, 340, 34);
 		LogIn.add(userIDField);
 		
+		// Password
+		userPasswordLabel.setFont(new Font("twayair", Font.PLAIN, 20));
 		userPasswordLabel.setBounds(60, 127, 111, 42);
 		LogIn.add(userPasswordLabel);
-		userPasswordLabel.setFont(new Font("twayair", Font.PLAIN, 20));
 		
+		// Password TextField
 		userPasswordField.setBounds(60, 162, 340, 34);
 		LogIn.add(userPasswordField);
+		
+		loginButton.setFont(new Font("twayair", Font.PLAIN, 15));
+		loginButton.setBounds(112, 224, 103, 20);
+		
+		// 로그인 버튼
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				// 로그인 정보 불러오기
+				IdPassword idPassword = new IdPassword();
 				
 				String userID = userIDField.getText();
 				String password = String.valueOf(userPasswordField.getPassword());
 				
-				if(loginInfo.containsKey(userID)) {
-					if(loginInfo.get(userID).equals(password)) {
+				if(idPassword.loginInfo.containsKey(userID)) {
+					if(idPassword.loginInfo.get(userID).equals(password)) {
 						WelcomePage welcomePage = new WelcomePage();
 						
 						
@@ -121,24 +126,27 @@ public class swing_LoginPage {
 			}
 		});
 		
-		loginButton.setFont(new Font("twayair", Font.PLAIN, 15));
-		loginButton.setBounds(112, 224, 103, 20);
 		LogIn.add(loginButton);
-		resetButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				userIDField.setText("");
-				userPasswordField.setText("");
-				
-			}
-		});
+		
 		
 		resetButton.setFont(new Font("twayair", Font.PLAIN, 15));
 		resetButton.setBounds(245, 224, 103, 20);
+		
+		// 리셋 버튼
+		resetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+						
+				userIDField.setText("");
+				userPasswordField.setText("");
+						
+				}
+			});
+				
 		LogIn.add(resetButton);
 	}
 }
 
+// 배경이미지 넣기
 class ImagePanel extends JPanel {
 
 	  private Image img;
