@@ -1,0 +1,7 @@
+INDEX VERSION 1.131+C:\Users\choim\Desktop\CODERIUM_project\CODERIUM\.metadata\.plugins\org.eclipse.jdt.core
+3984041612.index
+767973597.index
+1048225286.index
+1949925383.index
+3151617848.index
+2686598699.index
