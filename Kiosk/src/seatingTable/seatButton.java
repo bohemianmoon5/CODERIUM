@@ -46,8 +46,10 @@ public class seatButton implements ActionListener {
 			used_lb_label.setHorizontalAlignment(SwingConstants.LEFT);
 			used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 10));
 			used_lb_label.setSize(53, 90);
+			
 			btn.add(used_lb_label);
 			btn.setVisible(true);
+			btn.setContentAreaFilled(true);
 
 		}
 

@@ -26,8 +26,6 @@ public class lbZone extends JPanel {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
 
-//		seatingImage seatImg = new seatingImage(new ImageIcon("./image/lb_zone_1.jpg").getImage());
-//		this.add(seatImg);
 		this.setVisible(false);
 
 	}
@@ -82,6 +80,7 @@ public class lbZone extends JPanel {
 				}
 				num4++;
 			}
+			btn[i].setContentAreaFilled(false);
 //			btn[i].setBorderPainted(false);
 //			btn[i].setFocusPainted(false);
 			
