@@ -52,10 +52,10 @@ public class payment {
 	payment p;
 
 	// 결제 창 bounds 설정
-	int pointX = seatMap.getFrame().getX() + 10;
-	int pointY = seatMap.getFrame().getY() + 50;
-	int width = seatMap.getFrame().getWidth() - 20;
-	int height = seatMap.getFrame().getHeight() - 100;
+//	int pointX = seatMap.getFrame().getX() + 10;
+//	int pointY = seatMap.getFrame().getY() + 50;
+//	int width = seatMap.getFrame().getWidth() - 20;
+//	int height = seatMap.getFrame().getHeight() - 100;
 
 	public payment() {
 		initialize();
@@ -66,7 +66,7 @@ public class payment {
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(pointX, pointY, width, height);
+		getFrame().setBounds(110, 50, 700, 900);
 		getFrame().setVisible(true);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -159,9 +159,9 @@ public class payment {
 			// 결제 창이 닫히면 main 패널에 있는 자식 component 활성화
 			public void windowClosed(WindowEvent e) {
 				System.out.println("꺼졌다");
-				for (int i = 0; i < c.length; i++) {
-					getSeatCom()[i].setEnabled(true);
-				}
+//				for (int i = 0; i < c.length; i++) {
+//					getSeatCom()[i].setEnabled(true);
+//				}
 			}
 
 			@Override
