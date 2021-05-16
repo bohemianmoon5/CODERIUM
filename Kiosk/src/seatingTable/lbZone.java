@@ -26,8 +26,6 @@ public class lbZone extends JPanel {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
 
-		seatingImage seatImg = new seatingImage(new ImageIcon("./image/lb_zone_1.jpg").getImage());
-		this.add(seatImg);
 		this.setVisible(false);
 
 	}
@@ -82,15 +80,11 @@ public class lbZone extends JPanel {
 				}
 				num4++;
 			}
-
+			btn[i].setContentAreaFilled(false);
+//			btn[i].setBorderPainted(false);
+//			btn[i].setFocusPainted(false);
+			
 		}
 	}
 
-	void btn2(JButton btn, JPanel lbZone) {
-
-		// btn1에서 if문으로 배열로 해결하기
-
-		btn.setBounds(13, 755, 53, 90);
-		lbZone.add(btn);
-	}
 }

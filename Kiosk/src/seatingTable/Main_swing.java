@@ -2,6 +2,7 @@ package seatingTable;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -51,17 +52,23 @@ public class Main_swing {
 		
 //		panel.main_btn(btn);
 		
-		subPanel sub_panel = new subPanel(frame);
 		JButton lb_btn = new JButton("스터디존");
 		JButton cf_btn = new JButton("카페존");
 		JButton sr_btn = new JButton("스터디룸");
 		JButton[] l_btn = new JButton[35];
 		JButton[] c_btn = new JButton[16];
 		JButton[] s_btn = new JButton[2];
-		sub_panel.lb_btn(lb_btn, sub_panel, frame, l_btn);
+		subPanel sub_panel = new subPanel(frame);
+		
+		
 		sub_panel.cf_btn(cf_btn, sub_panel, frame, c_btn);
 		sub_panel.sr_btn(sr_btn, sub_panel, frame, s_btn);
-
+		sub_panel.lb_btn(lb_btn, sub_panel, frame, l_btn);
+		
+		seatingImage seatImg = new seatingImage(new ImageIcon("./image/seatting_table_1.jpg").getImage());
+		sub_panel.add(seatImg);
+		
 		frame.getContentPane().add(main_panel);
+		
 	}
 }
