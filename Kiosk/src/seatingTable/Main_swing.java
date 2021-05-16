@@ -43,7 +43,7 @@ public class Main_swing {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(0, 0, 720, 1080);
+		frame.setBounds(100, 0, 720, 1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -64,4 +64,5 @@ public class Main_swing {
 
 		frame.getContentPane().add(main_panel);
 	}
+	
 }

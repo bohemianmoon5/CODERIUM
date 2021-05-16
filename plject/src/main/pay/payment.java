@@ -25,11 +25,11 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.JCheckBox;
 
 import main.pay.done;
 import main.seat.seatMap;
-
-import javax.swing.JCheckBox;
+import com.reservation.*;
 
 public class payment {
 
@@ -52,10 +52,16 @@ public class payment {
 	payment p;
 
 	// 결제 창 bounds 설정
-//	int pointX = seatMap.getFrame().getX() + 10;
-//	int pointY = seatMap.getFrame().getY() + 50;
-//	int width = seatMap.getFrame().getWidth() - 20;
-//	int height = seatMap.getFrame().getHeight() - 100;
+	resrvationFrame a = new resrvationFrame();
+//	int pointX = a.getFrame().getX() + 10;
+//	int pointY = a.getFrame().getY() + 50;
+//	int width = a.getFrame().getWidth() - 20;
+//	int height = a.getFrame().getHeight() - 100;
+
+	int pointX = a.getFrame().getX();
+	int pointY = a.getFrame().getY();
+	int width = a.getFrame().getWidth();
+	int height = a.getFrame().getHeight();
 
 	public payment() {
 		initialize();
@@ -66,7 +72,9 @@ public class payment {
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(110, 50, 700, 900);
+//		getFrame().setBounds(110, 50, 700, 900);
+		System.out.println("a "+ pointX +" " +pointY+" " +width+" " +height);
+		getFrame().setBounds(pointX,pointY,width,height);
 		getFrame().setVisible(true);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
