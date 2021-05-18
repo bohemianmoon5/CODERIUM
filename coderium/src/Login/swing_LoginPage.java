@@ -261,6 +261,7 @@ public class swing_LoginPage {
 		signUp.setBounds(8, 230, 143, 34);
 		LogIn.add(signUp);
 		
+		// 회원가입 버튼
 		JButton signUpButton = new JButton("회원가입");
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -347,7 +348,6 @@ public class swing_LoginPage {
 		
 		// 성별 선택 버튼 그룹화
 		ButtonGroup btnGender = new ButtonGroup();
-		
 		btnGender.add(GenderM);
 		btnGender.add(GenderW);
 		
