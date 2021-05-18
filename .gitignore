@@ -1,4 +1,4 @@
 /.metadata/
 
 #ignore file
-db.java
+./plject/src/main/pay/db.java
