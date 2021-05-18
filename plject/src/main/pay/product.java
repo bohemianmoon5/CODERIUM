@@ -55,7 +55,6 @@ public class product {
 	public String createPrice(int i) {
 		JLabel price = new JLabel("");
 		price.setText(priceArr.get(i));
-//		price.setText(arr.get(i).split(" ")[1]);
 		price.setFont(new Font(font, Font.PLAIN, 18));
 		price.setHorizontalAlignment(SwingConstants.CENTER);
 		price.setBounds(80, y+(30*i), 120, 30);

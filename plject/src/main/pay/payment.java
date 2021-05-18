@@ -301,7 +301,6 @@ public class payment {
 			chkArr.add(ctnt.chkBox(i));
 			chkEvent(chkArr.get(i), ctnt.nameArr.get(i), ctnt.priceArr.get(i));
 		}
-//		System.out.println(chkArr.size());
 	}
 
 	// checkBox ¿Ã∫•∆Æ
