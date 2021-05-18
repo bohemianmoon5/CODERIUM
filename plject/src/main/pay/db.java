@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class db {
 	Connection conn;
+	// MySql private information
 	String jdbc = "jdbc:mysql://localhost:3306/data";
 	String root = "root";
 	String pwd = "dlrlwk86532@";
