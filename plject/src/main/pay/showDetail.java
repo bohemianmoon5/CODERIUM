@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 
 public class showDetail {
 	JPanel panel;
-	int x=12;
+	int x=30;
 	int y;
 	int width=150;
 	int height=30;
@@ -27,7 +27,7 @@ public class showDetail {
 
 	public void createTitle(String str) {
 		JLabel detailTitle = new JLabel(str);
-		detailTitle.setBounds(x, y, width, height);
+		detailTitle.setBounds(x, y+35, width, height);
 		panel.add(detailTitle);
 		detailTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		detailTitle.setFont(new Font(font, Font.BOLD, 18));
@@ -51,7 +51,7 @@ public class showDetail {
 
 	public void createDetail2(String str,int i) {
 		JLabel detail = new JLabel(str);
-		detail.setBounds(x + 110, y+(40*i), 500, height);
+		detail.setBounds(x + 110, y+(40*i), 350, height);
 		panel.add(detail);
 		detail.setHorizontalAlignment(SwingConstants.CENTER);
 		detail.setFont(new Font(font, Font.PLAIN, 18));

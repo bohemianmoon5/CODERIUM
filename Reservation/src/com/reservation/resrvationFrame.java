@@ -233,7 +233,7 @@ public class resrvationFrame {
 
 		// ++main 컴포넌트 mainC에 저장
 		mainC = mainReservation.getComponents();
-		System.out.println("mainC count " + mainC.length);
+//		System.out.println("mainC count " + mainC.length);
 
 		
 //		// ++새로운 예약 패널 component 1
@@ -494,23 +494,23 @@ public class resrvationFrame {
 //		System.out.println("newC count " + newC.length);
 		
 		
-		for(int i=0; i<mainReservation.getComponentCount(); i++) {			
-			System.out.println("main component " +i+ " "+ mainReservation.getComponent(i));
-		}
+//		for(int i=0; i<mainReservation.getComponentCount(); i++) {			
+//			System.out.println("main component " +i+ " "+ mainReservation.getComponent(i));
+//		}
 
 //		for(int i=0; i<newReservation.getComponentCount(); i++) {			
 //			System.out.println("new component " +i+ " "+ newReservation.getComponent(i));
 //		}
 		
-		for(int i=0; i<checkReservation.getComponentCount(); i++) {			
-			System.out.println("check component " +i+ " "+ checkReservation.getComponent(i));
-		}
-		for(int i=0; i<cancelReservation.getComponentCount(); i++) {			
-			System.out.println("cancel component " +i+ " "+ cancelReservation.getComponent(i));
-		}
-		for(int i=0; i<frame.getContentPane().getComponentCount(); i++) {			
-			System.out.println("frame getContent component " +i+ " "+ frame.getContentPane().getComponent(i));
-		}
+//		for(int i=0; i<checkReservation.getComponentCount(); i++) {			
+//			System.out.println("check component " +i+ " "+ checkReservation.getComponent(i));
+//		}
+//		for(int i=0; i<cancelReservation.getComponentCount(); i++) {			
+//			System.out.println("cancel component " +i+ " "+ cancelReservation.getComponent(i));
+//		}
+//		for(int i=0; i<frame.getContentPane().getComponentCount(); i++) {			
+//			System.out.println("frame getContent component " +i+ " "+ frame.getContentPane().getComponent(i));
+//		}
 		
 	}
 	public static JFrame getFrame() {
