@@ -10,9 +10,6 @@ public class srZone extends JPanel {
 	srZone(JFrame frame) {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
-
-		
-
 		this.setVisible(false);
 	}
 	
