@@ -9,5 +9,6 @@
 	<classpathentry kind="src" path="Image"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/coderium"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/plject"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Reservation"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

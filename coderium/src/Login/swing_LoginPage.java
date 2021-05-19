@@ -47,9 +47,9 @@ public class swing_LoginPage {
 	 * Create the application.
 	 * @param hashMap 
 	 */
-	ImagePanel ShowUp = new ImagePanel(new ImageIcon("/Users/masonna/Desktop/코더리움(스터디카페)/12(수정).png").getImage());
+	ImagePanel ShowUp = new ImagePanel(new ImageIcon("../coderium/src/Image/12(수정).png").getImage());
 	
-	JButton loginButton = new JButton("로그인");
+	JButton loginButton = new JButton("濡쒓렇�씤");
 	JButton resetButton = new JButton("Reset");
 	JTextField userIDField = new JTextField();
 	JPasswordField userPasswordField = new JPasswordField();
@@ -59,7 +59,7 @@ public class swing_LoginPage {
 	
 	private JPanel LogIn = new JPanel();
 	private JTextField textField;
-	private final JButton nonMemberButton = new JButton("비회원");
+	private final JButton nonMemberButton = new JButton("鍮꾪쉶�썝");
 	private JTextField cellPhoneNumField;
 	private JTextField verifiedNumField;
 	private JTextField signUpIDField;
@@ -86,7 +86,7 @@ public class swing_LoginPage {
 		frame.setBounds(100, 100, 720, 1080);
 		frame.getContentPane().add(ShowUp);
 		
-		// 메인 버튼
+		// 硫붿씤 踰꾪듉
 		JButton Main_clickMe = new JButton("<HTML><body><center>All dreamers are here!<br>[Click Me]</center></body></HTML>");
 		Main_clickMe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -94,7 +94,7 @@ public class swing_LoginPage {
 				LogIn.setVisible(true);
 			}
 		});
-		Main_clickMe.setIcon(new ImageIcon("/Users/masonna/Desktop/코더리움(스터디카페)/메인_버튼.png"));
+		Main_clickMe.setIcon(new ImageIcon("../coderium/src/Image/메인_버튼.png"));
 		Main_clickMe.setBounds(198, 462, 340, 91);
 		ShowUp.add(Main_clickMe);
 		Main_clickMe.setForeground(new Color(0, 0, 204));
@@ -131,11 +131,11 @@ public class swing_LoginPage {
 		loginButton.setFont(new Font("twayair", Font.PLAIN, 15));
 		loginButton.setBounds(297, 211, 103, 35);
 		
-		// 로그인 버튼
+		// 濡쒓렇�씤 踰꾪듉
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				// 로그인 정보 불러오기
+				// 濡쒓렇�씤 �젙蹂� 遺덈윭�삤湲�
 				IdPassword idPassword = new IdPassword();
 				
 				String userID = userIDField.getText();
@@ -144,7 +144,7 @@ public class swing_LoginPage {
 				if(idPassword.loginInfo.containsKey(userID)) {
 					if(idPassword.loginInfo.get(userID).equals(password)) {
 						WelcomePage welcomePage = new WelcomePage();
-						welcomePage.welcomeLabel.setText("안녕하세요! " + userID + "님");
+						welcomePage.welcomeLabel.setText("�븞�뀞�븯�꽭�슂! " + userID + "�떂");
 					}
 					else {
 						
@@ -169,7 +169,7 @@ public class swing_LoginPage {
 		if(Main_clickMe.isVisible()) 
 			NonMember.setVisible(false);
 		
-		// 비회원
+		// 鍮꾪쉶�썝
 		nonMemberButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -179,7 +179,7 @@ public class swing_LoginPage {
 			}
 		});
 		
-		JLabel cellPhoneNum = new JLabel("휴대폰 번호");
+		JLabel cellPhoneNum = new JLabel("�쑕���룿 踰덊샇");
 		cellPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		cellPhoneNum.setBounds(60, 63, 151, 25);
 		NonMember.add(cellPhoneNum);
@@ -187,7 +187,7 @@ public class swing_LoginPage {
 		cellPhoneNumField = new JTextField();
 		cellPhoneNumField.setBounds(60, 90, 340, 34);
 		
-		// 휴대폰 번호 포맷 바꾸기 & 인증번호 띄우기
+		// �쑕���룿 踰덊샇 �룷留� 諛붽씀湲� & �씤利앸쾲�샇 �쓣�슦湲�
 		cellPhoneNumField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -203,7 +203,7 @@ public class swing_LoginPage {
 		
 		NonMember.add(cellPhoneNumField);
 		
-		JLabel verifiedNum = new JLabel("인증번호");
+		JLabel verifiedNum = new JLabel("�씤利앸쾲�샇");
 		verifiedNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		verifiedNum.setBounds(60, 127, 168, 42);
 		NonMember.add(verifiedNum);
@@ -212,26 +212,26 @@ public class swing_LoginPage {
 		verifiedNumField.setBounds(60, 162, 340, 34);
 		NonMember.add(verifiedNumField);
 		
-		JButton loginButton_non = new JButton("로그인");
+		JButton loginButton_non = new JButton("濡쒓렇�씤");
 		loginButton_non.setFont(new Font("twayair", Font.PLAIN, 15));
 		loginButton_non.setBounds(297, 211, 103, 35);
 		
-		// 비회원 로그인
+		// 鍮꾪쉶�썝 濡쒓렇�씤
 		loginButton_non.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 					WelcomePage welcomePage = new WelcomePage();
-					welcomePage.welcomeLabel.setText("안녕하세요!");
+					welcomePage.welcomeLabel.setText("�븞�뀞�븯�꽭�슂!");
 					
 			}
 		});
 		NonMember.add(loginButton_non);
 		
-		JButton returnButton = new JButton("돌아가기");
+		JButton returnButton = new JButton("�룎�븘媛�湲�");
 		returnButton.setFont(new Font("twayair", Font.PLAIN, 14));
 		returnButton.setBounds(373, 6, 91, 34);
 		
-		// 돌아가기 
+		// �룎�븘媛�湲� 
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -254,15 +254,15 @@ public class swing_LoginPage {
 		if(Main_clickMe.isVisible()) 
 			SignUp.setVisible(false);
 		
-		JLabel signUp = new JLabel("회원이 아닌가요?");
+		JLabel signUp = new JLabel("�쉶�썝�씠 �븘�땶媛��슂?");
 		signUp.setBackground(new Color(204, 204, 204));
 		signUp.setForeground(new Color(51, 102, 204));
 		signUp.setFont(new Font("twayair", Font.PLAIN, 13));
 		signUp.setBounds(8, 230, 143, 34);
 		LogIn.add(signUp);
 		
-		// 회원가입 버튼
-		JButton signUpButton = new JButton("회원가입");
+		// �쉶�썝媛��엯 踰꾪듉
+		JButton signUpButton = new JButton("�쉶�썝媛��엯");
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -293,7 +293,7 @@ public class swing_LoginPage {
 		signUpPasswordField.setBounds(60, 153, 340, 34);
 		SignUp.add(signUpPasswordField);
 		
-		signUpName = new JLabel("이름");
+		signUpName = new JLabel("�씠由�");
 		signUpName.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpName.setBounds(60, 209, 91, 25);
 		SignUp.add(signUpName);
@@ -302,12 +302,12 @@ public class swing_LoginPage {
 		signUpNameField.setBounds(60, 236, 340, 34);
 		SignUp.add(signUpNameField);
 		
-		signUpGender = new JLabel("성별");
+		signUpGender = new JLabel("�꽦蹂�");
 		signUpGender.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpGender.setBounds(60, 292, 91, 25);
 		SignUp.add(signUpGender);
 		
-		signUpIDNum = new JLabel("주민등록번호(생년월일)");
+		signUpIDNum = new JLabel("二쇰�쇰벑濡앸쾲�샇(�깮�뀈�썡�씪)");
 		signUpIDNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpIDNum.setBounds(60, 375, 201, 25);
 		SignUp.add(signUpIDNum);
@@ -316,7 +316,7 @@ public class swing_LoginPage {
 		signUpIDNumField.setBounds(60, 402, 340, 34);
 		SignUp.add(signUpIDNumField);
 		
-		signUpPhoneNum = new JLabel("전화번호");
+		signUpPhoneNum = new JLabel("�쟾�솕踰덊샇");
 		signUpPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpPhoneNum.setBounds(60, 455, 91, 25);
 		SignUp.add(signUpPhoneNum);
@@ -325,7 +325,7 @@ public class swing_LoginPage {
 		signUpPhoneNumField.setBounds(60, 482, 340, 34);
 		SignUp.add(signUpPhoneNumField);
 		
-		signUpWord = new JLabel("소망(꿈)");
+		signUpWord = new JLabel("�냼留�(轅�)");
 		signUpWord.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpWord.setBounds(60, 534, 91, 25);
 		SignUp.add(signUpWord);
@@ -334,34 +334,34 @@ public class swing_LoginPage {
 		signUpWordTxt.setBounds(61, 565, 335, 97);
 		SignUp.add(signUpWordTxt);
 		
-		JRadioButton GenderM = new JRadioButton("남");
-		GenderM.setToolTipText("남");
+		JRadioButton GenderM = new JRadioButton("�궓");
+		GenderM.setToolTipText("�궓");
 		GenderM.setFont(new Font("twayair", Font.PLAIN, 16));
 		GenderM.setBounds(70, 330, 54, 23);
 		SignUp.add(GenderM);
 		
-		JRadioButton GenderW = new JRadioButton("여");
-		GenderW.setToolTipText("여");
+		JRadioButton GenderW = new JRadioButton("�뿬");
+		GenderW.setToolTipText("�뿬");
 		GenderW.setFont(new Font("twayair", Font.PLAIN, 16));
 		GenderW.setBounds(154, 330, 54, 23);
 		SignUp.add(GenderW);
 		
-		// 성별 선택 버튼 그룹화
+		// �꽦蹂� �꽑�깮 踰꾪듉 洹몃９�솕
 		ButtonGroup btnGender = new ButtonGroup();
 		btnGender.add(GenderM);
 		btnGender.add(GenderW);
 		
-		JButton completeBtn = new JButton("가입하기");
+		JButton completeBtn = new JButton("媛��엯�븯湲�");
 		completeBtn.setFont(new Font("twayair", Font.PLAIN, 15));
 		completeBtn.setBounds(253, 688, 100, 35);
 		
-		// 가입버튼(데이터 저장, 화면 전환)
+		// 媛��엯踰꾪듉(�뜲�씠�꽣 ���옣, �솕硫� �쟾�솚)
 		completeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				signUpData.signUp.setId(signUpIDField.getText());
 				
-				// Pw 데이터 저장 
+				// Pw �뜲�씠�꽣 ���옣 
 				String stringPassword = "";
 				int i = 0;
 				for(char a : signUpPasswordField.getPassword()) {
@@ -375,7 +375,7 @@ public class swing_LoginPage {
 				signUpData.signUp.setPhoneNum(signUpPhoneNumField.getText());
 				signUpData.signUp.setWord(signUpWordTxt.getText());
 				
-				// 성별 데이터 저장
+				// �꽦蹂� �뜲�씠�꽣 ���옣
 				if(GenderM.isSelected()) {
 					signUpData.signUp.setGender(GenderM.getToolTipText());
 				} else {
@@ -390,9 +390,9 @@ public class swing_LoginPage {
 		
 		
 		
-		JButton cancelBtn = new JButton("취소하기");
+		JButton cancelBtn = new JButton("痍⑥냼�븯湲�");
 		
-		// 돌아가기 
+		// �룎�븘媛�湲� 
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -410,7 +410,7 @@ public class swing_LoginPage {
 		resetButton.setFont(new Font("twayair", Font.PLAIN, 15));
 		resetButton.setBounds(245, 224, 103, 20);
 		
-		// 리셋 버튼
+		// 由ъ뀑 踰꾪듉
 		resetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 						
@@ -434,14 +434,14 @@ public void switchPanels(JPanel panel) {
 	}
 
 
-// 휴대폰 번호 양식
+// �쑕���룿 踰덊샇 �뼇�떇
 public String phone_format(String number) { 
 	String regEx = "(\\d{3})(\\d{3,4})(\\d{4})"; 
 	return number.replaceAll(regEx, "$1-$2-$3"); 
 	}
 }
 
-// 배경이미지 넣기
+// 諛곌꼍�씠誘몄� �꽔湲�
 class ImagePanel extends JPanel {
 
 	  private Image img;
