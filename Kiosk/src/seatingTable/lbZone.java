@@ -2,6 +2,7 @@ package seatingTable;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,10 +19,13 @@ public class lbZone extends JPanel {
 	int num3 = 0;
 	int num4 = 0;
 	ArrayList<Integer> seat = new ArrayList<Integer>();
+	
 //	db 불러오기.!
 	Dbfile db = new Dbfile("reservation_db.txt");
 	Date dt = new Date();
-	SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.KOREA);
+	SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
+	ArrayList<String> time = new ArrayList<String>();
+	ArrayList<String> timer = new ArrayList<String>();
 	/**
 	 * 스터디존 좌석표 생성!
 	 */
@@ -36,6 +40,8 @@ public class lbZone extends JPanel {
 	}
 
 	// 좌석표 버튼 생성
+
+	@SuppressWarnings("deprecation")
 	void btn(JButton[] btn, JPanel lbZone) {
 
 //		1~12번좌석 번호 생성
@@ -94,10 +100,21 @@ public class lbZone extends JPanel {
 			System.out.println(time1);
 			for (int j = 1; j < db.arr.size(); j++) {
 				seat.add(Integer.parseInt(db.arr.get(j).split(",")[4]));
-				System.out.println("seatnum:"+seat.get(j-1));
+				time.add(db.arr.get(j).split(",")[2]);
+				try {
+					Date dt2 = format.parse(time.get(j-1));
+					
+					
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+//				System.out.println(time.get(j-1));
+				System.out.println();
 				if (i == seat.get(j-1)) {
+					
 					System.out.println("seatnum:" + i);
-					btn[i-1].setText(null);
+					btn[i - 1].setText(null);
 					btn[i - 1].setBackground(Color.yellow);
 					btn[i - 1].setContentAreaFilled(true);
 					JLabel used_lb_label = new JLabel("<HTML>" + (i+1) + "번" + "<br>" + time1  + "</HTML>");
@@ -105,7 +122,7 @@ public class lbZone extends JPanel {
 					used_lb_label.setHorizontalAlignment(SwingConstants.LEFT);
 					used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 10));
 					used_lb_label.setSize(53, 90);
-					btn[i-1].add(used_lb_label);
+					btn[i - 1].add(used_lb_label);
 				}else {
 					System.out.println("같지않아!");
 				}
