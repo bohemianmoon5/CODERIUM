@@ -17,7 +17,7 @@ public class Dbfile {
 		
 		try {
 			// 파일 객체 생성
-			File file = new File("C:\\Users\\kosta\\Desktop\\CODERIUM\\CODERIUM\\Kiosk\\text\\" + f);
+			File file = new File("../kiosk/text/" + f);
 			//입력 스트림 생성
 			FileReader filereader = new FileReader(file);
 			// 입력 버퍼 생성
