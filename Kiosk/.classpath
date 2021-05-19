@@ -10,5 +10,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/coderium"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/plject"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Reservation"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBC2"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
