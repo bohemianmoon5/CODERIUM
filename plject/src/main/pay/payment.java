@@ -30,9 +30,9 @@ import javax.swing.JCheckBox;
 
 import main.pay.done;
 import main.seat.seatMap;
-import test.Main;
+//import test.Main;
 
-import com.reservation.*;
+//import com.reservation.*;
 import java.awt.SystemColor;
 
 public class payment {
@@ -63,16 +63,16 @@ public class payment {
 	private String font = "티웨이_항공";
 
 	// 결제 창 bounds 설정
-	resrvationFrame a = new resrvationFrame();
+//	resrvationFrame a = new resrvationFrame();
 //	int pointX = a.getFrame().getX() + 10;
 //	int pointY = a.getFrame().getY() + 50;
 //	int width = a.getFrame().getWidth() - 20;
 //	int height = a.getFrame().getHeight() - 100;
 
-	int pointX = a.getFrame().getX();
-	int pointY = a.getFrame().getY();
-	int width = a.getFrame().getWidth();
-	int height = a.getFrame().getHeight();
+//	int pointX = a.getFrame().getX();
+//	int pointY = a.getFrame().getY();
+//	int width = a.getFrame().getWidth();
+//	int height = a.getFrame().getHeight();
 
 	Color background = new Color(255, 255, 255);
 	Color btnC = new Color(206, 237, 222);
