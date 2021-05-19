@@ -1,4 +1,4 @@
-package test;
+package Login;
 
 import java.awt.Font;
 
@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class WelcomePage {
 	
 	JFrame frame = new JFrame();
-	JLabel welcomeLabel = new JLabel("Hello!");
+	JLabel welcomeLabel = new JLabel("");
 	
 	WelcomePage() {
 		
