@@ -28,7 +28,7 @@ public class cash {
 	public void makeCashTF(String str,int i) {
 		JLabel tf = new JLabel(str);
 		tf.setFont(new Font(font, Font.PLAIN, 18));
-		tf.setBounds(x, y+(70*i), width, height);
+		tf.setBounds(x, y+(60*i), width, height);
 		panel.add(tf);
 	}
 
@@ -36,7 +36,7 @@ public class cash {
 	public JLabel makeCashD(String str,int i) {
 		JLabel tf = new JLabel(str);
 		tf.setFont(new Font(font, Font.PLAIN, 18));
-		tf.setBounds(x+110, y+(70*i), width+160, height);
+		tf.setBounds(x+110, y+(60*i), width+160, height);
 		panel.add(tf);
 		return tf;
 	}
@@ -45,7 +45,7 @@ public class cash {
 	public JButton makeCashB(String str, int i, int j) {
 		JButton cashBtn = new JButton(str);
 		cashBtn.setFont(new Font(font, Font.PLAIN, 18));
-		cashBtn.setBounds(88+(290*i), y+(100*j), 198, 57);
+		cashBtn.setBounds(88+(290*i), y+(90*j), 198, 57);
 		panel.add(cashBtn);
 		return cashBtn;
 	}

@@ -17,47 +17,54 @@ public class product {
 	JLabel price;
 	JCheckBox chk;
 	String font = "";
-	ArrayList<String> arr = new ArrayList<String>();
-
-	int y=73;
-
+	ArrayList<String> nameArr = new ArrayList<String>();
+	ArrayList<String> priceArr = new ArrayList<String>();
+	int y=10;
+	db d = new db();
+	
 	public product() {
-		readFile rf = new readFile("product");
-		rf.readFileFunc(arr);
+		
+	}
+	public product(String tableName) {
+		nameArr=chk("productName",tableName);
+		priceArr=chk("price",tableName);
 	}
 
-	public product(JPanel panel, JLabel name, JLabel price, 
-			JCheckBox chk, String font) {
+	public product(JPanel panel, String font,String tableName) {
 		this.panel = panel;
-		this.name = name;
-		this.price = price;
-		this.chk = chk;
 		this.font = font;
-		
-		readFile rf = new readFile("product");
-		rf.readFileFunc(arr);
+		nameArr=chk("productName",tableName);
+		priceArr=chk("price",tableName);
+	}
+	
+	public ArrayList<String> chk(String str,String tableName) {
+		return d.select(str,tableName);
 	}
 	
 	public String createName(int i) {
-		name.setText(arr.get(i).split(" ")[0]);
+		JLabel name = new JLabel("");
+		name.setText(nameArr.get(i));
 		name.setFont(new Font(font, Font.PLAIN, 18));
 		name.setHorizontalAlignment(SwingConstants.CENTER);
-		name.setBounds(22, y+(30*i), 56, 30);
+		name.setBounds(20, y+(30*i), 56, 30);
 		panel.add(name);
-		return arr.get(i).split(" ")[0];
+		return nameArr.get(i);
 	}
-
+	
+	
 	public String createPrice(int i) {
-		price.setText(arr.get(i).split(" ")[1]);
+		JLabel price = new JLabel("");
+		price.setText(priceArr.get(i));
 		price.setFont(new Font(font, Font.PLAIN, 18));
 		price.setHorizontalAlignment(SwingConstants.CENTER);
-		price.setBounds(90, y+(30*i), 120, 30);
+		price.setBounds(80, y+(30*i), 120, 30);
 		panel.add(price);
-		return arr.get(i).split(" ")[1];
+		return priceArr.get(i);
 	}
 
 	public JCheckBox chkBox(int i) {
-		chk.setBounds(220, y+(30*i), 21, 23);
+		JCheckBox chk = new JCheckBox("");
+		chk.setBounds(200, y+(30*i), 21, 23);
 		panel.add(chk);
 		return chk;
 	}

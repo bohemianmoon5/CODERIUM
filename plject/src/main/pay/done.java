@@ -33,8 +33,8 @@ public class done {
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		System.out.println("p "+payCash);
-		System.out.println("m "+mustCash);
+//		System.out.println("p "+payCash);
+//		System.out.println("m "+mustCash);
 		
 		if(payCash!=0 && mustCash!=payCash) {
 			JLabel payPhrase = new JLabel("거스름돈 : "+ (payCash-mustCash)+"원 입니다.");
