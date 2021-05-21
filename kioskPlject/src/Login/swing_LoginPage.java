@@ -454,5 +454,6 @@ public class swing_LoginPage {
 	public void setShowUp(ImagePanel showUp) {
 		ShowUp_1_1 = showUp;
 	}
+	//++
 }
 
