@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//++js modify img 경로 변경
 public class subPanel extends JPanel {
 
 	/**
@@ -59,7 +60,7 @@ public class subPanel extends JPanel {
 				subPanel.setVisible(false);
 				cf.setVisible(!cf.isVisible());
 				cf.btn(btns, cf);
-				seatingImage seatImg = new seatingImage(new ImageIcon("./image/cf_zone_1.jpg").getImage());
+				seatingImage seatImg = new seatingImage(new ImageIcon("./src/image/cf_zone_1.jpg").getImage());
 				cf.add(seatImg);
 			}
 		});
@@ -81,7 +82,7 @@ public class subPanel extends JPanel {
 				subPanel.setVisible(false);
 				sr.setVisible(!sr.isVisible());
 				sr.btn(btns, sr);
-				seatingImage seatImg = new seatingImage(new ImageIcon("./image/sr_zone_1.jpg").getImage());
+				seatingImage seatImg = new seatingImage(new ImageIcon("./src/image/sr_zone_1.jpg").getImage());
 				sr.add(seatImg);
 			}
 		});

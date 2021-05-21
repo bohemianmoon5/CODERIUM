@@ -36,7 +36,7 @@ public class fighting {
 		done.setText(str);
 		done.setFont(new Font(font, Font.PLAIN, 30));
 		done.setHorizontalAlignment(SwingConstants.CENTER);
-		done.setBounds(76, 153, 520, 126);
+		done.setBounds(110, 480, 520, 125);
 		panel.add(done);
 	}
 
@@ -49,7 +49,7 @@ public class fighting {
 		fight.setForeground(new Color(102, 51, 255));
 		fight.setHorizontalAlignment(SwingConstants.CENTER);
 		fight.setFont(new Font(font, Font.PLAIN, 32));
-		fight.setBounds(53, 277, 600, 400);
+		fight.setBounds(60, 480, 600, 400);
 		panel.add(fight);
 	}
 }

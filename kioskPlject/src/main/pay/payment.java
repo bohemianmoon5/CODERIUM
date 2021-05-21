@@ -179,9 +179,9 @@ public class payment {
 			// 결제 창이 닫히면 main 패널에 있는 자식 component 활성화
 			public void windowClosed(WindowEvent e) {
 				System.out.println("꺼졌다");
-//				for (int i = 0; i < c.length; i++) {
-//					getSeatCom()[i].setEnabled(true);
-//				}
+				for (int i = 0; i < c.length; i++) {
+					getSeatCom()[i].setEnabled(true);
+				}
 			}
 
 			@Override
@@ -553,7 +553,8 @@ public class payment {
 		d.getFrame().dispose();
 		getFrame().dispose();
 		// 응원문구 패널 생성
-		fightingPan();
+		test();
+//		fightingPan();
 //		mainPanel();
 		modiData md = new modiData();
 		String stSeat = getInfo();
@@ -566,45 +567,71 @@ public class payment {
 		sData.store();
 	}
 
+	public void test() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					swing_LoginPage window = new swing_LoginPage();
+					window.getFrame().setVisible(true);
+					for(int i=0; i<window.getShowUp().getComponentCount();i++) {
+						window.getShowUp().getComponent(i).setVisible(false);
+					}
+					fightingPan(window.getShowUp());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	// ++수정 필요한 부분
-	public void fightingPan() {
+	public void fightingPan(JPanel panel) {
 		// Main 페이지 내 패널 안에 있는 구성 요소 삭제
-		seatMap.getSeatPanel().removeAll();
+//		seatMap.getSeatPanel().removeAll();
 
 		// Main 페이지 내 패널에 감사합니다 + 응원문구 라벨 부착
 		JLabel donePhrase = new JLabel("");
 		JLabel fightPhrase = new JLabel("");
 
-		fighting ft = new fighting(seatMap.getSeatPanel(), donePhrase, fightPhrase, font);
+		fighting ft = new fighting(panel, donePhrase, fightPhrase, font);
 		ft.createDone("감사합니다.");
 		ft.createFight();
-
+		Component[] mainC = panel.getComponents();
 		// 패널 repaint
-		seatMap.getSeatPanel().repaint();
+//		seatMap.getSeatPanel().repaint();
 
 		// 5초 후 메인 패널로 전환
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
-				seatMap.getSeatPanel().removeAll();
-				mainPanel();
+				//첫 화면인 JButton만 setVisible true로 변경
+				for(int i=0;i<mainC.length;i++) {
+					if(mainC[i].toString().contains("JButton")) {
+						mainC[i].setVisible(true);
+					}
+					//JLabel만 제거
+					else if(mainC[i].toString().contains("JLabel")) {
+						panel.remove(mainC[i]);
+						panel.repaint();
+					}
+				}
 			}
 		};
 		timer.schedule(task, 5000);
 	}
 
 	// 메인 패널 임시로 생성해 놓은 것 (test 용)
-	public void mainPanel() {
-		JLabel mainPhrase = new JLabel("coderium study cafe");
-		mainPhrase.setFont(new Font(font, Font.PLAIN, 30));
-		mainPhrase.setHorizontalAlignment(SwingConstants.CENTER);
-		mainPhrase.setBounds(76, 153, 520, 126);
-		seatMap.getSeatPanel().add(mainPhrase);
-
-		// panel repaint 하기
-		seatMap.getSeatPanel().repaint();
-
-	}
+//	public void mainPanel() {
+//		JLabel mainPhrase = new JLabel("coderium study cafe");
+//		mainPhrase.setFont(new Font(font, Font.PLAIN, 30));
+//		mainPhrase.setHorizontalAlignment(SwingConstants.CENTER);
+//		mainPhrase.setBounds(76, 153, 520, 126);
+//		seatMap.getSeatPanel().add(mainPhrase);
+//
+//		// panel repaint 하기
+//		seatMap.getSeatPanel().repaint();
+//
+//	}
 
 }

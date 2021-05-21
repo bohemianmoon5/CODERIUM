@@ -28,8 +28,11 @@ public class cfZone extends JPanel {
 		
 		for (int i = 0; i < btn.length; i++) {
 			btn[i] = new JButton((i+35)+"");
-			btn[i].addActionListener(new seatButton(btn[i], i+1));
+			//++js modify
 			cfZone.add(btn[i]);
+			System.out.println("cfZone Component : "+cfZone.getComponentCount());
+			btn[i].addActionListener(new seatButton(btn[i], i+1,cfZone));
+			//++
 			btn[i].setContentAreaFilled(false);
 			btn[i].setBorderPainted(false);
 			btn[i].setFocusPainted(false);

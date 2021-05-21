@@ -8,6 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+//++js modify
+import Login.ImagePanel;
+import Login.swing_LoginPage;
+//++
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
@@ -17,6 +23,11 @@ import java.awt.Component;
 public class Main_swing {
 
 	private static JFrame frame;
+	
+	//++js modify
+	private ImagePanel main_panel;
+	//++
+	
 //	private JButton btn;
 	/**
 	 * Launch the application.
@@ -49,8 +60,17 @@ public class Main_swing {
 		frame.setBounds(0, 0, 720, 1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//++js modify
+		swing_LoginPage a = new swing_LoginPage();
+		for(int i=0; i<a.getShowUp().getComponentCount();i++) {
+			if(a.getShowUp().getComponent(i).toString().contains("JButton")) {
+				a.getShowUp().getComponent(i).setVisible(false);
+			}
+		}
+		main_panel = a.getShowUp();
+		//++
 		
-		mainPanel main_panel = new mainPanel(frame);
+//		mainPanel main_panel = new mainPanel(frame);
 		
 //		panel.main_btn(btn);
 		

@@ -1,6 +1,7 @@
 package seatingTable;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import main.pay.payment;
@@ -19,6 +21,8 @@ import main.pay.payment;
 public class seatButton implements ActionListener  {
 	JButton btn = null;
 	int i = 0;
+	JPanel j;
+	Component[] btnStat;
 
 	public seatButton(JButton btn) {
 		this.btn = btn;
@@ -27,6 +31,11 @@ public class seatButton implements ActionListener  {
 	public seatButton(JButton btn, int i) {
 		this.btn = btn;
 		this.i = i;
+	}
+	public seatButton(JButton btn, int i, JPanel j) {
+		this.btn = btn;
+		this.i = i;
+		this.j=j;
 	}
 
 	@Override
@@ -43,9 +52,17 @@ public class seatButton implements ActionListener  {
 				Date end = new Date();
 				p.getFrame().setVisible(true);
 				p.setInfo(i + 1 + "");
+				
+				//++js modify
+				btnStat = j.getComponents();
+				System.out.println(btnStat.length);
+				for(int i=0; i<btnStat.length;i++) {
+					btnStat[i].setEnabled(false);
+				}
+				payment.setSeatCom(btnStat);
+				//++
+				
 				System.out.println("p값은:" + p.getInfo());
-				
-				
 //			 	이 작업이 끝나고 색상이 바뀌어야한다.!
 				SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss", Locale.KOREA);
 				
@@ -57,7 +74,7 @@ public class seatButton implements ActionListener  {
 					e1.printStackTrace();
 				}
 				
-				System.out.println(start);
+//				System.out.println(start);
 				long use = end.getTime()- start.getTime() ;
 				long min = use/(60*1000);
 				btn.setText(null);
