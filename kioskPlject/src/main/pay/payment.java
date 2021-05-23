@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -32,15 +34,11 @@ import Login.swing_LoginPage;
 import javax.swing.JCheckBox;
 
 import main.pay.done;
-import main.seat.seatMap;
-//import test.Main;
 import seatingTable.Main_swing;
 
-//import com.reservation.*;
 import java.awt.SystemColor;
 
 public class payment {
-
 	private JFrame frame;
 
 	private JPanel containerPanel;
@@ -51,20 +49,20 @@ public class payment {
 	private JPanel cash;
 
 	private JButton category;
-	private JButton nextBtn;
+	private JButton firstNext;
+	private JButton secondNext;
 	private JButton backBtn;
 
-	private static String seatInfo;
-
-	private static Component[] c;
 	// 결제 창의 첫번째 창
 	private static Component[] FirstC;
 	// 결제 창의 두번째 창
 	private static Component[] SecondC;
 	// 결제 창의 세번째 창
 	private static Component[] ThirdC;
+	// font 지정
 	private String font = "티웨이_항공";
-
+	// seatButton에서 좌석번호 가져옴 
+	private String seatN="";
 	// 결제 창 bounds 설정
 	int pointX = Main_swing.getFrame().getX() + 10;
 	int pointY = Main_swing.getFrame().getY() + 340;
@@ -76,6 +74,11 @@ public class payment {
 	Color btnC2 = new Color(245, 242, 205);
 
 	public payment() {
+		initialize();
+	}
+
+	public payment(String num) {
+		this.seatN=num;
 		initialize();
 	}
 
@@ -104,24 +107,28 @@ public class payment {
 		select.setLayout(null);
 
 		// select panel 제목 생성
-		JLabel selectTitle = new JLabel("select product");
-		selectTitle.setFont(new Font(font, Font.BOLD, 18));
-		selectTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		selectTitle.setBounds(246, 22, 150, 30);
-		select.add(selectTitle);
+		product tp = new product(select);
+		tp.createTitle("Select Product");
 
 		// 결제 팝업의 exit 버튼 누를 시 결제 팝업창만 종료됨
 		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+		// 첫번째 nextBtn 구현
 		// 상품 선택 후 다음 패널로 전환하는 next 버튼 생성
 		// 상품 선택해야 nextBtn 활성화하는 기능 적용
-		nextBtn = new JButton("Next");
-		nextBtn.setFont(new Font(font, Font.PLAIN, 20));
-		designBtn(nextBtn, btnC);
-		nextBtn.setVisible(true);
-		nextBtn.setEnabled(false);
-		nextBtn.setBounds(500, 295, 170, 44);
-		select.add(nextBtn);
+		nextBtn n = new nextBtn(containerPanel,select,btnC,font);
+		firstNext = n.createNext();
+		firstNext.setEnabled(false);
+		// next 버튼 클릭 시 select/confirm 패널 setVisible = false로 변경 후 detailPanel 생성
+		firstNext.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				containerPanel.removeAll();
+				detailPanel(seatN, getProduct(), getPrice());
+				containerPanel.repaint();
+				SecondC = containerPanel.getComponents();
+			}
+		});
 
 		content = new JPanel();
 		content.setBounds(25, 90, 633, 195);
@@ -131,24 +138,13 @@ public class payment {
 		createCategory("시간권", 0);
 		createCategory("기간권", 1);
 
-		// next 버튼 클릭 시 select/confirm 패널 setVisible = false로 변경 후 detailPanel 생성
-		nextBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				containerPanel.removeAll();
-				detailPanel(getInfo(), getProduct(), getPrice());
-				containerPanel.repaint();
-				SecondC = containerPanel.getComponents();
-			}
-		});
-
 		// windowEvent 설정
-		windowEvent();
-
+		windowEvent we = new windowEvent(getFrame());
+		we.event();
 		FirstC = containerPanel.getComponents();
 	}
 
-	public void designBtn(JButton btn, Color c) {
+	public static void designBtn(JButton btn, Color c) {
 		btn.setBackground(c);
 		btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
@@ -160,50 +156,6 @@ public class payment {
 		}
 		System.out.println();
 		System.out.println();
-	}
-
-	public void windowEvent() {
-		getFrame().addWindowListener(new WindowListener() {
-			@Override
-			// 윈도우 처음 생성되었을 때
-			public void windowOpened(WindowEvent e) {
-			}
-
-			@Override
-			// 윈도우 시스템 메뉴의 닫기 시도할 때
-			public void windowClosing(WindowEvent e) {
-			}
-
-			@Override
-			// 윈도우가 닫힐 때
-			// 결제 창이 닫히면 main 패널에 있는 자식 component 활성화
-			public void windowClosed(WindowEvent e) {
-				System.out.println("꺼졌다");
-				for (int i = 0; i < c.length; i++) {
-					getSeatCom()[i].setEnabled(true);
-				}
-			}
-
-			@Override
-			// 윈도우가 최소화 되었을 때
-			public void windowIconified(WindowEvent e) {
-			}
-
-			@Override
-			// 윈도우가 최소화에서 최대화 되었을 때
-			public void windowDeiconified(WindowEvent e) {
-			}
-
-			@Override
-			// 윈도우가 활성화 되었을 때
-			public void windowActivated(WindowEvent e) {
-			}
-
-			@Override
-			// 윈도우가 비활성화 되었을 때
-			public void windowDeactivated(WindowEvent e) {
-			}
-		});
 	}
 
 	public JFrame getFrame() {
@@ -237,25 +189,6 @@ public class payment {
 		this.price = price;
 	}
 
-	// 좌석 정보에 대한 내용 seatMap 에서 가져옴
-	public String getInfo() {
-		return seatInfo;
-	}
-
-	public static void setInfo(String info) {
-		seatInfo = info;
-	}
-
-	// seat panel의 자식 컴포넌트 seatMap에서 가져옴
-	// 결제 창 종료될 때 seatPanel의 자식 setEnabled true로 변경시킬 때 사용
-	public Component[] getSeatCom() {
-		return c;
-	}
-
-	public static void setSeatCom(Component[] info) {
-		c = info;
-	}
-
 	// createProduct() 함수에서 생성한 checkBox 배열
 	ArrayList<JCheckBox> chkArr = new ArrayList<JCheckBox>();
 
@@ -284,12 +217,9 @@ public class payment {
 	}
 
 	// 시간_기간 상품 패널에 값 넣기
-	// 배열 및 반복문 사용하여 진행 완료
-	// 데이터 읽어와서 배열에 넣은 후 반복문을 이용하여 label 생성하기 완료
 	void createProduct(String tableName) {
 		product a = new product(tableName);
 		int length = a.nameArr.size();
-		System.out.println(length);
 		product ctnt = new product(content, font, tableName);
 		for (int i = 0; i < length; i++) {
 			ctnt.createName(i);
@@ -311,17 +241,17 @@ public class payment {
 				if (chk.isSelected()) {
 					setProduct(name);
 					setPrice(price);
-					nextBtn.setEnabled(true);
+					firstNext.setEnabled(true);
 					chkDisabled(chkArr);
 				} else {
-					nextBtn.setEnabled(false);
+					firstNext.setEnabled(false);
 					chkEnabled(chkArr);
 				}
 			}
 		});
 	}
 
-	// 체크된 체크박스 이외 체크박스 비활성화
+	// 체크된 체크박스 이외 체크박스 비활성화하는 함수
 	public void chkDisabled(ArrayList<JCheckBox> cb) {
 		for (int i = 0; i < cb.size(); i++) {
 			if (cb.get(i).isSelected()) {
@@ -334,7 +264,7 @@ public class payment {
 		}
 	}
 
-	// 모든 체크박스 활성화
+	// 모든 체크박스 활성화하는 함수
 	public void chkEnabled(ArrayList<JCheckBox> cb) {
 		for (int i = 0; i < cb.size(); i++) {
 			cb.get(i).setEnabled(true);
@@ -343,9 +273,6 @@ public class payment {
 
 	// 선택한 상품에 대한 상세내용 다시 확인하는 detailPanel에 값 넣기
 	// 좌석 정보, 상품 이름, 시작시간~끝시간, 가격
-	// 각 클래스 생성하여 구현하기 목표 완료
-	// 반복문 사용 가능한 내용은 살펴보고 반복문으로 코드 간결화 완료
-	// 뒤로 가기 버튼 구현 완료
 	public void detailPanel(String seat, String product, String price) {
 		detailPanel = new JPanel();
 		detailPanel.setBounds(0, 0, 700, 400);
@@ -371,11 +298,22 @@ public class payment {
 			}
 		}
 		createBack(FirstC, detailPanel);
-		createNext();
-
+		
+		// 두번째 next 버튼 구현	
+		nextBtn n = new nextBtn(containerPanel,detailPanel,btnC,font);
+		secondNext = n.createNext();
+		secondNext.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				containerPanel.removeAll();
+				cashOrCard();
+				containerPanel.repaint();
+				ThirdC = containerPanel.getComponents();
+			}
+		});
 	}
 
-	// 뒤로가기 구현
+	// 뒤로가기 기본 정보 구현
 	public JButton createBack(Component[] target, JPanel panel) {
 		backBtn = new JButton("◀");
 		backBtn.setFont(new Font(font, Font.PLAIN, 20));
@@ -401,24 +339,6 @@ public class payment {
 		containerPanel.repaint();
 	}
 
-	// 다음 구현
-	// ++위의 next 버튼과 함수 합칠것
-	public void createNext() {
-		JButton nextBtn1 = new JButton("▶");
-		nextBtn1.setFont(new Font(font, Font.PLAIN, 20));
-		nextBtn1.setBounds(550, 295, 100, 45);
-		designBtn(nextBtn1, btnC);
-		detailPanel.add(nextBtn1);
-		nextBtn1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				containerPanel.removeAll();
-				cashOrCard();
-				containerPanel.repaint();
-				ThirdC = containerPanel.getComponents();
-			}
-		});
-	}
 
 	// 현금으로 결제할건지 카드로 결제할건지 선택하는 패널 생성
 	public void cashOrCard() {
@@ -439,18 +359,18 @@ public class payment {
 			public void actionPerformed(ActionEvent e) {
 				containerPanel.removeAll();
 				makeCashPanel();
-				JButton fifthBack = new JButton("");
-				fifthBack = createBack(ThirdC, cash);
-				fifthBack.setLocation(500, 10);
+				JButton thirdBack = new JButton("");
+				thirdBack = createBack(ThirdC, cash);
+				thirdBack.setLocation(500, 10);
 				containerPanel.repaint();
 			}
 		});
 		cOc.add(cashBtn);
 
 		makeCardBtn(cOc);
-		JButton fourthBack = new JButton("");
-		fourthBack = createBack(SecondC, cOc);
-		fourthBack.setLocation(500, 295);
+		JButton secondBack = new JButton("");
+		secondBack = createBack(SecondC, cOc);
+		secondBack.setLocation(500, 295);
 	}
 
 	// cash 클래스 이용하여 cash panel 생성
@@ -464,42 +384,44 @@ public class payment {
 		cash.setLayout(null);
 
 		// cash 패널 list와 detail 생성
-		String[] list = { "결제 금액 : ", "투입 금액 : " };
-		String[] detail = { getPrice(), "0원" };
-		ArrayList<JLabel> detailArr = new ArrayList<JLabel>();
-		for (int i = 0; i < list.length; i++) {
-			cash c = new cash(cash, 30, font);
-			c.makeCashTF(list[i], i);
-			detailArr.add(c.makeCashD(detail[i], i));
-		}
-
-		// cash 패널 button 생성
-		String[] btnDetail = { "1000", "5000", "10000", "50000" };
-		ArrayList<JButton> btnArr = new ArrayList<JButton>();
-
-		for (int i = 0; i < btnDetail.length; i++) {
-			cash c = new cash(cash, 200, font);
-			int chkW = i % 2 != 0 ? 1 : 0;
-			int chkY = i > 1 ? 1 : 0;
-			btnArr.add(c.makeCashB(btnDetail[i], chkW, chkY));
-		}
-
-		// cash 패널 button event 생성
-		// button style 변경
-		for (int i = 0; i < btnArr.size(); i++) {
-			String a = btnArr.get(i).getText();
-			designBtn(btnArr.get(i), btnC2);
-			btnArr.get(i).addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					payCash += Integer.parseInt(a);
-					detailArr.get(1).setText(payCash + "원");
-					if (payCash >= Integer.parseInt(detailArr.get(0).getText().substring(0, getPrice().length() - 1))) {
-						fakeFrame("cash");
-					}
-				}
-			});
-		}
+//		String[] list = { "결제 금액 : ", "투입 금액 : " };
+//		String[] detail = { getPrice(), "0원" };
+//		ArrayList<JLabel> detailArr = new ArrayList<JLabel>();
+//		for (int i = 0; i < list.length; i++) {
+//			cash c = new cash(cash, 30, font);
+//			c.makeCashTF(list[i], i);
+//			detailArr.add(c.makeCashD(detail[i], i));
+//		}
+//
+//		// cash 패널 button 생성
+//		String[] btnDetail = { "1000", "5000", "10000", "50000" };
+//		ArrayList<JButton> btnArr = new ArrayList<JButton>();
+//
+//		for (int i = 0; i < btnDetail.length; i++) {
+//			cash c = new cash(cash, 200, font);
+//			int chkW = i % 2 != 0 ? 1 : 0;
+//			int chkY = i > 1 ? 1 : 0;
+//			btnArr.add(c.makeCashB(btnDetail[i], chkW, chkY));
+//		}
+//
+//		// cash 패널 button event 생성
+//		// button style 변경
+//		for (int i = 0; i < btnArr.size(); i++) {
+//			String a = btnArr.get(i).getText();
+//			designBtn(btnArr.get(i), btnC2);
+//			btnArr.get(i).addActionListener(new ActionListener() {
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					payCash += Integer.parseInt(a);
+//					detailArr.get(1).setText(payCash + "원");
+//					if (payCash >= Integer.parseInt(detailArr.get(0).getText().substring(0, getPrice().length() - 1))) {
+//						fakeFrame("cash");
+//					}
+//				}
+//			});
+//		}
+		cashPanel cp = new cashPanel(cash,font,getPrice(),btnC2);
+		payCash=cp.create(fakeFrame);
 	}
 
 	// cardBtn 생성
@@ -515,13 +437,14 @@ public class payment {
 		cardBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				fakeFrame("card");
+//				fakeFrame("card");
+				fakeFrame.accept("card");
 			}
 		});
 		panel.add(cardBtn);
 	}
 
-	public void fakeFrame(String type) {
+	Consumer<String> fakeFrame = type-> {
 		int mustCash = Integer.parseInt(getPrice().substring(0, getPrice().length() - 1));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -534,7 +457,7 @@ public class payment {
 				}
 			}
 		});
-	}
+	};
 
 	// 결제 완료 시 timerEvent 함수 구현
 	public void doneTimerEvent(int time, done d, String type) {
@@ -557,13 +480,14 @@ public class payment {
 //		fightingPan();
 //		mainPanel();
 		modiData md = new modiData();
-		String stSeat = getInfo();
+		String stSeat = seatN;
+		String payTime = md.start();
 		String stStart = md.start();
 		String stUse = md.use(getProduct());
 		String stEnd = md.end(getProduct());
 		String stPro = md.modiPro(getProduct());
 		String stPri = md.modiPri(getPrice());
-		storeData sData = new storeData(stSeat, stStart, stUse, stEnd, stPro, stPri, type);
+		storeData sData = new storeData(stSeat,payTime ,stStart, stUse, stEnd, stPro, stPri, type);
 		sData.store();
 	}
 

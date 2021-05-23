@@ -25,6 +25,9 @@ public class product {
 	public product() {
 		
 	}
+	public product(JPanel panel) {
+		this.panel=panel;
+	}
 	public product(String tableName) {
 		nameArr=chk("productName",tableName);
 		priceArr=chk("price",tableName);
@@ -39,6 +42,14 @@ public class product {
 	
 	public ArrayList<String> chk(String str,String tableName) {
 		return d.select(str,tableName);
+	}
+	
+	public void createTitle(String str) {
+		JLabel title = new JLabel(str);
+		title.setFont(new Font(font, Font.BOLD, 18));
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setBounds(246, 22, 150, 30);
+		panel.add(title);
 	}
 	
 	public String createName(int i) {

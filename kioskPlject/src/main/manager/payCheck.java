@@ -2,33 +2,27 @@ package main.manager;
 
 import java.util.ArrayList;
 
-import main.pay.readFile;
+import main.pay.db;
 
 public class payCheck {
-	ArrayList<String> readData = new ArrayList<String>();
-	ArrayList<String[]> modifyData = new ArrayList<String[]>();
-
+	ArrayList<String> data = new ArrayList<String>(); 
+	db d = new db();
+	
 	public payCheck() {
-
+		data = chk("id","paydata");
 	}
-
-	public void reFunc() {
-		readFile a = new readFile("done");
-		readData = a.readFileFunc(readData);
-	}
-
-	public void modiFunc() {
-		reFunc();
-		for (int i = 0; i < readData.size(); i++) {
-			modifyData.add(readData.get(i).split("/"));
+	public payCheck(String str) {
+		data = chk(str,"paydata");
+		for(int i=0; i<data.size(); i++) {
+			System.out.println(data.get(i));
 		}
 	}
 
-	public void modiFucnc2() {
-		for (int i = 0; i < modifyData.size(); i++) {
-			for (int j = 0; j < modifyData.get(i).length; j++) {
-				System.out.println(modifyData.get(i)[j].split(": ")[1]);
-			}
-		}
+	public ArrayList<String> chk(String tableName) {
+		return d.colLookUp(tableName);
 	}
+	public ArrayList<String> chk(String str,String tableName) {
+		return d.select(str,tableName);
+	}
+	
 }

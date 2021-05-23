@@ -6,15 +6,24 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 import java.awt.Font;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 public class payCheckWindow {
 
 	private JFrame frame;
 	private JTable table;
 	private JScrollPane scroll;
+	private JLabel price;
+	private String font = "티웨이_항공";
 
 	/**
 	 * Launch the application.
@@ -42,73 +51,78 @@ public class payCheckWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	//++필요한 데이터만 불러오면 될듯함
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 720, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(12, 43, 680, 870);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		
-		String[] colTitle= {"이름","결제시간","좌석","상품","가격","결제수단"};
 
 		payCheck pc = new payCheck();
-		pc.modiFunc();
-		pc.modiFucnc2();
-		String[][] row= new String[pc.modifyData.size()][6];
-		for(int i=0; i<pc.modifyData.size(); i++) {
-			for(int j=0; j<pc.modifyData.get(i).length; j++) {
-				row[i][j]=pc.modifyData.get(i)[j].split(": ")[1];
+		String[] colTitle = {"아이디","결제시간","결제금액","결제타입"};
+		String[] cols = {"id","paytime","price","payType"};
+//		for (int i = 0; i < pc.cols.size(); i++) {
+//			colTitle[i] = pc.cols.get(i);
+//		}
+		int rowSize = pc.data.size();
+		String[][] row = new String[rowSize][colTitle.length];
+
+		for (int i = 0; i < colTitle.length; i++) {
+			payCheck data = new payCheck(cols[i]);
+			for (int k = 0; k < rowSize; k++) {
+				System.out.print(data.data.get(k) + " ");
+				row[k][i] = data.data.get(k);
+				System.out.println();
 			}
 		}
-		
-		String temp="";
-		
-		for(int i=0; i<row.length; i++) {
-			for(int j=0; j<row[i].length; j++) {
-				if(row[i][j].contains("년")) {
-					temp=row[i][j].split(" ~ ")[0];
-				}
-			}
-		}
-		
-		StringBuffer temp2=new StringBuffer();
-		temp2.append(temp.replaceAll("[^0-9]",""));
-		for(int i=0; i<temp2.length(); i++) {
-			if(i==4 || i==7 || i==10 ) {
-				temp2 = temp2.insert(i, "/");				
-			}else if(i==13) {
-				temp2 = temp2.insert(i, ":");
-			}
-		}
-//		temp2 = temp2.insert(4,"/");
-		System.out.println(temp2);
-		
-		for(int i=0; i<row.length; i++) {
-			for(int j=0; j<row[i].length; j++) {
-				if(row[i][j].contains("년")) {
-					row[i][j]=temp2.toString();
-				}
-			}
-		}
-		
-		DefaultTableModel model = new DefaultTableModel(row,colTitle);
+
+		DefaultTableModel model = new DefaultTableModel(row, colTitle);
 //		model.setHorizontalAlignment(SwingConstants.CENTER);
 
 		table = new JTable(model);
 		table.setAlignmentX(SwingConstants.CENTER);
 		table.setBounds(30, 57, 615, 854);
+		table.setFont(new Font(font, Font.PLAIN, 13));
+		// table 가운데 정렬
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+		dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcm = table.getColumnModel();
+		for (int i = 0; i < tcm.getColumnCount(); i++) {
+			tcm.getColumn(i).setCellRenderer(dtcr);
+		}
 		table.setLayout(null);
 		panel.add(table);
-		scroll=new JScrollPane(table);
+
+		scroll = new JScrollPane(table);
 		scroll.setLocation(0, 10);
-		scroll.setSize(680,850);
+		scroll.setSize(680, 789);
 		panel.add(scroll);
-		
-		
+
+		price = new JLabel(sum(table,rowSize));
+		price.setFont(new Font(font, Font.BOLD, 20));
+		price.setBounds(400, 800, 300, 50);
+		panel.add(price);
+
+	}
+
+	int total = 0;
+
+	String sum(JTable t, int max) {
+		for (int i = 0; i < max; i++) {
+			String tmp = t.getValueAt(i, 2).toString();
+			int temp = Integer.parseInt(tmp.substring(0,tmp.length()-3));
+			total+=temp;
+		}
+		String res = "total price : " + format(total) + " 원";
+		return res;
+	}
+	String format(int a) {
+		DecimalFormat fm = new DecimalFormat("###,###");
+		return fm.format(a);
 	}
 }

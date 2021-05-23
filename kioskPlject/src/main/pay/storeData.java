@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 public class storeData {
 	String seat;
+	String payT;
 	String sTime;
 	String uTime;
 	String eTime;
@@ -16,9 +17,10 @@ public class storeData {
 	String price;
 	String type;
 
-	public storeData(String seat, String sTime, String uTime,String eTime, 
+	public storeData(String seat, String payT,String sTime, String uTime,String eTime, 
 			String product, String price, String type) {
 		this.seat = seat;
+		this.payT=payT;
 		this.sTime = sTime;
 		this.uTime = uTime;
 		this.eTime = eTime;
@@ -29,7 +31,7 @@ public class storeData {
 	
 	public void store() {
 		db newD = new db();		
-		newD.insert("오지수", seat, sTime, uTime, eTime, product, price, type);
+		newD.insert("오지수",seat,payT ,sTime, uTime, eTime, product, price, type);
 	}
 
 }
