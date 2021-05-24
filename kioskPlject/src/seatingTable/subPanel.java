@@ -17,12 +17,12 @@ public class subPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//subpanel studyzone ¹öÆ°!
+	//subpanel studyzone ë²„íŠ¼!
 	void lb_btn(JButton btn, JPanel subPanel, JFrame frame, JButton btns[]) {
 		
 		btn.setBackground(new Color(0, 191, 255));
-		btn.setText("½ºÅÍµğÁ¸");
-		btn.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 15));
+		btn.setText("ìŠ¤í„°ë””ì¡´");
+		btn.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 15));
 		btn.setBounds(260, 220, 165, 65);
 //		btn.setContentAreaFilled(false);
 		btn.setBorderPainted(false);
@@ -47,11 +47,11 @@ public class subPanel extends JPanel {
 	
 	}
 
-	
-	// caffe zone ¹öÆ°!
+
+	// caffe zone ë²„íŠ¼!
 	void cf_btn(JButton btn, JPanel subPanel, JFrame frame, JButton[] btns) {
 		btn.setBackground(new Color(0, 191, 255));
-		btn.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 15));
+		btn.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 15));
 		btn.setBounds(82, 600, 165, 65);
 		btn.setVisible(true);
 		cfZone cf = new cfZone(frame);
@@ -71,10 +71,10 @@ public class subPanel extends JPanel {
 		subPanel.add(btn);
 	}
 	
-// study room ¹öÆ°! 
+	// study room ë²„íŠ¼! 
 	void sr_btn(JButton btn, JPanel subPanel, JFrame frame, JButton[] btns) {
 		btn.setBackground(new Color(0, 191, 255));
-		btn.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 15));
+		btn.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 15));
 		btn.setBounds(445, 600, 165, 65);
 		btn.setVisible(true);
 		srZone sr = new srZone(frame);
@@ -94,7 +94,7 @@ public class subPanel extends JPanel {
 		frame.getContentPane().add(sr);
 	}
 	
-// ÀÚ¸® º¯°æ ¹öÆ°
+	// ìë¦¬ ë³€ê²½ ë²„íŠ¼
 		
 	
 	public subPanel(JFrame frame) {

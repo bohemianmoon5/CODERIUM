@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class cfZone extends JPanel {
-	// ÀÓ½Ã dbÆÄÀÏ ºÒ·¯¿À±â!
+	// ì„ì‹œ dbíŒŒì¼ ë¶ˆëŸ¬ì˜¤ê¸°!
 	Dbfile db = new Dbfile();
 	ArrayList<String> seat = null;
 	ArrayList<String> r_time = null;
@@ -42,7 +42,7 @@ public class cfZone extends JPanel {
 	}
 
 	void btn(JButton[] btn, JPanel cfZone) {
-		// seatµ¥ÀÌÅÍºÒ·¯¿À±â
+		// seatë°ì´í„°ë¶ˆëŸ¬ì˜¤ê¸°
 		seat = db.select("seat", "select * from payment;");
 		r_time = db.select("r_start", "select * from payment;");
 		time = db.select("start", "select * from payment;");
@@ -59,15 +59,15 @@ public class cfZone extends JPanel {
 			btn[i].setBorderPainted(false);
 			btn[i].setFocusPainted(false);
 
-			// db ÆÄÀÏ¿¡ ÀúÀåÇÑ seat ¹öÆ°À» °¡Á®¿É´Ï´Ù.
+			// db íŒŒì¼ì— ì €ì¥í•œ seat ë²„íŠ¼ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
 			for (int j = 0; j < seat.size(); j++) {
-				// db ¹øÈ£¿Í ÁÂ¼®Ç¥ db¿Í °°Àº°æ¿ì ÄÚµå ½ÇÇà
+				// db ë²ˆí˜¸ì™€ ì¢Œì„í‘œ dbì™€ ê°™ì€ê²½ìš° ì½”ë“œ ì‹¤í–‰
 				if (btn[i].getText().equals(seat.get(j))) {
-					// ¹Ù·Î»ç¿ëÀÇ ½Ã°£¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì »ö»óÁöÁ¤!
+					// ë°”ë¡œì‚¬ìš©ì˜ ì‹œê°„ì— ë°ì´í„°ê°€ ìˆëŠ” ê²½ìš° ìƒ‰ìƒì§€ì •!
 					if (time.get(j) != null) {
 						btn[i].setBackground(new Color(000, 153, 102));
 						btn[i].setContentAreaFilled(true);
-//						ÆÄ¶õ»ö 102¹ø °¡Á®¿À±â!
+//						íŒŒë€ìƒ‰ 102ë²ˆ ê°€ì ¸ì˜¤ê¸°!
 						if (btn[i].getBackground().getBlue() == 102) {
 							JButton J = btn[i];
 							btn[i].addActionListener(new ActionListener() {
@@ -88,7 +88,7 @@ public class cfZone extends JPanel {
 											String start_t = fo.format(start);
 											String end_t = fo.format(end);
 
-											JOptionPane.showMessageDialog(null, "<HTML>" + "»ç¿ëÁßÀÎ ÀÚ¸®ÀÔ´Ï´Ù." + "<br>"
+											JOptionPane.showMessageDialog(null, "<HTML>" + "ì‚¬ìš©ì¤‘ì¸ ìë¦¬ì…ë‹ˆë‹¤." + "<br>"
 													+ start_t + "~" + end_t + "</HTML>");
 										}
 									}
@@ -97,16 +97,16 @@ public class cfZone extends JPanel {
 							});
 						}
 					}
-					// ¿¹¾à ½Ã°£¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì »ö»óÁöÁ¤
+					// ì˜ˆì•½ ì‹œê°„ì— ë°ì´í„°ê°€ ìˆëŠ” ê²½ìš° ìƒ‰ìƒì§€ì •
 					else if (r_time.get(j) != null) {
-						System.out.println("¿¹¾à½Ã°£:" + r_time.get(j));
+						System.out.println("ì˜ˆì•½ì‹œê°„:" + r_time.get(j));
 						try {
 							start = f.parse(r_time.get(j));
 							end = f.parse(rendTime.get(j));
 						} catch (ParseException e1) {
 							e1.printStackTrace();
 						}
-						// ¿¹¾à ½Ã°£ ÇÑ½Ã°£ ÀüÀ» ±¸ÇÏ±â À§ÇÑ calendar»ç¿ë!
+						// ì˜ˆì•½ ì‹œê°„ í•œì‹œê°„ ì „ì„ êµ¬í•˜ê¸° ìœ„í•œ calendarì‚¬ìš©!
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(start);
 						cal.add(Calendar.HOUR, -1);
@@ -118,7 +118,7 @@ public class cfZone extends JPanel {
 						String now = fo.format(dt_now);
 						System.out.println("now:" + now);
 
-						// ÇöÀç ½Ã°£°ú db½Ã°£ÀÌ °°À¸¸é ¿¹¾à »ö»óÀ¸·Î º¯°æ!
+						// í˜„ì¬ ì‹œê°„ê³¼ dbì‹œê°„ì´ ê°™ìœ¼ë©´ ì˜ˆì•½ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½!
 						if (r_start.equals(now)) {
 							btn[i].setBackground(Color.yellow);
 							btn[i].setContentAreaFilled(true);
@@ -128,7 +128,7 @@ public class cfZone extends JPanel {
 
 									@Override
 									public void actionPerformed(ActionEvent e) {
-										// for¹®À¸·Î µ¥ÀÌÅÍ °¡Áö°í¿À±â!
+										// forë¬¸ìœ¼ë¡œ ë°ì´í„° ê°€ì§€ê³ ì˜¤ê¸°!
 										for (int k = 0; k < seat.size(); k++) {
 											if (c.getText().equals(seat.get(k))) {
 												try {
@@ -141,7 +141,7 @@ public class cfZone extends JPanel {
 												String start_t = fo.format(start);
 												String end_t = fo.format(end);
 
-												JOptionPane.showMessageDialog(null, "<HTML>" + "¿¹¾à ÁßÀÎ ÀÚ¸®ÀÔ´Ï´Ù." + "<br>"
+												JOptionPane.showMessageDialog(null, "<HTML>" + "ì˜ˆì•½ ì¤‘ì¸ ìë¦¬ì…ë‹ˆë‹¤." + "<br>"
 														+ start_t + "~" + end_t + "</HTML>");
 											}
 										}

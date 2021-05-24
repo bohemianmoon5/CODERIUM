@@ -36,29 +36,28 @@ public class lbZone extends JPanel {
 	Date end = new Date();
 	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	SimpleDateFormat fo = new SimpleDateFormat("HH:mm");
-	
 
-//	db ºÒ·¯¿À±â.!
+//	db ë¶ˆëŸ¬ì˜¤ê¸°.!
 
 //	SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 //	ArrayList<String> time = new ArrayList<String>();
 //	ArrayList<String> timer = new ArrayList<String>();
 	/**
-	 * ½ºÅÍµğÁ¸ ÁÂ¼®Ç¥ »ı¼º!
+	 * ìŠ¤í„°ë””ì¡´ ì¢Œì„í‘œ ìƒì„±!
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// ½ºÅÍµğÁ¸ JPanel »ı¼º
+	// ìŠ¤í„°ë””ì¡´ JPanel ìƒì„±
 	public lbZone(JFrame frame) {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
 		this.setVisible(false);
 	}
 
-	// ÁÂ¼®Ç¥ ¹öÆ° »ı¼º
+	// ì¢Œì„í‘œ ë²„íŠ¼ ìƒì„±
 
 	void btn(JButton[] btn, JPanel lbZone) {
-		// seat data ºÒ·¯¿À±â
+		// seat data ë¶ˆëŸ¬ì˜¤ê¸°
 //		seat = db.select("seatNum", "select * from payment;");
 //		r_time = db.select("r_start", "select * from payment;");
 //		time = db.select("startTime", "select * from payment;");
@@ -74,23 +73,23 @@ public class lbZone extends JPanel {
 //		rstartTime = db.select("r_start", "paydata");
 //		rendTime = d.select("r_end", "paydata");
 
-//		1~12¹øÁÂ¼® ¹øÈ£ »ı¼º
+//		1~12ë²ˆì¢Œì„ ë²ˆí˜¸ ìƒì„±
 		for (int i = 0; i < btn.length; i++) {
 			if (i < 12) {
 				btn[i] = new JButton((i + 1) + "");
 
 				btn[i].addActionListener(new seatButton(btn[i], i));
 
-				// ¹öÆ°ÀÇ À§Ä¡¸¦ Àâ¾ÆÁİ´Ï´Ù.
+				// ë²„íŠ¼ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤ë‹ˆë‹¤.
 				btn[i].setBounds(13 + (i * 53), 23, 53, 90);
 				lbZone.add(btn[i]);
 			}
-//		13~19¹øÁÂ¼® »ı¼º	
+//			13~19ë²ˆì¢Œì„ ìƒì„±		
 			else if (i < 19) {
 				btn[i] = new JButton((i + 1) + "");
 				btn[i].addActionListener(new seatButton(btn[i], i));
 
-				// ¹öÆ°ÀÇ À§Ä¡¸¦ Àâ¾ÆÁİ´Ï´Ù.
+				// ë²„íŠ¼ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤ë‹ˆë‹¤.
 				if (num2 < 7) {
 					btn[i].setBounds(72 + (num2 * 53), 348, 53, 90);
 					lbZone.add(btn[i]);
@@ -98,25 +97,25 @@ public class lbZone extends JPanel {
 				num2++;
 
 			}
-//		20~26¹ø ÁÂ¼® »ı¼º
+//			20~26ë²ˆ ì¢Œì„ ìƒì„±
 			else if (i < 26) {
 
 				btn[i] = new JButton((i + 1) + "");
 				btn[i].addActionListener(new seatButton(btn[i], i));
 
-				// ¹öÆ°ÀÇ À§Ä¡¸¦ Àâ¾ÆÁİ´Ï´Ù.
+				// ë²„íŠ¼ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤ë‹ˆë‹¤.
 				if (num3 < 7) {
 					btn[i].setBounds(72 + (num3 * 53), 440, 53, 90);
 					lbZone.add(btn[i]);
 				}
 				num3++;
 			}
-//		27~34¹ø ÁÂ¼®»ı¼º			
+//			27~34ë²ˆ ì¢Œì„ìƒì„±				
 			else {
 				btn[i] = new JButton((i + 1) + "");
 				btn[i].addActionListener(new seatButton(btn[i], i));
 
-				// ¹öÆ°ÀÇ À§Ä¡¸¦ Àâ¾ÆÁİ´Ï´Ù.
+				// ë²„íŠ¼ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤ë‹ˆë‹¤.
 				if (num4 < 8) {
 					btn[i].setBounds(13 + (num4 * 53), 755, 53, 90);
 					lbZone.add(btn[i]);
@@ -124,26 +123,26 @@ public class lbZone extends JPanel {
 				num4++;
 			}
 			btn[i].setContentAreaFilled(false);
-			
-			// db ÆÄÀÏ¿¡ ÀúÀåÇÑ seat ¹öÆ°À» °¡Á®¿É´Ï´Ù.
+
+			// db íŒŒì¼ì— ì €ì¥í•œ seat ë²„íŠ¼ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
 			for (int j = 0; j < seat.size(); j++) {
-				// db ¹øÈ£¿Í ÁÂ¼®Ç¥ db¿Í °°Àº°æ¿ì ÄÚµå ½ÇÇà
-				
+				// db ë²ˆí˜¸ì™€ ì¢Œì„í‘œ dbì™€ ê°™ì€ê²½ìš° ì½”ë“œ ì‹¤í–‰
+
 				if (btn[i].getText().equals(seat.get(j))) {
-					// ¹Ù·Î»ç¿ëÀÇ ½Ã°£¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì »ö»óÁöÁ¤!
+					// ë°”ë¡œì‚¬ìš©ì˜ ì‹œê°„ì— ë°ì´í„°ê°€ ìˆëŠ” ê²½ìš° ìƒ‰ìƒì§€ì •!
 					System.out.println("btn[i]:" + btn[i].getText());
-					System.out.println("seat:"+seat.get(j));
+					System.out.println("seat:" + seat.get(j));
 					System.out.println("time:" + time.get(j));
 					if (time.get(j) != null) {
 						btn[i].setBackground(new Color(000, 153, 102));
 						btn[i].setContentAreaFilled(true);
-//						ÆÄ¶õ»ö 102¹ø °¡Á®¿À±â!
+//						íŒŒë€ìƒ‰ 102ë²ˆ ê°€ì ¸ì˜¤ê¸°!
 						if (btn[i].getBackground().getBlue() == 102) {
 							JButton J = btn[i];
 							btn[i].addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent e) {
-									payment p = new payment(J.getText() ,Main_swing.getFrame(), "seat");
+									payment p = new payment(J.getText(), Main_swing.getFrame(), "seat");
 									p.getFrame().setVisible(true);
 									// TODO Auto-generated method stub
 									for (int z = 0; z < seat.size(); z++) {
@@ -160,7 +159,7 @@ public class lbZone extends JPanel {
 											String start_t = fo.format(start);
 											String end_t = fo.format(end);
 
-											JOptionPane.showMessageDialog(null, "<HTML>" + "»ç¿ëÁßÀÎ ÀÚ¸®ÀÔ´Ï´Ù." + "<br>"
+											JOptionPane.showMessageDialog(null, "<HTML>" + "ì‚¬ìš©ì¤‘ì¸ ìë¦¬ì…ë‹ˆë‹¤." + "<br>"
 													+ start_t + "~" + end_t + "</HTML>");
 										}
 									}
@@ -169,16 +168,16 @@ public class lbZone extends JPanel {
 							});
 						}
 					}
-					// ¿¹¾à ½Ã°£¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì »ö»óÁöÁ¤
+					// ì˜ˆì•½ ì‹œê°„ì— ë°ì´í„°ê°€ ìˆëŠ” ê²½ìš° ìƒ‰ìƒì§€ì •
 //					else if (r_time.get(j) != null) {
-//						System.out.println("¿¹¾à½Ã°£:" + r_time.get(j));
+//						System.out.println("ì˜ˆì•½ì‹œê°„:" + r_time.get(j));
 //						try {
 //							start = f.parse(r_time.get(j));
 //							end = f.parse(rendTime.get(j));
 //						} catch (ParseException e1) {
 //							e1.printStackTrace();
 //						}
-//						// ¿¹¾à ½Ã°£ ÇÑ½Ã°£ ÀüÀ» ±¸ÇÏ±â À§ÇÑ calendar»ç¿ë!
+//						// ì˜ˆì•½ ì‹œê°„ í•œì‹œê°„ ì „ì„ êµ¬í•˜ê¸° ìœ„í•œ calendarì‚¬ìš©!
 //						Calendar cal = Calendar.getInstance();
 //						cal.setTime(start);
 //						cal.add(Calendar.HOUR, -1);
@@ -190,7 +189,7 @@ public class lbZone extends JPanel {
 //						String now = fo.format(dt_now);
 //						System.out.println("now:" + now);
 //
-//						// ÇöÀç ½Ã°£°ú db½Ã°£ÀÌ °°À¸¸é ¿¹¾à »ö»óÀ¸·Î º¯°æ!
+//						// í˜„ì¬ ì‹œê°„ê³¼ dbì‹œê°„ì´ ê°™ìœ¼ë©´ ì˜ˆì•½ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½!
 //						if (r_start.equals(now)) {
 //							btn[i].setBackground(Color.yellow);
 //							btn[i].setContentAreaFilled(true);
@@ -200,7 +199,7 @@ public class lbZone extends JPanel {
 //
 //									@Override
 //									public void actionPerformed(ActionEvent e) {
-//										// for¹®À¸·Î µ¥ÀÌÅÍ °¡Áö°í¿À±â!
+//										// forë¬¸ìœ¼ë¡œ ë°ì´í„° ê°€ì§€ê³ ì˜¤ê¸°!
 //										for (int k = 0; k < seat.size(); k++) {
 //											if (c.getText().equals(seat.get(k))) {
 //												try {
@@ -213,7 +212,7 @@ public class lbZone extends JPanel {
 //												String start_t = fo.format(start);
 //												String end_t = fo.format(end);
 //
-//												JOptionPane.showMessageDialog(null, "<HTML>" + "¿¹¾à ÁßÀÎ ÀÚ¸®ÀÔ´Ï´Ù." + "<br>"
+//												JOptionPane.showMessageDialog(null, "<HTML>" + "ì˜ˆì•½ ì¤‘ì¸ ìë¦¬ì…ë‹ˆë‹¤." + "<br>"
 //														+ start_t + "~" + end_t + "</HTML>");
 //											}
 //										}

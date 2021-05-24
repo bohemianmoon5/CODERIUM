@@ -4,34 +4,66 @@ import java.awt.Dimension;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+
+import main.pay.data.reservData;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
-public class selectMenu extends JPanel{
-
+public class selectMenu extends JPanel implements ActionListener {
+	JComboBox nameCombo;
+	// ++js modify
+	String stdDate = "";
+	String price = "";
+	String prodName = "";
+	// ++
 //	String[] fruits={"apple", "banana", "kiwi", "mango", "pear", "peach", "berry", "strawberry", "blackberry"};
-    String[] name={"1½Ã°£ 1000¿ø", "2½Ã°£ 2000¿ø", "3½Ã°£ 3000¿ø", "4½Ã°£ 4000¿ø"};
-    selectMenu(JPanel panel){
-        setLayout(null);
-//        this.setTitle("ÄŞº¸¹Ú½º ¸¸µé±â ¿¹Á¦");
+	String[] name = { "1ì‹œê°„ 1000ì›", "2ì‹œê°„ 2000ì›", "3ì‹œê°„ 3000ì›", "4ì‹œê°„ 4000ì›" };
+
+	selectMenu(JPanel panel, /* js modify */String stdDate) {
+		setLayout(null);
+		this.stdDate = stdDate;
+//        this.setTitle("ï¿½Şºï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 //        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
+
 //        JComboBox strCombo= new JComboBox(fruits);
 //        this.add(strCombo);
-        
-        JComboBox nameCombo = new JComboBox(name);
-        nameCombo.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 20));
-        nameCombo.setBounds(119, 5, 153, 45);
-        this.add(nameCombo);
-        
+
+		nameCombo = new JComboBox(name);
+		nameCombo.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 20));
+		nameCombo.setBounds(119, 5, 153, 45);
+		// ++js modify
+		nameCombo.setSelectedItem(name[0]);
+		nameCombo.addActionListener(this);
+		// ++
+		this.add(nameCombo);
+
+		// ++js modify
+		String prod = nameCombo.getSelectedItem().toString();
+		reservData rd = new reservData(stdDate, prod);
+		rd.modiProd();
+		prodName = rd.getProd();
+		price = rd.getPrice();
+		// ++
 //        nameCombo.setPreferredSize(new Dimension(20,20));
 //        nameCombo.setSize();
-        
+
 //        this.setLocationRelativeTo(null);
 //        this.setSize(300,300);
 //        this.setVisible(true);
-    }
+	}
 
-
+	// ++js modify
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String prod = nameCombo.getSelectedItem().toString();
+		reservData rd = new reservData(stdDate, prod);
+		rd.modiProd();
+		prodName = rd.getProd();
+		price = rd.getPrice();
+	}
+	// ++
 
 }

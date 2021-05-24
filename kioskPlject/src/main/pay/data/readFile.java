@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-// ÆÄÀÏ ÀĞ¾î¿À´Â Å¬·¡½º
+//íŒŒì¼ ì½ì–´ì˜¤ëŠ” í´ë˜ìŠ¤
 public class readFile {
 	String title="";
 	public readFile() {
@@ -15,10 +15,10 @@ public class readFile {
 		this.title=title;
 	}
 	
-	// ÆÄÀÏ ÀĞ¾î¿Í arrayList¿¡ ÀúÀåÇÑ ÈÄ arrayList ¹İÈ¯ÇÏ´Â ÇÔ¼ö
+	// íŒŒì¼ ì½ì–´ì™€ arrayListì— ì €ì¥í•œ í›„ arrayList ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
 	public ArrayList<String> readFileFunc(ArrayList<String> arr) {
 		String path = "./src/data";
-		File file = new File(path+"\\"+title+".txt");
+		File file = new File(path+"/"+title+".txt");
 		String str = "";
 		try {
 			FileReader fr = new FileReader(file);

@@ -30,7 +30,7 @@ public class nextBtn {
 	}
 	
 	public JButton createNext() {
-		JButton nextBtn = new JButton("¢º");
+		JButton nextBtn = new JButton("â–¶");
 		nextBtn.setFont(new Font(font, Font.PLAIN, 20));
 		nextBtn.setBounds(550, 295, 100, 45);
 		designBtn(nextBtn, c);

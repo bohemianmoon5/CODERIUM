@@ -31,7 +31,7 @@ public class storeData {
 	
 	public void store() {
 		db newD = new db();		
-		newD.insert("¿ÀÁö¼ö",seat,payT ,sTime, uTime, eTime, product, price, type);
+		newD.insert("jisu",seat,payT ,sTime, uTime, eTime, product, price, type);
 	}
 
 }

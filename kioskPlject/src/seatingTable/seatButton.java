@@ -50,14 +50,15 @@ public class seatButton implements ActionListener {
 		
 
 		/*
-		 * ÁÂ¼®º¯°æ ±¸Çö! ¹®Á¦Á¡ 1. sql¹® »ç¿ëÇÒ¶§ º¯¼ö payment¸¦ ³ÖÀ¸´Ï±î.. where Á¶°Ç¹®ÀÌ ¸ÔÈ÷Áö ¾ÊÀ½.. ¿ÖÀÎÁö ¸ğ¸£°ÚÀ½..¤Ğ
-		 * ÇÏÁö¸¸ payment¸¦ ±×³É query ¹®¿¡ ¹Ù·Î »ç¿ëÇÏ´Ï ¹®Á¦Á¡ ÇØ°á.!
+		 * ì¢Œì„ë³€ê²½ êµ¬í˜„! ë¬¸ì œì  1. sqlë¬¸ ì‚¬ìš©í• ë•Œ ë³€ìˆ˜ paymentë¥¼ ë„£ìœ¼ë‹ˆê¹Œ.. where ì¡°ê±´ë¬¸ì´ ë¨¹íˆì§€ ì•ŠìŒ.. ì™œì¸ì§€ ëª¨ë¥´ê² ìŒ..ã… 
+		 * í•˜ì§€ë§Œ paymentë¥¼ ê·¸ëƒ¥ query ë¬¸ì— ë°”ë¡œ ì‚¬ìš©í•˜ë‹ˆ ë¬¸ì œì  í•´ê²°.!
 		 * 
 		 */
 
-		// ÁÂ¼® ¹øÈ£ db¿¡¼­ °¡Áö°í ¿À±â
+
+		// ì¢Œì„ ë²ˆí˜¸ dbì—ì„œ ê°€ì§€ê³  ì˜¤ê¸°
 //		seat = db.select("seatNum", "select * from payment where id = 'wonho33';");
-		seat = d.select("seatNum", "paydata where id = 'Á¤¿øÈ£'");
+		seat = d.select("seatNum", "paydata where id = 'ï¿½ï¿½ï¿½ï¿½È£'");
 //		seat_all = db.select("seatNum", "select * from payment;");
 //		startTime = db.select("starttime", "select * from payment;");
 //		endTime = db.select("endtime", "select * from payment;");
@@ -65,25 +66,25 @@ public class seatButton implements ActionListener {
 //		rendTime = db.select("r_end", "select * from payment;");
 		
 
-		// ÁÂ¼® ¹øÈ£°¡ nullÀÌ¶ó¸é ÁÂ¼®¹øÈ£ Ã¤¿öÁÖ±â! , id¿Í ÇÊÈ÷¿¬µ¿ where¹®!
+		// ì¢Œì„ ë²ˆí˜¸ê°€ nullì´ë¼ë©´ ì¢Œì„ë²ˆí˜¸ ì±„ì›Œì£¼ê¸°! , idì™€ í•„íˆì—°ë™ whereë¬¸!
 		if (seat.get(0) == null) {
 //			db.dml("update payment set seatNum =\"" + btn.getText() + "\"where id = 'wonho33';");
-			int result = JOptionPane.showConfirmDialog(null, btn.getText()+"¸¦  ¼±ÅÃÇÏ°Ú½À´Ï±î?", "confirm", JOptionPane.YES_NO_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, btn.getText()+"ë¥¼  ì„ íƒí•˜ê² ìŠµë‹ˆê¹Œ?", "confirm", JOptionPane.YES_NO_OPTION);
 			if(result == JOptionPane.YES_OPTION) {
 				payment p = new payment(btn.getText() ,Main_swing.getFrame(), "seat");
 				p.getFrame().setVisible(true);
 //				Dbfile db = new Dbfile();
 //				db.dml("update payment set seat = null where id = 'wonho33';");
-//				d.dml("update payment set seat = null where id = 'Á¤¿øÈ£';");
-//				System.out.println("ÁÂ¼®ÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.!");
+//				d.dml("update payment set seat = null where id = 'ì •ì›í˜¸';");
+//				System.out.println("ï¿½Â¼ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.!");
 //				mainPanel main = new mainPanel();
 //				main.back_img();
-//			System.out.println("¹Ù²ï ÁÂ¼® ¹øÈ£:" + btn.getText());
-				System.out.println("¿Ö¾ÈµÇ");
-//				d.dml("update payment set seatNum =\"" + btn.getText() + "\"where id = 'Á¤¿øÈ£';");
-//				d.dml("update paydata set seatNum =\"" + btn.getText() + "\"where id = 'Á¤¿øÈ£';");
+//			System.out.println("ï¿½Ù²ï¿½ ï¿½Â¼ï¿½ ï¿½ï¿½È£:" + btn.getText());
+				System.out.println("ï¿½Ö¾Èµï¿½");
+//				d.dml("update payment set seatNum =\"" + btn.getText() + "\"where id = 'ì •ì›í˜¸';");
+//				d.dml("update paydata set seatNum =\"" + btn.getText() + "\"where id = 'ì •ì›í˜¸';");
 		} else {
-			System.out.println("ÇöÀç ÁÂ¼®¹øÈ£!:" + seat.get(0));
+			System.out.println("í˜„ì¬ ì¢Œì„ë²ˆí˜¸!:" + seat.get(0));
 		}
 
 

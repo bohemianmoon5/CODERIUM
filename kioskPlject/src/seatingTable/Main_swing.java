@@ -49,15 +49,15 @@ public class Main_swing {
 		
 		
 		mainPanel main_panel = new mainPanel();
-		JButton seatchange = new JButton("ÀÚ¸®¹Ù²Ş");
+		JButton seatchange = new JButton("ìë¦¬ë°”ê¿ˆ");
 		main_panel.seatChange_btn(seatchange);
 		main_panel.back_img();
 		
 
 		
-		JButton lb_btn = new JButton("½ºÅÍµğÁ¸");
-		JButton cf_btn = new JButton("Ä«ÆäÁ¸");
-		JButton sr_btn = new JButton("½ºÅÍµğ·ë");
+		JButton lb_btn = new JButton("ìŠ¤í„°ë””ì¡´");
+		JButton cf_btn = new JButton("ì¹´í˜ì¡´");
+		JButton sr_btn = new JButton("ìŠ¤í„°ë””ë£¸");
 		
 		JButton[] l_btn = new JButton[35];
 		JButton[] c_btn = new JButton[16];

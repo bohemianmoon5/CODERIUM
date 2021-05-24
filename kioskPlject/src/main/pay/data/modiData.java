@@ -8,9 +8,9 @@ import java.util.Date;
 public class modiData {
 	public modiData() {
 	}
-	// ½ÃÀÛ½Ã°£~³¡½Ã°£¿¡ ´ëÇÑ º¸¿©Áö´Â ½Ã°£ Çü½Ä ÁöÁ¤
+	// ì‹œì‘ì‹œê°„~ëì‹œê°„ì— ëŒ€í•œ ë³´ì—¬ì§€ëŠ” ì‹œê°„ í˜•ì‹ ì§€ì •
 	
-	//ÇöÀç ½Ã°£ ¹İÈ¯
+	//í˜„ì¬ ì‹œê°„ ë°˜í™˜
 	public String start() {
 		Date date = new Date();
 		String format = "YYYY/MM/dd/HH:mm";
@@ -20,16 +20,16 @@ public class modiData {
 		return now;
 	}
 
-	// ³¡ ½Ã°£ ¹İÈ¯
-	public String end(String product) {
+	// ë ì‹œê°„ ë°˜í™˜
+	public String end(String start,String product) {
 		String formatTime = "";
-		String a = start();
+		String a = start;
 		String form = "yyyy/MM/dd/HH:mm";
 		SimpleDateFormat s = new SimpleDateFormat(form);
 		Date now= new Date();
-		if (product.contains("½Ã°£")) {
+		if (product.contains("ì‹œê°„")) {
 			try {
-				now = s.parse(a);		
+				now = s.parse(a);	
 				int productTime = Integer.parseInt(product.substring(0, product.length() - 2));
 				Calendar c = Calendar.getInstance();
 				c.setTime(now);
@@ -62,10 +62,10 @@ public class modiData {
 		return formatTime;
 	}
 
-	// »ç¿ë ½Ã°£ ¹İÈ¯
+	// ì‚¬ìš© ì‹œê°„ ë°˜í™˜
 	public String use(String product) {
 		String use = "";
-		if (product.contains("½Ã°£")) {
+		if (product.contains("ì‹œê°„")) {
 			use = product.substring(0, product.length() - 2);
 		} else {
 			String tmp = product.substring(0, product.length() - 2);
@@ -74,10 +74,10 @@ public class modiData {
 		return use;
 	}
 
-	// »óÇ°¸í ¹İÈ¯
+	// ìƒí’ˆëª… ë°˜í™˜
 	public String modiPro(String product) {
 		String pro = "";
-		if (product.contains("½Ã°£")) {
+		if (product.contains("ì‹œê°„")) {
 			pro = product.substring(0, product.length() - 2) + "hours";
 		} else {
 			String tmp = product.substring(0, product.length() - 2);
@@ -86,10 +86,10 @@ public class modiData {
 		return pro;
 	}
 
-	// °¡°İ ¹İÈ¯
+	// ê°€ê²© ë°˜í™˜
 	public String modiPri(String price) {
 		String pri = "";
-		if (price.contains("¿ø")) {
+		if (price.contains("ì›")) {
 			pri = price.substring(0, price.length() - 1) + "won";
 		}
 		return pri;

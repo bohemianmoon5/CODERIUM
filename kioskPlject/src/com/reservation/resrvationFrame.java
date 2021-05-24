@@ -279,7 +279,7 @@ public class resrvationFrame {
 		time.setBounds(10, 470, 200, 80);
 		panel.add(time);
 		
-		selectMenu selectMenu = new selectMenu(panel);
+		selectMenu selectMenu = new selectMenu(panel,selectDate.stdDate);
 		selectMenu.setBounds(160, 483, 600, 600);
 		selectMenu.setBackground(new Color(255,0,0,0));
 		panel.setVisible(true);
@@ -322,13 +322,14 @@ public class resrvationFrame {
 		panel.add(btn_pay);
 		// 결제창으로 이동하는 actionlistener필요
 		btn_pay.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("a");
-				payment p = new payment("",frame,"reserv");
+				//prodName , price, start, end
+				//++js modify
+				payment p = new payment("",frame,"reserv",selectMenu.prodName,
+						selectMenu.price,selectDate.stdDate);
 				p.getFrame().setVisible(true);
-				
+				//++
 			}
 		});
 		

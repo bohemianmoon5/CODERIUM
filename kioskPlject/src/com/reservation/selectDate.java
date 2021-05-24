@@ -15,22 +15,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import main.pay.data.reservData;
+
 public class selectDate extends JPanel implements ActionListener{
 	
 	JComboBox<Integer> yearBox = new JComboBox<Integer>();
 	DefaultComboBoxModel<Integer> yearModel = new DefaultComboBoxModel<Integer>();
     JComboBox<Integer> monthBox = new JComboBox<Integer>();
     JComboBox<Integer> dayBox = new JComboBox<Integer>();
-  
-    
+    //++js modify
+    String stdDate="";
+    //++
     Calendar now;
-    int year, month, date;
-    private String font = "Æ¼¿şÀÌ_Ç×°ø";
+    int year, month, date; 
+    private String font = "í‹°ì›¨ì´_í•­ê³µ";
     
     public selectDate(JPanel panel) {
     	
     	
-    	now = Calendar.getInstance();	//ÇöÀç ³¯Â¥
+    	now = Calendar.getInstance();	//í˜„ì¬ ë‚ ì§œ
 
     	year = now.get(Calendar.YEAR);
 
@@ -45,14 +48,14 @@ public class selectDate extends JPanel implements ActionListener{
     	JLabel dayT = new JLabel("\uC77C");
     	dayT.setBounds(339, 9, 24, 27);
     	
-    	yearT.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 25));
-    	monthT.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 25));
-    	dayT.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 25));
+    	yearT.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 25));
+    	monthT.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 25));
+    	dayT.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 25));
         
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
 //        getContentPane().setLayout(new FlowLayout());
         yearBox = new JComboBox<>();
-        yearBox.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 20));
+        yearBox.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 20));
         yearBox.setBounds(58, 12, 84, 23);
         for(int i=year-100; i<=year+50; i++){
 
@@ -65,14 +68,16 @@ public class selectDate extends JPanel implements ActionListener{
         yearBox.setModel(yearModel);
         yearBox.addActionListener(this);
         monthBox = new JComboBox<>();
-        monthBox.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 20));
+        monthBox.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 20));
         monthBox.setBounds(184, 12, 53, 23);
         for (int i = 1; i <= 12; i++) {
             monthBox.addItem(i);
         }
         monthBox.addActionListener(this);
         dayBox = new JComboBox<>();
-        dayBox.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 20));
+        dayBox.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 20));
+        //dayBox select Action ì„¤ì • -js
+        dayBox.addActionListener(this);
         dayBox.setBounds(279,12,53,23);
         
         add(yearBox);
@@ -90,6 +95,15 @@ public class selectDate extends JPanel implements ActionListener{
         monthBox.setSelectedItem(month);
         
         dayBox.setSelectedItem(date);
+        
+
+        //++js modify
+        String selectDate=year+"/"+month+"/"+date;
+        reservData rd = new reservData(selectDate);
+        rd.modiStart();
+        stdDate=rd.getStartTime();
+        System.out.println("selectDate stdDate " + stdDate);
+        //++
         setSize(400, 400);
 //        setLocationRelativeTo(null);
     }
@@ -99,6 +113,12 @@ public class selectDate extends JPanel implements ActionListener{
         int month = (int) monthBox.getSelectedItem();
         int daysInThisMonth = LocalDate.of(year, month, 1).lengthOfMonth();
         int previousSelection = dayBox.getSelectedItem() != null ? (int) dayBox.getSelectedItem() : 1;
+        //++js modify
+        String selectDate=year+"/"+month+"/"+previousSelection;
+        reservData rd = new reservData(selectDate);        
+        rd.modiStart();
+        stdDate=rd.getStartTime();
+        //++
         dayBox.removeAllItems();
         for (int i = 1; i <= daysInThisMonth; i++) {
             dayBox.addItem(i);
@@ -113,5 +133,4 @@ public class selectDate extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 //		 SwingUtilities.invokeLater(() -> new selectDate().setVisible(true));
 	}
-
 }

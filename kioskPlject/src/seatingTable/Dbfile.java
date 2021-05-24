@@ -20,7 +20,7 @@ public class Dbfile {
 	public void connectDB() {
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 			
 			conn.close();
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class Dbfile {
 	public void dml(String query) {
 		try {
 			conn = DriverManager.getConnection(jdbc,root,pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 
 			Statement stat = conn.createStatement();
 			stat.executeUpdate(query);
@@ -44,14 +44,14 @@ public class Dbfile {
 			e.getStackTrace();
 		}
 	}
-	//ÁÂ¼® dbºÎ¸£´Â select
+	//ì¢Œì„ dbë¶€ë¥´ëŠ” select
 	public ArrayList<String> select(String a, String query1) {
 		String query = query1;	
 		ResultSet rs;
 		ArrayList<String> seat = new ArrayList<String>();
 		try {
 			conn = DriverManager.getConnection(jdbc,root,pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);
@@ -67,14 +67,14 @@ public class Dbfile {
 
 		return seat;
 	}
-	//start ½Ã°£ ºÎ¸£´Â select
+	//start ì‹œê°„ ë¶€ë¥´ëŠ” select
 	public ArrayList<String> t_select(String a, String query1) {
 		String query = query1;	
 		ResultSet rs;
 		ArrayList<String> start = new ArrayList<String>();
 		try {
 			conn = DriverManager.getConnection(jdbc,root,pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);
@@ -90,14 +90,14 @@ public class Dbfile {
 
 		return start;
 	}
-	//¿¹¾à ½Ã°£!
+	//ì˜ˆì•½ ì‹œê°„!
 	public ArrayList<String> r_select(String a, String tableName) {
 		String query = "select * from "+ tableName +";";	
 		ResultSet rs;
 		ArrayList<String> r_start = new ArrayList<String>();
 		try {
 			conn = DriverManager.getConnection(jdbc,root,pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);

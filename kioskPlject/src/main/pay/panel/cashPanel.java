@@ -33,8 +33,8 @@ public class cashPanel {
 	}
 
 	public int create(Consumer<String> cs) {
-		String[] list = { "°áÁ¦ ±İ¾× : ", "ÅõÀÔ ±İ¾× : " };
-		String[] detail = { price, "0¿ø" };
+		String[] list = { "ê²°ì œ ê¸ˆì•¡ : ", "íˆ¬ì… ê¸ˆì•¡ : "};
+		String[] detail = { price, "0ì›" };
 		ArrayList<JLabel> detailArr = new ArrayList<JLabel>();
 		for (int i = 0; i < list.length; i++) {
 			cash c = new cash(panel, 30, font);
@@ -42,7 +42,7 @@ public class cashPanel {
 			detailArr.add(c.makeCashD(detail[i], i));
 		}
 
-		// cash ÆĞ³Î button »ı¼º
+		// cash íŒ¨ë„ button ìƒì„±
 		String[] btnDetail = { "1000", "5000", "10000", "50000" };
 		ArrayList<JButton> btnArr = new ArrayList<JButton>();
 
@@ -53,8 +53,8 @@ public class cashPanel {
 			btnArr.add(c.makeCashB(btnDetail[i], chkW, chkY));
 		}
 
-		// cash ÆĞ³Î button event »ı¼º
-		// button style º¯°æ
+		// cash íŒ¨ë„ button event ìƒì„±
+		// button style ë³€ê²½
 		for (int i = 0; i < btnArr.size(); i++) {
 			String a = btnArr.get(i).getText();
 			payment.designBtn(btnArr.get(i), cl);
@@ -62,7 +62,7 @@ public class cashPanel {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					payCash += Integer.parseInt(a);
-					detailArr.get(1).setText(payCash + "¿ø");
+					detailArr.get(1).setText(payCash + "ì›");
 					if (payCash >= Integer.parseInt(detailArr.get(0).getText().substring(0, price.length() - 1))) {
 						cs.accept("cash");
 					}

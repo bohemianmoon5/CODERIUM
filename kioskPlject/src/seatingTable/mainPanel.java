@@ -31,7 +31,7 @@ public class mainPanel extends JPanel{
 	
 	void seatChange_btn(JButton btn) {
 		btn.setBackground(new Color(0, 191, 255));
-		btn.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 15));
+		btn.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 15));
 		btn.setBounds(500, 25, 165, 65);
 		btn.setVisible(true);
 		btn.setContentAreaFilled(false);
@@ -42,11 +42,11 @@ public class mainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				int result = JOptionPane.showConfirmDialog(null, "ÀÚ¸®¸¦ º¯°æÇÏ½Ã°Ú½À´Ï±î?", "confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "ìë¦¬ë¥¼ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "confirm", JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.YES_OPTION) {
 					Dbfile db = new Dbfile();
 					db.dml("update payment set seatNum = null where id = 'wonho33';");
-					System.out.println("ÁÂ¼®ÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.!");
+					System.out.println("ì¢Œì„ì´ ì´ˆê¸°í™” ë˜ì—ˆìŠµë‹ˆë‹¤.!");
 					mainPanel main = new mainPanel();
 					main.back_img();
 
