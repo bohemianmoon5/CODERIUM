@@ -31,7 +31,7 @@ public class detailPanel {
 		modiData md = new modiData();
 
 		String[] listArr = { "Seat Info : ", "product Info : ", "usage time : ", "price Info : " };
-		String[] detailArr = { seat + "��", product, md.start() + "-" + md.end(md.start(),product), price };
+		String[] detailArr = { seat + "번", product, md.start() + "-" + md.end(md.start(),product), price };
 
 		for (int i = 0; i < listArr.length; i++) {
 			showDetail showPanel = new showDetail(panel, 90, font);
