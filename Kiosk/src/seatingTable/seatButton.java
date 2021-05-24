@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -16,8 +17,20 @@ import javax.swing.SwingConstants;
 
 import main.pay.payment;
 
-public class seatButton implements ActionListener  {
+public class seatButton implements ActionListener {
+	Dbfile db = new Dbfile();
 	JButton btn = null;
+	ArrayList<String> seat = null;
+	ArrayList<String> startTime = null;
+	ArrayList<String> endTime = null;
+	ArrayList<String> rstartTime = null;
+	ArrayList<String> rendTime = null;
+	ArrayList<String> seat_all = null;
+	Date start = new Date();
+	Date end = new Date();
+	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat fo = new SimpleDateFormat("HH:mm:ss");
+	
 	int i = 0;
 
 	public seatButton(JButton btn) {
@@ -32,62 +45,41 @@ public class seatButton implements ActionListener  {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		payment p = new payment();
+		
 
-		if (btn.getBackground().getBlue() == 102) {
-			JOptionPane.showMessageDialog(null, "이미 예약된 자리입니다.");
+		/*
+		 * 좌석변경 구현! 문제점 1. sql문 사용할때 변수 payment를 넣으니까.. where 조건문이 먹히지 않음.. 왜인지 모르겠음..ㅠ
+		 * 하지만 payment를 그냥 query 문에 바로 사용하니 문제점 해결.!
+		 * 
+		 */
+
+		// 좌석 번호 db에서 가지고 오기
+		seat = db.select("seatNum", "select * from payment where id = 'wonho33';");
+		seat_all = db.select("seatNum", "select * from payment;");
+		startTime = db.select("starttime", "select * from payment;");
+		endTime = db.select("endtime", "select * from payment;");
+		rstartTime = db.select("r_start", "select * from payment;");
+		rendTime = db.select("r_end", "select * from payment;");
+		
+
+		// 좌석 번호가 null이라면 좌석번호 채워주기! , id와 필히연동 where문!
+		if (seat.get(0) == null) {
+			db.dml("update payment set seatNum =\"" + btn.getText() + "\"where id = 'wonho33';");
+			int result = JOptionPane.showConfirmDialog(null, btn.getText()+"를  선택하겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+			if(result == JOptionPane.YES_OPTION) {
+				Dbfile db = new Dbfile();
+				db.dml("update payment set seat = null where id = 'wonho33';");
+				System.out.println("좌석이 초기화 되었습니다.!");
+				mainPanel main = new mainPanel();
+				main.back_img();
+			System.out.println("바뀐 좌석 번호:" + btn.getText());
+		} else {
+			System.out.println("현재 좌석번호!:" + seat.get(0));
 		}
 
-		else {
-				Date start = new Date();
-				Date end = new Date();
-				p.getFrame().setVisible(true);
-				p.setInfo(i + 1 + "");
-				System.out.println("p값은:" + p.getInfo());
-				
-				
-//			 	이 작업이 끝나고 색상이 바뀌어야한다.!
-				SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss", Locale.KOREA);
-				
-				try {
-					start = f.parse("20:25:20");
-					end = f.parse("22:25:20");
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-				System.out.println(start);
-				long use = end.getTime()- start.getTime() ;
-				long min = use/(60*1000);
-				btn.setText(null);
-				btn.setBackground(new Color(000, 153, 102));
-				JLabel used_lb_label = new JLabel("<HTML>" + (i+1) + "번" + "<br>" + min+"분" + "</HTML>");
-				used_lb_label.setLayout(null);
-				used_lb_label.setHorizontalAlignment(SwingConstants.LEFT);
-				used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 10));
-				used_lb_label.setSize(53, 90);
 
-				btn.add(used_lb_label);
-				btn.setVisible(true);
-				btn.setContentAreaFilled(true);
-				
-			} 
-
-//			if(p.getPrice().equals("4000")) {
-//				btn.setText(null);
-//				btn.setBackground(new Color(000, 153, 102));
-//				JLabel used_lb_label = new JLabel("<HTML>"+(i+1)+"번"+"<br>"+"02:00:00"+"</HTML>");
-//				used_lb_label.setLayout(null);
-//				used_lb_label.setHorizontalAlignment(SwingConstants.LEFT);
-//				used_lb_label.setFont(new Font("티웨이_항공", Font.BOLD, 10));
-//				used_lb_label.setSize(53, 90);
-//				
-//				btn.add(used_lb_label);
-//				btn.setVisible(true);
-//				btn.setContentAreaFilled(true);
-//			}
 
 	}
 
+}
 }

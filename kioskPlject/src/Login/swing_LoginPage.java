@@ -93,7 +93,7 @@ public class swing_LoginPage {
 		getFrame().setBounds(100, 100, 720, 1080);
 		getFrame().getContentPane().add(getShowUp());
 		setShowUp(ShowUp_1_1);
-		// 硫붿씤 踰꾪듉
+		// 硫붿?�� 踰꾪?��
 		Main_clickMe = new JButton(
 				"<HTML><body><center>All dreamers are here!<br>[Click Me]</center></body></HTML>");
 		Main_clickMe.addActionListener(new ActionListener() {
@@ -138,11 +138,11 @@ public class swing_LoginPage {
 		loginButton.setFont(new Font("twayair", Font.PLAIN, 15));
 		loginButton.setBounds(297, 211, 103, 35);
 
-		// 濡쒓렇�씤 踰꾪듉
+		// 濡쒓?���씤 踰꾪?��
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// 濡쒓렇�씤 �젙蹂� 遺덈윭�삤湲�
+				// 濡쒓?���씤 �젙蹂� ?��?��?���삤湲�
 				IdPassword idPassword = new IdPassword();
 
 				String userID = userIDField.getText();
@@ -151,7 +151,7 @@ public class swing_LoginPage {
 				if (idPassword.loginInfo.containsKey(userID)) {
 					if (idPassword.loginInfo.get(userID).equals(password)) {
 						WelcomePage welcomePage = new WelcomePage();
-						welcomePage.welcomeLabel.setText("�븞�뀞�븯�꽭�슂! " + userID + "�떂");
+						welcomePage.welcomeLabel.setText("�븞��?���?�꽭�슂! " + userID + "�떂");
 					} else {
 
 					}
@@ -175,7 +175,7 @@ public class swing_LoginPage {
 		if (Main_clickMe.isVisible())
 			NonMember.setVisible(false);
 
-		// 鍮꾪쉶�썝
+		// ?��꾪쉶�썝
 		nonMemberButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -185,7 +185,7 @@ public class swing_LoginPage {
 			}
 		});
 
-		JLabel cellPhoneNum = new JLabel("�쑕���룿 踰덊샇");
+		JLabel cellPhoneNum = new JLabel("�쑕���룿 踰덊?��");
 		cellPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		cellPhoneNum.setBounds(60, 63, 151, 25);
 		NonMember.add(cellPhoneNum);
@@ -193,7 +193,7 @@ public class swing_LoginPage {
 		cellPhoneNumField = new JTextField();
 		cellPhoneNumField.setBounds(60, 90, 340, 34);
 
-		// �쑕���룿 踰덊샇 �룷留� 諛붽씀湲� & �씤利앸쾲�샇 �쓣�슦湲�
+		// �쑕���룿 踰덊?�� �룷留� 諛붽??湲� & �씤利앸쾲�?�� �쓣�슦湲�
 		cellPhoneNumField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -209,7 +209,7 @@ public class swing_LoginPage {
 
 		NonMember.add(cellPhoneNumField);
 
-		JLabel verifiedNum = new JLabel("�씤利앸쾲�샇");
+		JLabel verifiedNum = new JLabel("�씤利앸쾲�?��");
 		verifiedNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		verifiedNum.setBounds(60, 127, 168, 42);
 		NonMember.add(verifiedNum);
@@ -218,16 +218,16 @@ public class swing_LoginPage {
 		verifiedNumField.setBounds(60, 162, 340, 34);
 		NonMember.add(verifiedNumField);
 
-		JButton loginButton_non = new JButton("濡쒓렇�씤");
+		JButton loginButton_non = new JButton("濡쒓?���씤");
 		loginButton_non.setFont(new Font("twayair", Font.PLAIN, 15));
 		loginButton_non.setBounds(297, 211, 103, 35);
 
-		// 鍮꾪쉶�썝 濡쒓렇�씤
+		// ?��꾪쉶�썝 濡쒓?���씤
 		loginButton_non.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				WelcomePage welcomePage = new WelcomePage();
-				welcomePage.welcomeLabel.setText("�븞�뀞�븯�꽭�슂!");
+				welcomePage.welcomeLabel.setText("�븞��?���?�꽭�슂!");
 
 			}
 		});
@@ -267,7 +267,7 @@ public class swing_LoginPage {
 		signUp.setBounds(8, 230, 143, 34);
 		LogIn.add(signUp);
 
-		// �쉶�썝媛��엯 踰꾪듉
+		// �쉶�썝媛��엯 踰꾪?��
 		JButton signUpButton = new JButton("�쉶�썝媛��엯");
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -299,7 +299,7 @@ public class swing_LoginPage {
 		signUpPasswordField.setBounds(60, 153, 340, 34);
 		SignUp.add(signUpPasswordField);
 
-		signUpName = new JLabel("�씠由�");
+		signUpName = new JLabel("�씠?���?");
 		signUpName.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpName.setBounds(60, 209, 91, 25);
 		SignUp.add(signUpName);
@@ -313,7 +313,7 @@ public class swing_LoginPage {
 		signUpGender.setBounds(60, 292, 91, 25);
 		SignUp.add(signUpGender);
 
-		signUpIDNum = new JLabel("二쇰�쇰벑濡앸쾲�샇(�깮�뀈�썡�씪)");
+		signUpIDNum = new JLabel("二쇰�쇰벑濡?��쾲�?��(�깮��?��?���씪)");
 		signUpIDNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpIDNum.setBounds(60, 375, 201, 25);
 		SignUp.add(signUpIDNum);
@@ -322,7 +322,7 @@ public class swing_LoginPage {
 		signUpIDNumField.setBounds(60, 402, 340, 34);
 		SignUp.add(signUpIDNumField);
 
-		signUpPhoneNum = new JLabel("�쟾�솕踰덊샇");
+		signUpPhoneNum = new JLabel("�쟾�솕踰덊?��");
 		signUpPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpPhoneNum.setBounds(60, 455, 91, 25);
 		SignUp.add(signUpPhoneNum);
@@ -352,7 +352,7 @@ public class swing_LoginPage {
 		GenderW.setBounds(154, 330, 54, 23);
 		SignUp.add(GenderW);
 
-		// �꽦蹂� �꽑�깮 踰꾪듉 洹몃９�솕
+		// �꽦蹂� �꽑�깮 踰꾪?�� 洹몃９�?��
 		ButtonGroup btnGender = new ButtonGroup();
 		btnGender.add(GenderM);
 		btnGender.add(GenderW);
@@ -361,7 +361,7 @@ public class swing_LoginPage {
 		completeBtn.setFont(new Font("twayair", Font.PLAIN, 15));
 		completeBtn.setBounds(253, 688, 100, 35);
 
-		// 媛��엯踰꾪듉(�뜲�씠�꽣 ���옣, �솕硫� �쟾�솚)
+		// 媛��엯踰꾪?��(�뜲�씠�꽣 ���옣, �솕硫� �쟾�솚)
 		completeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -394,7 +394,7 @@ public class swing_LoginPage {
 		});
 		SignUp.add(completeBtn);
 
-		JButton cancelBtn = new JButton("痍⑥냼�븯湲�");
+		JButton cancelBtn = new JButton("?��?��?���븯湲�");
 
 		// �룎�븘媛�湲�
 		cancelBtn.addActionListener(new ActionListener() {
@@ -413,7 +413,7 @@ public class swing_LoginPage {
 		 * resetButton.setFont(new Font("twayair", Font.PLAIN, 15));
 		 * resetButton.setBounds(245, 224, 103, 20);
 		 * 
-		 * // 由ъ뀑 踰꾪듉 resetButton.addActionListener(new ActionListener() { public void
+		 * // ?��?��?? 踰꾪?�� resetButton.addActionListener(new ActionListener() { public void
 		 * actionPerformed(ActionEvent e) {
 		 * 
 		 * userIDField.setText(""); userPasswordField.setText("");
@@ -432,7 +432,7 @@ public class swing_LoginPage {
 		getShowUp().revalidate();
 	}
 
-// �쑕���룿 踰덊샇 �뼇�떇
+// �쑕���룿 踰덊?�� �뼇�떇
 	public String phone_format(String number) {
 		String regEx = "(\\d{3})(\\d{3,4})(\\d{4})";
 		return number.replaceAll(regEx, "$1-$2-$3");

@@ -8,10 +8,10 @@ public class IdPassword {
 
 	IdPassword() {
 		
-		loginInfo.put("ë‚˜ë¬¸ì˜¤", "1234");
-		loginInfo.put("ì •ì›í˜¸", "2345");
-		loginInfo.put("ìµœë¯¼ê·œ", "3456");
-		loginInfo.put("ì˜¤ì§€ìˆ˜", "4567");
+		loginInfo.put("?‚˜ë¬¸ì˜¤", "1234");
+		loginInfo.put("? •?›?˜¸", "2345");
+		loginInfo.put("ìµœë?¼ê·œ", "3456");
+		loginInfo.put("?˜¤ì§??ˆ˜", "4567");
 		
 	}
 	

@@ -95,4 +95,20 @@ public class db {
 		}
 		return arr;
 	}
+	
+	public void dml(String query) {
+		try {
+			conn = DriverManager.getConnection(jdbc,root,pwd);
+			System.out.println("db 연결 성공");
+			System.out.println(query);
+			Statement stat = conn.createStatement();
+			stat.executeUpdate(query);
+
+			stat.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.getStackTrace();
+		}
+	}
 }

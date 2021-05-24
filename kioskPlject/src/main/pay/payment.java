@@ -28,11 +28,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-
-import Login.swing_LoginPage;
-
 import javax.swing.JCheckBox;
 
+import Login.swing_LoginPage;
 import main.pay.done;
 import main.pay.component.fighting;
 import main.pay.component.nextBtn;
@@ -48,7 +46,7 @@ import java.awt.SystemColor;
 
 public class payment {
 	private JFrame frame;
-
+	
 	private JPanel containerPanel;
 	private JPanel select;
 	private JPanel content;
@@ -71,11 +69,8 @@ public class payment {
 	private String font = "티웨이_항공";
 	// seatButton에서 좌석번호 가져옴 
 	private String seatN="";
-	// 결제 창 bounds 설정
-	int pointX = Main_swing.getFrame().getX() + 10;
-	int pointY = Main_swing.getFrame().getY() + 340;
-	int width = Main_swing.getFrame().getWidth() - 20;
-	int height = Main_swing.getFrame().getHeight() - 680;
+	private JFrame prevF;
+	private String type="";
 
 	Color background = new Color(255, 255, 255);
 	Color btnC = new Color(206, 237, 222);
@@ -85,8 +80,10 @@ public class payment {
 		initialize();
 	}
 
-	public payment(String num) {
+	public payment(String num,JFrame prevF,String type) {
 		this.seatN=num;
+		this.prevF=prevF;
+		this.type=type;
 		initialize();
 	}
 
@@ -94,13 +91,21 @@ public class payment {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		// 결제 창 bounds 설정
+		int pointX = prevF.getX() + 10;
+		int pointY = prevF.getY() + 340;
+		int width = prevF.getWidth() - 20;
+		int height = prevF.getHeight() - 680;
+		
+		System.out.println("prevF "+prevF);
+		
 		setFrame(new JFrame());
 		getFrame().setBounds(pointX,pointY,width,height);
 //		getFrame().setBounds(110, 300, 700, 400);
 		getFrame().setTitle("결제");
 		getFrame().setVisible(true);
 		frame.getContentPane().setLayout(null);
-
+		
 		// frame내 내용들을 모두 감싸는 container Panel 생성
 		containerPanel = new JPanel();
 		containerPanel.setBounds(0, 0, 684, 361);

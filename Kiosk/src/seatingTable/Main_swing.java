@@ -14,7 +14,7 @@ import java.awt.Color;
 
 public class Main_swing {
 
-	private JFrame frame;
+	private static JFrame frame;
 //	private JButton btn;
 	/**
 	 * Launch the application.
@@ -48,13 +48,17 @@ public class Main_swing {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		mainPanel main_panel = new mainPanel(frame);
+		mainPanel main_panel = new mainPanel();
+		JButton seatchange = new JButton("자리바꿈");
+		main_panel.seatChange_btn(seatchange);
+		main_panel.back_img();
 		
-//		panel.main_btn(btn);
+
 		
 		JButton lb_btn = new JButton("스터디존");
 		JButton cf_btn = new JButton("카페존");
 		JButton sr_btn = new JButton("스터디룸");
+		
 		JButton[] l_btn = new JButton[35];
 		JButton[] c_btn = new JButton[16];
 		JButton[] s_btn = new JButton[2];
@@ -68,7 +72,18 @@ public class Main_swing {
 		seatingImage seatImg = new seatingImage(new ImageIcon("./image/seatting_table_1.jpg").getImage());
 		sub_panel.add(seatImg);
 		
-		frame.getContentPane().add(main_panel);
 		
+		frame.getContentPane().add(sub_panel);
+		frame.getContentPane().add(main_panel);		
+		
+		
+	}
+	
+	public static JFrame getFrame() {
+		return frame;
+	}
+	
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
 }

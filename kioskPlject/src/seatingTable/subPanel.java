@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-//++js modify img 경로 변경
 public class subPanel extends JPanel {
 
 	/**
@@ -18,6 +17,7 @@ public class subPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	//subpanel studyzone 버튼!
 	void lb_btn(JButton btn, JPanel subPanel, JFrame frame, JButton btns[]) {
 		
 		btn.setBackground(new Color(0, 191, 255));
@@ -36,7 +36,7 @@ public class subPanel extends JPanel {
 				subPanel.setVisible(false);
 				lb.setVisible(!lb.isVisible());
 				lb.btn(btns, lb);
-				seatingImage seatImg = new seatingImage(new ImageIcon("./src/Image/lb_zone_1.jpg").getImage());
+				seatingImage seatImg = new seatingImage(new ImageIcon("./src/image/lb_zone_1.jpg").getImage());
 				lb.add(seatImg);
 				
 			}
@@ -48,7 +48,7 @@ public class subPanel extends JPanel {
 	}
 
 	
-	
+	// caffe zone 버튼!
 	void cf_btn(JButton btn, JPanel subPanel, JFrame frame, JButton[] btns) {
 		btn.setBackground(new Color(0, 191, 255));
 		btn.setFont(new Font("티웨이_항공", Font.BOLD, 15));
@@ -70,7 +70,8 @@ public class subPanel extends JPanel {
 		frame.getContentPane().add(cf);
 		subPanel.add(btn);
 	}
-
+	
+// study room 버튼! 
 	void sr_btn(JButton btn, JPanel subPanel, JFrame frame, JButton[] btns) {
 		btn.setBackground(new Color(0, 191, 255));
 		btn.setFont(new Font("티웨이_항공", Font.BOLD, 15));
@@ -93,6 +94,9 @@ public class subPanel extends JPanel {
 		frame.getContentPane().add(sr);
 	}
 	
+// 자리 변경 버튼
+		
+	
 	public subPanel(JFrame frame) {
 
 		setBounds(20, 130, 660, 870);
@@ -100,7 +104,14 @@ public class subPanel extends JPanel {
 		setLayout(null);
 //		seatingImage seatImg = new seatingImage(new ImageIcon("./image/seatting_table_1.jpg").getImage());
 //		this.add(seatImg);
-		frame.getContentPane().add(this);
+//		frame.getContentPane().add(this);
 		
+	}
+	
+	public subPanel() {
+		super();
+		setBounds(20, 130, 660, 870);
+		setBackground(Color.white);
+		setLayout(null);
 	}
 }

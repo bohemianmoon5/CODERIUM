@@ -1,33 +1,20 @@
 package seatingTable;
 
 import java.awt.EventQueue;
-import java.awt.Window.Type;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-//++js modify
-import Login.ImagePanel;
-import Login.swing_LoginPage;
-//++
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Color;
-import java.awt.Component;
 
 public class Main_swing {
 
 	private static JFrame frame;
-	
-	//++js modify
-	private ImagePanel main_panel;
-	//++
-	
 //	private JButton btn;
 	/**
 	 * Launch the application.
@@ -60,23 +47,18 @@ public class Main_swing {
 		frame.setBounds(0, 0, 720, 1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//++js modify
-		swing_LoginPage a = new swing_LoginPage();
-		for(int i=0; i<a.getShowUp().getComponentCount();i++) {
-			if(a.getShowUp().getComponent(i).toString().contains("JButton")) {
-				a.getShowUp().getComponent(i).setVisible(false);
-			}
-		}
-		main_panel = a.getShowUp();
-		//++
 		
-//		mainPanel main_panel = new mainPanel(frame);
+		mainPanel main_panel = new mainPanel();
+		JButton seatchange = new JButton("자리바꿈");
+		main_panel.seatChange_btn(seatchange);
+		main_panel.back_img();
 		
-//		panel.main_btn(btn);
+
 		
 		JButton lb_btn = new JButton("스터디존");
 		JButton cf_btn = new JButton("카페존");
 		JButton sr_btn = new JButton("스터디룸");
+		
 		JButton[] l_btn = new JButton[35];
 		JButton[] c_btn = new JButton[16];
 		JButton[] s_btn = new JButton[2];
@@ -87,17 +69,20 @@ public class Main_swing {
 		sub_panel.sr_btn(sr_btn, sub_panel, frame, s_btn);
 		sub_panel.lb_btn(lb_btn, sub_panel, frame, l_btn);
 		
-		seatingImage seatImg = new seatingImage(new ImageIcon("./src/Image/seatting_table_1.jpg").getImage());
+		seatingImage seatImg = new seatingImage(new ImageIcon("./src/image/seatting_table_1.jpg").getImage());
 		sub_panel.add(seatImg);
 		
-		frame.getContentPane().add(main_panel);
+		
+		frame.getContentPane().add(sub_panel);
+		frame.getContentPane().add(main_panel);		
+		
 		
 	}
-
+	
 	public static JFrame getFrame() {
 		return frame;
 	}
-
+	
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
