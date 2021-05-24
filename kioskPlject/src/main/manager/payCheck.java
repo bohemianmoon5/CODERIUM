@@ -2,7 +2,7 @@ package main.manager;
 
 import java.util.ArrayList;
 
-import main.pay.db;
+import main.pay.data.db;
 
 public class payCheck {
 	ArrayList<String> data = new ArrayList<String>(); 

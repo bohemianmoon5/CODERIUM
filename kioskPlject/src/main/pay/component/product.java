@@ -1,4 +1,4 @@
-package main.pay;
+package main.pay.component;
 
 import java.awt.Font;
 import java.io.BufferedReader;
@@ -11,14 +11,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import main.pay.data.db;
+
 public class product {
 	JPanel panel;
 	JLabel name;
 	JLabel price;
 	JCheckBox chk;
 	String font = "";
-	ArrayList<String> nameArr = new ArrayList<String>();
-	ArrayList<String> priceArr = new ArrayList<String>();
+	private ArrayList<String> nameArr = new ArrayList<String>();
+	private ArrayList<String> priceArr = new ArrayList<String>();
 	int y=10;
 	db d = new db();
 	
@@ -29,15 +31,15 @@ public class product {
 		this.panel=panel;
 	}
 	public product(String tableName) {
-		nameArr=chk("productName",tableName);
-		priceArr=chk("price",tableName);
+		setNameArr(chk("productName",tableName));
+		setPriceArr(chk("price",tableName));
 	}
 
 	public product(JPanel panel, String font,String tableName) {
 		this.panel = panel;
 		this.font = font;
-		nameArr=chk("productName",tableName);
-		priceArr=chk("price",tableName);
+		setNameArr(chk("productName",tableName));
+		setPriceArr(chk("price",tableName));
 	}
 	
 	public ArrayList<String> chk(String str,String tableName) {
@@ -54,23 +56,23 @@ public class product {
 	
 	public String createName(int i) {
 		JLabel name = new JLabel("");
-		name.setText(nameArr.get(i));
+		name.setText(getNameArr().get(i));
 		name.setFont(new Font(font, Font.PLAIN, 18));
 		name.setHorizontalAlignment(SwingConstants.CENTER);
 		name.setBounds(20, y+(30*i), 56, 30);
 		panel.add(name);
-		return nameArr.get(i);
+		return getNameArr().get(i);
 	}
 	
 	
 	public String createPrice(int i) {
 		JLabel price = new JLabel("");
-		price.setText(priceArr.get(i));
+		price.setText(getPriceArr().get(i));
 		price.setFont(new Font(font, Font.PLAIN, 18));
 		price.setHorizontalAlignment(SwingConstants.CENTER);
 		price.setBounds(80, y+(30*i), 120, 30);
 		panel.add(price);
-		return priceArr.get(i);
+		return getPriceArr().get(i);
 	}
 
 	public JCheckBox chkBox(int i) {
@@ -78,6 +80,18 @@ public class product {
 		chk.setBounds(200, y+(30*i), 21, 23);
 		panel.add(chk);
 		return chk;
+	}
+	public ArrayList<String> getNameArr() {
+		return nameArr;
+	}
+	public void setNameArr(ArrayList<String> nameArr) {
+		this.nameArr = nameArr;
+	}
+	public ArrayList<String> getPriceArr() {
+		return priceArr;
+	}
+	public void setPriceArr(ArrayList<String> priceArr) {
+		this.priceArr = priceArr;
 	}
 
 

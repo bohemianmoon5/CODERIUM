@@ -34,6 +34,14 @@ import Login.swing_LoginPage;
 import javax.swing.JCheckBox;
 
 import main.pay.done;
+import main.pay.component.fighting;
+import main.pay.component.nextBtn;
+import main.pay.component.product;
+import main.pay.component.showDetail;
+import main.pay.data.modiData;
+import main.pay.data.storeData;
+import main.pay.event.windowEvent;
+import main.pay.panel.cashPanel;
 import seatingTable.Main_swing;
 
 import java.awt.SystemColor;
@@ -119,7 +127,7 @@ public class payment {
 		nextBtn n = new nextBtn(containerPanel,select,btnC,font);
 		firstNext = n.createNext();
 		firstNext.setEnabled(false);
-		// next 버튼 클릭 시 select/confirm 패널 setVisible = false로 변경 후 detailPanel 생성
+		// next 버튼 클릭 시 select 패널 제거 후 detailPanel 생성
 		firstNext.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -219,19 +227,17 @@ public class payment {
 	// 시간_기간 상품 패널에 값 넣기
 	void createProduct(String tableName) {
 		product a = new product(tableName);
-		int length = a.nameArr.size();
+		int length = a.getNameArr().size();
 		product ctnt = new product(content, font, tableName);
 		for (int i = 0; i < length; i++) {
 			ctnt.createName(i);
 			ctnt.createPrice(i);
 			chkArr.add(ctnt.chkBox(i));
-			chkEvent(chkArr.get(i), ctnt.nameArr.get(i), ctnt.priceArr.get(i));
+			chkEvent(chkArr.get(i), ctnt.getNameArr().get(i), ctnt.getPriceArr().get(i));
 		}
 	}
 
 	// checkBox 이벤트
-	// 상품 선택 시 confirm 패널에 선택한 상품에 대한 내용 생성
-	// 체크박스가 선택되어 있으면 confirm 패널에 내용 생성, 아니면 confirm 패널에 내용 x
 	// 체크박스가 선택되어 있으면 nextBtn 활성화, 아니면 nextBtn 비활성화
 	// 체크박스가 선택되어 있으면 선택된 체크박스 이외 비활성화, 아니면 모두 활성화
 	public void chkEvent(JCheckBox chk, String name, String price) {
@@ -281,7 +287,7 @@ public class payment {
 		detailPanel.setLayout(null);
 
 		showDetail sd = new showDetail(detailPanel, 0, font);
-		sd.createTitle("confirm product");
+		sd.createTitle("Confirm Product");
 
 		modiData md = new modiData();
 
@@ -384,42 +390,6 @@ public class payment {
 		cash.setLayout(null);
 
 		// cash 패널 list와 detail 생성
-//		String[] list = { "결제 금액 : ", "투입 금액 : " };
-//		String[] detail = { getPrice(), "0원" };
-//		ArrayList<JLabel> detailArr = new ArrayList<JLabel>();
-//		for (int i = 0; i < list.length; i++) {
-//			cash c = new cash(cash, 30, font);
-//			c.makeCashTF(list[i], i);
-//			detailArr.add(c.makeCashD(detail[i], i));
-//		}
-//
-//		// cash 패널 button 생성
-//		String[] btnDetail = { "1000", "5000", "10000", "50000" };
-//		ArrayList<JButton> btnArr = new ArrayList<JButton>();
-//
-//		for (int i = 0; i < btnDetail.length; i++) {
-//			cash c = new cash(cash, 200, font);
-//			int chkW = i % 2 != 0 ? 1 : 0;
-//			int chkY = i > 1 ? 1 : 0;
-//			btnArr.add(c.makeCashB(btnDetail[i], chkW, chkY));
-//		}
-//
-//		// cash 패널 button event 생성
-//		// button style 변경
-//		for (int i = 0; i < btnArr.size(); i++) {
-//			String a = btnArr.get(i).getText();
-//			designBtn(btnArr.get(i), btnC2);
-//			btnArr.get(i).addActionListener(new ActionListener() {
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					payCash += Integer.parseInt(a);
-//					detailArr.get(1).setText(payCash + "원");
-//					if (payCash >= Integer.parseInt(detailArr.get(0).getText().substring(0, getPrice().length() - 1))) {
-//						fakeFrame("cash");
-//					}
-//				}
-//			});
-//		}
 		cashPanel cp = new cashPanel(cash,font,getPrice(),btnC2);
 		payCash=cp.create(fakeFrame);
 	}

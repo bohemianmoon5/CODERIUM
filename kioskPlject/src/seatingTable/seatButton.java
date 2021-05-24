@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import main.pay.payment;
-import main.pay.windowEvent;
+import main.pay.event.windowEvent;
 
 public class seatButton implements ActionListener {
 	JButton btn = null;

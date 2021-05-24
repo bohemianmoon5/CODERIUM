@@ -1,4 +1,4 @@
-package main.pay;
+package main.pay.data;
 
 import java.io.BufferedReader;
 import java.io.File;

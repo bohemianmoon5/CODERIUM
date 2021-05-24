@@ -1,4 +1,4 @@
-package main.pay;
+package main.pay.component;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import main.pay.data.readFile;
 
 
 public class fighting {

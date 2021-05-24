@@ -66,9 +66,7 @@ public class payCheckWindow {
 		payCheck pc = new payCheck();
 		String[] colTitle = {"아이디","결제시간","결제금액","결제타입"};
 		String[] cols = {"id","paytime","price","payType"};
-//		for (int i = 0; i < pc.cols.size(); i++) {
-//			colTitle[i] = pc.cols.get(i);
-//		}
+
 		int rowSize = pc.data.size();
 		String[][] row = new String[rowSize][colTitle.length];
 
@@ -82,7 +80,6 @@ public class payCheckWindow {
 		}
 
 		DefaultTableModel model = new DefaultTableModel(row, colTitle);
-//		model.setHorizontalAlignment(SwingConstants.CENTER);
 
 		table = new JTable(model);
 		table.setAlignmentX(SwingConstants.CENTER);

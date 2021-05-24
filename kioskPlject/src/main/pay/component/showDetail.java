@@ -1,4 +1,4 @@
-package main.pay;
+package main.pay.component;
 
 import java.awt.Font;
 

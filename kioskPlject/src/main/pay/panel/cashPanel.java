@@ -1,5 +1,5 @@
 
-package main.pay;
+package main.pay.panel;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -10,6 +10,9 @@ import java.util.function.Consumer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import main.pay.payment;
+import main.pay.component.cash;
 
 public class cashPanel {
 	JPanel panel;

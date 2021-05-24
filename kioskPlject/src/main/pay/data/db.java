@@ -1,4 +1,4 @@
-package main.pay;
+package main.pay.data;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

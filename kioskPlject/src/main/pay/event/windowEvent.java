@@ -1,4 +1,4 @@
-package main.pay;
+package main.pay.event;
 
 import java.awt.Component;
 import java.awt.event.WindowEvent;
