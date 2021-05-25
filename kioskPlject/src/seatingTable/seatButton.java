@@ -58,7 +58,7 @@ public class seatButton implements ActionListener {
 
 		// 좌석 번호 db에서 가지고 오기
 //		seat = db.select("seatNum", "select * from payment where id = 'wonho33';");
-		seat = d.select("seatNum", "paydata where id = '����ȣ'");
+		seat = d.select("seatNum", "paydata where id = '정원호'");
 //		seat_all = db.select("seatNum", "select * from payment;");
 //		startTime = db.select("starttime", "select * from payment;");
 //		endTime = db.select("endtime", "select * from payment;");

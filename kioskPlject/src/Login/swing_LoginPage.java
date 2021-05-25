@@ -22,6 +22,7 @@ import javax.swing.JTextPane;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
+import java.awt.BorderLayout;
 
 public class swing_LoginPage {
 
@@ -42,15 +43,15 @@ public class swing_LoginPage {
 			}
 		});
 	}
-	private ImagePanel ShowUp;
-	private ImagePanel ShowUp_1;
 
 	/**
 	 * Create the application.
 	 * 
 	 * @param hashMap
 	 */
-	private ImagePanel ShowUp_1_1 = new ImagePanel(new ImageIcon("./src/Img/main_img.png").getImage());
+
+	ImagePanel ShowUp = new ImagePanel(new ImageIcon("./src/Img/main_img.png").getImage());
+	ImagePanel connect = new ImagePanel(new ImageIcon("./src/Image/home_background.png").getImage());
 
 	JButton loginButton = new JButton("로그인");
 	JButton resetButton = new JButton("Reset");
@@ -75,11 +76,7 @@ public class swing_LoginPage {
 	private JLabel signUpPhoneNum;
 	private JTextField signUpPhoneNumField;
 	private JLabel signUpWord;
-	
-	//++js modify
-	private JButton Main_clickMe;
-	//++
-	
+
 	public swing_LoginPage() {
 		initialize();
 	}
@@ -91,10 +88,10 @@ public class swing_LoginPage {
 
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 720, 1080);
+		setShowUp(ShowUp);
 		getFrame().getContentPane().add(getShowUp());
-		setShowUp(ShowUp_1_1);		
 		// 메인 버튼
-		Main_clickMe = new JButton(
+		JButton Main_clickMe = new JButton(
 				"<HTML><body><center>All dreamers are here!<br>[Click Me]</center></body></HTML>");
 		Main_clickMe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -152,6 +149,8 @@ public class swing_LoginPage {
 					if (idPassword.loginInfo.get(userID).equals(password)) {
 						WelcomePage welcomePage = new WelcomePage();
 						welcomePage.welcomeLabel.setText("안녕하세요! " + userID + "님");
+						switchPanels(connect);
+						connect.setVisible(true);
 					} else {
 
 					}
@@ -175,7 +174,7 @@ public class swing_LoginPage {
 		if (Main_clickMe.isVisible())
 			NonMember.setVisible(false);
 
-		// ?��꾪쉶�썝
+		// 비회원
 		nonMemberButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -185,7 +184,7 @@ public class swing_LoginPage {
 			}
 		});
 
-		JLabel cellPhoneNum = new JLabel("�쑕���룿 踰덊?��");
+		JLabel cellPhoneNum = new JLabel("휴대폰 번호");
 		cellPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		cellPhoneNum.setBounds(60, 63, 151, 25);
 		NonMember.add(cellPhoneNum);
@@ -193,7 +192,7 @@ public class swing_LoginPage {
 		cellPhoneNumField = new JTextField();
 		cellPhoneNumField.setBounds(60, 90, 340, 34);
 
-		// �쑕���룿 踰덊?�� �룷留� 諛붽??湲� & �씤利앸쾲�?�� �쓣�슦湲�
+		// 휴대폰 번호 포맷 바꾸기 & 인증번호 띄우기
 		cellPhoneNumField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -209,7 +208,7 @@ public class swing_LoginPage {
 
 		NonMember.add(cellPhoneNumField);
 
-		JLabel verifiedNum = new JLabel("�씤利앸쾲�?��");
+		JLabel verifiedNum = new JLabel("인증번호");
 		verifiedNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		verifiedNum.setBounds(60, 127, 168, 42);
 		NonMember.add(verifiedNum);
@@ -218,26 +217,26 @@ public class swing_LoginPage {
 		verifiedNumField.setBounds(60, 162, 340, 34);
 		NonMember.add(verifiedNumField);
 
-		JButton loginButton_non = new JButton("濡쒓?���씤");
+		JButton loginButton_non = new JButton("로그인");
 		loginButton_non.setFont(new Font("twayair", Font.PLAIN, 15));
 		loginButton_non.setBounds(297, 211, 103, 35);
 
-		// ?��꾪쉶�썝 濡쒓?���씤
+		// 비회원 로그인
 		loginButton_non.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				WelcomePage welcomePage = new WelcomePage();
-				welcomePage.welcomeLabel.setText("�븞��?���?�꽭�슂!");
+				welcomePage.welcomeLabel.setText("안녕하세요!");
 
 			}
 		});
 		NonMember.add(loginButton_non);
 
-		JButton returnButton = new JButton("�룎�븘媛�湲�");
+		JButton returnButton = new JButton("돌아가기");
 		returnButton.setFont(new Font("twayair", Font.PLAIN, 14));
 		returnButton.setBounds(373, 6, 91, 34);
 
-		// �룎�븘媛�湲�
+		// 돌아가기
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -257,29 +256,6 @@ public class swing_LoginPage {
 		SignUp.setBackground(new Color(220, 220, 220));
 		SignUp.setBounds(132, 72, 470, 733);
 		getShowUp().add(SignUp);
-		if (Main_clickMe.isVisible())
-			SignUp.setVisible(false);
-
-		JLabel signUp = new JLabel("�쉶�썝�씠 �븘�땶媛��슂?");
-		signUp.setBackground(new Color(204, 204, 204));
-		signUp.setForeground(new Color(51, 102, 204));
-		signUp.setFont(new Font("twayair", Font.PLAIN, 13));
-		signUp.setBounds(8, 230, 143, 34);
-		LogIn.add(signUp);
-
-		// �쉶�썝媛��엯 踰꾪?��
-		JButton signUpButton = new JButton("�쉶�썝媛��엯");
-		signUpButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				switchPanels(SignUp);
-				SignUp.setVisible(true);
-
-			}
-		});
-		signUpButton.setFont(new Font("twayair", Font.PLAIN, 13));
-		signUpButton.setBounds(102, 233, 75, 28);
-		LogIn.add(signUpButton);
 
 		JLabel signUpID = new JLabel("User ID");
 		signUpID.setFont(new Font("twayair", Font.PLAIN, 20));
@@ -299,7 +275,7 @@ public class swing_LoginPage {
 		signUpPasswordField.setBounds(60, 153, 340, 34);
 		SignUp.add(signUpPasswordField);
 
-		signUpName = new JLabel("�씠?���?");
+		signUpName = new JLabel("이름");
 		signUpName.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpName.setBounds(60, 209, 91, 25);
 		SignUp.add(signUpName);
@@ -308,12 +284,12 @@ public class swing_LoginPage {
 		signUpNameField.setBounds(60, 236, 340, 34);
 		SignUp.add(signUpNameField);
 
-		signUpGender = new JLabel("�꽦蹂�");
+		signUpGender = new JLabel("성별");
 		signUpGender.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpGender.setBounds(60, 292, 91, 25);
 		SignUp.add(signUpGender);
 
-		signUpIDNum = new JLabel("二쇰�쇰벑濡?��쾲�?��(�깮��?��?���씪)");
+		signUpIDNum = new JLabel("주민등록번호(생년월일)");
 		signUpIDNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpIDNum.setBounds(60, 375, 201, 25);
 		SignUp.add(signUpIDNum);
@@ -322,7 +298,7 @@ public class swing_LoginPage {
 		signUpIDNumField.setBounds(60, 402, 340, 34);
 		SignUp.add(signUpIDNumField);
 
-		signUpPhoneNum = new JLabel("�쟾�솕踰덊?��");
+		signUpPhoneNum = new JLabel("전화번호");
 		signUpPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpPhoneNum.setBounds(60, 455, 91, 25);
 		SignUp.add(signUpPhoneNum);
@@ -331,7 +307,7 @@ public class swing_LoginPage {
 		signUpPhoneNumField.setBounds(60, 482, 340, 34);
 		SignUp.add(signUpPhoneNumField);
 
-		signUpWord = new JLabel("�냼留�(轅�)");
+		signUpWord = new JLabel("소망(꿈)");
 		signUpWord.setFont(new Font("twayair", Font.PLAIN, 19));
 		signUpWord.setBounds(60, 534, 91, 25);
 		SignUp.add(signUpWord);
@@ -340,34 +316,34 @@ public class swing_LoginPage {
 		signUpWordTxt.setBounds(61, 565, 335, 97);
 		SignUp.add(signUpWordTxt);
 
-		JRadioButton GenderM = new JRadioButton("�궓");
-		GenderM.setToolTipText("�궓");
+		// 성별 선택 버튼 그룹화
+		ButtonGroup btnGender = new ButtonGroup();
+
+		JRadioButton GenderM = new JRadioButton("남");
+		GenderM.setToolTipText("남");
 		GenderM.setFont(new Font("twayair", Font.PLAIN, 16));
 		GenderM.setBounds(70, 330, 54, 23);
 		SignUp.add(GenderM);
 
-		JRadioButton GenderW = new JRadioButton("�뿬");
-		GenderW.setToolTipText("�뿬");
+		JRadioButton GenderW = new JRadioButton("여");
+		GenderW.setToolTipText("여");
 		GenderW.setFont(new Font("twayair", Font.PLAIN, 16));
 		GenderW.setBounds(154, 330, 54, 23);
 		SignUp.add(GenderW);
-
-		// �꽦蹂� �꽑�깮 踰꾪?�� 洹몃９�?��
-		ButtonGroup btnGender = new ButtonGroup();
 		btnGender.add(GenderM);
 		btnGender.add(GenderW);
 
-		JButton completeBtn = new JButton("媛��엯�븯湲�");
+		JButton completeBtn = new JButton("가입하기");
 		completeBtn.setFont(new Font("twayair", Font.PLAIN, 15));
 		completeBtn.setBounds(253, 688, 100, 35);
 
-		// 媛��엯踰꾪?��(�뜲�씠�꽣 ���옣, �솕硫� �쟾�솚)
+		// 가입버튼(데이터 저장, 화면 전환)
 		completeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				signUpData.signUp.setId(signUpIDField.getText());
 
-				// Pw �뜲�씠�꽣 ���옣
+				// Pw 데이터 저장
 				String stringPassword = "";
 				int i = 0;
 				for (char a : signUpPasswordField.getPassword()) {
@@ -381,7 +357,7 @@ public class swing_LoginPage {
 				signUpData.signUp.setPhoneNum(signUpPhoneNumField.getText());
 				signUpData.signUp.setWord(signUpWordTxt.getText());
 
-				// �꽦蹂� �뜲�씠�꽣 ���옣
+				// 성별 데이터 저장
 				if (GenderM.isSelected()) {
 					signUpData.signUp.setGender(GenderM.getToolTipText());
 				} else {
@@ -394,9 +370,9 @@ public class swing_LoginPage {
 		});
 		SignUp.add(completeBtn);
 
-		JButton cancelBtn = new JButton("?��?��?���븯湲�");
+		JButton cancelBtn = new JButton("취소하기");
 
-		// �룎�븘媛�湲�
+		// 돌아가기
 		cancelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -409,11 +385,69 @@ public class swing_LoginPage {
 		cancelBtn.setBounds(360, 688, 100, 35);
 		SignUp.add(cancelBtn);
 
+		// 중앙 패널
+		JPanel Connect = new JPanel();
+		Connect.setBounds(0, 0, 720, 1080);
+		Connect.add(connect);
+		Connect.setVisible(false);
+
+		JButton Today = new JButton("바로 이용하기");
+		Today.setBounds(170, 270, 164, 56);
+		connect.add(Today);
+		Today.setFont(new Font("twayair", Font.PLAIN, 15));
+
+		JButton Reservation = new JButton("예약");
+		Reservation.setBounds(390, 270, 164, 56);
+		connect.add(Reservation);
+		Reservation.setFont(new Font("twayair", Font.PLAIN, 15));
+
+		JButton In = new JButton("입실");
+		In.setBounds(280, 330, 164, 56);
+		connect.add(In);
+		In.setFont(new Font("twayair", Font.PLAIN, 15));
+
+		JButton Out = new JButton("퇴실");
+		Out.setBounds(170, 390, 164, 56);
+		connect.add(Out);
+		Out.setFont(new Font("twayair", Font.PLAIN, 15));
+
+		JButton SeatChange = new JButton("자리 바꾸기");
+		SeatChange.setBounds(390, 390, 164, 56);
+		connect.add(SeatChange);
+		SeatChange.setFont(new Font("twayair", Font.PLAIN, 15));
+		getShowUp().add(Connect);
+		Connect.setLayout(null);
+		Connect.setToolTipText("");
+		Connect.setBackground(new Color(255, 255, 255));
+		// if(Main_clickMe.isVisible())
+		SignUp.setVisible(false);
+
+		JLabel signUp = new JLabel("회원이 아닌가요?");
+		signUp.setBackground(new Color(204, 204, 204));
+		signUp.setForeground(new Color(51, 102, 204));
+		signUp.setFont(new Font("twayair", Font.PLAIN, 13));
+		signUp.setBounds(8, 230, 143, 34);
+		LogIn.add(signUp);
+
+		// 회원가입 버튼
+		JButton signUpButton = new JButton("회원가입");
+		signUpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				switchPanels(SignUp);
+				SignUp.setVisible(true);
+
+			}
+		});
+		signUpButton.setFont(new Font("twayair", Font.PLAIN, 13));
+		signUpButton.setBounds(102, 233, 75, 28);
+		LogIn.add(signUpButton);
+
 		/*
 		 * resetButton.setFont(new Font("twayair", Font.PLAIN, 15));
 		 * resetButton.setBounds(245, 224, 103, 20);
 		 * 
-		 * // ?��?��?? 踰꾪?�� resetButton.addActionListener(new ActionListener() { public void
+		 * // 리셋 버튼 resetButton.addActionListener(new ActionListener() { public void
 		 * actionPerformed(ActionEvent e) {
 		 * 
 		 * userIDField.setText(""); userPasswordField.setText("");
@@ -432,28 +466,52 @@ public class swing_LoginPage {
 		getShowUp().revalidate();
 	}
 
-// �쑕���룿 踰덊?�� �뼇�떇
+// 휴대폰 번호 양식
 	public String phone_format(String number) {
 		String regEx = "(\\d{3})(\\d{3,4})(\\d{4})";
 		return number.replaceAll(regEx, "$1-$2-$3");
 	}
-
 	//++js modify
-	public JFrame getFrame() {
-		return frame;
-	}
 
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
-	}
-
-	public ImagePanel getShowUp() {
-		return ShowUp_1_1;
-	}
-
-	public void setShowUp(ImagePanel showUp) {
-		ShowUp_1_1 = showUp;
-	}
-	//++
+public JFrame getFrame() {
+	return frame;
 }
 
+public void setFrame(JFrame frame) {
+	this.frame = frame;
+}
+
+public ImagePanel getShowUp() {
+	return ShowUp;
+}
+
+public void setShowUp(ImagePanel showUp) {
+	ShowUp = showUp;
+}
+//++
+
+}
+
+//// 배경이미지 넣기
+//class ImagePanel extends JPanel {
+//
+//	  private Image img;
+//
+//	  public ImagePanel(String img) {
+//	    this(new ImageIcon(img).getImage());
+//	  }
+//
+//	  public ImagePanel(Image img) {
+//	    this.img = img;
+//	    Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+//	    setPreferredSize(size);
+//	    setMinimumSize(size);
+//	    setMaximumSize(size);
+//	    setSize(size);
+//	    setLayout(null);
+//	  }
+//
+//	  public void paintComponent(Graphics g) {
+//	    g.drawImage(img, 0, 0, null);
+//	  }
+//}

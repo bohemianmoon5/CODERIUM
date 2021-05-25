@@ -71,7 +71,7 @@ public class resrvationFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\choim\\Desktop\\CODERIUM_Project_mine\\CODERIUM_Icon.png"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Image/home_background.png"));
 		frame.getContentPane().setFont(new Font("티웨이_항공", Font.BOLD, 20));
 		frame.setTitle("CODERIUM");
 		frame.setBounds(100, 100, 720, 1080);
@@ -82,7 +82,7 @@ public class resrvationFrame {
 		
 		
 		
-		icon = new ImageIcon("C:\\Users\\choim\\Desktop\\CODERIUM_Project_mine\\CODERIUM_Background.jpg");
+		icon = new ImageIcon("./src/Image/home_background.png");
 		 
 		
 		
