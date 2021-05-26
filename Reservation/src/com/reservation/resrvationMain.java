@@ -28,16 +28,14 @@ import java.util.Date;
 
 import com.toedter.calendar.JDayChooser;
 
-public class resrvationFrame {
+public class resrvationMain {
 
 	JScrollPane scrollPane;
 	ImageIcon icon;
 	
 	Component[] mainC;
 	private static JFrame frame;
-	private JComboBox<Integer> yearBox;
-    private JComboBox<Integer> monthBox;
-    private JComboBox<Integer> dayBox;
+
 	
 	
 	
@@ -48,7 +46,7 @@ public class resrvationFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					resrvationFrame window = new resrvationFrame();
+					resrvationMain window = new resrvationMain();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +58,7 @@ public class resrvationFrame {
 	/**
 	 * Create the application.
 	 */
-	public resrvationFrame() {
+	public resrvationMain() {
 		initialize();
 	}
 
@@ -139,6 +137,8 @@ public class resrvationFrame {
 			}
 		});
 		
+		
+		
 		// 예약 확인 버튼
 		JButton btn_checkRe = new JButton("\uC608\uC57D \uD655\uC778");
 		btn_checkRe.setFont(new Font("티웨이_항공", Font.BOLD, 25));
@@ -208,6 +208,9 @@ public class resrvationFrame {
 	
 	public void createNewRe (JPanel panel) {
 		
+		icon = new ImageIcon("C:\\Users\\choim\\Desktop\\CODERIUM_Project_mine\\CODERIUM_Background.jpg");
+
+		
 		JPanel createNewRe = new JPanel() {
 			public void paintComponent(Graphics g) {
             // Approach 1: Dispaly image at at full size
@@ -241,35 +244,11 @@ public class resrvationFrame {
 		panel.add(date);
 		
 		selectDate selectDate = new selectDate(panel);
-		selectDate.setBounds(150, 205, 500, 80);
+		selectDate.setBounds(150, 210, 500, 80);
 		selectDate.setBackground(new Color (255,0,0,0));
 		panel.setVisible(true);
 		panel.add(selectDate);
-		
-//		JButton btn_cal = new JButton("달력보기");
-//		btn_cal.setBounds(260, 190, 200, 80);
-//		btn_cal.setHorizontalAlignment(SwingConstants.CENTER);
-//		btn_cal.setFont(new Font("티웨이_항공", Font.BOLD, 30));
-//		btn_cal.setContentAreaFilled(false);
-//		btn_cal.setBorderPainted(false);
-//		btn_cal.setFocusPainted(false);
-//		panel.add(btn_cal);
-//		btn_cal.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				
-//				new selectDateCal();
-//				
-//			}
-//		});
-		
-//		selectDateCal selectDateCal = new selectDateCal();
-//		selectDateCal.setBounds(150, 205, 500, 80);
-//		selectDateCal.setBackground(new Color (255,0,0,0));
-//		selectDateCal.setVisible(true);
-//		panel.add(selectDateCal);
-		
+
 		
 		JLabel time = new JLabel("시간");
 		time.setHorizontalAlignment(SwingConstants.CENTER);
@@ -278,7 +257,7 @@ public class resrvationFrame {
 		panel.add(time);
 		
 		selectMenu selectMenu = new selectMenu(panel);
-		selectMenu.setBounds(160, 483, 600, 600);
+		selectMenu.setBounds(160, 483, 400, 80);
 		selectMenu.setBackground(new Color(255,0,0,0));
 		panel.setVisible(true);
 		panel.add(selectMenu);
@@ -294,6 +273,7 @@ public class resrvationFrame {
 		JButton btn_seat = new JButton("좌석 선택");
 		btn_seat.setFont(new Font("티웨이_항공", Font.BOLD, 25));
 		btn_seat.setBounds(250, 785, 221, 54);
+		btn_seat.setBackground(new Color(255,0,0,0));
 		btn_seat.setContentAreaFilled(false);
 		btn_seat.setBorderPainted(false);
 		btn_seat.setFocusPainted(false);
@@ -315,18 +295,28 @@ public class resrvationFrame {
 		btn_pay.setBounds(558, 940, 158, 110);
 		btn_pay.setContentAreaFilled(false);
 		btn_pay.setBorderPainted(false);
+//		btn_pay.setBorder(new LineBorder(Color.BLUE));
 		btn_pay.setFocusPainted(false);
 		btn_pay.setOpaque(false);
+
 		panel.add(btn_pay);
 		// 결제창으로 이동하는 actionlistener필요
-		btn_seat.addActionListener(new ActionListener() {
+		
+		btn_pay.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				selectDate.yearBox.getSelectedItem().toString();
+				selectDate.monthBox.getSelectedItem().toString();
+				selectDate.dayBox.getSelectedItem().toString();
+				System.out.println(selectDate.yearBox.getSelectedItem().toString() + "년 "+
+						selectDate.monthBox.getSelectedItem().toString() + "월 " +
+						selectDate.dayBox.getSelectedItem().toString() + "일 " + 
+						selectMenu.menuList.getSelectedItem());
 				
 			}
 		});
+		
 		
 		JButton btn_back = new JButton("\uB4A4\uB85C");
 		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
@@ -338,10 +328,6 @@ public class resrvationFrame {
 		btn_back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				mainReservation.setVisible(true);
-//				newReservation.setVisible(false);
-//				checkReservation.setVisible(false);
-//				cancelReservation.setVisible(false);
 				
 				// ++뒤로가기 버튼 구현
 				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후 
@@ -379,11 +365,21 @@ public class resrvationFrame {
 		checkRe.setLayout(null);
 		checkRe.setVisible(false);
 		
+		JPanel selectRe = new selectRe(panel);
+		selectRe.setBounds(230, 300, 500, 600);
+		selectRe.setBackground(new Color(255,0,0,0));
+		selectRe.setOpaque(false);
+		panel.setVisible(true);
+		panel.add(selectRe);
+		
+		
 		JLabel LavelcheckRe = new JLabel("예약 확인");
 		LavelcheckRe.setHorizontalAlignment(SwingConstants.CENTER);
 		LavelcheckRe.setFont(new Font("티웨이_항공", Font.BOLD, 30));
 		LavelcheckRe.setBounds(0, 0, 714, 110);
 		panel.add(LavelcheckRe);
+		
+		
 		
 		// 예약 확인 => 입실 버튼 활성화
 		JButton btn_checkIn = new JButton("입실");
@@ -407,6 +403,7 @@ public class resrvationFrame {
 		JButton btn_back = new JButton("\uB4A4\uB85C");
 		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
 		btn_back.setBounds(558, 0, 158, 110);
+		
 		btn_back.setContentAreaFilled(false);
 		btn_back.setBorderPainted(false);
 		btn_back.setFocusPainted(false);
@@ -458,6 +455,13 @@ public class resrvationFrame {
 		LavelcancelRe.setFont(new Font("티웨이_항공", Font.BOLD, 30));
 		LavelcancelRe.setBounds(0, 0, 714, 110);
 		panel.add(LavelcancelRe);
+		
+		JPanel selectCanceRe = new selectCanceRe(panel);
+		selectCanceRe.setBounds(230, 300, 500, 600);
+		selectCanceRe.setBackground(new Color(255,0,0,0));
+		selectCanceRe.setOpaque(false);
+		panel.setVisible(true);
+		panel.add(selectCanceRe);
 		
 		// 선택한 예약 데이터 예약 취소 버튼
 		JButton btn_reCancel = new JButton("예약 취소");

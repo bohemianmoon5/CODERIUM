@@ -1,5 +1,6 @@
 package com.reservation;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -21,9 +22,12 @@ public class selectDate extends JPanel implements ActionListener{
 	DefaultComboBoxModel<Integer> yearModel = new DefaultComboBoxModel<Integer>();
     JComboBox<Integer> monthBox = new JComboBox<Integer>();
     JComboBox<Integer> dayBox = new JComboBox<Integer>();
-  
+    JComboBox<Integer> timelist = new JComboBox<Integer>();
+	DefaultComboBoxModel<Integer> timeModel = new DefaultComboBoxModel<Integer>(new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24});
+
     
     Calendar now;
+    
     int year, month, date;
     private String font = "티웨이_항공";
     
@@ -44,11 +48,14 @@ public class selectDate extends JPanel implements ActionListener{
     	monthT.setBounds(243, 10, 24, 25);
     	JLabel dayT = new JLabel("\uC77C");
     	dayT.setBounds(339, 9, 24, 27);
+    	JLabel timeT = new JLabel("시");
+    	timeT.setBounds(440,10,24,27);
     	
     	yearT.setFont(new Font("티웨이_항공", Font.BOLD, 25));
     	monthT.setFont(new Font("티웨이_항공", Font.BOLD, 25));
     	dayT.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-        
+    	timeT.setFont(new Font("티웨이_항공", Font.BOLD, 25));
+
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
 //        getContentPane().setLayout(new FlowLayout());
         yearBox = new JComboBox<>();
@@ -75,6 +82,14 @@ public class selectDate extends JPanel implements ActionListener{
         dayBox.setFont(new Font("티웨이_항공", Font.BOLD, 20));
         dayBox.setBounds(279,12,53,23);
         
+        timelist = new JComboBox();
+        timelist.setModel(timeModel);
+//        timelist.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4","5","6","7","8","9","10","11","12"
+//        		,"13", "14", "15", "16","17","18","19","20","21","22","23","24",}));
+        timelist.setFont(new Font("티웨이_항공", Font.BOLD, 20));
+        timelist.setBounds(119, 5, 153, 45);
+        
+        
         add(yearBox);
         add(yearT);
         
@@ -83,6 +98,9 @@ public class selectDate extends JPanel implements ActionListener{
        
         add(dayBox);
         add(dayT);
+        
+        add(timelist);
+        add(timeT);
         
         //Start with current year selected
         yearBox.setSelectedItem(year);
