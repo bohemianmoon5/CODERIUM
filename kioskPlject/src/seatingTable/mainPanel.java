@@ -11,9 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import main.pay.data.db;
+
 
 public class mainPanel extends JPanel{
-
+	JButton back = new JButton(new ImageIcon("./src/image/back_btn.png"));
+	JButton home = new JButton(new ImageIcon("./src/image/home_btn.png"));
 	/**
 	 * 
 	 */
@@ -23,15 +26,27 @@ public class mainPanel extends JPanel{
 		// TODO Auto-generated constructor stub
 		setLayout(null);
 		setBounds(0, 0, 700, 1080);
-//		jframe.getContentPane().add(this);
-
+		
+		back.setBounds(600, 50, 50, 50);
+		home.setBounds(500, 50, 50, 50);
+		
+		back.setContentAreaFilled(false);
+		back.setBorderPainted(false);
+		back.setFocusPainted(false);
+		
+		home.setContentAreaFilled(false);
+		home.setBorderPainted(false);
+		home.setFocusPainted(false);
+		
+		this.add(back);
+		this.add(home);
 		
 	}
 
-	
+/*	
 	void seatChange_btn(JButton btn) {
 		btn.setBackground(new Color(0, 191, 255));
-		btn.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 15));
+		btn.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 15));
 		btn.setBounds(500, 25, 165, 65);
 		btn.setVisible(true);
 		btn.setContentAreaFilled(false);
@@ -42,14 +57,12 @@ public class mainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				int result = JOptionPane.showConfirmDialog(null, "ìë¦¬ë¥¼ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "ÀÚ¸®¸¦ º¯°æÇÏ½Ã°Ú½À´Ï±î?", "confirm", JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.YES_OPTION) {
-					Dbfile db = new Dbfile();
-					db.dml("update payment set seatNum = null where id = 'wonho33';");
-					System.out.println("ì¢Œì„ì´ ì´ˆê¸°í™” ë˜ì—ˆìŠµë‹ˆë‹¤.!");
-					mainPanel main = new mainPanel();
-					main.back_img();
-
+					db d = new db();
+					d.dml("update paydata set seatNum = null where id = 'wonho33';");
+					System.out.println("ÁÂ¼®ÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.!");
+					
 				}
 				
 			}
@@ -57,8 +70,8 @@ public class mainPanel extends JPanel{
 		this.add(btn);
 		
 	}
-	
-	void back_img() {
+*/
+	public void back_img() {
 		seatingImage home_img = new seatingImage(new ImageIcon("./src/image/home_background.png").getImage());
 		this.add(home_img);
 	}

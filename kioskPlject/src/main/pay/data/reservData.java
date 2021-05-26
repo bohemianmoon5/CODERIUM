@@ -41,8 +41,8 @@ public class reservData {
 		return startTime;
 	}
 	
-	public String modiProd() {
-		String[] prodDt = beforeModiProd.split(" ");
+	public String modiProd(String str) {
+		String[] prodDt = str.split(" ");
 		prod = prodDt[0];
 		String modiTime= prod.substring(0,1);
 		prodTime = Integer.parseInt(modiTime);

@@ -17,19 +17,16 @@ public class subPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//subpanel studyzone ë²„íŠ¼!
-	void lb_btn(JButton btn, JPanel subPanel, JFrame frame, JButton btns[]) {
+	//subpanel studyzone ¹öÆ°!
+	public void lb_btn(JButton btn, JPanel subPanel, JFrame frame, JButton btns[]) {
 		
-		btn.setBackground(new Color(0, 191, 255));
-		btn.setText("ìŠ¤í„°ë””ì¡´");
-		btn.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 15));
+//		btn.setBackground(new Color(0, 191, 255));
+		btn.setText("½ºÅÍµğÁ¸");
+		btn.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 15));
 		btn.setBounds(260, 220, 165, 65);
-//		btn.setContentAreaFilled(false);
-		btn.setBorderPainted(false);
-		btn.setFocusPainted(false);
-//		btn.setOpaque(false);
 		btn.setVisible(true);
-		
+		btn.setIcon(new ImageIcon("./src/image/studyzone.jpg"));
+		btn.setText("½ºÅÍµğÁ¸");
 		lbZone lb = new lbZone(frame);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -41,19 +38,24 @@ public class subPanel extends JPanel {
 				
 			}
 		});
-		
+		btn.setContentAreaFilled(false);
+		btn.setBorderPainted(false);
+		btn.setFocusPainted(false);
 		frame.getContentPane().add(lb);
 		subPanel.add(btn);
 	
 	}
 
-
-	// caffe zone ë²„íŠ¼!
-	void cf_btn(JButton btn, JPanel subPanel, JFrame frame, JButton[] btns) {
-		btn.setBackground(new Color(0, 191, 255));
-		btn.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 15));
-		btn.setBounds(82, 600, 165, 65);
+	
+	// caffe zone ¹öÆ°!
+	public void cf_btn(JButton btn, JPanel subPanel, JFrame frame, JButton[] btns) {
+//		btn.setBackground(new Color(0, 191, 255));
+		btn.setText("Ä«ÆäÁ¸");
+		btn.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 15));
+//		btn.setBounds(82, 600, 165, 65);
+		btn.setBounds(15, 510, 300, 380);
 		btn.setVisible(true);
+//		btn.setIcon(new ImageIcon("./src/image/roompic.png"));
 		cfZone cf = new cfZone(frame);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,19 +66,21 @@ public class subPanel extends JPanel {
 				cf.add(seatImg);
 			}
 		});
-//		btn.setContentAreaFilled(false);
+		btn.setContentAreaFilled(false);
 		btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
 		frame.getContentPane().add(cf);
 		subPanel.add(btn);
 	}
 	
-	// study room ë²„íŠ¼! 
-	void sr_btn(JButton btn, JPanel subPanel, JFrame frame, JButton[] btns) {
-		btn.setBackground(new Color(0, 191, 255));
-		btn.setFont(new Font("í‹°ì›¨ì´_í•­ê³µ", Font.BOLD, 15));
+// study room ¹öÆ°! 
+	public void sr_btn(JButton btn, JPanel subPanel, JFrame frame, JButton[] btns) {
+//		btn.setBackground(new Color(0, 191, 255));
+		btn.setText("½ºÅÍµğ·ë");
+		btn.setFont(new Font("Æ¼¿şÀÌ_Ç×°ø", Font.BOLD, 15));
 		btn.setBounds(445, 600, 165, 65);
 		btn.setVisible(true);
+		btn.setIcon(new ImageIcon("./src/image/roompic.png"));
 		srZone sr = new srZone(frame);
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,14 +91,14 @@ public class subPanel extends JPanel {
 				sr.add(seatImg);
 			}
 		});
-//		btn.setContentAreaFilled(false);
-//		btn.setBorderPainted(false);
-//		btn.setFocusPainted(false);
+		btn.setContentAreaFilled(false);
+		btn.setBorderPainted(false);
+		btn.setFocusPainted(false);
 		subPanel.add(btn);
 		frame.getContentPane().add(sr);
 	}
 	
-	// ìë¦¬ ë³€ê²½ ë²„íŠ¼
+// ÀÚ¸® º¯°æ ¹öÆ°
 		
 	
 	public subPanel(JFrame frame) {
@@ -102,9 +106,7 @@ public class subPanel extends JPanel {
 		setBounds(20, 130, 660, 870);
 		setBackground(Color.white);
 		setLayout(null);
-//		seatingImage seatImg = new seatingImage(new ImageIcon("./image/seatting_table_1.jpg").getImage());
-//		this.add(seatImg);
-//		frame.getContentPane().add(this);
+
 		
 	}
 	

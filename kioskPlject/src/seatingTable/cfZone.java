@@ -18,9 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import main.pay.data.db;
+
 public class cfZone extends JPanel {
 	// 임시 db파일 불러오기!
-	Dbfile db = new Dbfile();
+//	Dbfile db = new Dbfile();
+	db d = new db();
 	ArrayList<String> seat = null;
 	ArrayList<String> r_time = null;
 	ArrayList<String> time = null;
@@ -43,13 +46,13 @@ public class cfZone extends JPanel {
 
 	void btn(JButton[] btn, JPanel cfZone) {
 		// seat데이터불러오기
-		seat = db.select("seat", "select * from payment;");
-		r_time = db.select("r_start", "select * from payment;");
-		time = db.select("start", "select * from payment;");
-		startTime = db.select("start", "select * from payment;");
-		endTime = db.select("end", "select * from payment;");
-		rstartTime = db.select("r_start", "select * from payment;");
-		rendTime = db.select("r_end", "select * from payment;");
+		seat = d.select("seatNum", "paydata");
+		r_time = d.select("r_start", "paydata");
+		time = d.select("startTime", "paydata");
+		startTime = d.select("startTime", "paydata");
+		endTime = d.select("endTime", "paydata");
+		rstartTime = d.select("r_start", "paydata");
+		rendTime = d.select("r_end", "paydata");
 
 		for (int i = 0; i < btn.length; i++) {
 			btn[i] = new JButton((i + 35) + "");
@@ -88,7 +91,7 @@ public class cfZone extends JPanel {
 											String start_t = fo.format(start);
 											String end_t = fo.format(end);
 
-											JOptionPane.showMessageDialog(null, "<HTML>" + "사용중인 자리입니다." + "<br>"
+											JOptionPane.showMessageDialog(null, "<HTML>" + "������� �ڸ��Դϴ�." + "<br>"
 													+ start_t + "~" + end_t + "</HTML>");
 										}
 									}
@@ -99,7 +102,7 @@ public class cfZone extends JPanel {
 					}
 					// 예약 시간에 데이터가 있는 경우 색상지정
 					else if (r_time.get(j) != null) {
-						System.out.println("예약시간:" + r_time.get(j));
+						System.out.println("����ð�:" + r_time.get(j));
 						try {
 							start = f.parse(r_time.get(j));
 							end = f.parse(rendTime.get(j));

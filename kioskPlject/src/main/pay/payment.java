@@ -42,6 +42,7 @@ import main.pay.data.storeData;
 import main.pay.event.windowEvent;
 import main.pay.panel.cashPanel;
 import main.pay.panel.detailPanel;
+import reservation.resrvationMain;
 import seatingTable.Main_swing;
 
 import java.awt.SystemColor;
@@ -76,6 +77,7 @@ public class payment {
 
 	// reserv에서 가져온 데이터
 	private String reservStart = "";
+	private JPanel reservPanel;
 
 	Color background = new Color(255, 255, 255);
 	Color btnC = new Color(206, 237, 222);
@@ -92,13 +94,14 @@ public class payment {
 		initialize();
 	}
 
-	public payment(String num, JFrame prevF, String type, String prod, String price, String start) {
-//		this.seatN=num;
+	public payment(String num, JFrame prevF, String type, String prod, String price, String start,JPanel reservPanel) {
+		this.seatN=num;
 		this.prevF = prevF;
 		this.type = type;
 		reservStart = start;
 		setProduct(prod);
 		setPrice(price);
+		this.reservPanel=reservPanel;
 		initialize();
 	}
 
@@ -461,7 +464,7 @@ public class payment {
 		d.getFrame().dispose();
 		getFrame().dispose();
 		// 응원문구 패널 생성
-		test();
+		test2();
 //		fightingPan();
 //		mainPanel();
 		modiData md = new modiData();
@@ -493,6 +496,37 @@ public class payment {
 			}
 		});
 	}
+
+	public void test2() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					swing_LoginPage window = new swing_LoginPage();
+					resrvationMain win = new resrvationMain();
+//					win.getFrame().setVisible(true);
+					for (int i = 0; i < reservPanel.getComponentCount(); i++) {
+						System.out.println(reservPanel.getComponent(i));
+					}
+//					for (int i = 0; i < reservPanel.getComponentCount(); i++) {
+//						reservPanel.getComponent(i).setVisible(false);
+//					}
+					reservPanel.removeAll();
+					
+//					for (int i = 0; i < win.getMainReserv().getComponentCount(); i++) {
+//						System.out.println(win.getMainReserv().getComponent(i));
+//					}
+//					for (int i = 0; i < win.getMainReserv().getComponentCount(); i++) {
+//						win.getMainReserv().getComponent(i).setVisible(false);
+//					}
+					fightingPan2(reservPanel,window.getShowUp());
+					reservPanel.repaint();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 
 	// ++수정 필요한 부분
 	public void fightingPan(JPanel panel) {
@@ -526,6 +560,52 @@ public class payment {
 						panel.repaint();
 					}
 				}
+			}
+		};
+		timer.schedule(task, 5000);
+	}
+	// ++수정 필요한 부분
+	public void fightingPan2(JPanel remove, JPanel create) {
+		// Main 페이지 내 패널 안에 있는 구성 요소 삭제
+//		seatMap.getSeatPanel().removeAll();
+		
+		// Main 페이지 내 패널에 감사합니다 + 응원문구 라벨 부착
+		JLabel donePhrase = new JLabel("");
+		JLabel fightPhrase = new JLabel("");
+		
+		fighting ft = new fighting(remove, donePhrase, fightPhrase, font);
+		ft.createDone("감사합니다.");
+		ft.createFight();
+		Component[] prevC = remove.getComponents();
+		// 패널 repaint
+//		seatMap.getSeatPanel().repaint();
+		
+		// 5초 후 메인 패널로 전환
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				remove.removeAll();
+				prevF.removeAll();
+				swing_LoginPage win = new swing_LoginPage();
+				prevF=win.getFrame();
+				prevF.add(win.getShowUp());
+				win.getShowUp().setVisible(true);
+				prevF.repaint();
+				remove.repaint();
+				//첫 화면인 JButton만 setVisible true로 변경
+//				for (int i = 0; i < prevC.length; i++) {
+//					if (prevC[i].toString().contains("JButton")) {
+//						mainC[i].setVisible(true);
+//					}
+					//JLabel만 제거
+//					else if (prevC[i].toString().contains("JLabel")) {
+//						prevF.remove(prevC[i]);
+//						remove.repaint();
+//					}
+//				}
+				reservPanel.repaint();
+				System.out.println("a");
 			}
 		};
 		timer.schedule(task, 5000);

@@ -21,6 +21,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+
+import reservation.resrvationMain;
+
 import javax.swing.JRadioButton;
 import java.awt.BorderLayout;
 
@@ -400,6 +403,12 @@ public class swing_LoginPage {
 		Reservation.setBounds(390, 270, 164, 56);
 		connect.add(Reservation);
 		Reservation.setFont(new Font("twayair", Font.PLAIN, 15));
+		Reservation.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 
 		JButton In = new JButton("입실");
 		In.setBounds(280, 330, 164, 56);

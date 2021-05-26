@@ -1,5 +1,6 @@
 package com.reservation;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,25 +16,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import main.pay.data.reservData;
-
 public class selectDate extends JPanel implements ActionListener{
 	
 	JComboBox<Integer> yearBox = new JComboBox<Integer>();
 	DefaultComboBoxModel<Integer> yearModel = new DefaultComboBoxModel<Integer>();
     JComboBox<Integer> monthBox = new JComboBox<Integer>();
     JComboBox<Integer> dayBox = new JComboBox<Integer>();
-    //++js modify
-    String stdDate="";
-    //++
+    JComboBox<Integer> timelist = new JComboBox<Integer>();
+	DefaultComboBoxModel<Integer> timeModel = new DefaultComboBoxModel<Integer>(new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24});
+
+    
     Calendar now;
-    int year, month, date; 
+    
+    int year, month, date;
     private String font = "티웨이_항공";
     
     public selectDate(JPanel panel) {
     	
     	
-    	now = Calendar.getInstance();	//현재 날짜
+    	now = Calendar.getInstance();	//���� ��¥
 
     	year = now.get(Calendar.YEAR);
 
@@ -41,17 +42,20 @@ public class selectDate extends JPanel implements ActionListener{
 
     	date = now.get(Calendar.DATE);
     	
-    	JLabel yearT = new JLabel("\uB144");
+    	JLabel yearT = new JLabel("년");
     	yearT.setBounds(148, 10, 24, 25);
-    	JLabel monthT = new JLabel("\uC6D4");
+    	JLabel monthT = new JLabel("월");
     	monthT.setBounds(243, 10, 24, 25);
-    	JLabel dayT = new JLabel("\uC77C");
+    	JLabel dayT = new JLabel("일");
     	dayT.setBounds(339, 9, 24, 27);
+    	JLabel timeT = new JLabel("시");
+    	timeT.setBounds(440,10,24,27);
     	
     	yearT.setFont(new Font("티웨이_항공", Font.BOLD, 25));
     	monthT.setFont(new Font("티웨이_항공", Font.BOLD, 25));
     	dayT.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-        
+    	timeT.setFont(new Font("티웨이_항공", Font.BOLD, 25));
+
 //        setDefaultCloseOperation(EXIT_ON_CLOSE);
 //        getContentPane().setLayout(new FlowLayout());
         yearBox = new JComboBox<>();
@@ -76,9 +80,15 @@ public class selectDate extends JPanel implements ActionListener{
         monthBox.addActionListener(this);
         dayBox = new JComboBox<>();
         dayBox.setFont(new Font("티웨이_항공", Font.BOLD, 20));
-        //dayBox select Action 설정 -js
-        dayBox.addActionListener(this);
         dayBox.setBounds(279,12,53,23);
+        
+        timelist = new JComboBox();
+        timelist.setModel(timeModel);
+//        timelist.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4","5","6","7","8","9","10","11","12"
+//        		,"13", "14", "15", "16","17","18","19","20","21","22","23","24",}));
+        timelist.setFont(new Font("티웨이_항공", Font.BOLD, 20));
+        timelist.setBounds(119, 5, 153, 45);
+        
         
         add(yearBox);
         add(yearT);
@@ -89,21 +99,15 @@ public class selectDate extends JPanel implements ActionListener{
         add(dayBox);
         add(dayT);
         
+        add(timelist);
+        add(timeT);
+        
         //Start with current year selected
         yearBox.setSelectedItem(year);
         
         monthBox.setSelectedItem(month);
         
         dayBox.setSelectedItem(date);
-        
-
-        //++js modify
-        String selectDate=year+"/"+month+"/"+date;
-        reservData rd = new reservData(selectDate);
-        rd.modiStart();
-        stdDate=rd.getStartTime();
-        System.out.println("selectDate stdDate " + stdDate);
-        //++
         setSize(400, 400);
 //        setLocationRelativeTo(null);
     }
@@ -113,12 +117,6 @@ public class selectDate extends JPanel implements ActionListener{
         int month = (int) monthBox.getSelectedItem();
         int daysInThisMonth = LocalDate.of(year, month, 1).lengthOfMonth();
         int previousSelection = dayBox.getSelectedItem() != null ? (int) dayBox.getSelectedItem() : 1;
-        //++js modify
-        String selectDate=year+"/"+month+"/"+previousSelection;
-        reservData rd = new reservData(selectDate);        
-        rd.modiStart();
-        stdDate=rd.getStartTime();
-        //++
         dayBox.removeAllItems();
         for (int i = 1; i <= daysInThisMonth; i++) {
             dayBox.addItem(i);
@@ -133,4 +131,6 @@ public class selectDate extends JPanel implements ActionListener{
 		// TODO Auto-generated method stub
 //		 SwingUtilities.invokeLater(() -> new selectDate().setVisible(true));
 	}
+
+
 }
