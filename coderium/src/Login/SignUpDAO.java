@@ -1,11 +1,15 @@
 package Login;
 
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-public class SetSignUp {
+public class SignUpDAO {
 	
 	String data = null;
-	SignUp signUp = new SignUp();
+	SignUpDTO signUp = new SignUpDTO();
 	
 	String SetSignUp() {
 		data = signUp.getId() + ", " + signUp.getPw() + ", " + signUp.getName() + ", " + signUp.getGender() + ", " 
@@ -15,3 +19,4 @@ public class SetSignUp {
 	}
 	
 }
+	
