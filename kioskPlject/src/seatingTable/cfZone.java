@@ -37,15 +37,16 @@ public class cfZone extends JPanel {
 	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	SimpleDateFormat fo = new SimpleDateFormat("HH:mm");
 
-	public cfZone(JFrame frame) {
+	public cfZone() {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
 
-		this.setVisible(false);
+		this.setVisible(true);
 	}
+	
 
 	void btn(JButton[] btn, JPanel cfZone) {
-		// seat데이터불러오기
+		// 좌석테이블
 		seat = d.select("seatNum", "paydata");
 		r_time = d.select("r_start", "paydata");
 		time = d.select("startTime", "paydata");
@@ -91,7 +92,7 @@ public class cfZone extends JPanel {
 											String start_t = fo.format(start);
 											String end_t = fo.format(end);
 
-											JOptionPane.showMessageDialog(null, "<HTML>" + "������� �ڸ��Դϴ�." + "<br>"
+											JOptionPane.showMessageDialog(null, "<HTML>" + "사용중인 자리입니다." + "<br>"
 													+ start_t + "~" + end_t + "</HTML>");
 										}
 									}
@@ -177,5 +178,8 @@ public class cfZone extends JPanel {
 		btn[15].setBounds(365, 729, 75, 75);
 
 	}
-
+	public void back_img() {
+		seatingImage seatimg = new seatingImage(new ImageIcon("./src/image/cf_zone_1.jpg").getImage());
+		this.add(seatimg);
+	}
 }

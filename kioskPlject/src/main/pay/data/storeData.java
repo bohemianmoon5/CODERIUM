@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class storeData {
+	String id;
 	String seat;
 	String payT;
 	String sTime;
@@ -18,8 +19,9 @@ public class storeData {
 	String type;
 	String menuType;
 
-	public storeData(String seat, String payT,String sTime, String uTime,String eTime, 
+	public storeData(String id,String seat, String payT,String sTime, String uTime,String eTime, 
 			String product, String price, String type,String menuType) {
+		this.id=id;
 		this.seat = seat;
 		this.payT=payT;
 		this.sTime = sTime;
@@ -33,7 +35,7 @@ public class storeData {
 	
 	public void store() {
 		db newD = new db();		
-		newD.insert("jisu",seat,payT ,sTime, uTime, eTime, product, price, type,menuType);
+		newD.insert(id,seat,payT ,sTime, uTime, eTime, product, price, type,menuType);
 	}
 
 }

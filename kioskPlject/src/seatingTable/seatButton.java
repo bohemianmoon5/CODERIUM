@@ -61,6 +61,7 @@ public class seatButton implements ActionListener {
 				if(Main.type.equals("reserve")) {
 					rm.btn_seat.setText(btn.getText()+"번 좌석");
 					Main.getFrame().dispose();
+					rm.btn_pay.setEnabled(true);
 					Main.type="";
 				}
 				else {

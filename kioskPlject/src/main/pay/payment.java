@@ -43,7 +43,7 @@ import main.pay.event.windowEvent;
 import main.pay.panel.cashPanel;
 import main.pay.panel.detailPanel;
 import reservation.resrvationMain;
-import seatingTable.Main_swing;
+//import seatingTable.Main_swing;
 
 import java.awt.SystemColor;
 
@@ -476,7 +476,7 @@ public class payment {
 		String stPri = md.modiPri(getPrice());
 		String stUse = md.use(getProduct());
 
-		storeData sData = new storeData(stSeat, payTime, stStart, stUse, stEnd, stPro, stPri, type, menuType);
+		storeData sData = new storeData(swing_LoginPage.user,stSeat, payTime, stStart, stUse, stEnd, stPro, stPri, type, menuType);
 		sData.store();
 	}
 

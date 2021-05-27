@@ -30,9 +30,10 @@ public class resrvationMain {
 	public static JButton btn_seat;
 	Component[] mainC;
 	private static JFrame frame;
-
+	String rt ="";
 	//++js modify
 	private JPanel mainReservation;
+	public static JButton btn_pay;
 	//++
 	
 	
@@ -59,8 +60,10 @@ public class resrvationMain {
 	public resrvationMain() {
 		initialize();
 	}
-	public resrvationMain(JFrame frame) {
+	public resrvationMain(JFrame frame,String rt) {
+		this.rt=rt;
 		this.frame=frame;
+//		setFrame(frame);
 		initialize();
 	}
 
@@ -69,21 +72,22 @@ public class resrvationMain {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		frame = new JFrame();
+		if(!rt.equals("re")) {
+			frame=new JFrame();
+			frame.setBounds(100, 0, 720, 1080);
+//			setFrame(frame);						
+		}		
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Image/CODERIUM_Icon.png"));
 		frame.getContentPane().setFont(new Font("티웨이_항공", Font.BOLD, 20));
 		frame.setTitle("CODERIUM");
 
 		// 결제 팝업의 exit 버튼 누를 시 결제 팝업창만 종료됨
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//		frame.setBounds(100, 100, 720, 1080);
 //		frame.setLocationRelativeTo(null);
 //		frame.setResizable(false);
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		frame.getContentPane().setLayout(null);
-//		
-//		
-//		
+	
 		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
 		 
 		
@@ -297,7 +301,7 @@ public class resrvationMain {
 		});
 		 
 		// 새로운 예약 => 결제 창으로 이동 버튼
-		JButton btn_pay = new JButton("결제");
+		btn_pay = new JButton("결제");
 		btn_pay.setFont(new Font("티웨이_항공", Font.BOLD, 25));
 		btn_pay.setBounds(558, 940, 158, 110);
 		btn_pay.setContentAreaFilled(false);
@@ -305,7 +309,9 @@ public class resrvationMain {
 //		btn_pay.setBorder(new LineBorder(Color.BLUE));
 		btn_pay.setFocusPainted(false);
 		btn_pay.setOpaque(false);
-
+//		if(seatnum.equals("좌석 선택")) {
+			btn_pay.setEnabled(false);			
+//		}
 		panel.add(btn_pay);
 		// 결제창으로 이동하는 actionlistener필요
 		
@@ -329,7 +335,7 @@ public class resrvationMain {
 				String prodName=rd.getProd();
 				String price=rd.getPrice();
 				String seatN=btn_seat.getText();
-				payment p = new payment(seatN.substring(0,seatN.length()-4),frame,"reserv",prodName,price,stdDate,panel);
+				payment p = new payment(seatN.substring(0,seatN.length()-4),getFrame(),"reserv",prodName,price,stdDate,panel);
 				p.getFrame().setVisible(true);
 				//++
 			}

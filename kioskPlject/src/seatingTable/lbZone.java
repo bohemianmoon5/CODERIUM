@@ -1,6 +1,7 @@
 package seatingTable;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,7 +25,7 @@ public class lbZone extends JPanel {
 	int num2 = 0;
 	int num3 = 0;
 	int num4 = 0;
-//	Dbfile db = new Dbfile();
+
 	db d = new db();
 	ArrayList<String> seat = null;
 	ArrayList<String> r_time = null;
@@ -38,8 +40,9 @@ public class lbZone extends JPanel {
 	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	SimpleDateFormat fo = new SimpleDateFormat("HH:mm");
 	String type = "";
+	
 
-//	db 불러오기.!
+
 
 	/**
 	 * 스터디존 좌석표 생성!
@@ -47,10 +50,17 @@ public class lbZone extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	// 스터디존 JPanel 생성
+	public lbZone() {
+		setBounds(20, 130, 660, 870);
+		setLayout(null);
+		this.setVisible(true);
+		this.type = type;
+	}
+	
 	public lbZone(JFrame frame) {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
-		this.setVisible(false);
+		this.setVisible(true);
 		this.type = type;
 	}
 
@@ -104,7 +114,7 @@ public class lbZone extends JPanel {
 				}
 				num3++;
 			}
-//			27~34번 좌석생성		
+//			27~34번 좌석생성			
 			else {
 				btn[i] = new JButton((i + 1) + "");
 				btn[i].addActionListener(new seatButton(btn[i], i));
@@ -117,10 +127,11 @@ public class lbZone extends JPanel {
 				num4++;
 			}
 			btn[i].setContentAreaFilled(false);
-
+			
 			// db 파일에 저장한 seat 버튼을 가져옵니다.
 			for (int j = 0; j < seat.size(); j++) {
 				// db 번호와 좌석표 db와 같은경우 코드 실행
+				
 				if (btn[i].getText().equals(seat.get(j))) {
 					// 바로사용의 시간에 데이터가 있는 경우 색상지정!
 					System.out.println("btn[i]:" + btn[i].getText());
@@ -135,7 +146,7 @@ public class lbZone extends JPanel {
 							btn[i].addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent e) {
-									payment p = new payment(J.getText() ,Main_swing.getFrame(), "seat");
+									payment p = new payment(J.getText() ,Main.getFrame(), "seat");
 									p.getFrame().setVisible(true);
 									// TODO Auto-generated method stub
 									for (int z = 0; z < seat.size(); z++) {
@@ -170,7 +181,7 @@ public class lbZone extends JPanel {
 						} catch (ParseException e1) {
 							e1.printStackTrace();
 						}
-						// 예약 시간 한시간 전을 구하기 위한 calendar사용!
+						/// 예약 시간 한시간 전을 구하기 위한 calendar사용!
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(start);
 						cal.add(Calendar.HOUR, -1);
@@ -182,7 +193,7 @@ public class lbZone extends JPanel {
 						String now = fo.format(dt_now);
 						System.out.println("now:" + now);
 
-//						// 현재 시간과 db시간이 같으면 예약 색상으로 변경!
+						// 현재 시간과 db시간이 같으면 예약 색상으로 변경!
 						if (r_start.equals(now)) {
 							btn[i].setBackground(Color.yellow);
 							btn[i].setContentAreaFilled(true);
@@ -192,7 +203,7 @@ public class lbZone extends JPanel {
 
 									@Override
 									public void actionPerformed(ActionEvent e) {
-//										// for문으로 데이터 가지고오기!
+										// for문으로 데이터 가지고오기!
 										for (int k = 0; k < seat.size(); k++) {
 											if (c.getText().equals(seat.get(k))) {
 												try {
@@ -205,7 +216,7 @@ public class lbZone extends JPanel {
 												String start_t = fo.format(start);
 												String end_t = fo.format(end);
 
-												JOptionPane.showMessageDialog(null, "<HTML>" +  "예약 중인 자리입니다." + "<br>"
+												JOptionPane.showMessageDialog(null, "<HTML>" + "예약 중인 자리입니다.." + "<br>"
 														+ start_t + "~" + end_t + "</HTML>");
 											}
 										}
@@ -222,5 +233,9 @@ public class lbZone extends JPanel {
 
 		}
 
+	}
+	public void back_img() {
+		seatingImage seatimg = new seatingImage(new ImageIcon("./src/image/lb_zone_1.jpg").getImage());
+		this.add(seatimg);
 	}
 }
