@@ -12,7 +12,7 @@ public class done {
 	private JFrame frame;
 	private int payCash;
 	private int mustCash;
-	private String font = "Æ¼¿şÀÌ_Ç×°ø";
+	private String font = "í‹°ì›¨ì´_í•­ê³µ";
 	
 	public done() {
 		initialize();
@@ -33,16 +33,16 @@ public class done {
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		System.out.println("p "+payCash);
-		System.out.println("m "+mustCash);
+//		System.out.println("p "+payCash);
+//		System.out.println("m "+mustCash);
 		
 		if(payCash!=0 && mustCash!=payCash) {
-			JLabel payPhrase = new JLabel("°Å½º¸§µ· : "+ (payCash-mustCash)+"¿ø ÀÔ´Ï´Ù.");
+			JLabel payPhrase = new JLabel("ê±°ìŠ¤ë¦„ëˆ : "+ (payCash-mustCash)+"ì› ì…ë‹ˆë‹¤.");
 			payPhrase.setBounds(50, 88, 370, 72);
 			payPhrase.setFont(new Font(font, Font.PLAIN, 25));
 			frame.getContentPane().add(payPhrase);			
 		}else{
-			JLabel payPhrase = new JLabel("°áÁ¦ Áß ÀÔ´Ï´Ù.");
+			JLabel payPhrase = new JLabel("ê²°ì œ ì¤‘ ì…ë‹ˆë‹¤.");
 			payPhrase.setBounds(50, 88, 370, 72);
 			payPhrase.setFont(new Font(font, Font.PLAIN, 25));
 			frame.getContentPane().add(payPhrase);	

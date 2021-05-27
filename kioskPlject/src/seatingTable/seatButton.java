@@ -1,19 +1,15 @@
 package seatingTable;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
+
+import reservation.resrvationMain;
 
 import main.pay.payment;
 import main.pay.data.db;
@@ -32,6 +28,7 @@ public class seatButton implements ActionListener {
 	Date end = new Date();
 	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	SimpleDateFormat fo = new SimpleDateFormat("HH:mm:ss");
+	resrvationMain rm = new resrvationMain();
 	
 	int i = 0;
 
@@ -47,43 +44,33 @@ public class seatButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
-
 		/*
-		 * ÁÂ¼®º¯°æ ±¸Çö! ¹®Á¦Á¡ 1. sql¹® »ç¿ëÇÒ¶§ º¯¼ö payment¸¦ ³ÖÀ¸´Ï±î.. where Á¶°Ç¹®ÀÌ ¸ÔÈ÷Áö ¾ÊÀ½.. ¿ÖÀÎÁö ¸ğ¸£°ÚÀ½..¤Ğ
-		 * ÇÏÁö¸¸ payment¸¦ ±×³É query ¹®¿¡ ¹Ù·Î »ç¿ëÇÏ´Ï ¹®Á¦Á¡ ÇØ°á.!
+		 * ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1. sqlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½ï¿½ï¿½ï¿½ paymentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½.. where ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ğ¸£°ï¿½ï¿½ï¿½..ï¿½ï¿½
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ paymentï¿½ï¿½ ï¿½×³ï¿½ query ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½.!
 		 * 
 		 */
 
-		// ÁÂ¼® ¹øÈ£ db¿¡¼­ °¡Áö°í ¿À±â
-//		seat = db.select("seatNum", "select * from payment where id = 'wonho33';");
-		seat = d.select("seatNum", "paydata where id = 'wonho33'");
-//		seat_all = db.select("seatNum", "select * from payment;");
-//		startTime = db.select("starttime", "select * from payment;");
-//		endTime = db.select("endtime", "select * from payment;");
-//		rstartTime = db.select("r_start", "select * from payment;");
-//		rendTime = db.select("r_end", "select * from payment;");
+		// ï¿½Â¼ï¿½ ï¿½ï¿½È£ dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//		System.out.println("Main.type:"+Main.type);
 		
+		seat = d.select("seatNum", "paydata where id = 'wonho33'");
 
-		// ÁÂ¼® ¹øÈ£°¡ nullÀÌ¶ó¸é ÁÂ¼®¹øÈ£ Ã¤¿öÁÖ±â! , id¿Í ÇÊÈ÷¿¬µ¿ where¹®!
 		if (seat.get(0) == null) {
-//			db.dml("update payment set seatNum =\"" + btn.getText() + "\"where id = 'wonho33';");
-			int result = JOptionPane.showConfirmDialog(null, btn.getText()+"¸¦  ¼±ÅÃÇÏ°Ú½À´Ï±î?", "confirm", JOptionPane.YES_NO_OPTION);
+			int result = JOptionPane.showConfirmDialog(null, btn.getText()+"ë¥¼  ì„ íƒí•˜ê² ìŠµë‹ˆê¹Œ?", "confirm", JOptionPane.YES_NO_OPTION);
 			if(result == JOptionPane.YES_OPTION) {
-				payment p = new payment(btn.getText() ,Main_swing.getFrame(), "seat");
+				if(Main.type.equals("reserve")) {
+					rm.btn_seat.setText(btn.getText()+"ë²ˆ ì¢Œì„");
+					Main.getFrame().dispose();
+					Main.type="";
+				}
+				else {
+				payment p = new payment(btn.getText() ,Main.getFrame(), "seat");
 				p.getFrame().setVisible(true);
-//				Dbfile db = new Dbfile();
-//				db.dml("update payment set seat = null where id = 'wonho33';");
-//				d.dml("update payment set seat = null where id = 'Á¤¿øÈ£';");
-//				System.out.println("ÁÂ¼®ÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.!");
-//				mainPanel main = new mainPanel();
-//				main.back_img();
-//			System.out.println("¹Ù²ï ÁÂ¼® ¹øÈ£:" + btn.getText());
-				System.out.println("¿Ö¾ÈµÇ");
-//				d.dml("update payment set seatNum =\"" + btn.getText() + "\"where id = 'Á¤¿øÈ£';");
-//				d.dml("update paydata set seatNum =\"" + btn.getText() + "\"where id = 'Á¤¿øÈ£';");
+
+				}
+
 		} else {
-			System.out.println("ÇöÀç ÁÂ¼®¹øÈ£!:" + seat.get(0));
+			System.out.println("í˜„ì¬ ì¢Œì„ë²ˆí˜¸:" + seat.get(0));
 		}
 
 

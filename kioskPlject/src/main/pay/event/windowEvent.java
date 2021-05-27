@@ -18,45 +18,45 @@ public class windowEvent {
 	}
 	
 	public void event() {
-//		System.out.println("c»çÀÌÁî "+c.length);
+//		System.out.println("cì‚¬ì´ì¦ˆ "+c.length);
 		f.addWindowListener(new WindowListener() {
 			@Override
-			// À©µµ¿ì Ã³À½ »ı¼ºµÇ¾úÀ» ¶§
+			// ìœˆë„ìš° ì²˜ìŒ ìƒì„±ë˜ì—ˆì„ ë•Œ
 			public void windowOpened(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì ½Ã½ºÅÛ ¸Ş´ºÀÇ ´İ±â ½ÃµµÇÒ ¶§
+			// ìœˆë„ìš° ì‹œìŠ¤í…œ ë©”ë‰´ì˜ ë‹«ê¸° ì‹œë„í•  ë•Œ
 			public void windowClosing(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì°¡ ´İÈú ¶§
-			// °áÁ¦ Ã¢ÀÌ ´İÈ÷¸é main ÆĞ³Î¿¡ ÀÖ´Â ÀÚ½Ä component È°¼ºÈ­
+			// ìœˆë„ìš°ê°€ ë‹«í ë•Œ
+			// ê²°ì œ ì°½ì´ ë‹«íˆë©´ main íŒ¨ë„ì— ìˆëŠ” ìì‹ component í™œì„±í™”
 			public void windowClosed(WindowEvent e) {
-				System.out.println("²¨Á³´Ù");
+				System.out.println("êº¼ì¡Œë‹¤");
 				for (int i = 0; i < com.length; i++) {
 					com[i].setEnabled(true);
 				}
 			}
 
 			@Override
-			// À©µµ¿ì°¡ ÃÖ¼ÒÈ­ µÇ¾úÀ» ¶§
+			// ìœˆë„ìš°ê°€ ìµœì†Œí™” ë˜ì—ˆì„ ë•Œ
 			public void windowIconified(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì°¡ ÃÖ¼ÒÈ­¿¡¼­ ÃÖ´ëÈ­ µÇ¾úÀ» ¶§
+			// ìœˆë„ìš°ê°€ ìµœì†Œí™”ì—ì„œ ìµœëŒ€í™” ë˜ì—ˆì„ ë•Œ
 			public void windowDeiconified(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì°¡ È°¼ºÈ­ µÇ¾úÀ» ¶§
+			// ìœˆë„ìš°ê°€ í™œì„±í™” ë˜ì—ˆì„ ë•Œ
 			public void windowActivated(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì°¡ ºñÈ°¼ºÈ­ µÇ¾úÀ» ¶§
+			// ìœˆë„ìš°ê°€ ë¹„í™œì„±í™” ë˜ì—ˆì„ ë•Œ
 			public void windowDeactivated(WindowEvent e) {
 			}
 		});

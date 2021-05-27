@@ -12,7 +12,7 @@ public class db {
 	// MySql private information
 	String jdbc = "jdbc:mysql://localhost:3306/data";
 	String root = "root";
-	String pwd = "1234";
+	String pwd = "dlrlwk86532@";
 
 	public db() {
 
@@ -22,7 +22,7 @@ public class db {
 
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 
 			conn.close();
 		} catch (Exception e) {
@@ -31,12 +31,12 @@ public class db {
 	}
 
 	public void insert(String id, String seat, String payT,String sTime, String uTime, String eTime, String product, String price,
-			String payType) {
+			String payType, String menuType) {
 		String query = "insert into paydata value(\"" + id + "\",\"" + seat + "\",\""+payT +"\",\""+ sTime + "\",\"" + uTime
-				+ "\",\"" + eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\");";
+				+ "\",\"" + eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\""+ menuType +"\");";
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 
 			Statement stat = conn.createStatement();
 			stat.executeUpdate(query);
@@ -54,7 +54,7 @@ public class db {
 		ArrayList<String> arr = new ArrayList<String>();
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);
@@ -71,7 +71,7 @@ public class db {
 		return arr;
 	}
 
-	// column¸í arr ¹ÝÈ¯
+	// columnëª… arr ë°˜í™˜
 	public ArrayList<String> colLookUp(String tableName) {
 		String query = "select * from " + tableName + ";";
 		ResultSet rs;
@@ -79,7 +79,7 @@ public class db {
 		ArrayList<String> arr = new ArrayList<String>();
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);
@@ -99,8 +99,7 @@ public class db {
 	public void dml(String query) {
 		try {
 			conn = DriverManager.getConnection(jdbc,root,pwd);
-			System.out.println("db ¿¬°á ¼º°ø");
-			System.out.println(query);
+			System.out.println("db ì—°ê²° ì„±ê³µ");
 			Statement stat = conn.createStatement();
 			stat.executeUpdate(query);
 

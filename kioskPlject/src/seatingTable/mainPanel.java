@@ -46,7 +46,7 @@ public class mainPanel extends JPanel{
 /*	
 	void seatChange_btn(JButton btn) {
 		btn.setBackground(new Color(0, 191, 255));
-		btn.setFont(new Font("Æ¼¿þÀÌ_Ç×°ø", Font.BOLD, 15));
+		btn.setFont(new Font("Æ¼ï¿½ï¿½ï¿½ï¿½_ï¿½×°ï¿½", Font.BOLD, 15));
 		btn.setBounds(500, 25, 165, 65);
 		btn.setVisible(true);
 		btn.setContentAreaFilled(false);
@@ -57,11 +57,11 @@ public class mainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				int result = JOptionPane.showConfirmDialog(null, "ÀÚ¸®¸¦ º¯°æÇÏ½Ã°Ú½À´Ï±î?", "confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?", "confirm", JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.YES_OPTION) {
 					db d = new db();
 					d.dml("update paydata set seatNum = null where id = 'wonho33';");
-					System.out.println("ÁÂ¼®ÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.!");
+					System.out.println("ï¿½Â¼ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.!");
 					
 				}
 				
@@ -72,7 +72,7 @@ public class mainPanel extends JPanel{
 	}
 */
 	public void back_img() {
-		seatingImage home_img = new seatingImage(new ImageIcon("./src/image/home_background.png").getImage());
+		seatingImage home_img = new seatingImage(new ImageIcon("./src/Image/home_background.png").getImage());
 		this.add(home_img);
 	}
 }

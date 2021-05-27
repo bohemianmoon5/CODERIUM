@@ -24,7 +24,7 @@ public class cash {
 		this.font = font;
 	}
 
-	// cash ÆĞ³Î list »ı¼º 
+	// cash íŒ¨ë„ list ìƒì„± 
 	public void makeCashTF(String str,int i) {
 		JLabel tf = new JLabel(str);
 		tf.setFont(new Font(font, Font.PLAIN, 18));
@@ -32,7 +32,7 @@ public class cash {
 		panel.add(tf);
 	}
 
-	// cash ÆĞ³Î listÀÇ detail »ı¼º
+	// cash íŒ¨ë„ listì˜ detail ìƒì„±
 	public JLabel makeCashD(String str,int i) {
 		JLabel tf = new JLabel(str);
 		tf.setFont(new Font(font, Font.PLAIN, 18));
@@ -41,7 +41,7 @@ public class cash {
 		return tf;
 	}
 	
-	// cash ÆĞ³Î button »ı¼º
+	// cash íŒ¨ë„ button ìƒì„±
 	public JButton makeCashB(String str, int i, int j) {
 		JButton cashBtn = new JButton(str);
 		cashBtn.setFont(new Font(font, Font.PLAIN, 18));

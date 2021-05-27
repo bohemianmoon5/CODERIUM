@@ -23,7 +23,7 @@ public class payCheckWindow {
 	private JTable table;
 	private JScrollPane scroll;
 	private JLabel price;
-	private String font = "Æ¼¿şÀÌ_Ç×°ø";
+	private String font = "í‹°ì›¨ì´_í•­ê³µ";
 
 	/**
 	 * Launch the application.
@@ -51,7 +51,7 @@ public class payCheckWindow {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	//++ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¸ ºÒ·¯¿À¸é µÉµíÇÔ
+	//í•„ìš”í•œ ë°ì´í„°ë§Œ ë¶ˆëŸ¬ì˜´
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 720, 1000);
@@ -64,7 +64,7 @@ public class payCheckWindow {
 		panel.setLayout(null);
 
 		payCheck pc = new payCheck();
-		String[] colTitle = {"¾ÆÀÌµğ","°áÁ¦½Ã°£","°áÁ¦±İ¾×","°áÁ¦Å¸ÀÔ"};
+		String[] colTitle = {"ì•„ì´ë””","ê²°ì œì‹œê°„","ê²°ì œê¸ˆì•¡","ê²°ì œíƒ€ì…"};
 		String[] cols = {"id","paytime","price","payType"};
 
 		int rowSize = pc.data.size();
@@ -85,7 +85,7 @@ public class payCheckWindow {
 		table.setAlignmentX(SwingConstants.CENTER);
 		table.setBounds(30, 57, 615, 854);
 		table.setFont(new Font(font, Font.PLAIN, 13));
-		// table °¡¿îµ¥ Á¤·Ä
+		// table ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 		dtcr.setHorizontalAlignment(SwingConstants.CENTER);
 		TableColumnModel tcm = table.getColumnModel();
@@ -115,7 +115,7 @@ public class payCheckWindow {
 			int temp = Integer.parseInt(tmp.substring(0,tmp.length()-3));
 			total+=temp;
 		}
-		String res = "total price : " + format(total) + " ¿ø";
+		String res = "total price : " + format(total) + "ì›";
 		return res;
 	}
 	String format(int a) {

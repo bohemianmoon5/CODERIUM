@@ -37,16 +37,19 @@ import main.pay.component.nextBtn;
 import main.pay.component.product;
 import main.pay.component.showDetail;
 import main.pay.data.modiData;
+import main.pay.data.reservData;
 import main.pay.data.storeData;
 import main.pay.event.windowEvent;
 import main.pay.panel.cashPanel;
+import main.pay.panel.detailPanel;
+import reservation.resrvationMain;
 import seatingTable.Main_swing;
 
 import java.awt.SystemColor;
 
 public class payment {
 	private JFrame frame;
-	
+
 	private JPanel containerPanel;
 	private JPanel select;
 	private JPanel content;
@@ -59,18 +62,22 @@ public class payment {
 	private JButton secondNext;
 	private JButton backBtn;
 
-	// °áÁ¦ Ã¢ÀÇ Ã¹¹øÂ° Ã¢
+	// ê²°ì œ ì°½ì˜ ì²«ë²ˆì§¸ ì°½
 	private static Component[] FirstC;
-	// °áÁ¦ Ã¢ÀÇ µÎ¹øÂ° Ã¢
+	// ê²°ì œ ì°½ì˜ ë‘ë²ˆì§¸ ì°½
 	private static Component[] SecondC;
-	// °áÁ¦ Ã¢ÀÇ ¼¼¹øÂ° Ã¢
+	// ê²°ì œ ì°½ì˜ ì„¸ë²ˆì§¸ ì°½
 	private static Component[] ThirdC;
-	// font ÁöÁ¤
-	private String font = "Æ¼¿şÀÌ_Ç×°ø";
-	// seatButton¿¡¼­ ÁÂ¼®¹øÈ£ °¡Á®¿È 
-	private String seatN="";
+	// font ì§€ì •
+	private String font = "í‹°ì›¨ì´_í•­ê³µ";
+	// seatButtonì—ì„œ ì¢Œì„ë²ˆí˜¸ ê°€ì ¸ì˜´
+	private String seatN = "1";
 	private JFrame prevF;
-	private String type="";
+	private String menuType = "";
+
+	// reservì—ì„œ ê°€ì ¸ì˜¨ ë°ì´í„°
+	private String reservStart = "";
+	private JPanel reservPanel;
 
 	Color background = new Color(255, 255, 255);
 	Color btnC = new Color(206, 237, 222);
@@ -80,10 +87,21 @@ public class payment {
 		initialize();
 	}
 
-	public payment(String num,JFrame prevF,String type) {
-		this.seatN=num;
-		this.prevF=prevF;
-		this.type=type;
+	public payment(String num, JFrame prevF, String type) {
+		this.seatN = num;
+		this.prevF = prevF;
+		this.menuType = type;
+		initialize();
+	}
+
+	public payment(String num, JFrame prevF, String type, String prod, String price, String start, JPanel reservPanel) {
+		this.seatN = num;
+		this.prevF = prevF;
+		this.menuType = type;
+		reservStart = start;
+		setProduct(prod);
+		setPrice(price);
+		this.reservPanel = reservPanel;
 		initialize();
 	}
 
@@ -91,70 +109,76 @@ public class payment {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		// °áÁ¦ Ã¢ bounds ¼³Á¤
+		// frame bounds ì„¤ì •
 		int pointX = prevF.getX() + 10;
 		int pointY = prevF.getY() + 340;
 		int width = prevF.getWidth() - 20;
 		int height = prevF.getHeight() - 680;
-		
-		System.out.println("prevF "+prevF);
-		
+
 		setFrame(new JFrame());
-		getFrame().setBounds(pointX,pointY,width,height);
+		getFrame().setBounds(pointX, pointY, width, height);
 //		getFrame().setBounds(110, 300, 700, 400);
-		getFrame().setTitle("°áÁ¦");
+		getFrame().setTitle("ê²°ì œ");
 		getFrame().setVisible(true);
 		frame.getContentPane().setLayout(null);
-		
-		// frame³» ³»¿ëµéÀ» ¸ğµÎ °¨½Î´Â container Panel »ı¼º
+
+		// frameë‚´ ë‚´ìš©ë“¤ì„ ëª¨ë‘ ê°ì‹¸ëŠ” container Panel ìƒì„±
 		containerPanel = new JPanel();
 		containerPanel.setBounds(0, 0, 684, 361);
 		frame.getContentPane().add(containerPanel);
 		containerPanel.setLayout(null);
 
-		// ÁÂ¼® ¼±ÅÃ ½Ã Ã³À½À¸·Î º¸ÀÌ´Â select panel »ı¼º
-		select = new JPanel();
-		select.setBackground(background);
-		select.setBounds(0, 0, 684, 361);
-		containerPanel.add(select);
-		select.setLayout(null);
+		// ë°”ë¡œì‚¬ìš©ë²„íŠ¼ì„ ì´ìš©í•´ ì¢Œì„ íŒ¨ë„ë¡œ ì „í™˜ í›„ ê²°ì œ ì°½ ì—´ë ¸ì„ë•Œ
+		if (menuType.equals("seat")) {
+			// ì¢Œì„ ì„ íƒ ì‹œ ì²˜ìŒìœ¼ë¡œ ë³´ì´ëŠ” select panel ìƒì„±
+			select = new JPanel();
+			select.setBackground(background);
+			select.setBounds(0, 0, 684, 361);
+			containerPanel.add(select);
+			select.setLayout(null);
 
-		// select panel Á¦¸ñ »ı¼º
-		product tp = new product(select);
-		tp.createTitle("Select Product");
+			// select panel ì œëª© ìƒì„±
+			product tp = new product(select);
+			tp.createTitle("Select Product");
 
-		// °áÁ¦ ÆË¾÷ÀÇ exit ¹öÆ° ´©¸¦ ½Ã °áÁ¦ ÆË¾÷Ã¢¸¸ Á¾·áµÊ
-		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			// ê²°ì œ íŒì—…ì˜ exit ë²„íŠ¼ ëˆ„ë¥¼ ì‹œ ê²°ì œ íŒì—…ì°½ë§Œ ì¢…ë£Œë¨
+			getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		// Ã¹¹øÂ° nextBtn ±¸Çö
-		// »óÇ° ¼±ÅÃ ÈÄ ´ÙÀ½ ÆĞ³Î·Î ÀüÈ¯ÇÏ´Â next ¹öÆ° »ı¼º
-		// »óÇ° ¼±ÅÃÇØ¾ß nextBtn È°¼ºÈ­ÇÏ´Â ±â´É Àû¿ë
-		nextBtn n = new nextBtn(containerPanel,select,btnC,font);
-		firstNext = n.createNext();
-		firstNext.setEnabled(false);
-		// next ¹öÆ° Å¬¸¯ ½Ã select ÆĞ³Î Á¦°Å ÈÄ detailPanel »ı¼º
-		firstNext.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				containerPanel.removeAll();
-				detailPanel(seatN, getProduct(), getPrice());
-				containerPanel.repaint();
-				SecondC = containerPanel.getComponents();
-			}
-		});
+			// ì²«ë²ˆì§¸ nextBtn êµ¬í˜„
+			// ìƒí’ˆ ì„ íƒ í›„ ë‹¤ìŒ íŒ¨ë„ë¡œ ì „í™˜í•˜ëŠ” next ë²„íŠ¼ ìƒì„±
+			// ìƒí’ˆ ì„ íƒí•´ì•¼ nextBtn í™œì„±í™”í•˜ëŠ” ê¸°ëŠ¥ ì ìš©
+			nextBtn n = new nextBtn(containerPanel, select, btnC, font);
+			firstNext = n.createNext();
+			firstNext.setEnabled(false);
 
-		content = new JPanel();
-		content.setBounds(25, 90, 633, 195);
-		content.setBackground(background);
-		select.add(content);
+			// next ë²„íŠ¼ í´ë¦­ ì‹œ select íŒ¨ë„ ì œê±° í›„ detailPanel ìƒì„±
+			firstNext.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					containerPanel.removeAll();
+					detailPanel(seatN);
+					containerPanel.repaint();
+					SecondC = containerPanel.getComponents();
+				}
+			});
 
-		createCategory("½Ã°£±Ç", 0);
-		createCategory("±â°£±Ç", 1);
+			content = new JPanel();
+			content.setBounds(25, 90, 633, 195);
+			content.setBackground(background);
+			select.add(content);
 
-		// windowEvent ¼³Á¤
+			createCategory("ì‹œê°„ê¶Œ", 0);
+			createCategory("ê¸°ê°„ê¶Œ", 1);
+
+			FirstC = containerPanel.getComponents();
+		} else { // ì˜ˆì•½í•˜ê¸°ë¥¼ í†µí•´ ê²°ì œì°½ì´ ì—´ë ¸ì„ ë•Œ
+			detailPanel(seatN);
+			SecondC = containerPanel.getComponents();
+		}
+
+		// windowEvent ì„¤ì •
 		windowEvent we = new windowEvent(getFrame());
 		we.event();
-		FirstC = containerPanel.getComponents();
 	}
 
 	public static void designBtn(JButton btn, Color c) {
@@ -180,7 +204,7 @@ public class payment {
 		frame.setType(Type.UTILITY);
 	}
 
-	// ¼±ÅÃµÈ »óÇ° ³»¿ë
+	// ì„ íƒëœ ìƒí’ˆ ë‚´ìš©
 	String product = "";
 
 	public String getProduct() {
@@ -191,7 +215,7 @@ public class payment {
 		this.product = product;
 	}
 
-	// ¼±ÅÃµÈ »óÇ°ÀÇ °¡°İ ³»¿ë
+	// ì„ íƒëœ ìƒí’ˆì˜ ê°€ê²© ë‚´ìš©
 	String price = "";
 
 	public String getPrice() {
@@ -202,10 +226,10 @@ public class payment {
 		this.price = price;
 	}
 
-	// createProduct() ÇÔ¼ö¿¡¼­ »ı¼ºÇÑ checkBox ¹è¿­
+	// createProduct() í•¨ìˆ˜ì—ì„œ ìƒì„±í•œ checkBox ë°°ì—´
 	ArrayList<JCheckBox> chkArr = new ArrayList<JCheckBox>();
 
-	// ½Ã°£_±â°£ »óÇ° Ä«Å×°í¸® »ı¼º
+	// ì‹œê°„_ê¸°ê°„ ìƒí’ˆ ì¹´í…Œê³ ë¦¬ ìƒì„±
 	void createCategory(String str, int i) {
 		category = new JButton(str);
 		category.setBounds(25 + (i * 95), 65, 90, 30);
@@ -217,9 +241,8 @@ public class payment {
 			public void actionPerformed(ActionEvent e) {
 				content.removeAll();
 				chkArr.removeAll(chkArr);
-				System.out.println(chkArr.size());
-				// ½Ã°£_±â°£ »óÇ°¿¡ ´ëÇÑ ³»¿ë »ı¼º
-				if (str.contains("½Ã°£")) {
+				// ì‹œê°„_ê¸°ê°„ ìƒí’ˆì— ëŒ€í•œ ë‚´ìš© ìƒì„±
+				if (str.contains("ì‹œê°„")) {
 					createProduct("timePro");
 				} else {
 					createProduct("termPro");
@@ -229,7 +252,7 @@ public class payment {
 		});
 	}
 
-	// ½Ã°£_±â°£ »óÇ° ÆĞ³Î¿¡ °ª ³Ö±â
+	// ì‹œê°„_ê¸°ê°„ ìƒí’ˆ íŒ¨ë„ì— ê°’ ë„£ê¸°
 	void createProduct(String tableName) {
 		product a = new product(tableName);
 		int length = a.getNameArr().size();
@@ -242,9 +265,9 @@ public class payment {
 		}
 	}
 
-	// checkBox ÀÌº¥Æ®
-	// Ã¼Å©¹Ú½º°¡ ¼±ÅÃµÇ¾î ÀÖÀ¸¸é nextBtn È°¼ºÈ­, ¾Æ´Ï¸é nextBtn ºñÈ°¼ºÈ­
-	// Ã¼Å©¹Ú½º°¡ ¼±ÅÃµÇ¾î ÀÖÀ¸¸é ¼±ÅÃµÈ Ã¼Å©¹Ú½º ÀÌ¿Ü ºñÈ°¼ºÈ­, ¾Æ´Ï¸é ¸ğµÎ È°¼ºÈ­
+	// checkBox ì´ë²¤íŠ¸
+	// ì²´í¬ë°•ìŠ¤ê°€ ì„ íƒë˜ì–´ ìˆìœ¼ë©´ nextBtn í™œì„±í™”, ì•„ë‹ˆë©´ nextBtn ë¹„í™œì„±í™”
+	// ì²´í¬ë°•ìŠ¤ê°€ ì„ íƒë˜ì–´ ìˆìœ¼ë©´ ì„ íƒëœ ì²´í¬ë°•ìŠ¤ ì´ì™¸ ë¹„í™œì„±í™”, ì•„ë‹ˆë©´ ëª¨ë‘ í™œì„±í™”
 	public void chkEvent(JCheckBox chk, String name, String price) {
 		chk.addActionListener(new ActionListener() {
 			@Override
@@ -262,7 +285,7 @@ public class payment {
 		});
 	}
 
-	// Ã¼Å©µÈ Ã¼Å©¹Ú½º ÀÌ¿Ü Ã¼Å©¹Ú½º ºñÈ°¼ºÈ­ÇÏ´Â ÇÔ¼ö
+	// ì²´í¬ëœ ì²´í¬ë°•ìŠ¤ ì´ì™¸ ì²´í¬ë°•ìŠ¤ ë¹„í™œì„±í™”í•˜ëŠ” í•¨ìˆ˜
 	public void chkDisabled(ArrayList<JCheckBox> cb) {
 		for (int i = 0; i < cb.size(); i++) {
 			if (cb.get(i).isSelected()) {
@@ -275,43 +298,34 @@ public class payment {
 		}
 	}
 
-	// ¸ğµç Ã¼Å©¹Ú½º È°¼ºÈ­ÇÏ´Â ÇÔ¼ö
+	// ëª¨ë“  ì²´í¬ë°•ìŠ¤ í™œì„±í™”í•˜ëŠ” í•¨ìˆ˜
 	public void chkEnabled(ArrayList<JCheckBox> cb) {
 		for (int i = 0; i < cb.size(); i++) {
 			cb.get(i).setEnabled(true);
 		}
 	}
 
-	// ¼±ÅÃÇÑ »óÇ°¿¡ ´ëÇÑ »ó¼¼³»¿ë ´Ù½Ã È®ÀÎÇÏ´Â detailPanel¿¡ °ª ³Ö±â
-	// ÁÂ¼® Á¤º¸, »óÇ° ÀÌ¸§, ½ÃÀÛ½Ã°£~³¡½Ã°£, °¡°İ
-	public void detailPanel(String seat, String product, String price) {
+	// ì„ íƒí•œ ìƒí’ˆì— ëŒ€í•œ ìƒì„¸ë‚´ìš© ë‹¤ì‹œ í™•ì¸í•˜ëŠ” detailPanelì— ê°’ ë„£ê¸°
+	// ì¢Œì„ ì •ë³´, ìƒí’ˆ ì´ë¦„, ì‹œì‘ì‹œê°„~ëì‹œê°„, ê°€ê²©
+	public void detailPanel(String seat) {
 		detailPanel = new JPanel();
 		detailPanel.setBounds(0, 0, 700, 400);
 		detailPanel.setBackground(background);
 		containerPanel.add(detailPanel);
 		detailPanel.setLayout(null);
 
-		showDetail sd = new showDetail(detailPanel, 0, font);
-		sd.createTitle("Confirm Product");
-
-		modiData md = new modiData();
-
-		String[] listArr = { "Seat Info : ", "product Info : ", "usage time : ", "price Info : " };
-		String[] detailArr = { seat + "¹ø", product, md.start() + "-" + md.end(product), price };
-
-		for (int i = 0; i < listArr.length; i++) {
-			showDetail showPanel = new showDetail(detailPanel, 90, font);
-			showPanel.createList(listArr[i], i);
-			if (i != 2) {
-				showPanel.createDetail(detailArr[i], i);
-			} else {
-				showPanel.createDetail2(detailArr[i], i);
-			}
+		detailPanel dp = new detailPanel(containerPanel, detailPanel, font);
+		dp.makeTitle();
+		if (menuType.equals("seat")) {
+			dp.makeComponent(seat, getProduct(), getPrice());
+			createBack(FirstC, detailPanel);
+		} else {
+			modiData md = new modiData();
+			dp.makeComponent(seat, getProduct(), reservStart, md.end(reservStart, getProduct()), getPrice());
 		}
-		createBack(FirstC, detailPanel);
-		
-		// µÎ¹øÂ° next ¹öÆ° ±¸Çö	
-		nextBtn n = new nextBtn(containerPanel,detailPanel,btnC,font);
+
+		// ë‘ë²ˆì§¸ next ë²„íŠ¼ êµ¬í˜„
+		nextBtn n = new nextBtn(containerPanel, detailPanel, btnC, font);
 		secondNext = n.createNext();
 		secondNext.addActionListener(new ActionListener() {
 			@Override
@@ -324,9 +338,9 @@ public class payment {
 		});
 	}
 
-	// µÚ·Î°¡±â ±âº» Á¤º¸ ±¸Çö
+	// ë’¤ë¡œê°€ê¸° ê¸°ë³¸ ì •ë³´ êµ¬í˜„
 	public JButton createBack(Component[] target, JPanel panel) {
-		backBtn = new JButton("¢¸");
+		backBtn = new JButton("â—€");
 		backBtn.setFont(new Font(font, Font.PLAIN, 20));
 		backBtn.setBounds(400, 295, 100, 45);
 		designBtn(backBtn, btnC);
@@ -340,7 +354,7 @@ public class payment {
 		return backBtn;
 	}
 
-	// backBtn event ±¸Çö
+	// backBtn event êµ¬í˜„
 	public void backEvent(Component[] target) {
 		containerPanel.removeAll();
 		for (int i = 0; i < target.length; i++) {
@@ -350,8 +364,7 @@ public class payment {
 		containerPanel.repaint();
 	}
 
-
-	// Çö±İÀ¸·Î °áÁ¦ÇÒ°ÇÁö Ä«µå·Î °áÁ¦ÇÒ°ÇÁö ¼±ÅÃÇÏ´Â ÆĞ³Î »ı¼º
+	// í˜„ê¸ˆìœ¼ë¡œ ê²°ì œí• ê±´ì§€ ì¹´ë“œë¡œ ê²°ì œí• ê±´ì§€ ì„ íƒí•˜ëŠ” íŒ¨ë„ ìƒì„±
 	public void cashOrCard() {
 		cOc = new JPanel();
 		cOc.setBounds(0, 0, 700, 400);
@@ -364,7 +377,7 @@ public class payment {
 		cashBtn.setFont(new Font(font, Font.PLAIN, 18));
 		designBtn(cashBtn, btnC2);
 
-		// Çö±İ °áÁ¦ ÆĞ³Î·Î ÀüÈ¯
+		// í˜„ê¸ˆ ê²°ì œ íŒ¨ë„ë¡œ ì „í™˜
 		cashBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -384,7 +397,7 @@ public class payment {
 		secondBack.setLocation(500, 295);
 	}
 
-	// cash Å¬·¡½º ÀÌ¿ëÇÏ¿© cash panel »ı¼º
+	// cash í´ë˜ìŠ¤ ì´ìš©í•˜ì—¬ cash panel ìƒì„±
 	int payCash = 0;
 
 	public void makeCashPanel() {
@@ -394,21 +407,21 @@ public class payment {
 		containerPanel.add(cash);
 		cash.setLayout(null);
 
-		// cash ÆĞ³Î list¿Í detail »ı¼º
-		cashPanel cp = new cashPanel(cash,font,getPrice(),btnC2);
-		payCash=cp.create(fakeFrame);
+		// cash íŒ¨ë„ listì™€ detail ìƒì„±
+		cashPanel cp = new cashPanel(cash, font, getPrice(), btnC2);
+		payCash = cp.create(fakeFrame);
 	}
 
-	// cardBtn »ı¼º
+	// cardBtn ìƒì„±
 	public void makeCardBtn(JPanel panel) {
 		JButton cardBtn = new JButton("Pay by card");
 		cardBtn.setBounds(370, 110, 221, 96);
 		cardBtn.setFont(new Font(font, Font.PLAIN, 18));
 		designBtn(cardBtn, btnC2);
 
-		// cardBtn Å¬¸¯ ½Ã ½ÇÁ¦ °áÁ¦µÇ´Â °Í Ã³·³ done ÆË¾÷Ã¢ È£Ãâ
-		// 3ÃÊ ÈÄ doneÆË¾÷Ã¢°ú payment ÆË¾÷ Ã¢ Á¾·á ÈÄ
-		// main panel¿¡ °áÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù. °¨»çÇÕ´Ï´Ù. + ÀÀ¿ø¹®±¸ Ãâ·Â ÆĞ³Î »ı¼º
+		// cardBtn í´ë¦­ ì‹œ ì‹¤ì œ ê²°ì œë˜ëŠ” ê²ƒ ì²˜ëŸ¼ done íŒì—…ì°½ í˜¸ì¶œ
+		// 3ì´ˆ í›„ doneíŒì—…ì°½ê³¼ payment íŒì—… ì°½ ì¢…ë£Œ í›„
+		// main panelì— ê²°ì œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤. ê°ì‚¬í•©ë‹ˆë‹¤. + ì‘ì›ë¬¸êµ¬ ì¶œë ¥ íŒ¨ë„ ìƒì„±
 		cardBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -419,7 +432,7 @@ public class payment {
 		panel.add(cardBtn);
 	}
 
-	Consumer<String> fakeFrame = type-> {
+	Consumer<String> fakeFrame = type -> {
 		int mustCash = Integer.parseInt(getPrice().substring(0, getPrice().length() - 1));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -434,7 +447,7 @@ public class payment {
 		});
 	};
 
-	// °áÁ¦ ¿Ï·á ½Ã timerEvent ÇÔ¼ö ±¸Çö
+	// ê²°ì œ ì™„ë£Œ ì‹œ timerEvent í•¨ìˆ˜ êµ¬í˜„
 	public void doneTimerEvent(int time, done d, String type) {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
@@ -446,33 +459,35 @@ public class payment {
 		timer.schedule(task, time);
 	}
 
-	// °áÁ¦ ¿Ï·á ½Ã event
+	// ê²°ì œ ì™„ë£Œ ì‹œ event
 	public void doneEvent(done d, String type) {
 		d.getFrame().dispose();
 		getFrame().dispose();
-		// ÀÀ¿ø¹®±¸ ÆĞ³Î »ı¼º
+		// ì‘ì›ë¬¸êµ¬ íŒ¨ë„ ìƒì„±
 		test();
 //		fightingPan();
 //		mainPanel();
 		modiData md = new modiData();
 		String stSeat = seatN;
 		String payTime = md.start();
-		String stStart = md.start();
-		String stUse = md.use(getProduct());
-		String stEnd = md.end(getProduct());
+		String stStart = menuType.equals("seat") ? md.start() : reservStart;
+		String stEnd = md.end(stStart, getProduct());
 		String stPro = md.modiPro(getProduct());
 		String stPri = md.modiPri(getPrice());
-		storeData sData = new storeData(stSeat,payTime ,stStart, stUse, stEnd, stPro, stPri, type);
+		String stUse = md.use(getProduct());
+
+		storeData sData = new storeData(stSeat, payTime, stStart, stUse, stEnd, stPro, stPri, type, menuType);
 		sData.store();
 	}
 
 	public void test() {
+		prevF.dispose();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					swing_LoginPage window = new swing_LoginPage();
 					window.getFrame().setVisible(true);
-					for(int i=0; i<window.getShowUp().getComponentCount();i++) {
+					for (int i = 0; i < window.getShowUp().getComponentCount(); i++) {
 						window.getShowUp().getComponent(i).setVisible(false);
 					}
 					fightingPan(window.getShowUp());
@@ -482,35 +497,35 @@ public class payment {
 			}
 		});
 	}
-	
-	// ++¼öÁ¤ ÇÊ¿äÇÑ ºÎºĞ
+
+	// ++ìˆ˜ì • í•„ìš”í•œ ë¶€ë¶„
 	public void fightingPan(JPanel panel) {
-		// Main ÆäÀÌÁö ³» ÆĞ³Î ¾È¿¡ ÀÖ´Â ±¸¼º ¿ä¼Ò »èÁ¦
+		// Main í˜ì´ì§€ ë‚´ íŒ¨ë„ ì•ˆì— ìˆëŠ” êµ¬ì„± ìš”ì†Œ ì‚­ì œ
 //		seatMap.getSeatPanel().removeAll();
 
-		// Main ÆäÀÌÁö ³» ÆĞ³Î¿¡ °¨»çÇÕ´Ï´Ù + ÀÀ¿ø¹®±¸ ¶óº§ ºÎÂø
+		// Main í˜ì´ì§€ ë‚´ íŒ¨ë„ì— ê°ì‚¬í•©ë‹ˆë‹¤ + ì‘ì›ë¬¸êµ¬ ë¼ë²¨ ë¶€ì°©
 		JLabel donePhrase = new JLabel("");
 		JLabel fightPhrase = new JLabel("");
 
 		fighting ft = new fighting(panel, donePhrase, fightPhrase, font);
-		ft.createDone("°¨»çÇÕ´Ï´Ù.");
+		ft.createDone("ê°ì‚¬í•©ë‹ˆë‹¤.");
 		ft.createFight();
 		Component[] mainC = panel.getComponents();
-		// ÆĞ³Î repaint
+		// íŒ¨ë„ repaint
 //		seatMap.getSeatPanel().repaint();
 
-		// 5ÃÊ ÈÄ ¸ŞÀÎ ÆĞ³Î·Î ÀüÈ¯
+		// 5ì´ˆ í›„ ë©”ì¸ íŒ¨ë„ë¡œ ì „í™˜
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
-				//Ã¹ È­¸éÀÎ JButton¸¸ setVisible true·Î º¯°æ
-				for(int i=0;i<mainC.length;i++) {
-					if(mainC[i].toString().contains("JButton")) {
+				// ì²« í™”ë©´ì¸ JButtonë§Œ setVisible trueë¡œ ë³€ê²½
+				for (int i = 0; i < mainC.length; i++) {
+					if (mainC[i].toString().contains("JButton")) {
 						mainC[i].setVisible(true);
 					}
-					//JLabel¸¸ Á¦°Å
-					else if(mainC[i].toString().contains("JLabel")) {
+					// JLabelë§Œ ì œê±°
+					else if (mainC[i].toString().contains("JLabel")) {
 						panel.remove(mainC[i]);
 						panel.repaint();
 					}
@@ -520,7 +535,7 @@ public class payment {
 		timer.schedule(task, 5000);
 	}
 
-	// ¸ŞÀÎ ÆĞ³Î ÀÓ½Ã·Î »ı¼ºÇØ ³õÀº °Í (test ¿ë)
+	// ë©”ì¸ íŒ¨ë„ ì„ì‹œë¡œ ìƒì„±í•´ ë†“ì€ ê²ƒ (test ìš©)
 //	public void mainPanel() {
 //		JLabel mainPhrase = new JLabel("coderium study cafe");
 //		mainPhrase.setFont(new Font(font, Font.PLAIN, 30));
@@ -528,7 +543,7 @@ public class payment {
 //		mainPhrase.setBounds(76, 153, 520, 126);
 //		seatMap.getSeatPanel().add(mainPhrase);
 //
-//		// panel repaint ÇÏ±â
+//		// panel repaint í•˜ê¸°
 //		seatMap.getSeatPanel().repaint();
 //
 //	}

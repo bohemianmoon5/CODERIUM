@@ -71,6 +71,7 @@ public class Main_swing {
 		JButton[] c_btn = new JButton[16];
 		JButton[] s_btn = new JButton[2];
 		subPanel sub_panel = new subPanel(frame);
+		sub_panel.setVisible(true);
 		
 		
 		sub_panel.cf_btn(cf_btn, sub_panel, frame, c_btn);
@@ -82,7 +83,9 @@ public class Main_swing {
 		
 		
 		frame.getContentPane().add(sub_panel);
-		frame.getContentPane().add(main_panel);		
+		frame.getContentPane().add(main_panel);
+		
+//		main_panel.add(sub_panel);
 		
 		
 	}

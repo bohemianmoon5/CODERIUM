@@ -1,9 +1,10 @@
 applyBackground=false
-approved.defs.file.last.changed.time=1621974629000
+approved.defs.file.last.changed.time=1617837191000
 configurationInstallLocation=/C\:/Users/kosta/eclipse/jee-2021-03/eclipse/
 eclipse.preferences.version=1
 iconcolormode=primary
-last.download.attempt.time=1621861474242
-lastConfiguration=1621985314654
+includeThemingInOomph=false
+last.download.attempt.time=1622038356924
+lastConfiguration=1622075657681
 newinstall=true
-workbench.theme=Dark Gray
+workbench.theme=Deep Black

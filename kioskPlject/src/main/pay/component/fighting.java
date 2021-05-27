@@ -41,7 +41,7 @@ public class fighting {
 		panel.add(done);
 	}
 
-	// ÀÀ¿ø ¹®±¸´Â µ¥ÀÌÅÍ ÆÄÀÏ ³»¿¡¼­ ÀĞ¾î¿Í¼­ ¹è¿­·Î ¸¸µç ÈÄ ·£´ıÀ¸·Î 1°³¸¸ Ãâ·ÂÇÏµµ·Ï ±¸Çö
+	// ì‘ì› ë¬¸êµ¬ëŠ” ë°ì´í„° íŒŒì¼ ë‚´ì—ì„œ ì½ì–´ì™€ì„œ ë°°ì—´ë¡œ ë§Œë“  í›„ ëœë¤ìœ¼ë¡œ 1ê°œë§Œ ì¶œë ¥í•˜ë„ë¡ êµ¬í˜„
 	public void createFight() {
 		readFile rf = new readFile("fighting");
 		arr=rf.readFileFunc(arr);

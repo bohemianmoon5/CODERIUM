@@ -16,9 +16,10 @@ public class storeData {
 	String product;
 	String price;
 	String type;
+	String menuType;
 
 	public storeData(String seat, String payT,String sTime, String uTime,String eTime, 
-			String product, String price, String type) {
+			String product, String price, String type,String menuType) {
 		this.seat = seat;
 		this.payT=payT;
 		this.sTime = sTime;
@@ -27,11 +28,12 @@ public class storeData {
 		this.product = product;
 		this.price = price;
 		this.type = type;
+		this.menuType = menuType;
 	}
 	
 	public void store() {
 		db newD = new db();		
-		newD.insert("¿ÀÁö¼ö",seat,payT ,sTime, uTime, eTime, product, price, type);
+		newD.insert("jisu",seat,payT ,sTime, uTime, eTime, product, price, type,menuType);
 	}
 
 }

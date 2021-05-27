@@ -10,9 +10,6 @@ import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel {
 
-	/**
-	 * 
-	 */
 	private Image img;
 
 	public ImagePanel(String img) {
