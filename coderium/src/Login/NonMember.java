@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -43,18 +44,18 @@ public class NonMember extends JPanel{
 		cellPhoneNumField.setBounds(60, 90, 340, 34);
 		
 		// 휴대폰 번호 포맷 바꾸기 & 인증번호 띄우기
-		cellPhoneNumField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				if(cellPhoneNumField.getText().length() == 11) {
-					cellPhoneNumField.setText(phone_format(cellPhoneNumField.getText()));
-					VerifiedNum verifiedNum = new VerifiedNum();
-					verifiedNum.randomNum();
-					
-				}
-				
-			}
-		});
+//		cellPhoneNumField.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				
+//				if(cellPhoneNumField.getText().length() == 11) {
+//					cellPhoneNumField.setText(phone_format(cellPhoneNumField.getText()));
+//					VerifiedNum verifiedNum = new VerifiedNum();
+//					verifiedNum.randomNum();
+//					
+//				}
+//				
+//			}
+//		});
 		
 		NonMember.add(cellPhoneNumField);
 		
@@ -79,9 +80,4 @@ public class NonMember extends JPanel{
 		
 	}
 	
-	// 휴대폰 번호 양식
-	public String phone_format(String number) { 
-		String regEx = "(\\d{3})(\\d{3,4})(\\d{4})"; 
-		return number.replaceAll(regEx, "$1-$2-$3"); 
-		}
 }

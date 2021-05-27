@@ -8,10 +8,19 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Main extends JFrame implements ActionListener{
@@ -22,8 +31,11 @@ public class Main extends JFrame implements ActionListener{
 	NonMember nonMember;
 	SignUp signUp;
 	Connect connectP;
+	WelcomePage welcomePage;
 	ImagePanel ShowUp = new ImagePanel(new ImageIcon("./Image/12(수정).png").getImage());
 	ImagePanel connect = new ImagePanel(new ImageIcon("./Image/12.png").getImage());
+	
+	ArrayList<String> list = new ArrayList<String>();
 	
 	public static void main(String[] args) {
 		
@@ -42,7 +54,7 @@ public class Main extends JFrame implements ActionListener{
 	public Main() {
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 720, 1080);
+		frame.setBounds(350, 350, 720, 1080);
 		frame.getContentPane().add(ShowUp);
 		
 		
@@ -77,6 +89,8 @@ public class Main extends JFrame implements ActionListener{
 		nonMember.returnButton.addActionListener(this);
 		nonMember.loginButtonNon.setActionCommand("loginNon");
 		nonMember.loginButtonNon.addActionListener(this);
+		nonMember.cellPhoneNumField.setActionCommand("phone");
+		nonMember.cellPhoneNumField.addActionListener(this);
 		
 		// 가입하기
 		signUp = new SignUp();
@@ -116,13 +130,31 @@ public class Main extends JFrame implements ActionListener{
 				switchPanels(nonMember.NonMember);
 				nonMember.NonMember.setVisible(true);
 				break;
+			case "phone" :
+				if(nonMember.cellPhoneNumField.getText().length() == 11) {
+					nonMember.cellPhoneNumField.setText(phone_format(nonMember.cellPhoneNumField.getText()));
+					VerifiedNum verifiedNum = new VerifiedNum();
+					list.add(verifiedNum.randomNum());
+					verifiedNum.randomNum.setText(list.get(0));
+					vnOffFrame(verifiedNum.frame);
+				}
+				break;
 			case "loginNon" :
-				WelcomePage welcomePage = new WelcomePage();
-				welcomePage.welcomeLabel.setText("안녕하세요!");
-				switchPanels(connect);
-				connect.setVisible(true);
+				if(list.get(0).equals(nonMember.verifiedNumField.getText())) {
+					welcomePage = new WelcomePage();
+					welcomePage.welcomeLabel.setText("    " + "안녕하세요!");
+					switchPanels(connect);
+					connect.setVisible(true);
+					offFrame(welcomePage.frame);
+				}
 				break;	
 			case "cancel" :
+				signUp.signUpIDField.setText("");
+				signUp.signUpPasswordField.setText("");
+				signUp.signUpNameField.setText("");
+				signUp.signUpIDNumField.setText("");
+				signUp.signUpPhoneNumField.setText("");
+				signUp.signUpWordTxt.setText("");
 				switchPanels(login.LogIn);
 				login.LogIn.setVisible(true);
 				break;
@@ -131,22 +163,32 @@ public class Main extends JFrame implements ActionListener{
 				login.LogIn.setVisible(true);
 				break;
 			case "login" :
-				// 로그인 정보 불러오기
-//				IdPassword idPassword = new IdPassword();
 				String userID = login.userIDField.getText();
 				String password = String.valueOf(login.userPasswordField.getPassword());
-//				if(idPassword.loginInfo.containsKey(userID)) {
-//					if(idPassword.loginInfo.get(userID).equals(password)) {
-//						welcomePage = new WelcomePage();
-//						welcomePage.welcomeLabel.setText("안녕하세요! " + userID + "님");
-//						switchPanels(connect);
-//						connect.setVisible(true);
-//					}
-//					else {
-//					}
-//				}
-				Test test = new Test();
-				test.login(userID, password);
+				Connection con;
+				Statement stmt;
+				ResultSet rs;
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					con = DriverManager.getConnection("jdbc:mysql://localhost:3306/registerInfo?autoReconnect=true&useSSL=false", "root", "root");
+					stmt = con.createStatement();
+					String sql = "SELECT * FROM list WHERE Id ='"+userID+"' AND Pw ='"+password+"'";
+					rs = stmt.executeQuery(sql);
+					if(rs.next()) {
+						welcomePage = new WelcomePage();
+						welcomePage.welcomeLabel.setText("안녕하세요! " + txt(userID) + "님");
+						switchPanels(connect);
+						connect.setVisible(true);
+						offFrame(welcomePage.frame);
+					}else {
+						welcomePage = new WelcomePage();
+						welcomePage.welcomeLabel.setText("로그인 실패입니다!");
+						offFrame(welcomePage.frame);
+					}
+					con.close();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				break;
 			case "signUp" :
 				switchPanels(signUp.SignUp);
@@ -174,9 +216,40 @@ public class Main extends JFrame implements ActionListener{
 					signUpData.signUp.setGender(signUp.GenderW.getToolTipText());
 				}
 				System.out.println(signUpData.SetSignUp());
+				signUpData.SignUpDAO();
+				switchPanels(login.LogIn);
+				login.LogIn.setVisible(true);
 				break;
 		}
 		
+	}
+	
+	public void vnOffFrame(JFrame f) {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				f.setVisible(false);
+			}
+		};
+		timer.schedule(task, 4000);
+	}
+	
+	public void offFrame(JFrame f) {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				f.setVisible(false);
+			}
+		};
+		timer.schedule(task, 2000);
+	}
+	
+	public String txt(String s) {
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(s);
+		return list.get(0);
 	}
 
 	public void switchPanels(JPanel panel) {
@@ -185,6 +258,12 @@ public class Main extends JFrame implements ActionListener{
 		ShowUp.repaint();
 		ShowUp.revalidate();
 	}
+	
+	// 휴대폰 번호 양식
+	public String phone_format(String number) { 
+		String regEx = "(\\d{3})(\\d{3,4})(\\d{4})"; 
+		return number.replaceAll(regEx, "$1-$2-$3"); 
+		}
 
 //배경이미지 넣기
 	class ImagePanel extends JPanel {
