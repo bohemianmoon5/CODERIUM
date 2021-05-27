@@ -59,24 +59,31 @@ public class resrvationMain {
 	public resrvationMain() {
 		initialize();
 	}
+	public resrvationMain(JFrame frame) {
+		this.frame=frame;
+		initialize();
+	}
 
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+//		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Image/CODERIUM_Icon.png"));
 		frame.getContentPane().setFont(new Font("티웨이_항공", Font.BOLD, 20));
 		frame.setTitle("CODERIUM");
-		frame.setBounds(100, 100, 720, 1080);
+
+		// 결제 팝업의 exit 버튼 누를 시 결제 팝업창만 종료됨
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//		frame.setBounds(100, 100, 720, 1080);
 //		frame.setLocationRelativeTo(null);
 //		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		
-		
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.getContentPane().setLayout(null);
+//		
+//		
+//		
 		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
 		 
 		
@@ -281,7 +288,6 @@ public class resrvationMain {
 		panel.add(btn_seat);
 		// 좌석표 창 오픈해야되는 actionlistener필요
 		btn_seat.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main seat = new Main("reserve");
@@ -312,7 +318,8 @@ public class resrvationMain {
 				selectDate.dayBox.getSelectedItem().toString();
 				
 				//++js modify
-				String year=selectDate.yearBox.getSelectedItem().toString();
+				String yearB=selectDate.yearBox.getSelectedItem().toString();
+				String year=Integer.parseInt(yearB) < 10 ? "0"+yearB : yearB;				
 				String month=selectDate.monthBox.getSelectedItem().toString();
 				String day=selectDate.dayBox.getSelectedItem().toString();
 				String hour=selectDate.timelist.getSelectedItem().toString();

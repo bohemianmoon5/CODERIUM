@@ -31,9 +31,9 @@ public class db {
 	}
 
 	public void insert(String id, String seat, String payT,String sTime, String uTime, String eTime, String product, String price,
-			String payType) {
+			String payType, String menuType) {
 		String query = "insert into paydata value(\"" + id + "\",\"" + seat + "\",\""+payT +"\",\""+ sTime + "\",\"" + uTime
-				+ "\",\"" + eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\");";
+				+ "\",\"" + eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\""+ menuType +"\");";
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 			System.out.println("db 연결 성공");

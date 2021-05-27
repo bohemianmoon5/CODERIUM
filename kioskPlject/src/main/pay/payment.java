@@ -70,10 +70,10 @@ public class payment {
 	private static Component[] ThirdC;
 	// font 지정
 	private String font = "티웨이_항공";
-	// seatButton에서 좌석번호 가져옴 
-	private String seatN="1";
+	// seatButton에서 좌석번호 가져옴
+	private String seatN = "1";
 	private JFrame prevF;
-	private String type="";
+	private String menuType = "";
 
 	// reserv에서 가져온 데이터
 	private String reservStart = "";
@@ -90,18 +90,18 @@ public class payment {
 	public payment(String num, JFrame prevF, String type) {
 		this.seatN = num;
 		this.prevF = prevF;
-		this.type = type;
+		this.menuType = type;
 		initialize();
 	}
 
-	public payment(String num, JFrame prevF, String type, String prod, String price, String start,JPanel reservPanel) {
-		this.seatN=num;
+	public payment(String num, JFrame prevF, String type, String prod, String price, String start, JPanel reservPanel) {
+		this.seatN = num;
 		this.prevF = prevF;
-		this.type = type;
+		this.menuType = type;
 		reservStart = start;
 		setProduct(prod);
 		setPrice(price);
-		this.reservPanel=reservPanel;
+		this.reservPanel = reservPanel;
 		initialize();
 	}
 
@@ -109,7 +109,7 @@ public class payment {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		//frame bounds 설정
+		// frame bounds 설정
 		int pointX = prevF.getX() + 10;
 		int pointY = prevF.getY() + 340;
 		int width = prevF.getWidth() - 20;
@@ -128,8 +128,8 @@ public class payment {
 		frame.getContentPane().add(containerPanel);
 		containerPanel.setLayout(null);
 
-		//바로사용버튼을 이용해 좌석 패널로 전환 후 결제 창 열렸을때
-		if (type.equals("seat")) {
+		// 바로사용버튼을 이용해 좌석 패널로 전환 후 결제 창 열렸을때
+		if (menuType.equals("seat")) {
 			// 좌석 선택 시 처음으로 보이는 select panel 생성
 			select = new JPanel();
 			select.setBackground(background);
@@ -171,7 +171,7 @@ public class payment {
 			createCategory("기간권", 1);
 
 			FirstC = containerPanel.getComponents();
-		} else { //예약하기를 통해 결제창이 열렸을 때
+		} else { // 예약하기를 통해 결제창이 열렸을 때
 			detailPanel(seatN);
 			SecondC = containerPanel.getComponents();
 		}
@@ -316,7 +316,7 @@ public class payment {
 
 		detailPanel dp = new detailPanel(containerPanel, detailPanel, font);
 		dp.makeTitle();
-		if (type.equals("seat")) {
+		if (menuType.equals("seat")) {
 			dp.makeComponent(seat, getProduct(), getPrice());
 			createBack(FirstC, detailPanel);
 		} else {
@@ -324,7 +324,7 @@ public class payment {
 			dp.makeComponent(seat, getProduct(), reservStart, md.end(reservStart, getProduct()), getPrice());
 		}
 
-		// 두번째 next 버튼 구현	
+		// 두번째 next 버튼 구현
 		nextBtn n = new nextBtn(containerPanel, detailPanel, btnC, font);
 		secondNext = n.createNext();
 		secondNext.addActionListener(new ActionListener() {
@@ -464,23 +464,24 @@ public class payment {
 		d.getFrame().dispose();
 		getFrame().dispose();
 		// 응원문구 패널 생성
-		test2();
+		test();
 //		fightingPan();
 //		mainPanel();
 		modiData md = new modiData();
 		String stSeat = seatN;
 		String payTime = md.start();
-		String stStart = type.equals("seat") ? md.start() : reservStart;
-		String stEnd = md.end(stStart,getProduct());
+		String stStart = menuType.equals("seat") ? md.start() : reservStart;
+		String stEnd = md.end(stStart, getProduct());
 		String stPro = md.modiPro(getProduct());
 		String stPri = md.modiPri(getPrice());
 		String stUse = md.use(getProduct());
 
-		storeData sData = new storeData(stSeat, payTime, stStart, stUse, stEnd, stPro, stPri, type);
+		storeData sData = new storeData(stSeat, payTime, stStart, stUse, stEnd, stPro, stPri, type, menuType);
 		sData.store();
 	}
 
 	public void test() {
+		prevF.dispose();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -496,37 +497,6 @@ public class payment {
 			}
 		});
 	}
-
-	public void test2() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					swing_LoginPage window = new swing_LoginPage();
-					resrvationMain win = new resrvationMain();
-//					win.getFrame().setVisible(true);
-					for (int i = 0; i < reservPanel.getComponentCount(); i++) {
-						System.out.println(reservPanel.getComponent(i));
-					}
-//					for (int i = 0; i < reservPanel.getComponentCount(); i++) {
-//						reservPanel.getComponent(i).setVisible(false);
-//					}
-					reservPanel.removeAll();
-					
-//					for (int i = 0; i < win.getMainReserv().getComponentCount(); i++) {
-//						System.out.println(win.getMainReserv().getComponent(i));
-//					}
-//					for (int i = 0; i < win.getMainReserv().getComponentCount(); i++) {
-//						win.getMainReserv().getComponent(i).setVisible(false);
-//					}
-					fightingPan2(reservPanel,window.getShowUp());
-					reservPanel.repaint();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 
 	// ++수정 필요한 부분
 	public void fightingPan(JPanel panel) {
@@ -549,63 +519,17 @@ public class payment {
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
-				//첫 화면인 JButton만 setVisible true로 변경
+				// 첫 화면인 JButton만 setVisible true로 변경
 				for (int i = 0; i < mainC.length; i++) {
 					if (mainC[i].toString().contains("JButton")) {
 						mainC[i].setVisible(true);
 					}
-					//JLabel만 제거
+					// JLabel만 제거
 					else if (mainC[i].toString().contains("JLabel")) {
 						panel.remove(mainC[i]);
 						panel.repaint();
 					}
 				}
-			}
-		};
-		timer.schedule(task, 5000);
-	}
-	// ++수정 필요한 부분
-	public void fightingPan2(JPanel remove, JPanel create) {
-		// Main 페이지 내 패널 안에 있는 구성 요소 삭제
-//		seatMap.getSeatPanel().removeAll();
-		
-		// Main 페이지 내 패널에 감사합니다 + 응원문구 라벨 부착
-		JLabel donePhrase = new JLabel("");
-		JLabel fightPhrase = new JLabel("");
-		
-		fighting ft = new fighting(remove, donePhrase, fightPhrase, font);
-		ft.createDone("감사합니다.");
-		ft.createFight();
-		Component[] prevC = remove.getComponents();
-		// 패널 repaint
-//		seatMap.getSeatPanel().repaint();
-		
-		// 5초 후 메인 패널로 전환
-		Timer timer = new Timer();
-		TimerTask task = new TimerTask() {
-			@Override
-			public void run() {
-				remove.removeAll();
-				prevF.removeAll();
-				swing_LoginPage win = new swing_LoginPage();
-				prevF=win.getFrame();
-				prevF.add(win.getShowUp());
-				win.getShowUp().setVisible(true);
-				prevF.repaint();
-				remove.repaint();
-				//첫 화면인 JButton만 setVisible true로 변경
-//				for (int i = 0; i < prevC.length; i++) {
-//					if (prevC[i].toString().contains("JButton")) {
-//						mainC[i].setVisible(true);
-//					}
-					//JLabel만 제거
-//					else if (prevC[i].toString().contains("JLabel")) {
-//						prevF.remove(prevC[i]);
-//						remove.repaint();
-//					}
-//				}
-				reservPanel.repaint();
-				System.out.println("a");
 			}
 		};
 		timer.schedule(task, 5000);

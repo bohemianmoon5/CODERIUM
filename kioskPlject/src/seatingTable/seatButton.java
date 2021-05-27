@@ -60,9 +60,11 @@ public class seatButton implements ActionListener {
 			if(result == JOptionPane.YES_OPTION) {
 				if(Main.type.equals("reserve")) {
 					rm.btn_seat.setText(btn.getText()+"번 좌석");
+					Main.getFrame().dispose();
+					Main.type="";
 				}
 				else {
-				payment p = new payment(btn.getText() ,Main_swing.getFrame(), "seat");
+				payment p = new payment(btn.getText() ,Main.getFrame(), "seat");
 				p.getFrame().setVisible(true);
 
 				}

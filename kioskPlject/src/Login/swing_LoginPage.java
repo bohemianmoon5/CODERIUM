@@ -1,31 +1,29 @@
 package Login;
 
-import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import java.awt.Font;
-import java.awt.Color;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-
-import reservation.resrvationMain;
-
 import javax.swing.JRadioButton;
-import java.awt.BorderLayout;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+
+import main.pay.data.db;
+import reservation.resrvationMain;
+import seatingTable.Main;
+import seatingTable.mainPanel;
+import seatingTable.seatingImage;
+import seatingTable.subPanel;
 
 public class swing_LoginPage {
 
@@ -39,7 +37,7 @@ public class swing_LoginPage {
 			public void run() {
 				try {
 					swing_LoginPage window = new swing_LoginPage();
-					window.getFrame().setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,8 +51,8 @@ public class swing_LoginPage {
 	 * @param hashMap
 	 */
 
-	ImagePanel ShowUp = new ImagePanel(new ImageIcon("./src/Img/main_img.png").getImage());
-	ImagePanel connect = new ImagePanel(new ImageIcon("./src/Image/home_background.png").getImage());
+	ImagePanel ShowUp = new ImagePanel(new ImageIcon("./src/Image/12(수정).png").getImage());
+	ImagePanel connect = new ImagePanel(new ImageIcon("./src/Image/12.png").getImage());
 
 	JButton loginButton = new JButton("로그인");
 	JButton resetButton = new JButton("Reset");
@@ -84,15 +82,21 @@ public class swing_LoginPage {
 		initialize();
 	}
 
+	public swing_LoginPage(JFrame frame) {
+		this.frame = frame;
+		initialize();
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		if (frame == null) {
+			frame = new JFrame();
+		}
+		frame.setBounds(100, 100, 720, 1080);
+		frame.getContentPane().add(ShowUp);
 
-		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 720, 1080);
-		setShowUp(ShowUp);
-		getFrame().getContentPane().add(getShowUp());
 		// 메인 버튼
 		JButton Main_clickMe = new JButton(
 				"<HTML><body><center>All dreamers are here!<br>[Click Me]</center></body></HTML>");
@@ -102,15 +106,15 @@ public class swing_LoginPage {
 				LogIn.setVisible(true);
 			}
 		});
-		Main_clickMe.setIcon(new ImageIcon("./src/Img/main_btn.png"));
+		Main_clickMe.setIcon(new ImageIcon("./src/Image/메인_버튼.png"));
 		Main_clickMe.setBounds(198, 462, 340, 91);
-		getShowUp().add(Main_clickMe);
+		ShowUp.add(Main_clickMe);
 		Main_clickMe.setForeground(new Color(0, 0, 204));
 		Main_clickMe.setBackground(new Color(192, 192, 192));
 		Main_clickMe.setFont(new Font("twayair", Font.PLAIN, 20));
 
 		LogIn.setBounds(132, 214, 470, 266);
-		getShowUp().add(LogIn);
+		ShowUp.add(LogIn);
 		LogIn.setToolTipText("");
 		LogIn.setBackground(new Color(220, 220, 220));
 		LogIn.setLayout(null);
@@ -173,7 +177,7 @@ public class swing_LoginPage {
 		NonMember.setToolTipText("");
 		NonMember.setBackground(new Color(220, 220, 220));
 		NonMember.setBounds(132, 214, 470, 266);
-		getShowUp().add(NonMember);
+		ShowUp.add(NonMember);
 		if (Main_clickMe.isVisible())
 			NonMember.setVisible(false);
 
@@ -235,7 +239,7 @@ public class swing_LoginPage {
 		});
 		NonMember.add(loginButton_non);
 
-		JButton returnButton = new JButton("돌아가기");
+		JButton returnButton = new JButton("�룎�븘媛�湲�");
 		returnButton.setFont(new Font("twayair", Font.PLAIN, 14));
 		returnButton.setBounds(373, 6, 91, 34);
 
@@ -258,7 +262,7 @@ public class swing_LoginPage {
 		SignUp.setToolTipText("");
 		SignUp.setBackground(new Color(220, 220, 220));
 		SignUp.setBounds(132, 72, 470, 733);
-		getShowUp().add(SignUp);
+		ShowUp.add(SignUp);
 
 		JLabel signUpID = new JLabel("User ID");
 		signUpID.setFont(new Font("twayair", Font.PLAIN, 20));
@@ -403,12 +407,6 @@ public class swing_LoginPage {
 		Reservation.setBounds(390, 270, 164, 56);
 		connect.add(Reservation);
 		Reservation.setFont(new Font("twayair", Font.PLAIN, 15));
-		Reservation.addActionListener(new ActionListener() {	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
 
 		JButton In = new JButton("입실");
 		In.setBounds(280, 330, 164, 56);
@@ -424,14 +422,120 @@ public class swing_LoginPage {
 		SeatChange.setBounds(390, 390, 164, 56);
 		connect.add(SeatChange);
 		SeatChange.setFont(new Font("twayair", Font.PLAIN, 15));
-		getShowUp().add(Connect);
+		ShowUp.add(Connect);
 		Connect.setLayout(null);
 		Connect.setToolTipText("");
 		Connect.setBackground(new Color(255, 255, 255));
+		SeatChange.addActionListener(new ActionListener() {
+			// 자리변경 클릭시 화면전환..!!
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("번호들어간다.");
+
+				// TODO Auto-generated method stub
+				int result = JOptionPane.showConfirmDialog(null, "자리를 변경하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					SeatChange.setVisible(false);
+					Today.setVisible(false);
+					Reservation.setVisible(false);
+					In.setVisible(false);
+					Out.setVisible(false);
+					db d = new db();
+					d.dml("update paydata set seatNum = null where id = 'wonho33';");
+					System.out.println("좌석이 초기화 되었습니다.!");
+
+					frame.remove(ShowUp);
+					mainPanel main_panel = new mainPanel();
+					main_panel.back_img();
+
+					JButton lb_btn = new JButton("스터디존");
+					JButton cf_btn = new JButton("카페존");
+					JButton sr_btn = new JButton("스터디룸");
+
+					JButton[] l_btn = new JButton[35];
+					JButton[] c_btn = new JButton[16];
+					JButton[] s_btn = new JButton[2];
+					subPanel sub_panel = new subPanel(frame);
+					sub_panel.setVisible(true);
+
+					sub_panel.cf_btn(cf_btn, sub_panel, frame, c_btn);
+					sub_panel.sr_btn(sr_btn, sub_panel, frame, s_btn);
+					sub_panel.lb_btn(lb_btn, sub_panel, frame, l_btn);
+
+					seatingImage seatImg = new seatingImage(
+							new ImageIcon("./src/image/seatting_table_1.jpg").getImage());
+					sub_panel.add(seatImg);
+					frame.getContentPane().add(sub_panel);
+					frame.getContentPane().add(main_panel);
+
+				}
+			}
+		});
+		Today.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("번호들어간다.");
+
+				// TODO Auto-generated method stub
+				int result = JOptionPane.showConfirmDialog(null, "바로 사용하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					SeatChange.setVisible(false);
+					Today.setVisible(false);
+					Reservation.setVisible(false);
+					In.setVisible(false);
+					Out.setVisible(false);
+					db d = new db();
+					d.dml("update paydata set seatNum = null where id = 'wonho33';");
+					System.out.println("좌석이 초기화 되었습니다.!");
+
+					frame.remove(ShowUp);
+					Main m = new Main(frame);
+//				mainPanel main_panel = new mainPanel();
+//				main_panel.back_img();
+//				
+//				JButton lb_btn = new JButton("스터디존");
+//				JButton cf_btn = new JButton("카페존");
+//				JButton sr_btn = new JButton("스터디룸");
+//				
+//				JButton[] l_btn = new JButton[35];
+//				JButton[] c_btn = new JButton[16];
+//				JButton[] s_btn = new JButton[2];
+//				subPanel sub_panel = new subPanel(frame);
+//				
+//				
+//				sub_panel.cf_btn(cf_btn, sub_panel, frame, c_btn);
+//				sub_panel.sr_btn(sr_btn, sub_panel, frame, s_btn);
+//				sub_panel.lb_btn(lb_btn, sub_panel, frame, l_btn);
+//				
+//				seatingImage seatImg = new seatingImage(new ImageIcon("./src/image/seatting_table_1.jpg").getImage());
+//				sub_panel.add(seatImg);
+//				
+//				frame.getContentPane().add(sub_panel);
+//				frame.getContentPane().add(main_panel);
+//			
+				}
+			}
+		});
+		Reservation.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SeatChange.setVisible(false);
+				Today.setVisible(false);
+				Reservation.setVisible(false);
+				In.setVisible(false);
+				Out.setVisible(false);
+
+				frame.remove(ShowUp);
+				resrvationMain rm = new resrvationMain(frame);
+			}
+		});
+
 		// if(Main_clickMe.isVisible())
 		SignUp.setVisible(false);
 
-		JLabel signUp = new JLabel("회원이 아닌가요?");
+		JLabel signUp = new JLabel("회원이 아닌가요");
 		signUp.setBackground(new Color(204, 204, 204));
 		signUp.setForeground(new Color(51, 102, 204));
 		signUp.setFont(new Font("twayair", Font.PLAIN, 13));
@@ -456,7 +560,7 @@ public class swing_LoginPage {
 		 * resetButton.setFont(new Font("twayair", Font.PLAIN, 15));
 		 * resetButton.setBounds(245, 224, 103, 20);
 		 * 
-		 * // 리셋 버튼 resetButton.addActionListener(new ActionListener() { public void
+		 * // 由ъ뀑 踰꾪듉 resetButton.addActionListener(new ActionListener() { public void
 		 * actionPerformed(ActionEvent e) {
 		 * 
 		 * userIDField.setText(""); userPasswordField.setText("");
@@ -469,10 +573,17 @@ public class swing_LoginPage {
 	}
 
 	public void switchPanels(JPanel panel) {
-		getShowUp().removeAll();
-		getShowUp().add(panel);
-		getShowUp().repaint();
-		getShowUp().revalidate();
+		ShowUp.removeAll();
+		ShowUp.add(panel);
+		ShowUp.repaint();
+		ShowUp.revalidate();
+	}
+
+	public void switchPanels(JPanel panel1, JPanel panel2) {
+		panel1.removeAll();
+		panel1.add(panel2);
+		panel1.repaint();
+		panel1.revalidate();
 	}
 
 // 휴대폰 번호 양식
@@ -480,28 +591,8 @@ public class swing_LoginPage {
 		String regEx = "(\\d{3})(\\d{3,4})(\\d{4})";
 		return number.replaceAll(regEx, "$1-$2-$3");
 	}
-	//++js modify
 
-public JFrame getFrame() {
-	return frame;
-}
-
-public void setFrame(JFrame frame) {
-	this.frame = frame;
-}
-
-public ImagePanel getShowUp() {
-	return ShowUp;
-}
-
-public void setShowUp(ImagePanel showUp) {
-	ShowUp = showUp;
-}
-//++
-
-}
-
-//// 배경이미지 넣기
+// 배경이미지 넣기
 //class ImagePanel extends JPanel {
 //
 //	  private Image img;
@@ -524,3 +615,22 @@ public void setShowUp(ImagePanel showUp) {
 //	    g.drawImage(img, 0, 0, null);
 //	  }
 //}
+
+//++js modify
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public ImagePanel getShowUp() {
+		return ShowUp;
+	}
+
+	public void setShowUp(ImagePanel showUp) {
+		ShowUp = showUp;
+	}
+}
+//++
