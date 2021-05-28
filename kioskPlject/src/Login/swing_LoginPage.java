@@ -45,6 +45,7 @@ public class swing_LoginPage {
 			}
 		});
 	}
+
 	public static String user = "";
 	/**
 	 * Create the application.
@@ -79,32 +80,34 @@ public class swing_LoginPage {
 	private JTextField signUpPhoneNumField;
 	private JLabel signUpWord;
 	public static Component[] con;
+
+	JFrame test;
+	int cnt = 0;
+
 	public swing_LoginPage() {
 		initialize();
 	}
 
-	public swing_LoginPage(JFrame frame) {
-		this.frame = frame;
-		setFrame(frame);
-		initialize();
-	}
+//	public swing_LoginPage(JFrame frame) {
+//		this.frame = frame;
+//		setFrame(frame);
+//		initialize();
+//	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		if (frame == null) {
-			frame = new JFrame();
-			setFrame(frame);
-		}
+		frame = new JFrame();
+		setFrame(frame);
+		test = frame;
 		frame.setBounds(100, 0, 720, 1080);
 		frame.getContentPane().add(ShowUp);
 
 		// 현재 팝업창만 종료됨
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//++
+		// ++
 
-		
 		// 메인 버튼
 		JButton Main_clickMe = new JButton(
 				"<HTML><body><center>All dreamers are here!<br>[Click Me]</center></body></HTML>");
@@ -158,7 +161,7 @@ public class swing_LoginPage {
 				IdPassword idPassword = new IdPassword();
 
 				String userID = userIDField.getText();
-				user=userID;
+				user = userID;
 				String password = String.valueOf(userPasswordField.getPassword());
 
 				if (idPassword.loginInfo.containsKey(userID)) {
@@ -166,7 +169,7 @@ public class swing_LoginPage {
 						WelcomePage welcomePage = new WelcomePage();
 						welcomePage.welcomeLabel.setText("안녕하세요! " + userID + "님");
 						switchPanels(connect);
-						connect.setVisible(true);
+
 					} else {
 
 					}
@@ -431,11 +434,12 @@ public class swing_LoginPage {
 		SeatChange.setBounds(390, 390, 164, 56);
 		connect.add(SeatChange);
 		SeatChange.setFont(new Font("twayair", Font.PLAIN, 15));
+		
 		ShowUp.add(Connect);
 		Connect.setLayout(null);
 		Connect.setToolTipText("");
 		Connect.setBackground(new Color(255, 255, 255));
-		con = Connect.getComponents();
+		con = connect.getComponents();
 		SeatChange.addActionListener(new ActionListener() {
 			// 자리변경 클릭시 화면전환..!!
 			@Override
@@ -446,14 +450,37 @@ public class swing_LoginPage {
 				// TODO Auto-generated method stub
 				int result = JOptionPane.showConfirmDialog(null, "자리를 변경하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
-					SeatChange.setVisible(false);
-					Today.setVisible(false);
-					Reservation.setVisible(false);
-					In.setVisible(false);
-					Out.setVisible(false);
+
+					System.out.println("today누를때 con " + con.length);
+					for(int i=0; i<con.length;i++) {
+						con[i].setVisible(false);
+					}
 					db d = new db();
 					d.dml("update paydata set seatNum = null where id = 'wonho33';");
 					System.out.println("좌석이 초기화 되었습니다.!");
+
+					frame.remove(ShowUp);
+					System.out.println(Main.t + " 나는 t");
+//					frame.dispose();
+					if (Main.t.equals("now")) {
+						System.out.println("다시 돌아가");
+						System.out.println("프레임? " + getFrame().isVisible());
+						Main.main_panel.removeAll();
+						for (int i = 0; i < Main.Main_p.length; i++) {
+							Main.main_panel.add(Main.Main_p[i]);
+						}
+						Main.main_panel.repaint();
+					} else {
+						Main m = new Main("now", getFrame());
+					}
+					// SeatChange.setVisible(false);
+//					Today.setVisible(false);
+//					Reservation.setVisible(false);
+//					In.setVisible(false);
+//					Out.setVisible(false);
+//					db d = new db();
+//					d.dml("update paydata set seatNum = null where id = 'wonho33';");
+//					System.out.println("좌석이 초기화 되었습니다.!");
 
 //					frame.remove(ShowUp);
 //					mainPanel main_panel = new mainPanel();
@@ -491,32 +518,36 @@ public class swing_LoginPage {
 				// TODO Auto-generated method stub
 				int result = JOptionPane.showConfirmDialog(null, "바로 사용하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
+
+//					System.out.println("today누를때 con " + con.length);
+//					System.out.println("today누를때 conn " + connect.getComponentCount());
+
 					con[0].setVisible(false);
-					
+
 					db d = new db();
 					d.dml("update paydata set seatNum = null where id = 'wonho33';");
 					System.out.println("좌석이 초기화 되었습니다.!");
 
-					frame.remove(ShowUp);
-					System.out.println(Main.t+" 나는 t");
+					System.out.println(frame.getRootPane().getComponentCount());
+					System.out.println(frame.getRootPane().getComponent(0));
+					System.out.println(frame.getRootPane().getComponent(1));
+					System.out.println(Main.t + " 나는 t");
 //					frame.dispose();
-					if(Main.t.equals("now")) {
+					if (Main.t.equals("now")) {
 						System.out.println("다시 돌아가");
-						for(int i=0; i<Main.Main_p.length;i++) {
-							System.out.println(Main.Main_p[i]);							
-						}
-						System.out.println("main 개수 " + Main.main_panel.getComponentCount());
+						System.out.println("프레임? " + getFrame().isVisible());
 						Main.main_panel.removeAll();
-						for(int i=0; i<Main.Main_p.length;i++) {
-							Main.main_panel.add(Main.Main_p[i]);							
+						for (int i = 0; i < Main.Main_p.length; i++) {
+							Main.main_panel.add(Main.Main_p[i]);
 						}
 						Main.main_panel.repaint();
-					}else {						
-						Main m = new Main("now",getFrame());
+					} else {
+						frame.remove(ShowUp);
+						Main m = new Main("now", getFrame());
 					}
-					
+
 //					m.getFrame().setVisible(true);
-					
+
 //				mainPanel main_panel = new mainPanel();
 //				main_panel.back_img();
 //				
@@ -543,18 +574,24 @@ public class swing_LoginPage {
 				}
 			}
 		});
+		System.out.println("login!!!" + frame);
+
 		Reservation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SeatChange.setVisible(false);
-				Today.setVisible(false);
-				Reservation.setVisible(false);
-				In.setVisible(false);
-				Out.setVisible(false);
+				con[0].setVisible(false);
 
-				frame.remove(ShowUp);
-				resrvationMain rm = new resrvationMain(getFrame(),"re");
-
+				System.out.println("rese " + Main.t);
+				System.out.println("login re " + frame.getContentPane().getComponentCount());
+				if (Main.t.equals("now")) {
+					frame.remove(Connect);
+					resrvationMain rm = new resrvationMain("r");
+//					frame.add(rm.mainReservation);
+//					frame.repaint();
+				} else {
+					frame.remove(ShowUp);
+					resrvationMain rm = new resrvationMain(getFrame(), "re");
+				}
 			}
 		});
 

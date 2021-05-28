@@ -140,13 +140,16 @@ public class Main {
 				// TODO Auto-generated method stub
 				Main_p = main_panel.getComponents();
 				main_panel.removeAll();
-				sl.con[0].setVisible(true);				
-				main_panel.add(sl.con[0]);
+				for(int i=0; i<swing_LoginPage.con.length; i++) {
+					swing_LoginPage.con[i].setVisible(true);					
+					main_panel.add(swing_LoginPage.con[i]);
+				}
+				
 				main_panel.repaint();
 			}
 		});
 	}
-
+	
 	public static JFrame getFrame() {
 		return frame;
 	}

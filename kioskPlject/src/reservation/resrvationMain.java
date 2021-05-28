@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import main.pay.payment;
 import main.pay.data.reservData;
 import seatingTable.Main;
+import seatingTable.mainPanel;
 
 public class resrvationMain {
 
@@ -32,7 +33,8 @@ public class resrvationMain {
 	private static JFrame frame;
 	String rt ="";
 	//++js modify
-	private JPanel mainReservation;
+	private JPanel container;
+	public static JPanel mainReservation;
 	public static JButton btn_pay;
 	//++
 	
@@ -66,6 +68,15 @@ public class resrvationMain {
 //		setFrame(frame);
 		initialize();
 	}
+	public resrvationMain(String rt, mainPanel mainP) {
+		this.rt=rt;
+		this.mainReservation=mainP;
+		initialize();
+	}
+	public resrvationMain(String rt) {
+		this.rt=rt;
+		initialize();
+	}
 
 
 	/**
@@ -73,39 +84,41 @@ public class resrvationMain {
 	 */
 	private void initialize() {
 		if(!rt.equals("re")) {
+			System.out.println("re 아니다 ");
 			frame=new JFrame();
 			frame.setBounds(100, 0, 720, 1080);
 //			setFrame(frame);						
 		}		
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Image/CODERIUM_Icon.png"));
-		frame.getContentPane().setFont(new Font("티웨이_항공", Font.BOLD, 20));
+ 		frame.getContentPane().setFont(new Font("티웨이_항공", Font.BOLD, 20));
 		frame.setTitle("CODERIUM");
-
-		// 결제 팝업의 exit 버튼 누를 시 결제 팝업창만 종료됨
+//		frame.setVisible(true);
+		//exit 버튼 누를 시 현재 창만 종료됨
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //		frame.setLocationRelativeTo(null);
-//		frame.setResizable(false);
+		frame.setResizable(false);
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(null);
 	
 		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
-		 
-		
-		
-		setMainReserv(new JPanel() {
-            public void paintComponent(Graphics g) {
-                // Approach 1: Dispaly image at at full size
-                g.drawImage(icon.getImage(), 0, 0, null);
-                // Approach 2: Scale image to size of component
-                // Dimension d = getSize();
-                // g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-                // Approach 3: Fix the image position in the scroll pane
-                // Point p = scrollPane.getViewport().getViewPosition();
-                // g.drawImage(icon.getImage(), p.x, p.y, null);
-                setOpaque(false); //그림을 표시하게 설정,투명하게 조절
-                super.paintComponent(g);
-            }
-        });
+		if(rt.equals("re")) {			
+			setMainReserv(new JPanel() {
+				public void paintComponent(Graphics g) {
+					// Approach 1: Dispaly image at at full size
+					g.drawImage(icon.getImage(), 0, 0, null);
+					// Approach 2: Scale image to size of component
+					// Dimension d = getSize();
+					// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+					// Approach 3: Fix the image position in the scroll pane
+					// Point p = scrollPane.getViewport().getViewPosition();
+					// g.drawImage(icon.getImage(), p.x, p.y, null);
+					setOpaque(false); //그림을 표시하게 설정,투명하게 조절
+					super.paintComponent(g);
+				}
+			});
+		}else {
+			setMainReserv(mainReservation);
+		}
 		getMainReserv().setBounds(0, 0, 714, 1051);
 		frame.getContentPane().add(getMainReserv());
 		getMainReserv().setLayout(null);
@@ -200,8 +213,10 @@ public class resrvationMain {
 		mainC = getMainReserv().getComponents();
 		System.out.println("mainC count " + mainC.length);
 		
-		
-		
+		for(int i=0; i<getMainReserv().getComponentCount();i++) {
+			System.out.println(getMainReserv().getComponent(i));
+			System.out.println(getMainReserv().getComponent(i).isVisible());
+		}
 	}
 		
 		
@@ -282,8 +297,8 @@ public class resrvationMain {
 		// 새로운 예약 => 좌석표 선택창 오픈 버튼 
 		btn_seat = new JButton("좌석 선택");
 		btn_seat.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-//		btn_seat.setBounds(250, 785, 221, 54);
-		btn_seat.setBounds(250, 600, 221, 54);
+		btn_seat.setBounds(250, 785, 221, 54);
+//		btn_seat.setBounds(250, 600, 221, 54);
 		btn_seat.setBackground(new Color(255,0,0,0));
 		btn_seat.setContentAreaFilled(false);
 		btn_seat.setBorderPainted(false);
@@ -533,6 +548,7 @@ public class resrvationMain {
 				panel.repaint();
 			}
 		});
+		
 	}
 
 	public JPanel getMainReserv() {

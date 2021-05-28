@@ -177,8 +177,8 @@ public class payment {
 		}
 
 		// windowEvent 설정
-		windowEvent we = new windowEvent(getFrame());
-		we.event();
+//		windowEvent we = new windowEvent(getFrame());
+//		we.event();
 	}
 
 	public static void designBtn(JButton btn, Color c) {
@@ -463,6 +463,7 @@ public class payment {
 	public void doneEvent(done d, String type) {
 		d.getFrame().dispose();
 		getFrame().dispose();
+		prevF.dispose();
 		// 응원문구 패널 생성
 		test();
 //		fightingPan();
