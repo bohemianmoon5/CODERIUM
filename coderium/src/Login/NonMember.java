@@ -42,21 +42,6 @@ public class NonMember extends JPanel{
 		
 		cellPhoneNumField = new JTextField();
 		cellPhoneNumField.setBounds(60, 90, 340, 34);
-		
-		// 휴대폰 번호 포맷 바꾸기 & 인증번호 띄우기
-//		cellPhoneNumField.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//				
-//				if(cellPhoneNumField.getText().length() == 11) {
-//					cellPhoneNumField.setText(phone_format(cellPhoneNumField.getText()));
-//					VerifiedNum verifiedNum = new VerifiedNum();
-//					verifiedNum.randomNum();
-//					
-//				}
-//				
-//			}
-//		});
-		
 		NonMember.add(cellPhoneNumField);
 		
 		// 인증번호 

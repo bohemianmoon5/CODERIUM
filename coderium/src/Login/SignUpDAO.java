@@ -1,10 +1,18 @@
 package Login;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.function.Function;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SignUpDAO {
@@ -44,5 +52,34 @@ public class SignUpDAO {
 		return -1; //데이터베이스 오류
 	}
 	
+	public boolean IdCheck(String id) {
+        boolean result = true;
+ 
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM list WHERE id=?");
+            pstmt.setString(1, id.trim());
+            rs = pstmt.executeQuery(); //실행
+            if (rs.next())
+                result = false; //레코드가 존재하면 false
+ 
+        } catch (SQLException e) {
+            System.out.println(e + "=>  IdCheck fail");
+        } finally {
+            dbClose();
+        }
+ 
+        return result;
+ 
+    }
+	
+	public void dbClose() {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (pstmt != null) pstmt.close();
+        } catch (Exception e) {
+            System.out.println(e + "=> dbClose fail");
+        }
+    }
 }
 	

@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,10 +34,13 @@ public class Main extends JFrame implements ActionListener{
 	SignUp signUp;
 	Connect connectP;
 	WelcomePage welcomePage;
+	SignUpDAO signUpData;
+	WarningMs warningMs;
 	ImagePanel ShowUp = new ImagePanel(new ImageIcon("./Image/12(수정).png").getImage());
-	ImagePanel connect = new ImagePanel(new ImageIcon("./Image/12.png").getImage());
+	ImagePanel connect = new ImagePanel(new ImageIcon("./Image/new.png").getImage());
 	
-	ArrayList<String> list = new ArrayList<String>();
+	ArrayList<String> forVerifiedNum = new ArrayList<String>();
+	ArrayList<String> phoneNumData = new ArrayList<String>();
 	
 	public static void main(String[] args) {
 		
@@ -107,6 +112,103 @@ public class Main extends JFrame implements ActionListener{
 		signUp.completeBtn.setActionCommand("complete");
 		signUp.completeBtn.addActionListener(this);
 		
+		// 유효성 검사 
+		signUp.signUpIDField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(signUp.signUpIDField.getText().equals("")) {
+					warningMs = new WarningMs();
+					warningMs.frame.setBounds(540, 30, 350, 200);
+					warningMs.warning.setBounds(95, 15, 330, 130);
+					warningMs.warning.setText("ID를 입력해주세요!");
+					offFrame(warningMs.frame);
+				}else if(signUp.signUpIDField.getText().length() < 5 || signUp.signUpIDField.getText().length() > 10) {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(125, 0, 400, 150);
+					warningMs.warning.setText("ID 글자수는 5 ~ 10 입니다!");
+					offFrame(warningMs.frame);
+				}
+			}
+		});
+		signUp.signUpPasswordField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//비밀번호 양식 
+				String checkPw = "";
+				int c = 0;
+				for(char a : signUp.signUpPasswordField.getPassword()) {
+					checkPw += signUp.signUpPasswordField.getPassword()[c];
+					c++;
+				}
+				if(checkPw.equals("")) {
+					warningMs = new WarningMs();
+					warningMs.frame.setBounds(540, 30, 350, 200);
+					warningMs.warning.setBounds(95, 15, 330, 130);
+					warningMs.warning.setText("PW를 입력해주세요!");
+					offFrame(warningMs.frame);
+				}else if(checkPw.length() < 6 || checkPw.length() > 12) {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(125, 0, 400, 150);
+					warningMs.warning.setText("PW 자리수는 6 ~ 12 입니다!");
+					offFrame(warningMs.frame);
+				}
+			}
+		});
+		signUp.signUpNameField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(signUp.signUpNameField.getText().equals("")) {
+					warningMs = new WarningMs();
+					warningMs.frame.setBounds(540, 30, 350, 200);
+					warningMs.warning.setBounds(95, 15, 330, 130);
+					warningMs.warning.setText("이름을 입력해주세요!");
+					offFrame(warningMs.frame);
+				}else if(signUp.signUpNameField.getText().length() < 1 || signUp.signUpNameField.getText().length() > 10) {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(125, 0, 400, 150);
+					warningMs.warning.setText("이름은 1 ~ 10자까지 입니다!");
+					offFrame(warningMs.frame);
+				}else if(Integer.parseInt(signUp.signUpNameField.getText()) >= 0 || Integer.parseInt(signUp.signUpNameField.getText()) < 0) {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(115, 0, 400, 150);
+					warningMs.warning.setText("이름에 숫자를 사용할 순 없습니다!");
+					offFrame(warningMs.frame);
+				}
+			}
+		});
+		signUp.signUpIDNumField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(signUp.signUpIDNumField.getText().equals("")) {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(140, 0, 400, 150);
+					warningMs.warning.setText("생년월일을 입력해주세요!");
+					offFrame(warningMs.frame);
+				}else if(signUp.signUpIDNumField.getText().length() > 6 || signUp.signUpIDNumField.getText().length() < 6) {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(120, 0, 400, 150);
+					warningMs.warning.setText("생년월일을 다시 입력해주세요!");
+					offFrame(warningMs.frame);
+				}
+			}
+		});
+		signUp.signUpPhoneNumField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(signUp.signUpPhoneNumField.getText().equals("")) {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(140, 0, 400, 150);
+					warningMs.warning.setText("휴대폰 번호를 입력해주세요!");
+					offFrame(warningMs.frame);
+				}else if(signUp.signUpPhoneNumField.getText().length() < 11 || signUp.signUpPhoneNumField.getText().length() > 11) {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(110, 0, 400, 150);
+					warningMs.warning.setText("입력하신 번호를 다시 확인해주세요!");
+					offFrame(warningMs.frame);
+				}
+			}
+		});
+		
 		// 연결 패널 
 		connectP = new Connect();
 		connectP.Connect.add(connect);
@@ -132,15 +234,16 @@ public class Main extends JFrame implements ActionListener{
 				break;
 			case "phone" :
 				if(nonMember.cellPhoneNumField.getText().length() == 11) {
+					phoneNumData.add(nonMember.cellPhoneNumField.getText());
 					nonMember.cellPhoneNumField.setText(phone_format(nonMember.cellPhoneNumField.getText()));
 					VerifiedNum verifiedNum = new VerifiedNum();
-					list.add(verifiedNum.randomNum());
-					verifiedNum.randomNum.setText(list.get(0));
+					forVerifiedNum.add(verifiedNum.randomNum());
+					verifiedNum.randomNum.setText(forVerifiedNum.get(0));
 					vnOffFrame(verifiedNum.frame);
 				}
 				break;
 			case "loginNon" :
-				if(list.get(0).equals(nonMember.verifiedNumField.getText())) {
+				if(forVerifiedNum.get(0).equals(nonMember.verifiedNumField.getText())) {
 					welcomePage = new WelcomePage();
 					welcomePage.welcomeLabel.setText("    " + "안녕하세요!");
 					switchPanels(connect);
@@ -159,6 +262,8 @@ public class Main extends JFrame implements ActionListener{
 				login.LogIn.setVisible(true);
 				break;
 			case "return" :
+				nonMember.cellPhoneNumField.setText("");
+				nonMember.verifiedNumField.setText("");
 				switchPanels(login.LogIn);
 				login.LogIn.setVisible(true);
 				break;
@@ -195,7 +300,7 @@ public class Main extends JFrame implements ActionListener{
 				signUp.SignUp.setVisible(true);
 				break;
 			case "complete" :
-				SignUpDAO signUpData = new SignUpDAO();
+				signUpData = new SignUpDAO();
 				signUpData.signUp.setId(signUp.signUpIDField.getText());
 				// Pw 데이터 저장 
 				String stringPassword = "";
@@ -212,16 +317,28 @@ public class Main extends JFrame implements ActionListener{
 				// 성별 데이터 저장
 				if(signUp.GenderM.isSelected()) {
 					signUpData.signUp.setGender(signUp.GenderM.getToolTipText());
-				} else {
+				}else if(signUp.GenderW.isSelected()) {
 					signUpData.signUp.setGender(signUp.GenderW.getToolTipText());
+				}else {
+					warningMs = new WarningMs();
+					warningMs.frame.setBounds(540, 30, 350, 200);
+					warningMs.warning.setBounds(95, 15, 330, 130);
+					warningMs.warning.setText("성별을 선택해주세요!");
+					offFrame(warningMs.frame);
 				}
 				System.out.println(signUpData.SetSignUp());
 				signUpData.SignUpDAO();
-				switchPanels(login.LogIn);
-				login.LogIn.setVisible(true);
+				if(signUpData.IdCheck(signUp.signUpIDField.getText()) == false) {
+					warningMs= new WarningMs();
+					warningMs.warning.setBounds(115, 0, 400, 150);
+					warningMs.warning.setText("ID 중복입니다. 다시 입력해주세요!");
+					offFrame(warningMs.frame);
+				}else if(signUpData.IdCheck(signUp.signUpIDField.getText()) == true) {
+					switchPanels(login.LogIn);
+					login.LogIn.setVisible(true);
+				}
 				break;
 		}
-		
 	}
 	
 	public void vnOffFrame(JFrame f) {
@@ -265,7 +382,7 @@ public class Main extends JFrame implements ActionListener{
 		return number.replaceAll(regEx, "$1-$2-$3"); 
 		}
 
-//배경이미지 넣기
+	//배경이미지 넣기
 	class ImagePanel extends JPanel {
 
 		private Image img;

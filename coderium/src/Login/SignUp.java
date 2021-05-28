@@ -24,8 +24,8 @@ public class SignUp {
 	JLabel signUpName = new JLabel("이름");
 	JLabel signUpGender = new JLabel("성별");
 	JLabel signUpIDNum = new JLabel("주민등록번호(생년월일)");
-	JLabel signUpPhoneNum = new JLabel("전화번호");
-	JLabel signUpWord = new JLabel("소망(꿈)");
+	JLabel signUpPhoneNum = new JLabel("전화번호(- 제외)");
+	JLabel signUpWord = new JLabel("소망(꿈) (기재시 꼭 이루어집니다!)");
 	JRadioButton GenderM = new JRadioButton("남");
 	JRadioButton GenderW = new JRadioButton("여");
 	JButton completeBtn = new JButton("가입하기");
@@ -100,7 +100,7 @@ public class SignUp {
 		
 		// 휴대폰 번호 
 		signUpPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
-		signUpPhoneNum.setBounds(60, 455, 91, 25);
+		signUpPhoneNum.setBounds(60, 455, 300, 25);
 		SignUp.add(signUpPhoneNum);
 		
 		signUpPhoneNumField = new JTextField();
@@ -109,7 +109,7 @@ public class SignUp {
 		
 		// 소망(꿈)
 		signUpWord.setFont(new Font("twayair", Font.PLAIN, 19));
-		signUpWord.setBounds(60, 534, 91, 25);
+		signUpWord.setBounds(60, 534, 300, 25);
 		SignUp.add(signUpWord);
 		
 		signUpWordTxt = new JTextPane();
