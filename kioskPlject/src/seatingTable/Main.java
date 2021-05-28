@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import Login.MainF;
 import Login.swing_LoginPage;
 
 import java.awt.event.ActionListener;
