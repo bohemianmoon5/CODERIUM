@@ -30,6 +30,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.JCheckBox;
 
+import Login.MainF;
 import Login.swing_LoginPage;
 import main.pay.done;
 import main.pay.component.fighting;
@@ -486,7 +487,7 @@ public class payment {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					swing_LoginPage window = new swing_LoginPage();
+					MainF window = new MainF();
 					window.getFrame().setVisible(true);
 					for (int i = 0; i < window.getShowUp().getComponentCount(); i++) {
 						window.getShowUp().getComponent(i).setVisible(false);

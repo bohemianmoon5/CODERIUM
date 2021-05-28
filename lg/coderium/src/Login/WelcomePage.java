@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 public class WelcomePage {
 	
-	MainF main = new MainF();
+	Main main = new Main();
 	
 	JFrame frame = new JFrame();
 	JLabel welcomeLabel = new JLabel("");
