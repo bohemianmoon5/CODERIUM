@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import Login.MainF;
 import Login.swing_LoginPage;
 
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ public class Main {
 	private static Component[] Sub_p;
 	JButton home;
 	swing_LoginPage sl = new swing_LoginPage();
+	JPanel show;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,16 +50,17 @@ public class Main {
 		initialize();
 	}
 
-	public Main(String t, JFrame frame) {
+	public Main(String t, JFrame frame, JPanel show) {
 		this.t = t;
 		this.frame = frame;
+		this.show = show;
 //		setFrame(frame);
 		initialize();
 	}
 
 	private void initialize() {
 		// ++js modify
-		if (!t.equals("now")) {
+		if (!t.equals("now") || type.equals("reserve")) {
 			frame = new JFrame();
 //			setFrame(frame);
 			frame.setBounds(100, 0, 720, 1080);
@@ -139,17 +142,13 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Main_p = main_panel.getComponents();
-				main_panel.removeAll();
-				for(int i=0; i<swing_LoginPage.con.length; i++) {
-					swing_LoginPage.con[i].setVisible(true);					
-					main_panel.add(swing_LoginPage.con[i]);
-				}
-				
-				main_panel.repaint();
+				frame.remove(main_panel);
+				show.setVisible(true);
+
 			}
 		});
 	}
-	
+
 	public static JFrame getFrame() {
 		return frame;
 	}

@@ -53,7 +53,7 @@ public class swing_LoginPage {
 	 * @param hashMap
 	 */
 
-	ImagePanel ShowUp = new ImagePanel(new ImageIcon("./src/Image/12(수정).png").getImage());
+	static ImagePanel ShowUp = new ImagePanel(new ImageIcon("./src/Image/12(수정).png").getImage());
 	ImagePanel connect = new ImagePanel(new ImageIcon("./src/Image/12.png").getImage());
 
 	JButton loginButton = new JButton("로그인");
@@ -360,30 +360,30 @@ public class swing_LoginPage {
 		completeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				signUpData.signUp.setId(signUpIDField.getText());
-
-				// Pw 데이터 저장
-				String stringPassword = "";
-				int i = 0;
-				for (char a : signUpPasswordField.getPassword()) {
-					stringPassword += signUpPasswordField.getPassword()[i];
-					i++;
-				}
-				signUpData.signUp.setPw(stringPassword);
-
-				signUpData.signUp.setName(signUpNameField.getText());
-				signUpData.signUp.setIdNum(signUpIDNumField.getText());
-				signUpData.signUp.setPhoneNum(signUpPhoneNumField.getText());
-				signUpData.signUp.setWord(signUpWordTxt.getText());
-
-				// 성별 데이터 저장
-				if (GenderM.isSelected()) {
-					signUpData.signUp.setGender(GenderM.getToolTipText());
-				} else {
-					signUpData.signUp.setGender(GenderW.getToolTipText());
-				}
-
-				System.out.println(signUpData.SetSignUp());
+//				signUpData.signUp.setId(signUpIDField.getText());
+//
+//				// Pw 데이터 저장
+//				String stringPassword = "";
+//				int i = 0;
+//				for (char a : signUpPasswordField.getPassword()) {
+//					stringPassword += signUpPasswordField.getPassword()[i];
+//					i++;
+//				}
+//				signUpData.signUp.setPw(stringPassword);
+//
+//				signUpData.signUp.setName(signUpNameField.getText());
+//				signUpData.signUp.setIdNum(signUpIDNumField.getText());
+//				signUpData.signUp.setPhoneNum(signUpPhoneNumField.getText());
+//				signUpData.signUp.setWord(signUpWordTxt.getText());
+//
+//				// 성별 데이터 저장
+//				if (GenderM.isSelected()) {
+//					signUpData.signUp.setGender(GenderM.getToolTipText());
+//				} else {
+//					signUpData.signUp.setGender(GenderW.getToolTipText());
+//				}
+//
+//				System.out.println(signUpData.SetSignUp());
 
 			}
 		});
@@ -471,7 +471,7 @@ public class swing_LoginPage {
 						}
 						Main.main_panel.repaint();
 					} else {
-						Main m = new Main("now", getFrame());
+//						Main m = new Main("now", getFrame());
 					}
 					// SeatChange.setVisible(false);
 //					Today.setVisible(false);
@@ -543,7 +543,7 @@ public class swing_LoginPage {
 						Main.main_panel.repaint();
 					} else {
 						frame.remove(ShowUp);
-						Main m = new Main("now", getFrame());
+//						Main m = new Main("now", getFrame());
 					}
 
 //					m.getFrame().setVisible(true);
@@ -585,12 +585,12 @@ public class swing_LoginPage {
 				System.out.println("login re " + frame.getContentPane().getComponentCount());
 				if (Main.t.equals("now")) {
 					frame.remove(Connect);
-					resrvationMain rm = new resrvationMain("r");
+//					resrvationMain rm = new resrvationMain("r");
 //					frame.add(rm.mainReservation);
 //					frame.repaint();
 				} else {
 					frame.remove(ShowUp);
-					resrvationMain rm = new resrvationMain(getFrame(), "re");
+//					resrvationMain rm = new resrvationMain(getFrame(), "re");
 				}
 			}
 		});
@@ -688,7 +688,7 @@ public class swing_LoginPage {
 		this.frame = frame;
 	}
 
-	public ImagePanel getShowUp() {
+	public static ImagePanel getShowUp() {
 		return ShowUp;
 	}
 

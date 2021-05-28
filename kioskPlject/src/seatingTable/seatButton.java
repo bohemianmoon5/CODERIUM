@@ -59,9 +59,11 @@ public class seatButton implements ActionListener {
 			int result = JOptionPane.showConfirmDialog(null, btn.getText()+"를  선택하겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 			if(result == JOptionPane.YES_OPTION) {
 				if(Main.type.equals("reserve")) {
-					rm.btn_seat.setText(btn.getText()+"번 좌석");
+					System.out.println(btn.getText()+"번!!!");
+					resrvationMain.btn_seat.setText(btn.getText()+"번 좌석");
+					System.out.println(resrvationMain.btn_seat.getText()+"why,,");
 					Main.getFrame().dispose();
-					rm.btn_pay.setEnabled(true);
+					resrvationMain.btn_pay.setEnabled(true);
 					Main.type="";
 				}
 				else {
