@@ -1,13 +1,16 @@
 package main.pay.data;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class db {
+	
 	Connection conn;
 	// MySql private information
 	String jdbc = "jdbc:mysql://localhost:3306/data";
@@ -18,9 +21,10 @@ public class db {
 
 	}
 
-	public void connectDB(String query) {
+	public void connectDB() {
 
 		try {
+			
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 			System.out.println("db 연결 성공");
 
@@ -30,10 +34,10 @@ public class db {
 		}
 	}
 
-	public void insert(String id, String seat, String payT,String sTime, String uTime, String eTime, String product, String price,
+	public void insert(String id, String seat, String payT,String sTime, String eTime, String product, String price,
 			String payType, String menuType) {
-		String query = "insert into paydata value(\"" + id + "\",\"" + seat + "\",\""+payT +"\",\""+ sTime + "\",\"" + uTime
-				+ "\",\"" + eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\""+ menuType +"\");";
+		String query = "insert into paydata value(\"" + id + "\",\"" + seat + "\",\""+payT +"\",\""+ sTime + "\",\"" 
+			+ eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\""+ menuType +"\");";
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 			System.out.println("db 연결 성공");
@@ -96,6 +100,29 @@ public class db {
 		return arr;
 	}
 	
+	public void delete(String tableName,String now){
+		
+		System.out.println(now);
+		String query = "delete from "+ tableName +" where EndTime<='"+now+"';";
+		System.out.println(query);
+		ResultSet rs;
+//		ResultSetMetaData rsmd;
+		try {
+			conn = DriverManager.getConnection(jdbc, root, pwd);
+			System.out.println("db 연결 성공");
+
+			PreparedStatement stat = conn.prepareStatement(query);
+			stat.executeUpdate();
+			System.out.println("실행완료");
+//			rsmd = rs.getMetaData();
+
+			stat.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
 	public void dml(String query) {
 		try {
 			conn = DriverManager.getConnection(jdbc,root,pwd);
@@ -111,3 +138,4 @@ public class db {
 		}
 	}
 }
+                                                                      

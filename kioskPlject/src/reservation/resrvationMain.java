@@ -29,32 +29,32 @@ public class resrvationMain {
 	ImageIcon icon;
 	public static String seatnum = "";
 	public static JButton btn_seat;
-	Component[] mainC;
 	private static JFrame frame;
+	Component[] mainC;
 	String rt = "";
 	// ++js modify
 	private JPanel container;
 	public static JPanel mainReservation;
 	public static JButton btn_pay;
-
+	private JButton home;
 	JPanel show;
 	// ++
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					resrvationMain window = new resrvationMain();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					resrvationMain window = new resrvationMain();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -63,23 +63,13 @@ public class resrvationMain {
 		initialize();
 	}
 
-	public resrvationMain(JFrame frame, String rt) {
+	public resrvationMain(String rt, JFrame frame ,JPanel show) {
 		this.frame = frame;
 		this.rt=rt;
+		this.show=show;
 //		setFrame(frame);
 		initialize();
 	}
-
-//	public resrvationMain(String rt, mainPanel mainP) {
-//		this.rt = rt;
-//		this.mainReservation = mainP;
-//		initialize();
-//	}
-
-//	public resrvationMain(String rt) {
-//		this.rt = rt;
-//		initialize();
-//	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -88,7 +78,7 @@ public class resrvationMain {
 		if (!rt.equals("re")) {
 			System.out.println("re 아니다 ");
 			frame = new JFrame();
-			frame.setBounds(100, 0, 720, 1080);
+			frame.setBounds(10, 0, 720, 1080);
 //			setFrame(frame);						
 		}
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Image/CODERIUM_Icon.png"));
@@ -98,11 +88,12 @@ public class resrvationMain {
 		// exit 버튼 누를 시 현재 창만 종료됨
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
+//		frame.setResizable(false);
 //		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+//		frame.getContentPane().setLayout(null);
 
 		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
+		
 		mainReservation = new JPanel() {
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
@@ -127,7 +118,7 @@ public class resrvationMain {
 		LavelmainRe.setFont(new Font("티웨이_항공", Font.BOLD, 30));
 		LavelmainRe.setBounds(0, 0, 714, 110);
 		mainReservation.add(LavelmainRe);
-
+		
 		// 새로운 예약 버튼
 		JButton btn_newReservation = new JButton("새로운 예약");
 		btn_newReservation.setFont(new Font("티웨이_항공", Font.BOLD, 25));
@@ -144,6 +135,7 @@ public class resrvationMain {
 				// ++새로운 예약 버튼 클릭 시 현재 mainReservation 패널에 추가되어 있는 component들 지운 후
 				// createNew 함수 내 구현되어 있는 component들 add시킴!
 				mainReservation.removeAll();
+				frame.remove(home);
 				createNewRe(mainReservation);
 				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
 				mainReservation.repaint();
@@ -205,9 +197,10 @@ public class resrvationMain {
 
 			}
 		});
-
+		btn_home(mainReservation);
 		mainC = mainReservation.getComponents();
 		System.out.println("mainC count " + mainC.length);
+		
 		
 	}
 
@@ -217,9 +210,8 @@ public class resrvationMain {
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
-		frame.setType(Type.UTILITY);
-
 	}	
+	
 	public static void designBtn(JButton btn) {
 		btn.setContentAreaFilled(false);
 		btn.setBorderPainted(false);
@@ -228,26 +220,27 @@ public class resrvationMain {
 
 	public void createNewRe(JPanel panel) {
 
-		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
-
-		JPanel createNewRe = new JPanel() {
-			public void paintComponent(Graphics g) {
-				// Approach 1: Dispaly image at at full size
-				g.drawImage(icon.getImage(), 0, 0, null);
-				// Approach 2: Scale image to size of component
-				// Dimension d = getSize();
-				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-				// Approach 3: Fix the image position in the scroll pane
-				// Point p = scrollPane.getViewport().getViewPosition();
-				// g.drawImage(icon.getImage(), p.x, p.y, null);
-				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
-				super.paintComponent(g);
-			}
-		};
-		createNewRe.setBounds(0, 0, 714, 1051);
-		frame.getContentPane().add(createNewRe);
-		createNewRe.setLayout(null);
-		createNewRe.setVisible(false);
+//		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
+//
+//		JPanel createNewRe = new JPanel() {
+//			public void paintComponent(Graphics g) {
+//				// Approach 1: Dispaly image at at full size
+//				g.drawImage(icon.getImage(), 0, 0, null);
+//				// Approach 2: Scale image to size of component
+//				// Dimension d = getSize();
+//				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+//				// Approach 3: Fix the image position in the scroll pane
+//				// Point p = scrollPane.getViewport().getViewPosition();
+//				// g.drawImage(icon.getImage(), p.x, p.y, null);
+//				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+//				super.paintComponent(g);
+//			}
+//		};
+//		createNewRe.setBounds(0, 0, 714, 1051);
+////		frame.getContentPane().add(createNewRe);
+//		panel.add(createNewRe);
+//		createNewRe.setLayout(null);
+//		createNewRe.setVisible(false);
 
 		JLabel LavelnewRe = new JLabel("새로운 예약");
 		LavelnewRe.setHorizontalAlignment(SwingConstants.CENTER);
@@ -315,9 +308,7 @@ public class resrvationMain {
 //		btn_pay.setBorder(new LineBorder(Color.BLUE));
 		btn_pay.setFocusPainted(false);
 		btn_pay.setOpaque(false);
-//		if(seatnum.equals("좌석 선택")) {
 		btn_pay.setEnabled(false);
-//		}
 		panel.add(btn_pay);
 		// 결제창으로 이동하는 actionlistener필요
 
@@ -341,58 +332,59 @@ public class resrvationMain {
 				String prodName = rd.getProd();
 				String price = rd.getPrice();
 				String seatN = btn_seat.getText();
-				payment p = new payment(seatN.substring(0, seatN.length() - 4), getFrame(), "reserv", prodName, price,
-						stdDate, panel);
+				payment p = new payment(seatN.substring(0, seatN.length() - 4), getFrame(), 
+						"reserv", prodName, price,stdDate, show);
 				p.getFrame().setVisible(true);
 				// ++
 			}
 
 		});
 
-		JButton btn_back = new JButton("\uB4A4\uB85C");
-		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-		btn_back.setBounds(558, 0, 158, 110);
-		btn_back.setContentAreaFilled(false);
-		btn_back.setBorderPainted(false);
-		btn_back.setFocusPainted(false);
-		panel.add(btn_back);
-		btn_back.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				// ++뒤로가기 버튼 구현
-				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
-				// 저장해놓은 mainC add시킴!
-				panel.removeAll();
-				for (int i = 0; i < mainC.length; i++) {
-					panel.add(mainC[i]);
-				}
-				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
-				panel.repaint();
-			}
-		});
+		btn_back(panel,home);
+//		JButton btn_back = new JButton("\uB4A4\uB85C");
+//		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
+//		btn_back.setBounds(558, 0, 158, 110);
+//		btn_back.setContentAreaFilled(false);
+//		btn_back.setBorderPainted(false);
+//		btn_back.setFocusPainted(false);
+//		panel.add(btn_back);
+//		btn_back.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//
+//				// ++뒤로가기 버튼 구현
+//				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
+//				// 저장해놓은 mainC add시킴!
+//				panel.removeAll();
+//				for (int i = 0; i < mainC.length; i++) {
+//					panel.add(mainC[i]);
+//				}
+//				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
+//				panel.repaint();
+//			}
+//		});
 
 	}
 
 	public void checkRe(JPanel panel) {
-		JPanel checkRe = new JPanel() {
-			public void paintComponent(Graphics g) {
-				// Approach 1: Dispaly image at at full size
-				g.drawImage(icon.getImage(), 0, 0, null);
-				// Approach 2: Scale image to size of component
-				// Dimension d = getSize();
-				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-				// Approach 3: Fix the image position in the scroll pane
-				// Point p = scrollPane.getViewport().getViewPosition();
-				// g.drawImage(icon.getImage(), p.x, p.y, null);
-				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
-				super.paintComponent(g);
-			}
-		};
-		checkRe.setBounds(0, 0, 714, 1051);
-		frame.getContentPane().add(checkRe);
-		checkRe.setLayout(null);
-		checkRe.setVisible(false);
+//		JPanel checkRe = new JPanel() {
+//			public void paintComponent(Graphics g) {
+//				// Approach 1: Dispaly image at at full size
+//				g.drawImage(icon.getImage(), 0, 0, null);
+//				// Approach 2: Scale image to size of component
+//				// Dimension d = getSize();
+//				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+//				// Approach 3: Fix the image position in the scroll pane
+//				// Point p = scrollPane.getViewport().getViewPosition();
+//				// g.drawImage(icon.getImage(), p.x, p.y, null);
+//				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+//				super.paintComponent(g);
+//			}
+//		};
+//		checkRe.setBounds(0, 0, 714, 1051);
+//		frame.getContentPane().add(checkRe);
+//		checkRe.setLayout(null);
+//		checkRe.setVisible(false);
 
 		JPanel selectRe = new selectRe(panel);
 		selectRe.setBounds(230, 300, 500, 600);
@@ -425,55 +417,56 @@ public class resrvationMain {
 			}
 		});
 
-		JButton btn_back = new JButton("\uB4A4\uB85C");
-		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-		btn_back.setBounds(558, 0, 158, 110);
-
-		btn_back.setContentAreaFilled(false);
-		btn_back.setBorderPainted(false);
-		btn_back.setFocusPainted(false);
-		panel.add(btn_back);
-		btn_back.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-//				mainReservation.setVisible(true);
-//				newReservation.setVisible(false);
-//				checkReservation.setVisible(false);
-//				cancelReservation.setVisible(false);
-
-				// ++뒤로가기 버튼 구현
-				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
-				// 저장해놓은 mainC add시킴!
-				panel.removeAll();
-				for (int i = 0; i < mainC.length; i++) {
-					panel.add(mainC[i]);
-				}
-				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
-				panel.repaint();
-			}
-		});
+		btn_back(panel,home);
+//		JButton btn_back = new JButton("\uB4A4\uB85C");
+//		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
+//		btn_back.setBounds(558, 0, 158, 110);
+//
+//		btn_back.setContentAreaFilled(false);
+//		btn_back.setBorderPainted(false);
+//		btn_back.setFocusPainted(false);
+//		panel.add(btn_back);
+//		btn_back.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+////				mainReservation.setVisible(true);
+////				newReservation.setVisible(false);
+////				checkReservation.setVisible(false);
+////				cancelReservation.setVisible(false);
+//
+//				// ++뒤로가기 버튼 구현
+//				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
+//				// 저장해놓은 mainC add시킴!
+//				panel.removeAll();
+//				for (int i = 0; i < mainC.length; i++) {
+//					panel.add(mainC[i]);
+//				}
+//				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
+//				panel.repaint();
+//			}
+//		});
 
 	}
 
 	public void cancelRe(JPanel panel) {
-		JPanel cancelRe = new JPanel() {
-			public void paintComponent(Graphics g) {
-				// Approach 1: Dispaly image at at full size
-				g.drawImage(icon.getImage(), 0, 0, null);
-				// Approach 2: Scale image to size of component
-				// Dimension d = getSize();
-				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-				// Approach 3: Fix the image position in the scroll pane
-				// Point p = scrollPane.getViewport().getViewPosition();
-				// g.drawImage(icon.getImage(), p.x, p.y, null);
-				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
-				super.paintComponent(g);
-			}
-		};
-		cancelRe.setBounds(0, 0, 714, 1051);
-		frame.getContentPane().add(cancelRe);
-		cancelRe.setLayout(null);
-		cancelRe.setVisible(false);
+//		JPanel cancelRe = new JPanel() {
+//			public void paintComponent(Graphics g) {
+//				// Approach 1: Dispaly image at at full size
+//				g.drawImage(icon.getImage(), 0, 0, null);
+//				// Approach 2: Scale image to size of component
+//				// Dimension d = getSize();
+//				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+//				// Approach 3: Fix the image position in the scroll pane
+//				// Point p = scrollPane.getViewport().getViewPosition();
+//				// g.drawImage(icon.getImage(), p.x, p.y, null);
+//				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+//				super.paintComponent(g);
+//			}
+//		};
+//		cancelRe.setBounds(0, 0, 714, 1051);
+//		frame.getContentPane().add(cancelRe);
+//		cancelRe.setLayout(null);
+//		cancelRe.setVisible(false);
 
 		JLabel LavelcancelRe = new JLabel("예약 취소");
 		LavelcancelRe.setHorizontalAlignment(SwingConstants.CENTER);
@@ -505,7 +498,55 @@ public class resrvationMain {
 
 			}
 		});
+		btn_back(panel,home);
+//		JButton btn_back = new JButton("\uB4A4\uB85C");
+//		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
+//		btn_back.setBounds(558, 0, 158, 110);
+//		btn_back.setContentAreaFilled(false);
+//		btn_back.setBorderPainted(false);
+//		btn_back.setFocusPainted(false);
+//		panel.add(btn_back);
+//		btn_back.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+////				mainReservation.setVisible(true);
+////				newReservation.setVisible(false);
+////				checkReservation.setVisible(false);
+////				cancelReservation.setVisible(false);
+//
+//				// ++뒤로가기 버튼 구현
+//				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
+//				// 저장해놓은 mainC add시킴!
+//				panel.removeAll();
+//				for (int i = 0; i < mainC.length; i++) {
+//					panel.add(mainC[i]);
+//				}
+//				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
+//				panel.repaint();
+//			}
+//		});
 
+	}
+	
+	public void btn_home(JPanel panel) {
+		//++js modify
+		home = new JButton(new ImageIcon("./src/image/home_btn.png"));
+		home.setBounds(600, 50, 48, 48);
+		designBtn(home);
+		panel.add(home);
+		
+		// 홈버튼 클릭시
+		home.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.remove(mainReservation);
+				show.setVisible(true);
+			}
+		});
+		//++
+	}
+	
+	public void btn_back(JPanel panel, JButton btn) {
 		JButton btn_back = new JButton("\uB4A4\uB85C");
 		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
 		btn_back.setBounds(558, 0, 158, 110);
@@ -528,18 +569,11 @@ public class resrvationMain {
 				for (int i = 0; i < mainC.length; i++) {
 					panel.add(mainC[i]);
 				}
+				btn_home(panel);
 				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
 				panel.repaint();
 			}
 		});
-
 	}
 
-	public JPanel getMainReserv() {
-		return mainReservation;
-	}
-
-	public void setMainReserv(JPanel mainReservation) {
-		this.mainReservation = mainReservation;
-	}
 }

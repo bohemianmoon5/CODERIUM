@@ -8,9 +8,11 @@ import javax.swing.JFrame;
 
 public class windowEvent {
 	JFrame f;
+	JFrame pf;
 	public static Component[] com;
-	public windowEvent(JFrame f) {
+	public windowEvent(JFrame f,JFrame pf) {
 		this.f=f;
+		this.pf=pf;
 	}
 	
 	public static void setComponent(Component[] c) {
@@ -35,9 +37,10 @@ public class windowEvent {
 			// 결제 창이 닫히면 main 패널에 있는 자식 component 활성화
 			public void windowClosed(WindowEvent e) {
 				System.out.println("꺼졌다");
-				for (int i = 0; i < com.length; i++) {
-					com[i].setEnabled(true);
-				}
+				System.out.println(pf.getBounds());
+				pf.dispose();
+//				pf.setVisible(false);
+				System.out.println("꺼졋당 ");
 			}
 
 			@Override

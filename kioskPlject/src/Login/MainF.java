@@ -15,7 +15,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import main.pay.data.db;
 
 public class MainF extends JFrame implements ActionListener{
 	
@@ -38,7 +42,7 @@ public class MainF extends JFrame implements ActionListener{
 	ImagePanel connect = new ImagePanel(new ImageIcon("./src/Image/12.png").getImage());
 	
 	ArrayList<String> list = new ArrayList<String>();
-	public static Component[] con;
+	public static String user ="";
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -54,13 +58,19 @@ public class MainF extends JFrame implements ActionListener{
 	}
 	
 	public MainF() {
-		
+		String form = "yyyy/MM/dd/HH:mm";
+		SimpleDateFormat s = new SimpleDateFormat(form);
+		Date now = new Date();
+		db d = new db();
+		d.delete("paydata", s.format(now));
 		frame = new JFrame();
 		frame.setBounds(100, 0, 720, 1080);
 		frame.getContentPane().add(ShowUp);
 		setFrame(frame);
 		setShowUp(ShowUp);
-		
+
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 		// 메인 버튼
 		Main_clickMe = new JButton("<HTML><body><center>All dreamers are here!<br>[Click Me]</center></body></HTML>");
 		Main_clickMe.setIcon(new ImageIcon("./src/Image/메인_버튼.png"));
@@ -118,11 +128,7 @@ public class MainF extends JFrame implements ActionListener{
 		connect.add(connectP.SeatChange);
 		connect.add(connectP.In);
 		connect.add(connectP.Out);
-
-		//++js modify
-		con = connectP.Connect.getComponents();
-		//++
-		
+	
 		ShowUp.add(connectP.Connect);
 		
 	}
@@ -186,6 +192,7 @@ public class MainF extends JFrame implements ActionListener{
 					if(rs.next()) {
 						welcomePage = new WelcomePage();
 						welcomePage.welcomeLabel.setText("안녕하세요! " + txt(userID) + "님");
+						user = txt(userID);
 						switchPanels(connect);
 						connect.setVisible(true);
 						offFrame(welcomePage.frame);

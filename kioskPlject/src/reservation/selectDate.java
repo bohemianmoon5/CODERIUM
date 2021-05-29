@@ -87,7 +87,7 @@ public class selectDate extends JPanel implements ActionListener{
 //        timelist.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4","5","6","7","8","9","10","11","12"
 //        		,"13", "14", "15", "16","17","18","19","20","21","22","23","24",}));
         timelist.setFont(new Font("티웨이_항공", Font.BOLD, 20));
-        timelist.setBounds(119, 5, 153, 45);
+        timelist.setBounds(364, 12, 53, 23);
         
         
         add(yearBox);

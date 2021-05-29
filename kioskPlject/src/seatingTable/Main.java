@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Login.MainF;
-import Login.swing_LoginPage;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,21 +24,20 @@ public class Main {
 	public static Component[] Main_p;
 	private static Component[] Sub_p;
 	JButton home;
-	swing_LoginPage sl = new swing_LoginPage();
 	JPanel show;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main window = new Main(null);
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Main window = new Main(null);
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	public Main() {
 		initialize();

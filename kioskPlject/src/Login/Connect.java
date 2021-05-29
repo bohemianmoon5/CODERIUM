@@ -58,8 +58,10 @@ public class Connect {
 		SeatChange.setFont(new Font("twayair", Font.PLAIN, 16));
 
 		todayEvent(Today);
+		changeEvent(SeatChange,MainF.user);
 		reservEvent(Reservation);
 	}
+
 
 	public void todayEvent(JButton btn) {
 		btn.addActionListener(new ActionListener() {
@@ -69,18 +71,41 @@ public class Connect {
 				int result = JOptionPane.showConfirmDialog(null, "바로 사용하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					panel.setVisible(false);
-					db d = new db();
-					d.dml("update paydata set seatNum = null where id = 'wonho33';");
-					System.out.println("좌석이 초기화 되었습니다.!");
+//					if (Main.t.equals("now")) {
+//						System.out.println("다시 돌아가");
+//						for (int i = 0; i < Main.Main_p.length; i++) {
+//							Main.main_panel.add(Main.Main_p[i]);
+//						}
+//						frame.add(Main.main_panel);
+//					} else {
+						Main m = new Main("now", frame, panel);
+//					}
 				}
-				if (Main.t.equals("now")) {
-					System.out.println("다시 돌아가");
-					for (int i = 0; i < Main.Main_p.length; i++) {
-						Main.main_panel.add(Main.Main_p[i]);
+			}
+		});
+	}
+
+	
+	public void changeEvent(JButton btn,String user) {
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("번호 들어간다");
+				int result = JOptionPane.showConfirmDialog(null, "자리를 변경하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					panel.setVisible(false);
+					db d = new db();
+					d.dml("update paydata set seatNum = null where id = '"+user+"';");
+					System.out.println("좌석이 초기화 되었습니다.!");
+					if (Main.t.equals("now")) {
+						System.out.println("다시 돌아가");
+						for (int i = 0; i < Main.Main_p.length; i++) {
+							Main.main_panel.add(Main.Main_p[i]);
+						}
+						frame.add(Main.main_panel);
+					} else {
+						Main m = new Main("now", frame, panel);
 					}
-					frame.add(Main.main_panel);
-				} else {
-					Main m = new Main("now", frame, panel);
 				}
 			}
 		});
@@ -94,9 +119,13 @@ public class Connect {
 				int result = JOptionPane.showConfirmDialog(null, "예약하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					panel.setVisible(false);
+					resrvationMain rm = new resrvationMain("re",frame ,panel);
 				}
-				resrvationMain rm = new resrvationMain(frame, "re");
 			}
 		});
+	}
+	
+	public void in() {
+		
 	}
 }

@@ -12,20 +12,18 @@ public class storeData {
 	String seat;
 	String payT;
 	String sTime;
-	String uTime;
 	String eTime;
 	String product;
 	String price;
 	String type;
 	String menuType;
 
-	public storeData(String id,String seat, String payT,String sTime, String uTime,String eTime, 
+	public storeData(String id,String seat, String payT,String sTime,String eTime, 
 			String product, String price, String type,String menuType) {
 		this.id=id;
 		this.seat = seat;
 		this.payT=payT;
 		this.sTime = sTime;
-		this.uTime = uTime;
 		this.eTime = eTime;
 		this.product = product;
 		this.price = price;
@@ -35,7 +33,7 @@ public class storeData {
 	
 	public void store() {
 		db newD = new db();		
-		newD.insert(id,seat,payT ,sTime, uTime, eTime, product, price, type,menuType);
+		newD.insert(id,seat,payT ,sTime, eTime, product, price, type,menuType);
 	}
 
 }

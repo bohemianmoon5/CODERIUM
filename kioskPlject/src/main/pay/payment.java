@@ -31,7 +31,6 @@ import javax.swing.border.Border;
 import javax.swing.JCheckBox;
 
 import Login.MainF;
-import Login.swing_LoginPage;
 import main.pay.done;
 import main.pay.component.fighting;
 import main.pay.component.nextBtn;
@@ -45,6 +44,7 @@ import main.pay.panel.cashPanel;
 import main.pay.panel.detailPanel;
 import reservation.resrvationMain;
 //import seatingTable.Main_swing;
+import seatingTable.Main;
 
 import java.awt.SystemColor;
 
@@ -78,7 +78,7 @@ public class payment {
 
 	// reserv에서 가져온 데이터
 	private String reservStart = "";
-	private JPanel reservPanel;
+	private JPanel show;
 
 	Color background = new Color(255, 255, 255);
 	Color btnC = new Color(206, 237, 222);
@@ -95,14 +95,17 @@ public class payment {
 		initialize();
 	}
 
-	public payment(String num, JFrame prevF, String type, String prod, String price, String start, JPanel reservPanel) {
+	public payment(String num, JFrame prevF, String type, 
+			String prod, String price, String start, JPanel show) {
 		this.seatN = num;
-		this.prevF = prevF;
+//		this.prevF = Main.getFrame();
+		this.prevF=prevF;
 		this.menuType = type;
 		reservStart = start;
 		setProduct(prod);
 		setPrice(price);
-		this.reservPanel = reservPanel;
+		this.show=show;
+//		this.reservPanel = reservPanel;
 		initialize();
 	}
 
@@ -465,8 +468,14 @@ public class payment {
 		d.getFrame().dispose();
 		getFrame().dispose();
 		prevF.dispose();
+		
+//		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		d.getFrame().dispose();
+//		getFrame().dispose();
+		
 		// 응원문구 패널 생성
 		test();
+//		test2();
 //		fightingPan();
 //		mainPanel();
 		modiData md = new modiData();
@@ -476,14 +485,12 @@ public class payment {
 		String stEnd = md.end(stStart, getProduct());
 		String stPro = md.modiPro(getProduct());
 		String stPri = md.modiPri(getPrice());
-		String stUse = md.use(getProduct());
 
-		storeData sData = new storeData(swing_LoginPage.user,stSeat, payTime, stStart, stUse, stEnd, stPro, stPri, type, menuType);
+		storeData sData = new storeData(MainF.user,stSeat, payTime, stStart, stEnd, stPro, stPri, type, menuType);
 		sData.store();
 	}
 
 	public void test() {
-		prevF.dispose();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -500,6 +507,14 @@ public class payment {
 		});
 	}
 
+	public void test2() {
+		System.out.println("1 " +show.getComponentCount());
+		resrvationMain.mainReservation.setVisible(false);
+		show.setVisible(false);
+		fightingPan(show);
+		System.out.println("2 "+show.getComponentCount());
+	}
+	
 	// ++수정 필요한 부분
 	public void fightingPan(JPanel panel) {
 		// Main 페이지 내 패널 안에 있는 구성 요소 삭제
