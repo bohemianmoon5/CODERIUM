@@ -128,7 +128,7 @@ public class MainF extends JFrame implements ActionListener{
 		first = ShowUp.getComponents();
 		System.out.println(first.length);
 		// 연결 패널 
-		connectP = new Connect(frame,ShowUp,first);
+		connectP = new Connect(frame,ShowUp,first,login.userIDField,login.userPasswordField,s.format(now));
 		connectP.Connect.add(connect);
 		connect.add(connectP.Today);
 		connect.add(connectP.Reservation);

@@ -9,8 +9,8 @@ public class modiData {
 	public modiData() {
 	}
 	// 시작시간~끝시간에 대한 보여지는 시간 형식 지정
-	
-	//현재 시간 반환
+
+	// 현재 시간 반환
 	public String start() {
 		Date date = new Date();
 		String format = "YYYY/MM/dd/HH:mm";
@@ -21,15 +21,15 @@ public class modiData {
 	}
 
 	// 끝 시간 반환
-	public String end(String start,String product) {
+	public String end(String start, String product) {
 		String formatTime = "";
 		String a = start;
 		String form = "yyyy/MM/dd/HH:mm";
 		SimpleDateFormat s = new SimpleDateFormat(form);
-		Date now= new Date();
+		Date now = new Date();
 		if (product.contains("시간")) {
 			try {
-				now = s.parse(a);	
+				now = s.parse(a);
 				int productTime = Integer.parseInt(product.substring(0, product.length() - 2));
 				Calendar c = Calendar.getInstance();
 				c.setTime(now);
@@ -45,11 +45,11 @@ public class modiData {
 
 		} else {
 			try {
-				now = s.parse(a);		
+				now = s.parse(a);
 				int productDay = Integer.parseInt(product.substring(0, product.length() - 2));
 				Calendar c = Calendar.getInstance();
 				c.setTime(now);
-				c.add(Calendar.DATE, productDay*7);
+				c.add(Calendar.DATE, productDay * 7);
 				String format = "YYYY/MM/dd/HH:mm";
 				SimpleDateFormat sd = new SimpleDateFormat(format);
 				String end = sd.format(c.getTime());
@@ -93,5 +93,27 @@ public class modiData {
 			pri = price.substring(0, price.length() - 1) + "won";
 		}
 		return pri;
+	}
+
+	public boolean confirmTime(String std,String date) {
+		boolean bool = false;
+		String a = std;
+		String b = date;
+		String form = "yyyy/MM/dd/HH:mm";
+		SimpleDateFormat s = new SimpleDateFormat(form);
+		Date now = new Date();
+		Date day = new Date();
+		try {
+			now = s.parse(a);
+			day = s.parse(b);
+			long compare = day.getTime()-now.getTime();
+			if(compare >= 0) {
+				bool=true;
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bool;
 	}
 }

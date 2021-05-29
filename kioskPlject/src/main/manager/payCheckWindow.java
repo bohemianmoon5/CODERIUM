@@ -85,7 +85,7 @@ public class payCheckWindow {
 		table.setAlignmentX(SwingConstants.CENTER);
 		table.setBounds(30, 57, 615, 854);
 		table.setFont(new Font(font, Font.PLAIN, 13));
-		// table ��� ����
+		
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 		dtcr.setHorizontalAlignment(SwingConstants.CENTER);
 		TableColumnModel tcm = table.getColumnModel();
@@ -109,6 +109,7 @@ public class payCheckWindow {
 
 	int total = 0;
 
+	//결제 총금액 
 	String sum(JTable t, int max) {
 		for (int i = 0; i < max; i++) {
 			String tmp = t.getValueAt(i, 2).toString();

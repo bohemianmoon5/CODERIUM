@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,9 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import main.pay.component.fighting;
 import main.pay.data.db;
+import main.pay.data.modiData;
 import reservation.resrvationMain;
 import seatingTable.Main;
 
@@ -30,16 +34,22 @@ public class Connect {
 	JButton SeatChange = new JButton("자리바꾸기");
 	String font = "twayair";
 	Component[] first;
+	JTextField loginId;
+	JTextField loginPwd;
+	String now="";
 
 	public Connect() {
 
 	}
 
-	public Connect(JFrame frame, JPanel panel, Component[] first) {
+	public Connect(JFrame frame, JPanel panel, Component[] first,
+			JTextField loginId, JTextField loginPwd,String now) {
 		this.frame = frame;
 		this.panel = panel;
 		this.first = first;
-
+		this.loginId = loginId;
+		this.loginPwd = loginPwd;
+		this.now=now;
 		Connect.setBounds(0, 0, 720, 1080);
 		Connect.setLayout(null);
 		Connect.setToolTipText("");
@@ -66,39 +76,31 @@ public class Connect {
 		SeatChange.setBounds(280, 330, 164, 56);
 		SeatChange.setFont(new Font(font, Font.PLAIN, 16));
 
-		todayEvent(Today);
-		changeEvent(SeatChange);
+		seatEvent(Today,"now");
+		seatEvent(SeatChange,"change");
 		inEvent(In);
 		reservEvent(Reservation);
 	}
 
-	public void todayEvent(JButton btn) {
+	public void seatEvent(JButton btn, String menuType) {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("번호 들어간다");
-				int result = JOptionPane.showConfirmDialog(null, "바로 사용하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
-				if (result == JOptionPane.YES_OPTION) {
-					panel.setVisible(false);
-					Main m = new Main("now", frame, panel);
+				String str = "";
+				if(menuType.equals("now")) {
+					str = "바로 사용하시겠습니까?";
+				}else {
+					str = "자리를 변경하시겠습니까?";
 				}
-			}
-		});
-	}
-
-	public void changeEvent(JButton btn) {
-		btn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("번호 들어간다");
-				int result = JOptionPane.showConfirmDialog(null, "자리를 변경하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, str, "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					panel.setVisible(false);
-					db d = new db();
-					d.dml("update paydata set SeatNum = null where id = '" + MainF.user + "';");
-					System.out.println("update paydata set SeatNum = null where id = '" + MainF.user + "';");
-					System.out.println("좌석이 초기화 되었습니다.!");
-					Main m = new Main("now", frame, panel);
+					if(!menuType.equals("today")) {
+						db d = new db();
+						d.dml("update paydata set SeatNum = null where id = '" + MainF.user + "';");	
+					}
+					Main m = new Main(menuType, frame, panel);
 				}
 			}
 		});
@@ -118,13 +120,67 @@ public class Connect {
 		});
 	}
 
+//	public void inEvent(JButton btn) {
+//		btn.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				System.out.println("입실 들어간다");
+//				int result = JOptionPane.showConfirmDialog(null, "입실하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+//				if (result == JOptionPane.YES_OPTION) {
+//					for (int i = 0; i < panel.getComponentCount(); i++) {
+//						panel.getComponent(i).setVisible(false);
+//					}
+//					for (int i = 0; i < first.length; i++) {
+//						panel.add(first[i]);
+//					}
+//					for (int i = 0; i < panel.getComponentCount(); i++) {
+//						if (panel.getComponent(i).toString().contains("Button")) {
+//							panel.getComponent(i).setVisible(true);
+//						}else {
+//							panel.getComponent(i).setVisible(false);							
+//						}
+//					}
+//					MainF.user="";
+//					loginId.setText("");
+//					loginPwd.setText("");
+//				}
+//			}
+//		});
+//	}
 	public void inEvent(JButton btn) {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> data = new ArrayList<String>();
 				System.out.println("입실 들어간다");
+				String condition="";
 				int result = JOptionPane.showConfirmDialog(null, "입실하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
+					db d = new db();
+					data = d.select("*","paydata WHERE Id='"+MainF.user+"' AND StartTime IS NOT NULL AND StartTime<='"+now+"' AND EndTime>='"+now+"'");
+					modiData md = new modiData();
+					
+//					for(int i=0; i<ID.size();i++) {
+//						if(ID.get(i).equals(MainF.user)) {
+//							condition="ALL";
+//							System.out.println("condition "+condition);
+//						}
+//					}
+//					for(String s : startTime) {
+//						System.out.println(md.confirmTime(s,now));
+//						if(!s.equals(null) && md.confirmTime(now,s)) {
+//							condition+="O";
+//							System.out.println("condition "+condition);
+//						}
+//					}
+//					for(String s : endTime) {
+//						System.out.println(md.confirmTime(now,s));
+//						if(md.confirmTime(s, now)) {
+//							condition+="K";
+//							System.out.println("condition "+condition);
+//						}
+//					}
+//					System.out.println("condition "+condition);
 					for (int i = 0; i < panel.getComponentCount(); i++) {
 						panel.getComponent(i).setVisible(false);
 					}
@@ -139,6 +195,8 @@ public class Connect {
 						}
 					}
 					MainF.user="";
+					loginId.setText("");
+					loginPwd.setText("");
 				}
 			}
 		});

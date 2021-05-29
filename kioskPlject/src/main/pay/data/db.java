@@ -36,7 +36,7 @@ public class db {
 
 	public void insert(String id, String seat, String payT,String sTime, String eTime, String product, String price,
 			String payType, String menuType) {
-		String query = "insert into paydata value(\"" + id + "\",\"" + seat + "\",\""+payT +"\",\""+ sTime + "\",\"" 
+		String query = "INSERT INTO paydata VALUE(\"" + id + "\",\"" + seat + "\",\""+payT +"\",\""+ sTime + "\",\"" 
 			+ eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\""+ menuType +"\");";
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
@@ -53,7 +53,8 @@ public class db {
 	}
 
 	public ArrayList<String> select(String a, String tableName) {
-		String query = "select " + a + " from " + tableName + ";";
+		String query = "SELECT " + a + " FROM " + tableName + ";";
+		System.out.println(query);
 		ResultSet rs;
 		ArrayList<String> arr = new ArrayList<String>();
 		try {
@@ -64,7 +65,11 @@ public class db {
 			rs = stat.executeQuery(query);
 
 			while (rs.next()) {
-				arr.add(rs.getString(a));
+				if(!a.equals("*")) {
+					arr.add(rs.getString(a));					
+				}else {
+					arr.add(rs.getString(1)+"_"+rs.getString(4)+"_"+rs.getString(5));
+				}
 			}
 
 			stat.close();
@@ -74,10 +79,10 @@ public class db {
 		}
 		return arr;
 	}
-
+	
 	// column명 arr 반환
 	public ArrayList<String> colLookUp(String tableName) {
-		String query = "select * from " + tableName + ";";
+		String query = "SELECT * FROM " + tableName + ";";
 		ResultSet rs;
 		ResultSetMetaData rsmd;
 		ArrayList<String> arr = new ArrayList<String>();

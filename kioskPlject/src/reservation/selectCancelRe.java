@@ -13,71 +13,68 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
 
-public class selectRe extends JPanel implements ActionListener{
+public class selectCancelRe extends JPanel implements ActionListener{
 	JPanel panel = new JPanel();
 
 	private String font = "Ƽ����_�װ�";
-	JRadioButton check[] = new JRadioButton[3];
-	String check_name[] = {"1.","2.","3."};
+	JRadioButton cancel[] = new JRadioButton[3];
+	String cancel_name[] = {"1.","2.","3."};
 //	JRadioButton rdbtnNewRadioButton = new JRadioButton();
 //	JRadioButton rdbtnNewRadioButton_1 = new JRadioButton();
 //	JRadioButton rdbtnNewRadioButton_2 = new JRadioButton();
 
 	
-	public selectRe(JPanel panel) {
+
+	public selectCancelRe(JPanel panel) {
 		setLayout(null);
 		
 		ButtonGroup group = new ButtonGroup();
         for(int i=0; i<3; i++){
-        	check[i] = new JRadioButton(check_name[i]);
-        	if(check_name[i] == null)
+        	 cancel[i] = new JRadioButton(cancel_name[i]);
+        	 if(cancel_name[i] == null)
         		continue;
-             group.add(check[i]);
-             check[i].addActionListener(this);
-             check[i].setBounds(57, 55, 166, 41);
-             check[i].setFocusPainted(false);
-             check[i].setBorderPainted(false);
-             check[i].setContentAreaFilled(false);
-             check[i].setFont(new Font("Ƽ����_�װ�", Font.BOLD, 30));
-             if(check[i] == check[0]) { 
-            	 check[i].setBounds(57, 55, 166, 41);
-             }else if(check[i] == check[1]) { 
-            	 check[i].setBounds(57, 225, 166, 41);
-             }else if(check[i] == check[2]) {
-            	 check[i].setBounds(57, 410, 166, 41);
+             group.add(cancel[i]);
+             cancel[i].addActionListener(this);
+             cancel[i].setBounds(57, 55, 166, 41);
+             cancel[i].setFocusPainted(false);
+             cancel[i].setBorderPainted(false);
+             cancel[i].setContentAreaFilled(false);
+             cancel[i].setFont(new Font("Ƽ����_�װ�", Font.BOLD, 30));
+             if(i == 0) { 
+            	 cancel[i].setBounds(57, 55, 166, 41);
+             }else if(i == 1) { 
+            	 cancel[i].setBounds(57, 225, 166, 41);
+             }else if(i == 2) {
+            	 cancel[i].setBounds(57, 410, 166, 41);
              }
-        	
-
-           add(check[i]);
+             cancel[i].addActionListener(this);
              
+           add(cancel[i]);
         }
+//        if(cancel[0] != null) { 
+//       	 cancel[0].setBounds(57, 55, 166, 41);
+//        }if(cancel[1] != null) { 
+//       	 cancel[1].setBounds(57, 225, 166, 41);
+//        }if(cancel[2] != null) {
+//       	 cancel[2].setBounds(57, 410, 166, 41);
+//        }
         
-        check[0].setSelected(false);
-        check[1].setSelected(true);
+        cancel[0].setSelected(false);
+        cancel[1].setSelected(true);
         
         
         setSize(252, 496);
+//		ButtonGroup group = new ButtonGroup();
+//        for(int i=0; i<3; i++){
+//        	reList[i] = new JRadioButton(radio_name[i]);
+//             group.add(reList[i]);
+//             panel.add(reList[i]);
+//             reList[i].addActionListener(this);
+//        }
         
-        //DB ���� Ŭ���� �ҷ���
-//        dbconnect();
+//        setSize(252, 496);
         
-      
-
-        
-//        JRadioButton selectRe = new JRadioButton();
-//        for (int i = 1; i < 4; i++) {
-//            rdbtnNewRadioButton.setBounds(57, 55, 166, 41);
-//            rdbtnNewRadioButton.setFocusPainted(false);
-//            rdbtnNewRadioButton.setBorderPainted(false);
-//            rdbtnNewRadioButton.setContentAreaFilled(false);
-//            rdbtnNewRadioButton.setFont(new Font("Ƽ����_�װ�", Font.BOLD, 30));
-//
-//            add(rdbtnNewRadioButton);
-//			
-//		}
-//        
-//        
-//        // 1������ �κп� �����ҷ����� �ʿ�
+        // 1������ �κп� �����ҷ����� �ʿ�
 //        JRadioButton rdbtnNewRadioButton = new JRadioButton("1�� ����");
 //        rdbtnNewRadioButton.setBounds(57, 55, 166, 41);
 //        rdbtnNewRadioButton.setFocusPainted(false);
@@ -113,34 +110,29 @@ public class selectRe extends JPanel implements ActionListener{
 //        rdbtnNewRadioButton_1.setSelected(false);
 //        rdbtnNewRadioButton_2.setSelected(false);
 //
-        panel.setLayout(null);
-        panel.setBackground(new Color(255,0,0));
-        panel.setOpaque(false);
+//        panel.setLayout(null);
+//        panel.setBackground(new Color(255,0,0));
+//        panel.setOpaque(false);
 //        
-//	
-//		
-//	}	
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		   String s = e.getActionCommand();
-//           
-//           if(s.equals(rdbtnNewRadioButton.getText())){
-//               JOptionPane.showMessageDialog(null,"���� ���� : "+rdbtnNewRadioButton.getText());
-//           }
-//           else if(s.equals(rdbtnNewRadioButton_1.getText())){
-//               JOptionPane.showMessageDialog(null,"���� ���� : "+rdbtnNewRadioButton_1.getText());
-//           }
-//           else if(s.equals(rdbtnNewRadioButton_2.getText())){
-//               JOptionPane.showMessageDialog(null,"���� ���� : "+rdbtnNewRadioButton_2.getText());
-//           }	
-	}
-
-
+	
+		
+	}	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		   String s = e.getActionCommand();
+           
+           if(s.equals(cancel[0].getText())){
+               JOptionPane.showMessageDialog(null,"���� ���� : "+cancel[0].getText());
+           }
+           else if(s.equals(cancel[1].getText())){
+               JOptionPane.showMessageDialog(null,"���� ���� : "+cancel[1].getText());
+           }
+           else if(s.equals(cancel[2].getText())){
+               JOptionPane.showMessageDialog(null,"���� ���� : "+cancel[2].getText());
+           }	
+
 	}
+	
 }
 	
 

@@ -78,7 +78,7 @@ public class resrvationMain {
 		if (!rt.equals("re")) {
 			System.out.println("re 아니다 ");
 			frame = new JFrame();
-			frame.setBounds(10, 0, 720, 1080);
+			frame.setBounds(100, 0, 720, 1080);
 //			setFrame(frame);						
 		}
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("./src/Image/CODERIUM_Icon.png"));
@@ -184,7 +184,6 @@ public class resrvationMain {
 		mainReservation.add(btn_cancelRe);
 		// 현재 예약 취소 패널로 옮기는 창 구현됨 => 예약 취소로 기존의 예약 회원 DB 좌석 DB 삭제 actionlistener 필요
 		btn_cancelRe.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// ++새로운 예약 버튼 구현
@@ -194,7 +193,6 @@ public class resrvationMain {
 				cancelRe(mainReservation);
 				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
 				mainReservation.repaint();
-
 			}
 		});
 		btn_home(mainReservation);
@@ -220,27 +218,27 @@ public class resrvationMain {
 
 	public void createNewRe(JPanel panel) {
 
-//		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
-//
-//		JPanel createNewRe = new JPanel() {
-//			public void paintComponent(Graphics g) {
-//				// Approach 1: Dispaly image at at full size
-//				g.drawImage(icon.getImage(), 0, 0, null);
-//				// Approach 2: Scale image to size of component
-//				// Dimension d = getSize();
-//				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-//				// Approach 3: Fix the image position in the scroll pane
-//				// Point p = scrollPane.getViewport().getViewPosition();
-//				// g.drawImage(icon.getImage(), p.x, p.y, null);
-//				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
-//				super.paintComponent(g);
-//			}
-//		};
-//		createNewRe.setBounds(0, 0, 714, 1051);
-////		frame.getContentPane().add(createNewRe);
-//		panel.add(createNewRe);
-//		createNewRe.setLayout(null);
-//		createNewRe.setVisible(false);
+		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
+
+		JPanel createNewRe = new JPanel() {
+			public void paintComponent(Graphics g) {
+				// Approach 1: Dispaly image at at full size
+				g.drawImage(icon.getImage(), 0, 0, null);
+				// Approach 2: Scale image to size of component
+				// Dimension d = getSize();
+				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+				// Approach 3: Fix the image position in the scroll pane
+				// Point p = scrollPane.getViewport().getViewPosition();
+				// g.drawImage(icon.getImage(), p.x, p.y, null);
+				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				super.paintComponent(g);
+			}
+		};
+		createNewRe.setBounds(0, 0, 714, 1051);
+//		frame.getContentPane().add(createNewRe);
+		frame.add(createNewRe);
+		createNewRe.setLayout(null);
+		createNewRe.setVisible(false);
 
 		JLabel LavelnewRe = new JLabel("새로운 예약");
 		LavelnewRe.setHorizontalAlignment(SwingConstants.CENTER);
@@ -367,24 +365,24 @@ public class resrvationMain {
 	}
 
 	public void checkRe(JPanel panel) {
-//		JPanel checkRe = new JPanel() {
-//			public void paintComponent(Graphics g) {
-//				// Approach 1: Dispaly image at at full size
-//				g.drawImage(icon.getImage(), 0, 0, null);
-//				// Approach 2: Scale image to size of component
-//				// Dimension d = getSize();
-//				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-//				// Approach 3: Fix the image position in the scroll pane
-//				// Point p = scrollPane.getViewport().getViewPosition();
-//				// g.drawImage(icon.getImage(), p.x, p.y, null);
-//				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
-//				super.paintComponent(g);
-//			}
-//		};
-//		checkRe.setBounds(0, 0, 714, 1051);
-//		frame.getContentPane().add(checkRe);
-//		checkRe.setLayout(null);
-//		checkRe.setVisible(false);
+		JPanel checkRe = new JPanel() {
+			public void paintComponent(Graphics g) {
+				// Approach 1: Dispaly image at at full size
+				g.drawImage(icon.getImage(), 0, 0, null);
+				// Approach 2: Scale image to size of component
+				// Dimension d = getSize();
+				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+				// Approach 3: Fix the image position in the scroll pane
+				// Point p = scrollPane.getViewport().getViewPosition();
+				// g.drawImage(icon.getImage(), p.x, p.y, null);
+				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				super.paintComponent(g);
+			}
+		};
+		checkRe.setBounds(0, 0, 714, 1051);
+		frame.getContentPane().add(checkRe);
+		checkRe.setLayout(null);
+		checkRe.setVisible(false);
 
 		JPanel selectRe = new selectRe(panel);
 		selectRe.setBounds(230, 300, 500, 600);
@@ -449,24 +447,24 @@ public class resrvationMain {
 	}
 
 	public void cancelRe(JPanel panel) {
-//		JPanel cancelRe = new JPanel() {
-//			public void paintComponent(Graphics g) {
-//				// Approach 1: Dispaly image at at full size
-//				g.drawImage(icon.getImage(), 0, 0, null);
-//				// Approach 2: Scale image to size of component
-//				// Dimension d = getSize();
-//				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-//				// Approach 3: Fix the image position in the scroll pane
-//				// Point p = scrollPane.getViewport().getViewPosition();
-//				// g.drawImage(icon.getImage(), p.x, p.y, null);
-//				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
-//				super.paintComponent(g);
-//			}
-//		};
-//		cancelRe.setBounds(0, 0, 714, 1051);
-//		frame.getContentPane().add(cancelRe);
-//		cancelRe.setLayout(null);
-//		cancelRe.setVisible(false);
+		JPanel cancelRe = new JPanel() {
+			public void paintComponent(Graphics g) {
+				// Approach 1: Dispaly image at at full size
+				g.drawImage(icon.getImage(), 0, 0, null);
+				// Approach 2: Scale image to size of component
+				// Dimension d = getSize();
+				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
+				// Approach 3: Fix the image position in the scroll pane
+				// Point p = scrollPane.getViewport().getViewPosition();
+				// g.drawImage(icon.getImage(), p.x, p.y, null);
+				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				super.paintComponent(g);
+			}
+		};
+		cancelRe.setBounds(0, 0, 714, 1051);
+		frame.getContentPane().add(cancelRe);
+		cancelRe.setLayout(null);
+		cancelRe.setVisible(false);
 
 		JLabel LavelcancelRe = new JLabel("예약 취소");
 		LavelcancelRe.setHorizontalAlignment(SwingConstants.CENTER);
@@ -474,12 +472,12 @@ public class resrvationMain {
 		LavelcancelRe.setBounds(0, 0, 714, 110);
 		panel.add(LavelcancelRe);
 
-		JPanel selectCanceRe = new selectCanceRe(panel);
-		selectCanceRe.setBounds(230, 300, 500, 600);
-		selectCanceRe.setBackground(new Color(255, 0, 0, 0));
-		selectCanceRe.setOpaque(false);
+		JPanel selectCancelRe = new selectCancelRe(panel);
+		selectCancelRe.setBounds(230, 300, 500, 600);
+		selectCancelRe.setBackground(new Color(255, 0, 0, 0));
+		selectCancelRe.setOpaque(false);
 		panel.setVisible(true);
-		panel.add(selectCanceRe);
+		panel.add(selectCancelRe);
 
 		// 선택한 예약 데이터 예약 취소 버튼
 		JButton btn_reCancel = new JButton("예약 취소");
@@ -492,7 +490,6 @@ public class resrvationMain {
 		panel.add(btn_reCancel);
 		// 선택한 예약 데이터 예약 취소
 		btn_reCancel.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -527,7 +524,18 @@ public class resrvationMain {
 //		});
 
 	}
-	
+//    public void delete(int id) {
+//        StringBuilder sb = new StringBuilder();
+//        String sql = sb.append("delete from " + table + " where id = ")
+//                .append(id)
+//                .append(";")
+//                .toString();
+//        try {
+//            stmt.executeUpdate(sql);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 	public void btn_home(JPanel panel) {
 		//++js modify
 		home = new JButton(new ImageIcon("./src/image/home_btn.png"));
