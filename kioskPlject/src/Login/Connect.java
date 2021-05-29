@@ -135,7 +135,7 @@ public class Connect {
 				if (result == JOptionPane.YES_OPTION) {
 					db d = new db();
 					//조건에 맞는 데이터 검색하여 저장
-					data = d.select("*","paydata WHERE Id='"+MainF.user+"' AND StartTime IS NOT NULL AND StartTime<='"+now+"' AND EndTime>='"+now+"'");
+					data = d.select("*","paydata WHERE Id='"+MainF.user+"' AND StartTime IS NOT NULL AND StartTime>='"+now+"' AND EndTime>='"+now+"'");
 					//조건에 맞는 데이터가 있으면 메인으로 돌아감
 					if(data.size()==1) {
 						for (int i = 0; i < panel.getComponentCount(); i++) {

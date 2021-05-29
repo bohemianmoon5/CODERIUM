@@ -31,7 +31,7 @@ import main.pay.data.db;
 
 public class MainF extends JFrame implements ActionListener{
 	
-	JFrame frame;
+	public static JFrame frame;
 	JButton Main_clickMe;
 	LogIn login;
 	NonMember nonMember;

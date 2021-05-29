@@ -467,6 +467,7 @@ public class payment {
 		d.getFrame().dispose();
 		getFrame().dispose();
 		prevF.dispose();
+		MainF.frame.dispose();
 
 //		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		d.getFrame().dispose();

@@ -63,10 +63,10 @@ public class resrvationMain {
 		initialize();
 	}
 
-	public resrvationMain(String rt, JFrame frame ,JPanel show) {
+	public resrvationMain(String rt, JFrame frame, JPanel show) {
 		this.frame = frame;
-		this.rt=rt;
-		this.show=show;
+		this.rt = rt;
+		this.show = show;
 //		setFrame(frame);
 		initialize();
 	}
@@ -93,7 +93,7 @@ public class resrvationMain {
 //		frame.getContentPane().setLayout(null);
 
 		icon = new ImageIcon("./src/Image/CODERIUM_Background.jpg");
-		
+
 		mainReservation = new JPanel() {
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
@@ -118,7 +118,7 @@ public class resrvationMain {
 		LavelmainRe.setFont(new Font("티웨이_항공", Font.BOLD, 30));
 		LavelmainRe.setBounds(0, 0, 714, 110);
 		mainReservation.add(LavelmainRe);
-		
+
 		// 새로운 예약 버튼
 		JButton btn_newReservation = new JButton("새로운 예약");
 		btn_newReservation.setFont(new Font("티웨이_항공", Font.BOLD, 25));
@@ -192,8 +192,7 @@ public class resrvationMain {
 		btn_home(mainReservation);
 		mainC = mainReservation.getComponents();
 		System.out.println("mainC count " + mainC.length);
-		
-		
+
 	}
 
 	public static JFrame getFrame() {
@@ -202,8 +201,8 @@ public class resrvationMain {
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
-	}	
-	
+	}
+
 	public static void designBtn(JButton btn) {
 		btn.setContentAreaFilled(false);
 		btn.setBorderPainted(false);
@@ -317,22 +316,24 @@ public class resrvationMain {
 				String year = Integer.parseInt(yearB) < 10 ? "0" + yearB : yearB;
 				String month = selectDate.monthBox.getSelectedItem().toString();
 				String day = selectDate.dayBox.getSelectedItem().toString();
-				String hour = selectDate.timelist.getSelectedItem().toString();
+				String hourTemp = selectDate.timelist.getSelectedItem().toString();
+				String hour = Integer.parseInt(hourTemp) < 10 ? "0" + hourTemp : hourTemp;
+				System.out.println(hour);
 				String stdDate = year + "/" + month + "/" + day + "/" + hour + ":00";
 				reservData rd = new reservData();
 				rd.modiProd(selectMenu.menuList.getSelectedItem().toString());
 				String prodName = rd.getProd();
 				String price = rd.getPrice();
 				String seatN = btn_seat.getText();
-				payment p = new payment(seatN.substring(0, seatN.length() - 4), getFrame(), 
-						"reserv", prodName, price,stdDate, show);
+				payment p = new payment(seatN.substring(0, seatN.length() - 4), getFrame(), "reserv", prodName, price,
+						stdDate, show);
 				p.getFrame().setVisible(true);
 				// ++
 			}
 
 		});
 
-		btn_back(panel,home);
+		btn_back(panel, home);
 	}
 
 	public void checkRe(JPanel panel) {
@@ -386,7 +387,7 @@ public class resrvationMain {
 			}
 		});
 
-		btn_back(panel,home);
+		btn_back(panel, home);
 	}
 
 	public void cancelRe(JPanel panel) {
@@ -438,7 +439,7 @@ public class resrvationMain {
 
 			}
 		});
-		btn_back(panel,home);
+		btn_back(panel, home);
 	}
 //    public void delete(int id) {
 //        StringBuilder sb = new StringBuilder();
@@ -452,15 +453,15 @@ public class resrvationMain {
 //            e.printStackTrace();
 //        }
 //    }
-	
-	//메뉴로 돌아가기 버튼 이벤트 구현
+
+	// 메뉴로 돌아가기 버튼 이벤트 구현
 	public void btn_home(JPanel panel) {
-		//++js modify
+		// ++js modify
 		home = new JButton(new ImageIcon("./src/image/home_btn.png"));
 		home.setBounds(600, 50, 48, 48);
 		designBtn(home);
 		panel.add(home);
-		
+
 		// 홈버튼 클릭시
 		home.addActionListener(new ActionListener() {
 			@Override
@@ -469,10 +470,10 @@ public class resrvationMain {
 				show.setVisible(true);
 			}
 		});
-		//++
+		// ++
 	}
-	
-	//뒤로 가기 이벤트 하나의 함수로 구현
+
+	// 뒤로 가기 이벤트 하나의 함수로 구현
 	public void btn_back(JPanel panel, JButton btn) {
 		JButton btn_back = new JButton("\uB4A4\uB85C");
 		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
