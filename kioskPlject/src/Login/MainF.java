@@ -44,6 +44,7 @@ public class MainF extends JFrame implements ActionListener{
 	
 	ArrayList<String> list = new ArrayList<String>();
 	//++js modify
+	//다시 메인 화면으로 돌아가기 위함
 	Component[] first;
 	//++
 	

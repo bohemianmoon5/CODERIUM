@@ -140,12 +140,6 @@ public class resrvationMain {
 				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
 				mainReservation.repaint();
 
-//				newReservation.setVisible(true);
-//				mainReservation.setVisible(false);
-//				checkReservation.setVisible(false);
-//				cancelReservation.setVisible(false);
-//				newReservation temp = new newReservation;
-
 //				btn_pay.setvisible(false);  => 결제 버튼 비활성화 활성화 하고 싶은데 순서가 문제다 고민해보자,,,!
 
 			}
@@ -339,29 +333,6 @@ public class resrvationMain {
 		});
 
 		btn_back(panel,home);
-//		JButton btn_back = new JButton("\uB4A4\uB85C");
-//		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-//		btn_back.setBounds(558, 0, 158, 110);
-//		btn_back.setContentAreaFilled(false);
-//		btn_back.setBorderPainted(false);
-//		btn_back.setFocusPainted(false);
-//		panel.add(btn_back);
-//		btn_back.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//
-//				// ++뒤로가기 버튼 구현
-//				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
-//				// 저장해놓은 mainC add시킴!
-//				panel.removeAll();
-//				for (int i = 0; i < mainC.length; i++) {
-//					panel.add(mainC[i]);
-//				}
-//				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
-//				panel.repaint();
-//			}
-//		});
-
 	}
 
 	public void checkRe(JPanel panel) {
@@ -416,34 +387,6 @@ public class resrvationMain {
 		});
 
 		btn_back(panel,home);
-//		JButton btn_back = new JButton("\uB4A4\uB85C");
-//		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-//		btn_back.setBounds(558, 0, 158, 110);
-//
-//		btn_back.setContentAreaFilled(false);
-//		btn_back.setBorderPainted(false);
-//		btn_back.setFocusPainted(false);
-//		panel.add(btn_back);
-//		btn_back.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-////				mainReservation.setVisible(true);
-////				newReservation.setVisible(false);
-////				checkReservation.setVisible(false);
-////				cancelReservation.setVisible(false);
-//
-//				// ++뒤로가기 버튼 구현
-//				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
-//				// 저장해놓은 mainC add시킴!
-//				panel.removeAll();
-//				for (int i = 0; i < mainC.length; i++) {
-//					panel.add(mainC[i]);
-//				}
-//				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
-//				panel.repaint();
-//			}
-//		});
-
 	}
 
 	public void cancelRe(JPanel panel) {
@@ -496,33 +439,6 @@ public class resrvationMain {
 			}
 		});
 		btn_back(panel,home);
-//		JButton btn_back = new JButton("\uB4A4\uB85C");
-//		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-//		btn_back.setBounds(558, 0, 158, 110);
-//		btn_back.setContentAreaFilled(false);
-//		btn_back.setBorderPainted(false);
-//		btn_back.setFocusPainted(false);
-//		panel.add(btn_back);
-//		btn_back.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-////				mainReservation.setVisible(true);
-////				newReservation.setVisible(false);
-////				checkReservation.setVisible(false);
-////				cancelReservation.setVisible(false);
-//
-//				// ++뒤로가기 버튼 구현
-//				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
-//				// 저장해놓은 mainC add시킴!
-//				panel.removeAll();
-//				for (int i = 0; i < mainC.length; i++) {
-//					panel.add(mainC[i]);
-//				}
-//				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
-//				panel.repaint();
-//			}
-//		});
-
 	}
 //    public void delete(int id) {
 //        StringBuilder sb = new StringBuilder();
@@ -536,6 +452,8 @@ public class resrvationMain {
 //            e.printStackTrace();
 //        }
 //    }
+	
+	//메뉴로 돌아가기 버튼 이벤트 구현
 	public void btn_home(JPanel panel) {
 		//++js modify
 		home = new JButton(new ImageIcon("./src/image/home_btn.png"));
@@ -554,6 +472,7 @@ public class resrvationMain {
 		//++
 	}
 	
+	//뒤로 가기 이벤트 하나의 함수로 구현
 	public void btn_back(JPanel panel, JButton btn) {
 		JButton btn_back = new JButton("\uB4A4\uB85C");
 		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));

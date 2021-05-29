@@ -82,15 +82,17 @@ public class Connect {
 		reservEvent(Reservation);
 	}
 
+	//좌석 관련 이벤트 구현
 	public void seatEvent(JButton btn, String menuType) {
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("번호 들어간다");
 				String str = "";
+				//바로이용하기 클릭한 경우
 				if(menuType.equals("now")) {
 					str = "바로 사용하시겠습니까?";
-				}else {
+				}else {	//자리변경하기 클릭한 경우
 					str = "자리를 변경하시겠습니까?";
 				}
 				int result = JOptionPane.showConfirmDialog(null, str, "confirm", JOptionPane.YES_NO_OPTION);
@@ -106,6 +108,7 @@ public class Connect {
 		});
 	}
 
+	//예약 이벤트 구현
 	public void reservEvent(JButton btn) {
 		btn.addActionListener(new ActionListener() {
 			@Override
@@ -120,33 +123,8 @@ public class Connect {
 		});
 	}
 
-//	public void inEvent(JButton btn) {
-//		btn.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				System.out.println("입실 들어간다");
-//				int result = JOptionPane.showConfirmDialog(null, "입실하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
-//				if (result == JOptionPane.YES_OPTION) {
-//					for (int i = 0; i < panel.getComponentCount(); i++) {
-//						panel.getComponent(i).setVisible(false);
-//					}
-//					for (int i = 0; i < first.length; i++) {
-//						panel.add(first[i]);
-//					}
-//					for (int i = 0; i < panel.getComponentCount(); i++) {
-//						if (panel.getComponent(i).toString().contains("Button")) {
-//							panel.getComponent(i).setVisible(true);
-//						}else {
-//							panel.getComponent(i).setVisible(false);							
-//						}
-//					}
-//					MainF.user="";
-//					loginId.setText("");
-//					loginPwd.setText("");
-//				}
-//			}
-//		});
-//	}
+	
+	//입실 이벤트 구현
 	public void inEvent(JButton btn) {
 		btn.addActionListener(new ActionListener() {
 			@Override
@@ -156,8 +134,9 @@ public class Connect {
 				int result = JOptionPane.showConfirmDialog(null, "입실하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					db d = new db();
+					//조건에 맞는 데이터 검색하여 저장
 					data = d.select("*","paydata WHERE Id='"+MainF.user+"' AND StartTime IS NOT NULL AND StartTime<='"+now+"' AND EndTime>='"+now+"'");
-					modiData md = new modiData();
+					//조건에 맞는 데이터가 있으면 메인으로 돌아감
 					if(data.size()==1) {
 						for (int i = 0; i < panel.getComponentCount(); i++) {
 							panel.getComponent(i).setVisible(false);
@@ -171,11 +150,12 @@ public class Connect {
 							}else {
 								panel.getComponent(i).setVisible(false);							
 							}
-						}						
-					}else {
+						}
+						MainF.user="";
+					}else {	//조건에 맞는 데이터가 없으면 message
 						JOptionPane.showMessageDialog(null, "입실할 수 없는 사용자입니다.","Message", result, null);
 					}
-					MainF.user="";
+					//login 시 입력했던 field 초기화
 					loginId.setText("");
 					loginPwd.setText("");
 				}

@@ -550,18 +550,4 @@ public class payment {
 		};
 		timer.schedule(task, 5000);
 	}
-
-	// 메인 패널 임시로 생성해 놓은 것 (test 용)
-//	public void mainPanel() {
-//		JLabel mainPhrase = new JLabel("coderium study cafe");
-//		mainPhrase.setFont(new Font(font, Font.PLAIN, 30));
-//		mainPhrase.setHorizontalAlignment(SwingConstants.CENTER);
-//		mainPhrase.setBounds(76, 153, 520, 126);
-//		seatMap.getSeatPanel().add(mainPhrase);
-//
-//		// panel repaint 하기
-//		seatMap.getSeatPanel().repaint();
-//
-//	}
-
 }
