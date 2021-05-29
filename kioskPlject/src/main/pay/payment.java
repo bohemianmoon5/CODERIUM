@@ -95,16 +95,15 @@ public class payment {
 		initialize();
 	}
 
-	public payment(String num, JFrame prevF, String type, 
-			String prod, String price, String start, JPanel show) {
+	public payment(String num, JFrame prevF, String type, String prod, String price, String start, JPanel show) {
 		this.seatN = num;
 //		this.prevF = Main.getFrame();
-		this.prevF=prevF;
+		this.prevF = prevF;
 		this.menuType = type;
 		reservStart = start;
 		setProduct(prod);
 		setPrice(price);
-		this.show=show;
+		this.show = show;
 //		this.reservPanel = reservPanel;
 		initialize();
 	}
@@ -468,11 +467,11 @@ public class payment {
 		d.getFrame().dispose();
 		getFrame().dispose();
 		prevF.dispose();
-		
+
 //		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		d.getFrame().dispose();
 //		getFrame().dispose();
-		
+
 		// 응원문구 패널 생성
 		test();
 //		test2();
@@ -486,7 +485,7 @@ public class payment {
 		String stPro = md.modiPro(getProduct());
 		String stPri = md.modiPri(getPrice());
 
-		storeData sData = new storeData(MainF.user,stSeat, payTime, stStart, stEnd, stPro, stPri, type, menuType);
+		storeData sData = new storeData(MainF.user, stSeat, payTime, stStart, stEnd, stPro, stPri, type, menuType);
 		sData.store();
 	}
 
@@ -508,13 +507,13 @@ public class payment {
 	}
 
 	public void test2() {
-		System.out.println("1 " +show.getComponentCount());
+		System.out.println("1 " + show.getComponentCount());
 		resrvationMain.mainReservation.setVisible(false);
 		show.setVisible(false);
 		fightingPan(show);
-		System.out.println("2 "+show.getComponentCount());
+		System.out.println("2 " + show.getComponentCount());
 	}
-	
+
 	// ++수정 필요한 부분
 	public void fightingPan(JPanel panel) {
 		// Main 페이지 내 패널 안에 있는 구성 요소 삭제

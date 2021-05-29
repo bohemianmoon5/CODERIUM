@@ -38,10 +38,15 @@ public class MainF extends JFrame implements ActionListener{
 	SignUp signUp;
 	Connect connectP;
 	WelcomePage welcomePage;
+	
 	ImagePanel ShowUp = new ImagePanel(new ImageIcon("./src/Image/12(수정).png").getImage());
 	ImagePanel connect = new ImagePanel(new ImageIcon("./src/Image/12.png").getImage());
 	
 	ArrayList<String> list = new ArrayList<String>();
+	//++js modify
+	Component[] first;
+	//++
+	
 	public static String user ="";
 	public static void main(String[] args) {
 		
@@ -120,8 +125,10 @@ public class MainF extends JFrame implements ActionListener{
 		signUp.completeBtn.setActionCommand("complete");
 		signUp.completeBtn.addActionListener(this);
 		
+		first = ShowUp.getComponents();
+		System.out.println(first.length);
 		// 연결 패널 
-		connectP = new Connect(frame,ShowUp);
+		connectP = new Connect(frame,ShowUp,first);
 		connectP.Connect.add(connect);
 		connect.add(connectP.Today);
 		connect.add(connectP.Reservation);
@@ -130,7 +137,6 @@ public class MainF extends JFrame implements ActionListener{
 		connect.add(connectP.Out);
 	
 		ShowUp.add(connectP.Connect);
-		
 	}
 
 	@Override

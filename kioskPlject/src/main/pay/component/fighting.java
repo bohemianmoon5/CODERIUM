@@ -26,6 +26,11 @@ public class fighting {
 
 	}
 
+	public fighting(JPanel panel, JLabel done,String font) {
+		this.panel = panel;
+		this.done = done;
+		this.font=font;
+	}
 	public fighting(JPanel panel, JLabel done, JLabel fight,String font) {
 		this.panel = panel;
 		this.done = done;
