@@ -108,7 +108,7 @@ public class db {
 	public void delete(String tableName,String now){
 		
 		System.out.println(now);
-		String query = "delete from "+ tableName +" where EndTime<='"+now+"';";
+		String query = "DELETE FROM "+ tableName +" WHERE EndTime<='"+now+"';";
 		System.out.println(query);
 		ResultSet rs;
 //		ResultSetMetaData rsmd;

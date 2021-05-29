@@ -94,26 +94,4 @@ public class modiData {
 		}
 		return pri;
 	}
-
-	public boolean confirmTime(String std,String date) {
-		boolean bool = false;
-		String a = std;
-		String b = date;
-		String form = "yyyy/MM/dd/HH:mm";
-		SimpleDateFormat s = new SimpleDateFormat(form);
-		Date now = new Date();
-		Date day = new Date();
-		try {
-			now = s.parse(a);
-			day = s.parse(b);
-			long compare = day.getTime()-now.getTime();
-			if(compare >= 0) {
-				bool=true;
-			}
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return bool;
-	}
 }

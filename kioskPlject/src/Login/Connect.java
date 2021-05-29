@@ -153,46 +153,27 @@ public class Connect {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> data = new ArrayList<String>();
 				System.out.println("입실 들어간다");
-				String condition="";
 				int result = JOptionPane.showConfirmDialog(null, "입실하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					db d = new db();
 					data = d.select("*","paydata WHERE Id='"+MainF.user+"' AND StartTime IS NOT NULL AND StartTime<='"+now+"' AND EndTime>='"+now+"'");
 					modiData md = new modiData();
-					
-//					for(int i=0; i<ID.size();i++) {
-//						if(ID.get(i).equals(MainF.user)) {
-//							condition="ALL";
-//							System.out.println("condition "+condition);
-//						}
-//					}
-//					for(String s : startTime) {
-//						System.out.println(md.confirmTime(s,now));
-//						if(!s.equals(null) && md.confirmTime(now,s)) {
-//							condition+="O";
-//							System.out.println("condition "+condition);
-//						}
-//					}
-//					for(String s : endTime) {
-//						System.out.println(md.confirmTime(now,s));
-//						if(md.confirmTime(s, now)) {
-//							condition+="K";
-//							System.out.println("condition "+condition);
-//						}
-//					}
-//					System.out.println("condition "+condition);
-					for (int i = 0; i < panel.getComponentCount(); i++) {
-						panel.getComponent(i).setVisible(false);
-					}
-					for (int i = 0; i < first.length; i++) {
-						panel.add(first[i]);
-					}
-					for (int i = 0; i < panel.getComponentCount(); i++) {
-						if (panel.getComponent(i).toString().contains("Button")) {
-							panel.getComponent(i).setVisible(true);
-						}else {
-							panel.getComponent(i).setVisible(false);							
+					if(data.size()==1) {
+						for (int i = 0; i < panel.getComponentCount(); i++) {
+							panel.getComponent(i).setVisible(false);
 						}
+						for (int i = 0; i < first.length; i++) {
+							panel.add(first[i]);
+						}
+						for (int i = 0; i < panel.getComponentCount(); i++) {
+							if (panel.getComponent(i).toString().contains("Button")) {
+								panel.getComponent(i).setVisible(true);
+							}else {
+								panel.getComponent(i).setVisible(false);							
+							}
+						}						
+					}else {
+						JOptionPane.showMessageDialog(null, "입실할 수 없는 사용자입니다.","Message", result, null);
 					}
 					MainF.user="";
 					loginId.setText("");
