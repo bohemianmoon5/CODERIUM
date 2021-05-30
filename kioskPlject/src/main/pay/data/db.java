@@ -24,7 +24,6 @@ public class db {
 	public void connectDB() {
 
 		try {
-
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 			System.out.println("db 연결 성공");
 
@@ -40,7 +39,6 @@ public class db {
 				+ eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\"" + menuType + "\");";
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db 연결 성공");
 
 			Statement stat = conn.createStatement();
 			stat.executeUpdate(query);
@@ -59,7 +57,6 @@ public class db {
 		ArrayList<String> arr = new ArrayList<String>();
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db 연결 성공");
 
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);
@@ -78,12 +75,11 @@ public class db {
 
 	public ArrayList<String> selectAll(String tableName, int i) {
 		String query = "SELECT * FROM " + tableName + ";";
-		System.out.println(query);
 		ResultSet rs;
 		ArrayList<String> arr = new ArrayList<String>();
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db 연결 성공");
+//			System.out.println("db 연결 성공");
 
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);
@@ -108,7 +104,7 @@ public class db {
 		ArrayList<String> arr = new ArrayList<String>();
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db 연결 성공");
+//			System.out.println("db 연결 성공");
 
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);
@@ -125,21 +121,17 @@ public class db {
 		return arr;
 	}
 
-	public void delete(String tableName, String now) {
+	public void delete(String tableName, String condition) {
 
-		System.out.println(now);
-		String query = "DELETE FROM " + tableName + " WHERE EndTime<='" + now + "';";
+		String query = "DELETE FROM " + tableName + condition+";";
 		System.out.println(query);
 		ResultSet rs;
-//		ResultSetMetaData rsmd;
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 			System.out.println("db 연결 성공");
 
 			PreparedStatement stat = conn.prepareStatement(query);
 			stat.executeUpdate();
-			System.out.println("실행완료");
-//			rsmd = rs.getMetaData();
 
 			stat.close();
 			conn.close();

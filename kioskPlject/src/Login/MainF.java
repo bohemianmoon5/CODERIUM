@@ -68,7 +68,7 @@ public class MainF extends JFrame implements ActionListener{
 		SimpleDateFormat s = new SimpleDateFormat(form);
 		Date now = new Date();
 		db d = new db();
-		d.delete("paydata", s.format(now));
+		d.delete("paydata"," WHERE EndTime<='"+s.format(now)+"'");
 		frame = new JFrame();
 		frame.setBounds(100, 0, 720, 1080);
 		frame.getContentPane().add(ShowUp);

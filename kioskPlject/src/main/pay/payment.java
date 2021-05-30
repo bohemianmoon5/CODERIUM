@@ -120,7 +120,6 @@ public class payment {
 
 		setFrame(new JFrame());
 		getFrame().setBounds(pointX, pointY, width, height);
-//		getFrame().setBounds(110, 300, 700, 400);
 		getFrame().setTitle("결제");
 		getFrame().setVisible(true);
 		frame.getContentPane().setLayout(null);
@@ -401,7 +400,7 @@ public class payment {
 	}
 
 	// cash 클래스 이용하여 cash panel 생성
-	int payCash = 0;
+	public static int payCash = 0;
 
 	public void makeCashPanel() {
 		cash = new JPanel();
@@ -412,7 +411,8 @@ public class payment {
 
 		// cash 패널 list와 detail 생성
 		cashPanel cp = new cashPanel(cash, font, getPrice(), btnC2);
-		payCash = cp.create(fakeFrame);
+		cp.create(fakeFrame);
+		System.out.println("pay!!!" + payCash);
 	}
 
 	// cardBtn 생성
@@ -470,7 +470,7 @@ public class payment {
 		MainF.frame.dispose();
 
 		// 응원문구 패널 생성
-		test();
+		reMain();
 		modiData md = new modiData();
 		String stSeat = seatN;
 		String payTime = md.start();
@@ -483,7 +483,7 @@ public class payment {
 		sData.store();
 	}
 
-	public void test() {
+	public void reMain() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -500,19 +500,7 @@ public class payment {
 		});
 	}
 
-	public void test2() {
-		System.out.println("1 " + show.getComponentCount());
-		resrvationMain.mainReservation.setVisible(false);
-		show.setVisible(false);
-		fightingPan(show);
-		System.out.println("2 " + show.getComponentCount());
-	}
-
-	// ++수정 필요한 부분
 	public void fightingPan(JPanel panel) {
-		// Main 페이지 내 패널 안에 있는 구성 요소 삭제
-//		seatMap.getSeatPanel().removeAll();
-
 		// Main 페이지 내 패널에 감사합니다 + 응원문구 라벨 부착
 		JLabel donePhrase = new JLabel("");
 		JLabel fightPhrase = new JLabel("");
@@ -521,8 +509,6 @@ public class payment {
 		ft.createDone("감사합니다.");
 		ft.createFight();
 		Component[] mainC = panel.getComponents();
-		// 패널 repaint
-//		seatMap.getSeatPanel().repaint();
 
 		// 5초 후 메인 패널로 전환
 		Timer timer = new Timer();

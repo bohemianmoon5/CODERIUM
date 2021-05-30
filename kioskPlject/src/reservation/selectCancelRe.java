@@ -22,7 +22,7 @@ import main.pay.data.db;
 public class selectCancelRe extends JPanel implements ActionListener{
 //	JPanel panel = new JPanel();
 	JPanel panel;
-
+	JPanel re;
 	private String font = "티웨이_항공";
 //	JRadioButton cancel[] = new JRadioButton[3];
 //	String cancel_name[] = {"1.","2.","3."};

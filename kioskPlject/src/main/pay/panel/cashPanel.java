@@ -31,8 +31,7 @@ public class cashPanel {
 		this.price = price;
 		this.cl = cl;
 	}
-
-	public int create(Consumer<String> cs) {
+	public void create(Consumer<String> cs) {
 		String[] list = { "결제 금액 : ", "투입 금액 : "};
 		String[] detail = { price, "0원" };
 		ArrayList<JLabel> detailArr = new ArrayList<JLabel>();
@@ -63,12 +62,14 @@ public class cashPanel {
 				public void actionPerformed(ActionEvent e) {
 					payCash += Integer.parseInt(a);
 					detailArr.get(1).setText(payCash + "원");
+
 					if (payCash >= Integer.parseInt(detailArr.get(0).getText().substring(0, price.length() - 1))) {
 						cs.accept("cash");
+						payment.payCash=payCash;
 					}
+					
 				}
 			});
 		}
-		return payCash;
 	}
 }

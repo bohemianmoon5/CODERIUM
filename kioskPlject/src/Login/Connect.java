@@ -98,7 +98,7 @@ public class Connect {
 				int result = JOptionPane.showConfirmDialog(null, str, "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					panel.setVisible(false);
-					if(!menuType.equals("today")) {
+					if(!menuType.equals("now")) {
 						db d = new db();
 						d.dml("update paydata set SeatNum = null where id = '" + MainF.user + "';");	
 					}
