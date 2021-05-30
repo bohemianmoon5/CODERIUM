@@ -503,7 +503,6 @@ public class resrvationMain {
 	public void setEnd(String EndT) {
 		this.EndT = EndT;
 	}
-	// ++
 	
 //    public void delete(int id) {
 //        StringBuilder sb = new StringBuilder();
@@ -518,7 +517,6 @@ public class resrvationMain {
 //        }
 //    }
 
-	// ++js modify
 	public void paintData(JPanel panel) {
 		// selectCancelRe 클래스 호출
 		selectCancelRe sr = new selectCancelRe(panel);
