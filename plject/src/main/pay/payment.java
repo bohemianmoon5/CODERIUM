@@ -54,15 +54,15 @@ public class payment {
 	private static String seatInfo;
 
 	private static Component[] c;
-	// °áÁ¦ Ã¢ÀÇ Ã¹¹øÂ° Ã¢
+	// ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ Ã¹ï¿½ï¿½Â° Ã¢
 	private static Component[] FirstC;
-	// °áÁ¦ Ã¢ÀÇ µÎ¹øÂ° Ã¢
+	// ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½Î¹ï¿½Â° Ã¢
 	private static Component[] SecondC;
-	// °áÁ¦ Ã¢ÀÇ ¼¼¹øÂ° Ã¢
+	// ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â° Ã¢
 	private static Component[] ThirdC;
-	private String font = "Æ¼¿þÀÌ_Ç×°ø";
+	private String font = "Æ¼ï¿½ï¿½ï¿½ï¿½_ï¿½×°ï¿½";
 
-	// °áÁ¦ Ã¢ bounds ¼³Á¤
+	// ï¿½ï¿½ï¿½ï¿½ Ã¢ bounds ï¿½ï¿½ï¿½ï¿½
 //	resrvationFrame a = new resrvationFrame();
 //	int pointX = a.getFrame().getX() + 10;
 //	int pointY = a.getFrame().getY() + 50;
@@ -87,38 +87,38 @@ public class payment {
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(110, 300, 700, 400);
-		getFrame().setTitle("°áÁ¦");
+		getFrame().setBounds(110, 300, 720, 1080);
+		getFrame().setTitle("ï¿½ï¿½ï¿½ï¿½");
 //		System.out.println("a "+ pointX +" " +pointY+" " +width+" " +height);
 //		getFrame().setBounds(pointX,pointY,width,height);
 		getFrame().setVisible(true);
 		frame.getContentPane().setLayout(null);
 
-		// frame³» ³»¿ëµéÀ» ¸ðµÎ °¨½Î´Â container Panel »ý¼º
+		// frameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½ container Panel ï¿½ï¿½ï¿½ï¿½
 		containerPanel = new JPanel();
 		containerPanel.setBounds(0, 0, 684, 361);
 		frame.getContentPane().add(containerPanel);
 		containerPanel.setLayout(null);
 
-		// ÁÂ¼® ¼±ÅÃ ½Ã Ã³À½À¸·Î º¸ÀÌ´Â select panel »ý¼º
+		// ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ select panel ï¿½ï¿½ï¿½ï¿½
 		select = new JPanel();
 		select.setBackground(background);
 		select.setBounds(0, 0, 684, 361);
 		containerPanel.add(select);
 		select.setLayout(null);
 
-		// select panel Á¦¸ñ »ý¼º
+		// select panel ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		JLabel selectTitle = new JLabel("select product");
 		selectTitle.setFont(new Font(font, Font.BOLD, 18));
 		selectTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		selectTitle.setBounds(246, 22, 150, 30);
 		select.add(selectTitle);
 
-		// °áÁ¦ ÆË¾÷ÀÇ exit ¹öÆ° ´©¸¦ ½Ã °áÁ¦ ÆË¾÷Ã¢¸¸ Á¾·áµÊ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½ï¿½ï¿½ exit ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 		getFrame().setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		// »óÇ° ¼±ÅÃ ÈÄ ´ÙÀ½ ÆÐ³Î·Î ÀüÈ¯ÇÏ´Â next ¹öÆ° »ý¼º
-		// »óÇ° ¼±ÅÃÇØ¾ß nextBtn È°¼ºÈ­ÇÏ´Â ±â´É Àû¿ë
+		// ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³Î·ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ next ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ nextBtn È°ï¿½ï¿½È­ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		nextBtn = new JButton("Next");
 		nextBtn.setFont(new Font(font, Font.PLAIN, 20));
 		designBtn(nextBtn, btnC);
@@ -132,10 +132,10 @@ public class payment {
 		content.setBackground(background);
 		select.add(content);
 
-		createCategory("½Ã°£±Ç", 0);
-		createCategory("±â°£±Ç", 1);
+		createCategory("ï¿½Ã°ï¿½ï¿½ï¿½", 0);
+		createCategory("ï¿½â°£ï¿½ï¿½", 1);
 
-		// next ¹öÆ° Å¬¸¯ ½Ã select/confirm ÆÐ³Î setVisible = false·Î º¯°æ ÈÄ detailPanel »ý¼º
+		// next ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ select/confirm ï¿½Ð³ï¿½ setVisible = falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ detailPanel ï¿½ï¿½ï¿½ï¿½
 		nextBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -146,7 +146,7 @@ public class payment {
 			}
 		});
 
-		// windowEvent ¼³Á¤
+		// windowEvent ï¿½ï¿½ï¿½ï¿½
 		windowEvent();
 
 		FirstC = containerPanel.getComponents();
@@ -169,42 +169,42 @@ public class payment {
 	public void windowEvent() {
 		getFrame().addWindowListener(new WindowListener() {
 			@Override
-			// À©µµ¿ì Ã³À½ »ý¼ºµÇ¾úÀ» ¶§
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 			public void windowOpened(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì ½Ã½ºÅÛ ¸Þ´ºÀÇ ´Ý±â ½ÃµµÇÒ ¶§
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½Ý±ï¿½ ï¿½Ãµï¿½ï¿½ï¿½ ï¿½ï¿½
 			public void windowClosing(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì°¡ ´ÝÈú ¶§
-			// °áÁ¦ Ã¢ÀÌ ´ÝÈ÷¸é main ÆÐ³Î¿¡ ÀÖ´Â ÀÚ½Ä component È°¼ºÈ­
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+			// ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ main ï¿½Ð³Î¿ï¿½ ï¿½Ö´ï¿½ ï¿½Ú½ï¿½ component È°ï¿½ï¿½È­
 			public void windowClosed(WindowEvent e) {
-				System.out.println("²¨Á³´Ù");
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 //				for (int i = 0; i < c.length; i++) {
 //					getSeatCom()[i].setEnabled(true);
 //				}
 			}
 
 			@Override
-			// À©µµ¿ì°¡ ÃÖ¼ÒÈ­ µÇ¾úÀ» ¶§
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½Ö¼ï¿½È­ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 			public void windowIconified(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì°¡ ÃÖ¼ÒÈ­¿¡¼­ ÃÖ´ëÈ­ µÇ¾úÀ» ¶§
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½Ö¼ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½È­ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 			public void windowDeiconified(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì°¡ È°¼ºÈ­ µÇ¾úÀ» ¶§
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ È°ï¿½ï¿½È­ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 			public void windowActivated(WindowEvent e) {
 			}
 
 			@Override
-			// À©µµ¿ì°¡ ºñÈ°¼ºÈ­ µÇ¾úÀ» ¶§
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ì°¡ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½
 			public void windowDeactivated(WindowEvent e) {
 			}
 		});
@@ -219,7 +219,7 @@ public class payment {
 		frame.setType(Type.UTILITY);
 	}
 
-	// ¼±ÅÃµÈ »óÇ° ³»¿ë
+	// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
 	String product = "";
 
 	public String getProduct() {
@@ -230,7 +230,7 @@ public class payment {
 		this.product = product;
 	}
 
-	// ¼±ÅÃµÈ »óÇ°ÀÇ °¡°Ý ³»¿ë
+	// ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	String price = "";
 
 	public String getPrice() {
@@ -241,7 +241,7 @@ public class payment {
 		this.price = price;
 	}
 
-	// ÁÂ¼® Á¤º¸¿¡ ´ëÇÑ ³»¿ë seatMap ¿¡¼­ °¡Á®¿È
+	// ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ seatMap ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String getInfo() {
 		return seatInfo;
 	}
@@ -250,8 +250,8 @@ public class payment {
 		seatInfo = info;
 	}
 
-	// seat panelÀÇ ÀÚ½Ä ÄÄÆ÷³ÍÆ® seatMap¿¡¼­ °¡Á®¿È
-	// °áÁ¦ Ã¢ Á¾·áµÉ ¶§ seatPanelÀÇ ÀÚ½Ä setEnabled true·Î º¯°æ½ÃÅ³ ¶§ »ç¿ë
+	// seat panelï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® seatMapï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ seatPanelï¿½ï¿½ ï¿½Ú½ï¿½ setEnabled trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public Component[] getSeatCom() {
 		return c;
 	}
@@ -260,10 +260,10 @@ public class payment {
 		c = info;
 	}
 
-	// createProduct() ÇÔ¼ö¿¡¼­ »ý¼ºÇÑ checkBox ¹è¿­
+	// createProduct() ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ checkBox ï¿½è¿­
 	ArrayList<JCheckBox> chkArr = new ArrayList<JCheckBox>();
 
-	// ½Ã°£_±â°£ »óÇ° Ä«Å×°í¸® »ý¼º
+	// ï¿½Ã°ï¿½_ï¿½â°£ ï¿½ï¿½Ç° Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void createCategory(String str, int i) {
 		category = new JButton(str);
 		category.setBounds(25 + (i * 95), 65, 90, 30);
@@ -276,8 +276,8 @@ public class payment {
 				content.removeAll();
 				chkArr.removeAll(chkArr);
 				System.out.println(chkArr.size());
-				// ½Ã°£_±â°£ »óÇ°¿¡ ´ëÇÑ ³»¿ë »ý¼º
-				if (str.contains("½Ã°£")) {
+				// ï¿½Ã°ï¿½_ï¿½â°£ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				if (str.contains("ï¿½Ã°ï¿½")) {
 					createProduct("timePro");
 				} else {
 					createProduct("termPro");
@@ -287,9 +287,9 @@ public class payment {
 		});
 	}
 
-	// ½Ã°£_±â°£ »óÇ° ÆÐ³Î¿¡ °ª ³Ö±â
-	// ¹è¿­ ¹× ¹Ýº¹¹® »ç¿ëÇÏ¿© ÁøÇà ¿Ï·á
-	// µ¥ÀÌÅÍ ÀÐ¾î¿Í¼­ ¹è¿­¿¡ ³ÖÀº ÈÄ ¹Ýº¹¹®À» ÀÌ¿ëÇÏ¿© label »ý¼ºÇÏ±â ¿Ï·á
+	// ï¿½Ã°ï¿½_ï¿½â°£ ï¿½ï¿½Ç° ï¿½Ð³Î¿ï¿½ ï¿½ï¿½ ï¿½Ö±ï¿½
+	// ï¿½è¿­ ï¿½ï¿½ ï¿½Ýºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½Í¼ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ýºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ label ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½Ï·ï¿½
 	void createProduct(String tableName) {
 		product a = new product(tableName);
 		int length = a.nameArr.size();
@@ -303,11 +303,11 @@ public class payment {
 		}
 	}
 
-	// checkBox ÀÌº¥Æ®
-	// »óÇ° ¼±ÅÃ ½Ã confirm ÆÐ³Î¿¡ ¼±ÅÃÇÑ »óÇ°¿¡ ´ëÇÑ ³»¿ë »ý¼º
-	// Ã¼Å©¹Ú½º°¡ ¼±ÅÃµÇ¾î ÀÖÀ¸¸é confirm ÆÐ³Î¿¡ ³»¿ë »ý¼º, ¾Æ´Ï¸é confirm ÆÐ³Î¿¡ ³»¿ë x
-	// Ã¼Å©¹Ú½º°¡ ¼±ÅÃµÇ¾î ÀÖÀ¸¸é nextBtn È°¼ºÈ­, ¾Æ´Ï¸é nextBtn ºñÈ°¼ºÈ­
-	// Ã¼Å©¹Ú½º°¡ ¼±ÅÃµÇ¾î ÀÖÀ¸¸é ¼±ÅÃµÈ Ã¼Å©¹Ú½º ÀÌ¿Ü ºñÈ°¼ºÈ­, ¾Æ´Ï¸é ¸ðµÎ È°¼ºÈ­
+	// checkBox ï¿½Ìºï¿½Æ®
+	// ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ confirm ï¿½Ð³Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// Ã¼Å©ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ confirm ï¿½Ð³Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Æ´Ï¸ï¿½ confirm ï¿½Ð³Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ x
+	// Ã¼Å©ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nextBtn È°ï¿½ï¿½È­, ï¿½Æ´Ï¸ï¿½ nextBtn ï¿½ï¿½È°ï¿½ï¿½È­
+	// Ã¼Å©ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Ã¼Å©ï¿½Ú½ï¿½ ï¿½Ì¿ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­, ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
 	public void chkEvent(JCheckBox chk, String name, String price) {
 		chk.addActionListener(new ActionListener() {
 			@Override
@@ -325,7 +325,7 @@ public class payment {
 		});
 	}
 
-	// Ã¼Å©µÈ Ã¼Å©¹Ú½º ÀÌ¿Ü Ã¼Å©¹Ú½º ºñÈ°¼ºÈ­
+	// Ã¼Å©ï¿½ï¿½ Ã¼Å©ï¿½Ú½ï¿½ ï¿½Ì¿ï¿½ Ã¼Å©ï¿½Ú½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
 	public void chkDisabled(ArrayList<JCheckBox> cb) {
 		for (int i = 0; i < cb.size(); i++) {
 			if (cb.get(i).isSelected()) {
@@ -338,18 +338,18 @@ public class payment {
 		}
 	}
 
-	// ¸ðµç Ã¼Å©¹Ú½º È°¼ºÈ­
+	// ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ú½ï¿½ È°ï¿½ï¿½È­
 	public void chkEnabled(ArrayList<JCheckBox> cb) {
 		for (int i = 0; i < cb.size(); i++) {
 			cb.get(i).setEnabled(true);
 		}
 	}
 
-	// ¼±ÅÃÇÑ »óÇ°¿¡ ´ëÇÑ »ó¼¼³»¿ë ´Ù½Ã È®ÀÎÇÏ´Â detailPanel¿¡ °ª ³Ö±â
-	// ÁÂ¼® Á¤º¸, »óÇ° ÀÌ¸§, ½ÃÀÛ½Ã°£~³¡½Ã°£, °¡°Ý
-	// °¢ Å¬·¡½º »ý¼ºÇÏ¿© ±¸ÇöÇÏ±â ¸ñÇ¥ ¿Ï·á
-	// ¹Ýº¹¹® »ç¿ë °¡´ÉÇÑ ³»¿ëÀº »ìÆìº¸°í ¹Ýº¹¹®À¸·Î ÄÚµå °£°áÈ­ ¿Ï·á
-	// µÚ·Î °¡±â ¹öÆ° ±¸Çö ¿Ï·á
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ó¼¼³ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ detailPanelï¿½ï¿½ ï¿½ï¿½ ï¿½Ö±ï¿½
+	// ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ç° ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½Û½Ã°ï¿½~ï¿½ï¿½ï¿½Ã°ï¿½, ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½Ç¥ ï¿½Ï·ï¿½
+	// ï¿½Ýºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ìº¸ï¿½ï¿½ ï¿½Ýºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½È­ ï¿½Ï·ï¿½
+	// ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
 	public void detailPanel(String seat, String product, String price) {
 		detailPanel = new JPanel();
 		detailPanel.setBounds(0, 0, 700, 400);
@@ -363,7 +363,7 @@ public class payment {
 		modiData md = new modiData();
 
 		String[] listArr = { "Seat Info : ", "product Info : ", "usage time : ", "price Info : " };
-		String[] detailArr = { seat + "¹ø", product, md.start() + "-" + md.end(product), price };
+		String[] detailArr = { seat + "ï¿½ï¿½", product, md.start() + "-" + md.end(product), price };
 
 		for (int i = 0; i < listArr.length; i++) {
 			showDetail showPanel = new showDetail(detailPanel, 90, font);
@@ -379,9 +379,9 @@ public class payment {
 
 	}
 
-	// µÚ·Î°¡±â ±¸Çö
+	// ï¿½Ú·Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public JButton createBack(Component[] target, JPanel panel) {
-		backBtn = new JButton("¢¸");
+		backBtn = new JButton("ï¿½ï¿½");
 		backBtn.setFont(new Font(font, Font.PLAIN, 20));
 		backBtn.setBounds(400, 295, 100, 45);
 		designBtn(backBtn, btnC);
@@ -395,7 +395,7 @@ public class payment {
 		return backBtn;
 	}
 
-	// backBtn event ±¸Çö
+	// backBtn event ï¿½ï¿½ï¿½ï¿½
 	public void backEvent(Component[] target) {
 		containerPanel.removeAll();
 		for (int i = 0; i < target.length; i++) {
@@ -405,10 +405,10 @@ public class payment {
 		containerPanel.repaint();
 	}
 
-	// ´ÙÀ½ ±¸Çö
-	// ++À§ÀÇ next ¹öÆ°°ú ÇÔ¼ö ÇÕÄ¥°Í
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ++ï¿½ï¿½ï¿½ï¿½ next ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½Ä¥ï¿½ï¿½
 	public void createNext() {
-		JButton nextBtn1 = new JButton("¢º");
+		JButton nextBtn1 = new JButton("ï¿½ï¿½");
 		nextBtn1.setFont(new Font(font, Font.PLAIN, 20));
 		nextBtn1.setBounds(550, 295, 100, 45);
 		designBtn(nextBtn1, btnC);
@@ -424,7 +424,7 @@ public class payment {
 		});
 	}
 
-	// Çö±ÝÀ¸·Î °áÁ¦ÇÒ°ÇÁö Ä«µå·Î °áÁ¦ÇÒ°ÇÁö ¼±ÅÃÇÏ´Â ÆÐ³Î »ý¼º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò°ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void cashOrCard() {
 		cOc = new JPanel();
 		cOc.setBounds(0, 0, 700, 400);
@@ -437,7 +437,7 @@ public class payment {
 		cashBtn.setFont(new Font(font, Font.PLAIN, 18));
 		designBtn(cashBtn, btnC2);
 
-		// Çö±Ý °áÁ¦ ÆÐ³Î·Î ÀüÈ¯
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³Î·ï¿½ ï¿½ï¿½È¯
 		cashBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -457,7 +457,7 @@ public class payment {
 		fourthBack.setLocation(500, 295);
 	}
 
-	// cash Å¬·¡½º ÀÌ¿ëÇÏ¿© cash panel »ý¼º
+	// cash Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ cash panel ï¿½ï¿½ï¿½ï¿½
 	int payCash = 0;
 
 	public void makeCashPanel() {
@@ -467,9 +467,9 @@ public class payment {
 		containerPanel.add(cash);
 		cash.setLayout(null);
 
-		// cash ÆÐ³Î list¿Í detail »ý¼º
-		String[] list = { "°áÁ¦ ±Ý¾× : ", "ÅõÀÔ ±Ý¾× : " };
-		String[] detail = { getPrice(), "0¿ø" };
+		// cash ï¿½Ð³ï¿½ listï¿½ï¿½ detail ï¿½ï¿½ï¿½ï¿½
+		String[] list = { "ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½ : ", "ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¾ï¿½ : " };
+		String[] detail = { getPrice(), "0ï¿½ï¿½" };
 		ArrayList<JLabel> detailArr = new ArrayList<JLabel>();
 		for (int i = 0; i < list.length; i++) {
 			cash c = new cash(cash, 30, font);
@@ -477,7 +477,7 @@ public class payment {
 			detailArr.add(c.makeCashD(detail[i], i));
 		}
 
-		// cash ÆÐ³Î button »ý¼º
+		// cash ï¿½Ð³ï¿½ button ï¿½ï¿½ï¿½ï¿½
 		String[] btnDetail = { "1000", "5000", "10000", "50000" };
 		ArrayList<JButton> btnArr = new ArrayList<JButton>();
 
@@ -488,8 +488,8 @@ public class payment {
 			btnArr.add(c.makeCashB(btnDetail[i], chkW, chkY));
 		}
 
-		// cash ÆÐ³Î button event »ý¼º
-		// button style º¯°æ
+		// cash ï¿½Ð³ï¿½ button event ï¿½ï¿½ï¿½ï¿½
+		// button style ï¿½ï¿½ï¿½ï¿½
 		for (int i = 0; i < btnArr.size(); i++) {
 			String a = btnArr.get(i).getText();
 			designBtn(btnArr.get(i), btnC2);
@@ -497,7 +497,7 @@ public class payment {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					payCash += Integer.parseInt(a);
-					detailArr.get(1).setText(payCash + "¿ø");
+					detailArr.get(1).setText(payCash + "ï¿½ï¿½");
 					if (payCash >= Integer.parseInt(detailArr.get(0).getText().substring(0, getPrice().length() - 1))) {
 						fakeFrame("cash");
 					}
@@ -506,16 +506,16 @@ public class payment {
 		}
 	}
 
-	// cardBtn »ý¼º
+	// cardBtn ï¿½ï¿½ï¿½ï¿½
 	public void makeCardBtn(JPanel panel) {
 		JButton cardBtn = new JButton("Pay by card");
 		cardBtn.setBounds(370, 110, 221, 96);
 		cardBtn.setFont(new Font(font, Font.PLAIN, 18));
 		designBtn(cardBtn, btnC2);
 
-		// cardBtn Å¬¸¯ ½Ã ½ÇÁ¦ °áÁ¦µÇ´Â °Í Ã³·³ done ÆË¾÷Ã¢ È£Ãâ
-		// 3ÃÊ ÈÄ doneÆË¾÷Ã¢°ú payment ÆË¾÷ Ã¢ Á¾·á ÈÄ
-		// main panel¿¡ °áÁ¦°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù. °¨»çÇÕ´Ï´Ù. + ÀÀ¿ø¹®±¸ Ãâ·Â ÆÐ³Î »ý¼º
+		// cardBtn Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ done ï¿½Ë¾ï¿½Ã¢ È£ï¿½ï¿½
+		// 3ï¿½ï¿½ ï¿½ï¿½ doneï¿½Ë¾ï¿½Ã¢ï¿½ï¿½ payment ï¿½Ë¾ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		// main panelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. + ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½ï¿½
 		cardBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -540,7 +540,7 @@ public class payment {
 		});
 	}
 
-	// °áÁ¦ ¿Ï·á ½Ã timerEvent ÇÔ¼ö ±¸Çö
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½ timerEvent ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void doneTimerEvent(int time, done d, String type) {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
@@ -552,11 +552,11 @@ public class payment {
 		timer.schedule(task, time);
 	}
 
-	// °áÁ¦ ¿Ï·á ½Ã event
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½ event
 	public void doneEvent(done d, String type) {
 		d.getFrame().dispose();
 		getFrame().dispose();
-		// ÀÀ¿ø¹®±¸ ÆÐ³Î »ý¼º
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ ï¿½ï¿½ï¿½ï¿½
 		fightingPan();
 		modiData md = new modiData();
 		String stSeat = getInfo();
@@ -569,23 +569,23 @@ public class payment {
 		sData.store();
 	}
 
-	// ++¼öÁ¤ ÇÊ¿äÇÑ ºÎºÐ
+	// ++ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Îºï¿½
 	public void fightingPan() {
-		// Main ÆäÀÌÁö ³» ÆÐ³Î ¾È¿¡ ÀÖ´Â ±¸¼º ¿ä¼Ò »èÁ¦
+		// Main ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ð³ï¿½ ï¿½È¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		seatMap.getSeatPanel().removeAll();
 
-		// Main ÆäÀÌÁö ³» ÆÐ³Î¿¡ °¨»çÇÕ´Ï´Ù + ÀÀ¿ø¹®±¸ ¶óº§ ºÎÂø
+		// Main ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ð³Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½ + ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		JLabel donePhrase = new JLabel("");
 		JLabel fightPhrase = new JLabel("");
 
 		fighting ft = new fighting(seatMap.getSeatPanel(), donePhrase, fightPhrase, font);
-		ft.createDone("°¨»çÇÕ´Ï´Ù.");
+		ft.createDone("ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 		ft.createFight();
 
-		// ÆÐ³Î repaint
+		// ï¿½Ð³ï¿½ repaint
 		seatMap.getSeatPanel().repaint();
 
-		// 5ÃÊ ÈÄ ¸ÞÀÎ ÆÐ³Î·Î ÀüÈ¯
+		// 5ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³Î·ï¿½ ï¿½ï¿½È¯
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 			@Override
@@ -597,7 +597,7 @@ public class payment {
 		timer.schedule(task, 5000);
 	}
 
-	// ¸ÞÀÎ ÆÐ³Î ÀÓ½Ã·Î »ý¼ºÇØ ³õÀº °Í (test ¿ë)
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ (test ï¿½ï¿½)
 	public void mainPanel() {
 		JLabel mainPhrase = new JLabel("coderium study cafe");
 		mainPhrase.setFont(new Font(font, Font.PLAIN, 30));
@@ -605,7 +605,7 @@ public class payment {
 		mainPhrase.setBounds(76, 153, 520, 126);
 		seatMap.getSeatPanel().add(mainPhrase);
 
-		// panel repaint ÇÏ±â
+		// panel repaint ï¿½Ï±ï¿½
 		seatMap.getSeatPanel().repaint();
 
 	}

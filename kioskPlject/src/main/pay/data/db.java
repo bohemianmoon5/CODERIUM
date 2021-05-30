@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class db {
-	
+
 	Connection conn;
 	// MySql private information
 	String jdbc = "jdbc:mysql://localhost:3306/data";
@@ -24,7 +24,7 @@ public class db {
 	public void connectDB() {
 
 		try {
-			
+
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 			System.out.println("db 연결 성공");
 
@@ -34,10 +34,10 @@ public class db {
 		}
 	}
 
-	public void insert(String id, String seat, String payT,String sTime, String eTime, String product, String price,
+	public void insert(String id, String seat, String payT, String sTime, String eTime, String product, String price,
 			String payType, String menuType) {
-		String query = "INSERT INTO paydata VALUE(\"" + id + "\",\"" + seat + "\",\""+payT +"\",\""+ sTime + "\",\"" 
-			+ eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\""+ menuType +"\");";
+		String query = "INSERT INTO paydata VALUE(\"" + id + "\",\"" + seat + "\",\"" + payT + "\",\"" + sTime + "\",\""
+				+ eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\"" + menuType + "\");";
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 			System.out.println("db 연결 성공");
@@ -65,11 +65,7 @@ public class db {
 			rs = stat.executeQuery(query);
 
 			while (rs.next()) {
-				if(!a.equals("*")) {
-					arr.add(rs.getString(a));					
-				}else {
-					arr.add(rs.getString(1)+"_"+rs.getString(4)+"_"+rs.getString(5));
-				}
+				arr.add(rs.getString(a));
 			}
 
 			stat.close();
@@ -79,7 +75,31 @@ public class db {
 		}
 		return arr;
 	}
-	
+
+	public ArrayList<String> selectAll(String tableName, int i) {
+		String query = "SELECT * FROM " + tableName + ";";
+		System.out.println(query);
+		ResultSet rs;
+		ArrayList<String> arr = new ArrayList<String>();
+		try {
+			conn = DriverManager.getConnection(jdbc, root, pwd);
+			System.out.println("db 연결 성공");
+
+			Statement stat = conn.createStatement();
+			rs = stat.executeQuery(query);
+
+			while (rs.next()) {
+				arr.add(rs.getString(i) + "_" + rs.getString(4) + "_" + rs.getString(5));
+			}
+
+			stat.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return arr;
+	}
+
 	// column명 arr 반환
 	public ArrayList<String> colLookUp(String tableName) {
 		String query = "SELECT * FROM " + tableName + ";";
@@ -104,11 +124,11 @@ public class db {
 		}
 		return arr;
 	}
-	
-	public void delete(String tableName,String now){
-		
+
+	public void delete(String tableName, String now) {
+
 		System.out.println(now);
-		String query = "DELETE FROM "+ tableName +" WHERE EndTime<='"+now+"';";
+		String query = "DELETE FROM " + tableName + " WHERE EndTime<='" + now + "';";
 		System.out.println(query);
 		ResultSet rs;
 //		ResultSetMetaData rsmd;
@@ -127,10 +147,10 @@ public class db {
 			// TODO: handle exception
 		}
 	}
-	
+
 	public void dml(String query) {
 		try {
-			conn = DriverManager.getConnection(jdbc,root,pwd);
+			conn = DriverManager.getConnection(jdbc, root, pwd);
 			System.out.println("db 연결 성공");
 			Statement stat = conn.createStatement();
 			stat.executeUpdate(query);
@@ -143,4 +163,3 @@ public class db {
 		}
 	}
 }
-                                                                      

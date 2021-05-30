@@ -55,7 +55,7 @@ public class seatButton implements ActionListener {
 		
 		seat = d.select("seatNum", "paydata where id = 'wonho33'");
 
-		if (seat.get(0) == null) {
+//		if (seat.get(0) == null) {
 			int result = JOptionPane.showConfirmDialog(null, btn.getText()+"를  선택하겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
 			if(result == JOptionPane.YES_OPTION) {
 				if(Main.type.equals("reserve")) {
@@ -72,9 +72,9 @@ public class seatButton implements ActionListener {
 
 				}
 
-		} else {
-			System.out.println("현재 좌석번호:" + seat.get(0));
-		}
+//		} else {
+//			System.out.println("현재 좌석번호:" + seat.get(0));
+//		}
 
 
 

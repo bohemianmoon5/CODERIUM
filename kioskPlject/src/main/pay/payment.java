@@ -469,15 +469,8 @@ public class payment {
 		prevF.dispose();
 		MainF.frame.dispose();
 
-//		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		d.getFrame().dispose();
-//		getFrame().dispose();
-
 		// 응원문구 패널 생성
 		test();
-//		test2();
-//		fightingPan();
-//		mainPanel();
 		modiData md = new modiData();
 		String stSeat = seatN;
 		String payTime = md.start();

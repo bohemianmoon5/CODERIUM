@@ -9,12 +9,17 @@ import java.awt.Toolkit;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
@@ -356,40 +361,56 @@ public class resrvationMain {
 		checkRe.setLayout(null);
 		checkRe.setVisible(false);
 
+		JLabel LabelcheckRe = new JLabel("예약 확인");
+		LabelcheckRe.setHorizontalAlignment(SwingConstants.CENTER);
+		LabelcheckRe.setFont(new Font("티웨이_항공", Font.BOLD, 30));
+		LabelcheckRe.setBounds(0, 0, 700, 110);
+		panel.add(LabelcheckRe);
+		
+		
 		JPanel selectRe = new selectRe(panel);
-		selectRe.setBounds(230, 300, 500, 600);
+		selectRe.setBounds(0, 105, 700, 855);
 		selectRe.setBackground(new Color(255, 0, 0, 0));
 		selectRe.setOpaque(false);
-		panel.setVisible(true);
+//		panel.setVisible(true);
 		panel.add(selectRe);
 
-		JLabel LavelcheckRe = new JLabel("예약 확인");
-		LavelcheckRe.setHorizontalAlignment(SwingConstants.CENTER);
-		LavelcheckRe.setFont(new Font("티웨이_항공", Font.BOLD, 30));
-		LavelcheckRe.setBounds(0, 0, 714, 110);
-		panel.add(LavelcheckRe);
-
+		//++js modify
+		// selectRe 클래스 호출
+		selectRe sr = new selectRe(panel);
+		for(int i=0; i<sr.dataSize(); i++) {
+			// selectRe 클래스 내 함수를 통해 label 생성
+			// sr.dataModify(sr.dataChk().get(i)) -> dataChk()함수를 통해 가져온 데이터값을 정제하여 label의 text 값으로 넣는 작업
+			sr.selectReLabel(i,sr.dataModify(sr.dataChk().get(i)));
+		}
+		//++
+		
 		// 예약 확인 => 입실 버튼 활성화
-		JButton btn_checkIn = new JButton("입실");
-		btn_checkIn.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-		btn_checkIn.setBounds(558, 940, 158, 110);
-		btn_checkIn.setContentAreaFilled(false);
-		btn_checkIn.setBorderPainted(false);
-		btn_checkIn.setFocusPainted(false);
-		btn_checkIn.setOpaque(false);
-		panel.add(btn_checkIn);
-		// 입실하는 actionlistener필요 => 좌석표 시간 활성화 및 예약 데이터 삭제? => 실시간 좌석 데이터로 전환? 가능??
-		btn_checkIn.addActionListener(new ActionListener() {
+//		JButton btn_checkIn = new JButton("입실");
+//		btn_checkIn.setFont(new Font("티웨이_항공", Font.BOLD, 25));
+//		btn_checkIn.setBounds(558, 940, 158, 110);
+//		btn_checkIn.setContentAreaFilled(false);
+//		btn_checkIn.setBorderPainted(false);
+//		btn_checkIn.setFocusPainted(false);
+//		btn_checkIn.setOpaque(false);
+//		panel.add(btn_checkIn);
+//		// 입실하는 actionlistener필요 => 좌석표 시간 활성화 및 예약 데이터 삭제? => 실시간 좌석 데이터로 전환? 가능??
+//		btn_checkIn.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//
+//			}
+//		});
 
 		btn_back(panel, home);
 	}
 
+	//++js modify
+	// radioEvent에서 사용하기 위해 생성한 ArrayList
+	ArrayList<JRadioButton> radioArr = new ArrayList<JRadioButton>();
+	//++
+	
 	public void cancelRe(JPanel panel) {
 		JPanel cancelRe = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -410,19 +431,19 @@ public class resrvationMain {
 		cancelRe.setLayout(null);
 		cancelRe.setVisible(false);
 
-		JLabel LavelcancelRe = new JLabel("예약 취소");
-		LavelcancelRe.setHorizontalAlignment(SwingConstants.CENTER);
-		LavelcancelRe.setFont(new Font("티웨이_항공", Font.BOLD, 30));
-		LavelcancelRe.setBounds(0, 0, 714, 110);
-		panel.add(LavelcancelRe);
+		JLabel LabelcancelRe = new JLabel("예약 취소");
+		LabelcancelRe.setHorizontalAlignment(SwingConstants.CENTER);
+		LabelcancelRe.setFont(new Font("티웨이_항공", Font.BOLD, 30));
+		LabelcancelRe.setBounds(0, 0, 714, 110);
+		panel.add(LabelcancelRe);
 
 		JPanel selectCancelRe = new selectCancelRe(panel);
 		selectCancelRe.setBounds(230, 300, 500, 600);
 		selectCancelRe.setBackground(new Color(255, 0, 0, 0));
 		selectCancelRe.setOpaque(false);
-		panel.setVisible(true);
+//		panel.setVisible(true);
 		panel.add(selectCancelRe);
-
+		
 		// 선택한 예약 데이터 예약 취소 버튼
 		JButton btn_reCancel = new JButton("예약 취소");
 		btn_reCancel.setFont(new Font("티웨이_항공", Font.BOLD, 25));
@@ -436,9 +457,47 @@ public class resrvationMain {
 		btn_reCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				// 라디오 버튼이 선택되어 있는지 없는지 확인하는 chkBool 변수 생성
+				boolean chkBool=false;
+				// 예약 취소 버튼 눌렀을때 '취소하시겠습니까?' 팝업창 생성
+				int result = JOptionPane.showConfirmDialog(null, "취소하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+				// 라디오 버튼이 선택되어있는지 확인하는 for문
+				for(int i=0; i<radioArr.size(); i++) {
+					// 라디오 버튼 선택되어 있으면 chkBool변수 true로 변경
+					if(radioEvent(radioArr.get(i))) {
+						chkBool=true;
+					}
+				}
+				// '취소하시겠습니까?' 팝업 창에 대해 'yes'옵션 선택한 경우
+				if (result == JOptionPane.YES_OPTION) {
+					// 선택된 라디오 버튼이 없을 때 이벤트 처리
+					if (!chkBool) {
+						System.out.println("선택한 데이터 없음");
+						JOptionPane.showMessageDialog(null, "선택한 버튼이 없습니다.","Message",result, null);					
+					} else { // 선택된 라디오 버튼이 있을 때 이벤트 처리
+						System.out.println("선택한 데이터 있음");
+						//데이터 베이스에 접근하여 데이터 삭제하는 코드 들어갈 부분
+					}				
+				}
 			}
 		});
+		
+		//++js modify
+		// selectCancelRe 클래스 호출
+		selectCancelRe sr = new selectCancelRe(panel);
+		ButtonGroup  group = new ButtonGroup();
+
+		for(int i=0; i<sr.dataSize(); i++) {
+			// selectCancelRe 클래스 내 함수를 통해 radioBtn 생성 후 group에 값 넣는 작업
+			radioArr.add(sr.radioBtn(i));
+			group.add(radioArr.get(i));
+			// radioBtn event 적용하는 부분
+			// selectCancelRe 클래스 내 함수를 통해 label 생성
+			// sr.dataModify(sr.dataChk().get(i)) -> dataChk()함수를 통해 가져온 데이터값을 정제하여 label의 text 값으로 넣는 작업
+			sr.selectReLabel(i,sr.dataModify(sr.dataChk().get(i)));
+		}
+		//++
+		
 		btn_back(panel, home);
 	}
 //    public void delete(int id) {
@@ -454,9 +513,24 @@ public class resrvationMain {
 //        }
 //    }
 
+	//++js modify
+	// radioButton 이벤트
+	// 라디오 버튼이 선택되어있으면 bool=true로 변경, 아니면 초기값 false 그대로 가지고 있음
+	boolean bool = false;
+	public boolean radioEvent(JRadioButton radio) {
+		radio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (radio.isSelected()) {
+					bool=true;
+				}
+			}
+		});
+		return bool;
+	}
+
 	// 메뉴로 돌아가기 버튼 이벤트 구현
 	public void btn_home(JPanel panel) {
-		// ++js modify
 		home = new JButton(new ImageIcon("./src/image/home_btn.png"));
 		home.setBounds(600, 50, 48, 48);
 		designBtn(home);
@@ -470,9 +544,9 @@ public class resrvationMain {
 				show.setVisible(true);
 			}
 		});
-		// ++
 	}
-
+	//++
+	
 	// 뒤로 가기 이벤트 하나의 함수로 구현
 	public void btn_back(JPanel panel, JButton btn) {
 		JButton btn_back = new JButton("\uB4A4\uB85C");
@@ -485,11 +559,6 @@ public class resrvationMain {
 		btn_back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				mainReservation.setVisible(true);
-//				newReservation.setVisible(false);
-//				checkReservation.setVisible(false);
-//				cancelReservation.setVisible(false);
-
 				// ++뒤로가기 버튼 구현
 				// ++뒤로가기 클릭 시 현재 추가되어 있는 새로운 예약 구현 시 add했던 component들 지운 후
 				// 저장해놓은 mainC add시킴!
@@ -503,5 +572,4 @@ public class resrvationMain {
 			}
 		});
 	}
-
 }
