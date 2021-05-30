@@ -453,6 +453,8 @@ public class resrvationMain {
 		btn_reCancel.setFocusPainted(false);
 		btn_reCancel.setOpaque(false);
 		panel.add(btn_reCancel);
+
+		//++js modify
 		// 선택한 예약 데이터 예약 취소
 		btn_reCancel.addActionListener(new ActionListener() {
 			@Override
@@ -476,13 +478,13 @@ public class resrvationMain {
 						JOptionPane.showMessageDialog(null, "선택한 버튼이 없습니다.","Message",result, null);					
 					} else { // 선택된 라디오 버튼이 있을 때 이벤트 처리
 						System.out.println("선택한 데이터 있음");
+						
 						//데이터 베이스에 접근하여 데이터 삭제하는 코드 들어갈 부분
 					}				
 				}
 			}
 		});
 		
-		//++js modify
 		// selectCancelRe 클래스 호출
 		selectCancelRe sr = new selectCancelRe(panel);
 		ButtonGroup  group = new ButtonGroup();
