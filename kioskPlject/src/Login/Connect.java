@@ -278,9 +278,9 @@ public class Connect {
 					MainF mf = new MainF();
 					db d = new db();
 
-					ArrayList<String> startTime = d.select("StartTime", "paydata where id = '" + mf.user + "';");
-					ArrayList<String> endTime = d.select("EndTime", "paydata where id = '" + mf.user + "';");
-					ArrayList<String> seat = d.select("SeatNum", "paydata where id = '" + mf.user + "';");
+					ArrayList<String> startTime = d.select("StartTime", "paydata where id = '" + mf.user + "' order by StartTime;");
+					ArrayList<String> endTime = d.select("EndTime", "paydata where id = '" + mf.user + "' order by StartTime;");
+					ArrayList<String> seat = d.select("SeatNum", "paydata where id = '" + mf.user + "' order by StartTime;");
 
 					System.out.println("시작시간과 끝시간은:" + startTime.get(0) + "," + endTime.get(0));
 					if (startTime.get(0) != null & endTime.get(0) != null)
