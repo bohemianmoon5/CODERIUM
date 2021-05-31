@@ -33,7 +33,8 @@ public class storeData {
 	
 	public void store() {
 		db newD = new db();		
-		newD.insert(id,seat,payT ,sTime, eTime, product, price, type,menuType);
+//		newD.insert(id,seat,payT ,sTime, eTime, product, price, type,menuType);
+		newD.update(id,seat,payT ,sTime, eTime, product, price, type,menuType);
 	}
 
 }

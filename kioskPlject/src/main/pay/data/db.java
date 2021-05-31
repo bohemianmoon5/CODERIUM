@@ -9,6 +9,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Login.MainF;
+
 public class db {
 
 	Connection conn;
@@ -39,10 +41,25 @@ public class db {
 				+ eTime + "\",\"" + product + "\",\"" + price + "\",\"" + payType + "\",\"" + menuType + "\");";
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-
 			Statement stat = conn.createStatement();
 			stat.executeUpdate(query);
 
+			stat.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	public void update(String id, String seat, String payT, String sTime, String eTime, String product, String price,
+			String payType, String menuType) {
+		String query = "UPDATE paydata SET SeatNum='"+seat+"',PayTime='"+payT+"',StartTime='"+sTime+"',EndTime='"+eTime+"',ProdName='"+product+"', Price='"+price+"',Method='"+payType+"',Menu='"+menuType+"' WHERE Id='"+id+"';";
+		System.out.println(query);
+		try {
+			conn = DriverManager.getConnection(jdbc, root, pwd);
+	
+			Statement stat = conn.createStatement();
+			stat.executeUpdate(query);
+			
 			stat.close();
 			conn.close();
 		} catch (Exception e) {
@@ -124,7 +141,6 @@ public class db {
 	public void delete(String tableName, String condition) {
 
 		String query = "DELETE FROM " + tableName + condition+";";
-		System.out.println(query);
 		ResultSet rs;
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
@@ -142,8 +158,8 @@ public class db {
 
 	public void dml(String query) {
 		try {
+			System.out.println(query);
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db 연결 성공");
 			Statement stat = conn.createStatement();
 			stat.executeUpdate(query);
 

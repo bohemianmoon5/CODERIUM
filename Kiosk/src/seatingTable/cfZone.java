@@ -18,38 +18,36 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import main.pay.db;
+
 public class cfZone extends JPanel {
-	// ÀÓ½Ã dbÆÄÀÏ ºÒ·¯¿À±â!
-	Dbfile db = new Dbfile();
+	// ì„ì‹œ dbíŒŒì¼ ë¶ˆëŸ¬ì˜¤ê¸°!
+
+	db d = new db();
 	ArrayList<String> seat = null;
-	ArrayList<String> r_time = null;
-	ArrayList<String> time = null;
+	ArrayList<String> menuType = null;
 	ArrayList<String> startTime = null;
 	ArrayList<String> endTime = null;
-	ArrayList<String> rstartTime = null;
-	ArrayList<String> rendTime = null;
-	ArrayList<String> seat_all = null;
 	Date start = new Date();
 	Date end = new Date();
-	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 	SimpleDateFormat fo = new SimpleDateFormat("HH:mm");
+	SimpleDateFormat ho = new SimpleDateFormat("HH");
+	String type = "";
 
-	public cfZone(JFrame frame) {
+	public cfZone() {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
 
-		this.setVisible(false);
+		this.setVisible(true);
 	}
 
 	void btn(JButton[] btn, JPanel cfZone) {
-		// seatµ¥ÀÌÅÍºÒ·¯¿À±â
-		seat = db.select("seat", "select * from payment;");
-		r_time = db.select("r_start", "select * from payment;");
-		time = db.select("start", "select * from payment;");
-		startTime = db.select("start", "select * from payment;");
-		endTime = db.select("end", "select * from payment;");
-		rstartTime = db.select("r_start", "select * from payment;");
-		rendTime = db.select("r_end", "select * from payment;");
+		// ì¢Œì„í…Œì´ë¸”
+		seat = d.select("seatNum", "paydata");
+		startTime = d.select("StartTime", "paydata");
+		endTime = d.select("EndTime", "paydata");
+		menuType = d.select("Menu", "paydata");
 
 		for (int i = 0; i < btn.length; i++) {
 			btn[i] = new JButton((i + 35) + "");
@@ -59,20 +57,26 @@ public class cfZone extends JPanel {
 			btn[i].setBorderPainted(false);
 			btn[i].setFocusPainted(false);
 
-			// db ÆÄÀÏ¿¡ ÀúÀåÇÑ seat ¹öÆ°À» °¡Á®¿É´Ï´Ù.
+			// db íŒŒì¼ì— ì €ì¥í•œ seat ë²„íŠ¼ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
+			// db íŒŒì¼ì— ì €ì¥í•œ seat ë²„íŠ¼ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
 			for (int j = 0; j < seat.size(); j++) {
-				// db ¹øÈ£¿Í ÁÂ¼®Ç¥ db¿Í °°Àº°æ¿ì ÄÚµå ½ÇÇà
-				if (btn[i].getText().equals(seat.get(j))) {
-					// ¹Ù·Î»ç¿ëÀÇ ½Ã°£¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì »ö»óÁöÁ¤!
-					if (time.get(j) != null) {
-						btn[i].setBackground(new Color(000, 153, 102));
+				// db ë²ˆí˜¸ì™€ ì¢Œì„í‘œ dbì™€ ê°™ì€ê²½ìš° ì½”ë“œ ì‹¤í–‰
+
+				if (btn[i].getText().equals(seat.get(j))) { // ì´ëŒ€ë¡œë„ ê°€ëŠ¥í•  ê²ƒ ê°™ê¸´ í•œë°.. í‡´ì‹¤ ë•Œ seatNumì„ nullì²˜ë¦¬ í•´ë²„ë¦¬ë©´.!
+					// ë°”ë¡œì‚¬ìš©ì˜ ì‹œê°„ì— ë°ì´í„°ê°€ ìˆëŠ” ê²½ìš° ìƒ‰ìƒì§€ì •!
+					System.out.println("btn[i]:" + btn[i].getText());
+					System.out.println("seat:" + seat.get(j));
+					
+					if (menuType.get(j).equals("seat")) {
+						btn[i].setBackground(new Color(174, 248, 211));
 						btn[i].setContentAreaFilled(true);
-//						ÆÄ¶õ»ö 102¹ø °¡Á®¿À±â!
-						if (btn[i].getBackground().getBlue() == 102) {
+//						íŒŒë€ìƒ‰ 102ë²ˆ ê°€ì ¸ì˜¤ê¸°!
+						if (btn[i].getBackground().getBlue() == 211) {
 							JButton J = btn[i];
 							btn[i].addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent e) {
+
 									// TODO Auto-generated method stub
 									for (int z = 0; z < seat.size(); z++) {
 										if (J.getText().equals(seat.get(z))) {
@@ -88,8 +92,8 @@ public class cfZone extends JPanel {
 											String start_t = fo.format(start);
 											String end_t = fo.format(end);
 
-											JOptionPane.showMessageDialog(null, "<HTML>" + "»ç¿ëÁßÀÎ ÀÚ¸®ÀÔ´Ï´Ù." + "<br>"
-													+ start_t + "~" + end_t + "</HTML>");
+											JOptionPane.showMessageDialog(null, "<HTML>" + "<font='í‹°ì›¨ì´_í•­ê³µ'>ì‚¬ìš©ì¤‘ì¸ ìë¦¬ì…ë‹ˆë‹¤." + "<br>"
+													+ start_t + "~" + end_t + "</font></HTML>");
 										}
 									}
 
@@ -97,43 +101,43 @@ public class cfZone extends JPanel {
 							});
 						}
 					}
-					// ¿¹¾à ½Ã°£¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì »ö»óÁöÁ¤
-					else if (r_time.get(j) != null) {
-						System.out.println("¿¹¾à½Ã°£:" + r_time.get(j));
+					// ì˜ˆì•½ ì‹œê°„ì— ë°ì´í„°ê°€ ìˆëŠ” ê²½ìš° ìƒ‰ìƒì§€ì •
+					else if (startTime.get(j) != null) {
+						System.out.println("ì˜ˆì•½ì‹œê°„:" + startTime.get(j));
 						try {
-							start = f.parse(r_time.get(j));
-							end = f.parse(rendTime.get(j));
+							start = f.parse(startTime.get(j));
+							end = f.parse(endTime.get(j));
 						} catch (ParseException e1) {
 							e1.printStackTrace();
 						}
-						// ¿¹¾à ½Ã°£ ÇÑ½Ã°£ ÀüÀ» ±¸ÇÏ±â À§ÇÑ calendar»ç¿ë!
+						/// ì˜ˆì•½ ì‹œê°„ í•œì‹œê°„ ì „ì„ êµ¬í•˜ê¸° ìœ„í•œ calendarì‚¬ìš©!
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(start);
 						cal.add(Calendar.HOUR, -1);
 						System.out.println("cal:" + cal.getTime());
-						String r_start = fo.format(cal.getTime());
+						String r_start = ho.format(cal.getTime());
 						System.out.println("r_start:" + r_start);
 
 						Date dt_now = new Date();
-						String now = fo.format(dt_now);
+						String now = ho.format(dt_now);
 						System.out.println("now:" + now);
-
-						// ÇöÀç ½Ã°£°ú db½Ã°£ÀÌ °°À¸¸é ¿¹¾à »ö»óÀ¸·Î º¯°æ!
+						
+						// í˜„ì¬ ì‹œê°„ê³¼ dbì‹œê°„ì´ ê°™ìœ¼ë©´ ì˜ˆì•½ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½!
 						if (r_start.equals(now)) {
-							btn[i].setBackground(Color.yellow);
+							btn[i].setBackground(new Color(248, 229, 175));
 							btn[i].setContentAreaFilled(true);
-							if (btn[i].getBackground().getBlue() == 0) {
+							if (btn[i].getBackground().getBlue() == 175) {
 								JButton c = btn[i];
 								btn[i].addActionListener(new ActionListener() {
 
 									@Override
 									public void actionPerformed(ActionEvent e) {
-										// for¹®À¸·Î µ¥ÀÌÅÍ °¡Áö°í¿À±â!
+										// forë¬¸ìœ¼ë¡œ ë°ì´í„° ê°€ì§€ê³ ì˜¤ê¸°!
 										for (int k = 0; k < seat.size(); k++) {
 											if (c.getText().equals(seat.get(k))) {
 												try {
-													start = f.parse(rstartTime.get(k));
-													end = f.parse(rendTime.get(k));
+													start = f.parse(startTime.get(k));
+													end = f.parse(endTime.get(k));
 												} catch (ParseException e1) {
 													// TODO Auto-generated catch block
 													e1.printStackTrace();
@@ -141,8 +145,8 @@ public class cfZone extends JPanel {
 												String start_t = fo.format(start);
 												String end_t = fo.format(end);
 
-												JOptionPane.showMessageDialog(null, "<HTML>" + "¿¹¾à ÁßÀÎ ÀÚ¸®ÀÔ´Ï´Ù." + "<br>"
-														+ start_t + "~" + end_t + "</HTML>");
+												JOptionPane.showMessageDialog(null, "<HTML>" + "<font='í‹°ì›¨ì´_í•­ê³µ'>ì˜ˆì•½ ì¤‘ì¸ ìë¦¬ì…ë‹ˆë‹¤.." + "<br>"
+														+ start_t + "~" + end_t + "</font></HTML>");
 											}
 										}
 
@@ -155,7 +159,9 @@ public class cfZone extends JPanel {
 
 				}
 			}
+
 		}
+
 		btn[0].setBounds(29, 40, 65, 65);
 		btn[1].setBounds(29, 152, 65, 65);
 		btn[2].setBounds(167, 40, 65, 65);
@@ -175,4 +181,8 @@ public class cfZone extends JPanel {
 
 	}
 
+	public void back_img() {
+		seatingImage seatimg = new seatingImage(new ImageIcon("./src/image/cf_zone_1.jpg").getImage());
+		this.add(seatimg);
+	}
 }

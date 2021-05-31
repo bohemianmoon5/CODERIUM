@@ -42,7 +42,7 @@ public class resrvationMain {
 	// ++js modify
 	private JPanel mainReservation;
 	public static JButton btn_pay;
-	private JButton home;
+	private Rbtn_home_back home;
 	JPanel show;
 	String StartT = "";
 	String EndT = "";
@@ -127,7 +127,8 @@ public class resrvationMain {
 		mainReservation.add(LavelmainRe);
 
 		// 새로운 예약 버튼
-		JButton btn_newReservation = new JButton("새로운 예약");
+//		JButton btn_newReservation = new JButton("새로운 예약");
+		RoundButton btn_newReservation = new RoundButton("새로운 예약");
 		btn_newReservation.setFont(new Font("티웨이_항공", Font.BOLD, 25));
 		btn_newReservation.setBounds(250, 190, 221, 54);
 		btn_newReservation.setContentAreaFilled(false);
@@ -153,7 +154,7 @@ public class resrvationMain {
 		});
 
 		// 예약 확인 버튼
-		JButton btn_checkRe = new JButton("\uC608\uC57D \uD655\uC778");
+		RoundButton btn_checkRe = new RoundButton("\uC608\uC57D \uD655\uC778");
 		btn_checkRe.setFont(new Font("티웨이_항공", Font.BOLD, 25));
 		btn_checkRe.setBounds(250, 470, 221, 54);
 		btn_checkRe.setContentAreaFilled(false);
@@ -176,7 +177,7 @@ public class resrvationMain {
 		});
 
 		// 예약 취소 버튼
-		JButton btn_cancelRe = new JButton("\uC608\uC57D \uCDE8\uC18C");
+		RoundButton btn_cancelRe = new RoundButton("\uC608\uC57D \uCDE8\uC18C");
 		btn_cancelRe.setFont(new Font("티웨이_항공", Font.BOLD, 25));
 		btn_cancelRe.setBounds(250, 775, 221, 54);
 		btn_cancelRe.setContentAreaFilled(false);
@@ -192,6 +193,7 @@ public class resrvationMain {
 				// createNew 함수 내 구현되어 있는 component들 add시킴!
 				mainReservation.removeAll();
 				cancelRe(mainReservation);
+				System.out.println("cnt cotn " + mainReservation.getComponentCount());
 				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
 				mainReservation.repaint();
 			}
@@ -408,14 +410,6 @@ public class resrvationMain {
 		btn_back(panel, home);
 	}
 
-	// ++js modify
-	// radioEvent에서 사용하기 위해 생성한 ArrayList
-	ArrayList<JPanel> panelArr = new ArrayList<JPanel>();
-	ArrayList<JRadioButton> radioArr = new ArrayList<JRadioButton>();
-	// 라디오 버튼이 선택되어 있는지 없는지 확인하는 chkBool 변수 생성
-	boolean chkBool = false;
-	// ++
-
 	public void cancelRe(JPanel panel) {
 		JPanel cancelRe = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -461,26 +455,30 @@ public class resrvationMain {
 
 		// ++js modify
 		paintData(panel);
-		
+
 		// 선택한 예약 데이터 예약 취소
 		btn_reCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 예약 취소 버튼 눌렀을때 '취소하시겠습니까?' 팝업창 생성
-				int result = JOptionPane.showConfirmDialog(null, "취소하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "<html><font='티웨이_항공'>취소하시겠습니까?</font></html>", "confirm", JOptionPane.YES_NO_OPTION);
 				// '취소하시겠습니까?' 팝업 창에 대해 'yes'옵션 선택한 경우
+				System.out.println("chkBoolggg " + chkBool);
 				if (result == JOptionPane.YES_OPTION) {
 					// 선택된 라디오 버튼이 없을 때 이벤트 처리
 					if (!chkBool) {
 						System.out.println("선택한 데이터 없음");
-						JOptionPane.showMessageDialog(null, "선택한 버튼이 없습니다.", "Message", result, null);
+						JOptionPane.showMessageDialog(null, "<html><font='티웨이_항공'>선택한 버튼이 없습니다.</font></html>", "Message", JOptionPane.ERROR_MESSAGE);
 					} else { // 선택된 라디오 버튼이 있을 때 이벤트 처리
 						System.out.println("선택한 데이터 있음");
 						// 데이터 베이스에 접근하여 데이터 삭제하는 코드 들어갈 부분
+						System.out.println("res" + result);
 						db d = new db();
 						d.delete("paydata", " WHERE Id='" + MainF.user + "' AND StartTime='" + getStart()
 								+ "' AND EndTime<='" + getEnd() + "'");
-						JOptionPane.showMessageDialog(null, "예약이 취소되었습니다.", "Message", result, null);
+						JOptionPane.showMessageDialog(null, "<html><font='티웨이_항공'>예약이 취소되었습니다.</font></html>");
+						paintData(panel);
+						
 					}
 				}
 			}
@@ -503,7 +501,7 @@ public class resrvationMain {
 	public void setEnd(String EndT) {
 		this.EndT = EndT;
 	}
-	
+
 //    public void delete(int id) {
 //        StringBuilder sb = new StringBuilder();
 //        String sql = sb.append("delete from " + table + " where id = ")
@@ -517,14 +515,23 @@ public class resrvationMain {
 //        }
 //    }
 
+	// ++js modify
+	// radioEvent에서 사용하기 위해 생성한 ArrayList
+	ArrayList<JPanel> panelArr = new ArrayList<JPanel>();
+	ArrayList<JCheckBox> chkArr = new ArrayList<JCheckBox>();
+	ArrayList<JRadioButton> radioArr = new ArrayList<JRadioButton>();
+	ButtonGroup group = new ButtonGroup();
+	// 라디오 버튼이 선택되어 있는지 없는지 확인하는 chkBool 변수 생성
+	boolean chkBool = false;
+	// ++
+
 	public void paintData(JPanel panel) {
 		// selectCancelRe 클래스 호출
 		selectCancelRe sr = new selectCancelRe(panel);
-		ButtonGroup group = new ButtonGroup();
 		for (int i = 0; i < sr.dataSize(); i++) {
 			// selectCancelRe 클래스 내 함수를 통해 radioBtn 생성 후 group에 값 넣는 작업
-			radioArr.add(sr.radioBtn(i));
-			group.add(radioArr.get(i));
+//			radioArr.add(sr.radioBtn(i));
+//			group.add(radioArr.get(i));
 			// radioBtn event 적용하는 부분
 			// selectCancelRe 클래스 내 함수를 통해 label 생성
 			// sr.dataModify(sr.dataChk().get(i)) -> dataChk()함수를 통해 가져온 데이터값을 정제하여 label의
@@ -534,30 +541,77 @@ public class resrvationMain {
 			String tempData = sr.dataModify(sr.dataChk().get(i));
 			String[] tempDataArr = tempData.split(", ");
 			String temp = tempDataArr[1];
+//			chkArr.add(sr.chkBox(i));
 			// 라디오 버튼 선택되어 있으면 chkBool변수 true로 변경
-			radioEvent(radioArr.get(i), temp);
+//			radioEvent(radioArr.get(i), temp);
+			chkEvent(sr.chkBox(i),temp);
+//			radioEvent(sr.radioBtn(i),temp);
 		}
 	}
 
 	// radioButton 이벤트
 	// 라디오 버튼이 선택되어있으면 bool=true로 변경, 아니면 초기값 false 그대로 가지고 있음
-	public void radioEvent(JRadioButton radio, String str) {
-		radio.addActionListener(new ActionListener() {
+	public void radioEvent(JRadioButton btn, String str) {
+		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (radio.isSelected()) {
+				if (btn.isSelected()) {
 					String[] tmpTime = str.split("~");
 					setStart(tmpTime[0]);
 					setEnd(tmpTime[1]);
 					chkBool = true;
+//					System.out.println(group.getSelection());
+					System.out.println("chkBool " + chkBool);
+				}else {
+					System.out.println("chkBool " + chkBool);					
+				}
+			}
+		});
+	}
+	
+	public void chkEvent(JCheckBox box, String str) {
+		box.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (box.isSelected()) {
+					String[] tmpTime = str.split("~");
+					setStart(tmpTime[0]);
+					setEnd(tmpTime[1]);
+					chkBool = true;
+					System.out.println("chkBool " + chkBool);
+					chkDisabled(chkArr);
+				}else {
+					chkBool = false;
+					System.out.println("chkBool " + chkBool);
+					chkEnabled(chkArr);
 				}
 			}
 		});
 	}
 
+	// 체크된 체크박스 이외 체크박스 비활성화하는 함수
+	public void chkDisabled(ArrayList<JCheckBox> cb) {
+		for (int i = 0; i < cb.size(); i++) {
+			if (cb.get(i).isSelected()) {
+				for (int j = 0; j < cb.size(); j++) {
+					if (i != j) {
+						cb.get(j).setEnabled(false);
+					}
+				}
+			}
+		}
+	}
+
+	// 모든 체크박스 활성화하는 함수
+	public void chkEnabled(ArrayList<JCheckBox> cb) {
+		for (int i = 0; i < cb.size(); i++) {
+			cb.get(i).setEnabled(true);
+		}
+	}
+	
 	// 메뉴로 돌아가기 버튼 이벤트 구현
 	public void btn_home(JPanel panel) {
-		home = new JButton(new ImageIcon("./src/image/home_btn.png"));
+		home = new Rbtn_home_back(new ImageIcon("./src/image/home_btn.png"));
 		home.setBounds(600, 50, 48, 48);
 		designBtn(home);
 		panel.add(home);
@@ -575,7 +629,7 @@ public class resrvationMain {
 
 	// 뒤로 가기 이벤트 하나의 함수로 구현
 	public void btn_back(JPanel panel, JButton btn) {
-		JButton btn_back = new JButton("\uB4A4\uB85C");
+		Rbtn_home_back btn_back = new Rbtn_home_back("\uB4A4\uB85C");
 		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
 		btn_back.setBounds(558, 0, 158, 110);
 		btn_back.setContentAreaFilled(false);

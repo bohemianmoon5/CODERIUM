@@ -61,7 +61,7 @@ public class MainF extends JFrame implements ActionListener{
 		
 		// 메인 버튼
 		Main_clickMe = new JButton("<HTML><body><center>All dreamers are here!<br>[Click Me]</center></body></HTML>");
-		Main_clickMe.setIcon(new ImageIcon("./Image/메인_버튼.png"));
+		Main_clickMe.setIcon(new ImageIcon("./src/Image/메인버튼.png"));
 		Main_clickMe.setBounds(198, 462, 340, 91);
 		Main_clickMe.setForeground(new Color(0, 0, 204));
 		Main_clickMe.setBackground(new Color(192, 192, 192));

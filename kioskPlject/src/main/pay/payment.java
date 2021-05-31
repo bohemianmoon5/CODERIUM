@@ -467,6 +467,7 @@ public class payment {
 		d.getFrame().dispose();
 		getFrame().dispose();
 		prevF.dispose();
+		resrvationMain.getFrame().dispose();
 		MainF.frame.dispose();
 
 		// 응원문구 패널 생성

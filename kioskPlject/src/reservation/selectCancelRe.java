@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -66,6 +67,14 @@ public class selectCancelRe extends JPanel implements ActionListener{
 		radio.setBounds(50, 110 + 120 * (i + 1), 30, 30);
 		panel.add(radio);
 		return radio;
+	}
+	// 체크박스 생성 함수
+	public JCheckBox chkBox(int i) {
+		JCheckBox box = new JCheckBox("");
+		box.setFont(new Font(font, Font.BOLD, 25));
+		box.setBounds(50, 110 + 120 * (i + 1), 30, 30);
+		panel.add(box);
+		return box;
 	}
 
 	// 예약한 내용에 관한 라벨 생성 함수

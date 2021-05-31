@@ -1,36 +1,33 @@
 package seatingTable;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
 
+import com.reservation.reservationMain;
+
+import Login.MainF;
 import main.pay.payment;
+import main.pay.db;
 
 public class seatButton implements ActionListener {
 	Dbfile db = new Dbfile();
+	db d = new db();
 	JButton btn = null;
-	ArrayList<String> seat = null;
-	ArrayList<String> startTime = null;
-	ArrayList<String> endTime = null;
-	ArrayList<String> rstartTime = null;
-	ArrayList<String> rendTime = null;
-	ArrayList<String> seat_all = null;
+	ArrayList<String> seat;
+	ArrayList<String> payType;
+	ArrayList<String> prod;
 	Date start = new Date();
 	Date end = new Date();
-	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 	SimpleDateFormat fo = new SimpleDateFormat("HH:mm:ss");
-	
+	reservationMain rm = new reservationMain();
+	MainF mf = new MainF();
 	int i = 0;
 
 	public seatButton(JButton btn) {
@@ -44,42 +41,74 @@ public class seatButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		// seatbutton을 db와 이곳에 저장되게 만드는 것이다.!
 
-		/*
-		 * �¼����� ����! ������ 1. sql�� ����Ҷ� ���� payment�� �����ϱ�.. where ���ǹ��� ������ ����.. ������ �𸣰���..��
-		 * ������ payment�� �׳� query ���� �ٷ� ����ϴ� ������ �ذ�.!
-		 * 
-		 */
+		// ++ wh modi 해당 아이디를 받아오기 위함
+		seat = d.select("seatNum", "paydata where id = '" + mf.id + "'");
+		// 정기권 이용자를 찾아내기 위해서 '주일'이라는 단어를 가져오기 위해 호출
+		prod = d.select("ProdName", "paydata where id = '" + mf.id + "'");
+		//
+		System.out.println(prod.get(0));
+		// 현재사용자를 어떻게 하면 가져올 수 있을까?! 해결
+		// 만약 id 가 userId 와 같고 seat이 null값이라면! 근데 이미 널값은 확실하지 않을까?! 왜냐면 자리변경을 누를 때 이미
+		// null값으로 변경시켰으니가!
+		// user id 와 id 가 같다면 아래의 쿼리문을 실행 시킬수 있는 것이겠지!
 
-		// �¼� ��ȣ db���� ������ ����
-		seat = db.select("seatNum", "select * from payment where id = 'wonho33';");
-		seat_all = db.select("seatNum", "select * from payment;");
-		startTime = db.select("starttime", "select * from payment;");
-		endTime = db.select("endtime", "select * from payment;");
-		rstartTime = db.select("r_start", "select * from payment;");
-		rendTime = db.select("r_end", "select * from payment;");
-		
+		//
 
-		// �¼� ��ȣ�� null�̶�� �¼���ȣ ä���ֱ�! , id�� �������� where��!
-		if (seat.get(0) == null) {
-			db.dml("update payment set seatNum =\"" + btn.getText() + "\"where id = 'wonho33';");
-			int result = JOptionPane.showConfirmDialog(null, btn.getText()+"��  �����ϰڽ��ϱ�?", "confirm", JOptionPane.YES_NO_OPTION);
-			if(result == JOptionPane.YES_OPTION) {
-				Dbfile db = new Dbfile();
-				db.dml("update payment set seat = null where id = 'wonho33';");
-				System.out.println("�¼��� �ʱ�ȭ �Ǿ����ϴ�.!");
-				mainPanel main = new mainPanel();
-				main.back_img();
-			System.out.println("�ٲ� �¼� ��ȣ:" + btn.getText());
+		// ++wh modify
+		// 버튼에 색이 지정되어있으면 아무 일도 안일어나게 바꿔 놓았다.
+		if (btn.getBackground().getBlue() == 211 || btn.getBackground().getBlue() == 175) {
+			System.out.println("암것도 하지마!");
 		} else {
-			System.out.println("���� �¼���ȣ!:" + seat.get(0));
+			if (seat.get(0) == null) {
+				int result = JOptionPane.showConfirmDialog(null, btn.getText() + "를  선택하겠습니까?", "confirm",
+						JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.YES_OPTION) {
+					// 예약 패널에서 좌석 선택시 좌석번호를 보내주는 코드
+					if (Main.type.equals("reserve")) {
+						// 예약 패널에 번호 업데이트!
+						resrvationMain.btn_seat.setText(btn.getText() + "번 좌석");
+						Main.getFrame().dispose();
+						resrvationMain.btn_pay.setEnabled(true);
+						Main.type = "";
+					}
+					// ++ wh modi
+					// 정기권 사용자가 로그아웃 후에 다시 이용할 때, 결제 페이지로 넘어가지 않고 바로 사용할 수 있게 하도록.!
+					else if (prod.get(0) == null) {
+						payment p = new payment(btn.getText(), Main.getFrame(), "seat");
+						p.getFrame().setVisible(true);
+					} else if (prod.get(0).contains("weeks")) {
+						int seatnum = Integer.parseInt(btn.getText());
+						d.dml("update paydata set SeatNum = " + seatnum + " where id = '" + mf.id + "';");
+						JOptionPane.showMessageDialog(null, mf.id + "님 좌석 선택 완료되었습니다!", "confirm",
+								JOptionPane.INFORMATION_MESSAGE);
+						// 새로고침 구현하고싶다.!
+
+					}
+
+					else if (prod.get(0).contains("hours")) {
+						int seatnum = Integer.parseInt(btn.getText());
+						d.dml("update paydata set SeatNum = " + seatnum + " where id = '" + mf.id + "';");
+						JOptionPane.showMessageDialog(null, mf.id + "님 좌석 선택 완료되었습니다!", "confirm",
+								JOptionPane.INFORMATION_MESSAGE);
+						// 새로고침 구현하고싶다.!
+
+					}
+
+					// 바로 사용시 출력되는 코드.!
+//				else {
+//				payment p = new payment(btn.getText() ,Main.getFrame(), "seat");
+//				p.getFrame().setVisible(true);
+//
+//				}
+
+				} else {
+//					JOptionPane.showMessageDialog(null, mf.id + "님 좌석 선택 완료되었습니다!", "confirm",
+//							JOptionPane.INFORMATION_MESSAGE);
+				}
+
+			}
 		}
-
-
-
 	}
-
-}
 }

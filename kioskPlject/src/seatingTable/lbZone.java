@@ -26,19 +26,16 @@ public class lbZone extends JPanel {
 	int num3 = 0;
 	int num4 = 0;
 
-	db d = new db();
+	
 	ArrayList<String> seat = null;
-	ArrayList<String> r_time = null;
-	ArrayList<String> time = null;
+	ArrayList<String> menuType = null;
 	ArrayList<String> startTime = null;
 	ArrayList<String> endTime = null;
-	ArrayList<String> rstartTime = null;
-	ArrayList<String> rendTime = null;
-	ArrayList<String> seat_all = null;
 	Date start = new Date();
 	Date end = new Date();
-	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 	SimpleDateFormat fo = new SimpleDateFormat("HH:mm");
+	SimpleDateFormat ho = new SimpleDateFormat("yyyy/MM/dd/HH");
 	String type = "";
 	
 
@@ -57,25 +54,17 @@ public class lbZone extends JPanel {
 		this.type = type;
 	}
 	
-	public lbZone(JFrame frame) {
-		setBounds(20, 130, 660, 870);
-		setLayout(null);
-		this.setVisible(true);
-		this.type = type;
-	}
 
 	// 좌석표 버튼 생성
 
 	void btn(JButton[] btn, JPanel lbZone) {
 		// seat data 불러오기
-
+		
+		db d = new db();
 		seat = d.select("seatNum", "paydata");
-		r_time = d.select("r_start", "paydata");
-		time = d.select("startTime", "paydata");
-		startTime = d.select("startTime", "paydata");
-		endTime = d.select("endTime", "paydata");
-		rstartTime = d.select("r_start", "paydata");
-		rendTime = d.select("r_end", "paydata");
+		startTime = d.select("StartTime", "paydata");
+		endTime = d.select("EndTime", "paydata");
+		menuType = d.select("Menu", "paydata");
 
 //		1~12번좌석 번호 생성
 		for (int i = 0; i < btn.length; i++) {
@@ -134,20 +123,17 @@ public class lbZone extends JPanel {
 				
 				if (btn[i].getText().equals(seat.get(j))) {
 					// 바로사용의 시간에 데이터가 있는 경우 색상지정!
-					System.out.println("btn[i]:" + btn[i].getText());
-					System.out.println("seat:"+seat.get(j));
-					System.out.println("time:" + time.get(j));
-					if (time.get(j) != null) {
-						btn[i].setBackground(new Color(000, 153, 102));
+//					menuType이 seat(즉시 이용일 경우)
+					if (menuType.get(j).equals("seat")) {
+						btn[i].setBackground(new Color(174,248,211));
 						btn[i].setContentAreaFilled(true);
-//						파란색 102번 가져오기!
-						if (btn[i].getBackground().getBlue() == 102) {
+//						파란색 211번 가져오기!
+						if (btn[i].getBackground().getBlue() == 211) {
 							JButton J = btn[i];
 							btn[i].addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent e) {
-									payment p = new payment(J.getText() ,Main.getFrame(), "seat");
-									p.getFrame().setVisible(true);
+									
 									// TODO Auto-generated method stub
 									for (int z = 0; z < seat.size(); z++) {
 										if (J.getText().equals(seat.get(z))) {
@@ -163,8 +149,8 @@ public class lbZone extends JPanel {
 											String start_t = fo.format(start);
 											String end_t = fo.format(end);
 
-											JOptionPane.showMessageDialog(null, "<HTML>" + "사용중인 자리입니다." + "<br>"
-													+ start_t + "~" + end_t + "</HTML>");
+											JOptionPane.showMessageDialog(null, "<HTML><font='티웨이_항공'>" + "사용중인 자리입니다." + "<br>"
+													+ start_t + "~" + end_t + "</font></HTML>");
 										}
 									}
 
@@ -173,11 +159,11 @@ public class lbZone extends JPanel {
 						}
 					}
 					// 예약 시간에 데이터가 있는 경우 색상지정
-					else if (r_time.get(j) != null) {
-						System.out.println("예약시간:" + r_time.get(j));
+					// menuType.get(j).equals("reserv");
+					else if (startTime.get(j) != null) {
 						try {
-							start = f.parse(r_time.get(j));
-							end = f.parse(rendTime.get(j));
+							start = f.parse(startTime.get(j));
+							end = f.parse(endTime.get(j));
 						} catch (ParseException e1) {
 							e1.printStackTrace();
 						}
@@ -185,19 +171,15 @@ public class lbZone extends JPanel {
 						Calendar cal = Calendar.getInstance();
 						cal.setTime(start);
 						cal.add(Calendar.HOUR, -1);
-						System.out.println("cal:" + cal.getTime());
-						String r_start = fo.format(cal.getTime());
-						System.out.println("r_start:" + r_start);
-
+						String r_start = ho.format(cal.getTime());
 						Date dt_now = new Date();
-						String now = fo.format(dt_now);
-						System.out.println("now:" + now);
+						String now = ho.format(dt_now);
 
 						// 현재 시간과 db시간이 같으면 예약 색상으로 변경!
 						if (r_start.equals(now)) {
-							btn[i].setBackground(Color.yellow);
+							btn[i].setBackground(new Color(248,229,175));
 							btn[i].setContentAreaFilled(true);
-							if (btn[i].getBackground().getBlue() == 0) {
+							if (btn[i].getBackground().getBlue() == 175) {
 								JButton c = btn[i];
 								btn[i].addActionListener(new ActionListener() {
 
@@ -207,8 +189,8 @@ public class lbZone extends JPanel {
 										for (int k = 0; k < seat.size(); k++) {
 											if (c.getText().equals(seat.get(k))) {
 												try {
-													start = f.parse(rstartTime.get(k));
-													end = f.parse(rendTime.get(k));
+													start = f.parse(startTime.get(k));
+													end = f.parse(endTime.get(k));
 												} catch (ParseException e1) {
 													// TODO Auto-generated catch block
 													e1.printStackTrace();
@@ -216,8 +198,8 @@ public class lbZone extends JPanel {
 												String start_t = fo.format(start);
 												String end_t = fo.format(end);
 
-												JOptionPane.showMessageDialog(null, "<HTML>" + "예약 중인 자리입니다.." + "<br>"
-														+ start_t + "~" + end_t + "</HTML>");
+												JOptionPane.showMessageDialog(null, "<HTML>" + "<font='티웨이_항공'>예약 중인 자리입니다.." + "<br>"
+														+ start_t + "~" + end_t + "</font></HTML>");
 											}
 										}
 

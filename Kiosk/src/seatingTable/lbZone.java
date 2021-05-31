@@ -1,6 +1,7 @@
 package seatingTable;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -9,88 +10,79 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import main.pay.db;
 import main.pay.payment;
+import main.pay.db;
 
 public class lbZone extends JPanel {
 
+	
 	int num2 = 0;
 	int num3 = 0;
 	int num4 = 0;
-//	Dbfile db = new Dbfile();
-	db d = new db();
+
+	
 	ArrayList<String> seat = null;
-	ArrayList<String> r_time = null;
-	ArrayList<String> time = null;
+	ArrayList<String> menuType = null;
 	ArrayList<String> startTime = null;
 	ArrayList<String> endTime = null;
-	ArrayList<String> rstartTime = null;
-	ArrayList<String> rendTime = null;
-	ArrayList<String> seat_all = null;
 	Date start = new Date();
 	Date end = new Date();
-	SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
 	SimpleDateFormat fo = new SimpleDateFormat("HH:mm");
+	SimpleDateFormat ho = new SimpleDateFormat("yyyy/MM/dd/HH");
+	String type = "";
 	
 
-//	db ºÒ·¯¿À±â.!
 
-//	SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd/HH:mm");
-//	ArrayList<String> time = new ArrayList<String>();
-//	ArrayList<String> timer = new ArrayList<String>();
+
 	/**
-	 * ½ºÅÍµğÁ¸ ÁÂ¼®Ç¥ »ı¼º!
+	 * ìŠ¤í„°ë””ì¡´ ì¢Œì„í‘œ ìƒì„±!
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// ½ºÅÍµğÁ¸ JPanel »ı¼º
-	public lbZone(JFrame frame) {
+	// ìŠ¤í„°ë””ì¡´ JPanel ìƒì„±
+	public lbZone() {
 		setBounds(20, 130, 660, 870);
 		setLayout(null);
-		this.setVisible(false);
+		this.setVisible(true);
+		this.type = type;
 	}
+	
 
-	// ÁÂ¼®Ç¥ ¹öÆ° »ı¼º
+	// ì¢Œì„í‘œ ë²„íŠ¼ ìƒì„±
 
 	void btn(JButton[] btn, JPanel lbZone) {
-		// seat data ºÒ·¯¿À±â
-//		seat = db.select("seatNum", "select * from payment;");
-//		r_time = db.select("r_start", "select * from payment;");
-//		time = db.select("starttime", "select * from payment;");
-//		startTime = db.select("starttime", "select * from payment;");
-//		endTime = db.select("endtime", "select * from payment;");
-//		rstartTime = db.select("r_start", "select * from payment;");
-//		rendTime = db.select("r_end", "select * from payment;");
+		// seat data ë¶ˆëŸ¬ì˜¤ê¸°
+		
+		db d = new db();
 		seat = d.select("seatNum", "paydata");
-//		r_time = db.select("r_start", "paydata");
-		time = d.select("startTime", "paydata");
-		startTime = d.select("startTime", "paydata");
-		endTime = d.select("endTime", "paydata");
-//		rstartTime = db.select("r_start", "paydata");
-//		rendTime = d.select("r_end", "paydata");
+		startTime = d.select("StartTime", "paydata");
+		endTime = d.select("EndTime", "paydata");
+		menuType = d.select("Menu", "paydata");
 
-//		1~12¹øÁÂ¼® ¹øÈ£ »ı¼º
+//		1~12ë²ˆì¢Œì„ ë²ˆí˜¸ ìƒì„±
 		for (int i = 0; i < btn.length; i++) {
 			if (i < 12) {
 				btn[i] = new JButton((i + 1) + "");
 
 				btn[i].addActionListener(new seatButton(btn[i], i));
 
-				// ¹öÆ°ÀÇ À§Ä¡¸¦ Àâ¾ÆÁİ´Ï´Ù.
+				// ë²„íŠ¼ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤ë‹ˆë‹¤.
 				btn[i].setBounds(13 + (i * 53), 23, 53, 90);
 				lbZone.add(btn[i]);
 			}
-//		13~19¹øÁÂ¼® »ı¼º	
+//			13~19ë²ˆì¢Œì„ ìƒì„±	
 			else if (i < 19) {
 				btn[i] = new JButton((i + 1) + "");
 				btn[i].addActionListener(new seatButton(btn[i], i));
 
-				// ¹öÆ°ÀÇ À§Ä¡¸¦ Àâ¾ÆÁİ´Ï´Ù.
+				// ë²„íŠ¼ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤ë‹ˆë‹¤.
 				if (num2 < 7) {
 					btn[i].setBounds(72 + (num2 * 53), 348, 53, 90);
 					lbZone.add(btn[i]);
@@ -98,25 +90,25 @@ public class lbZone extends JPanel {
 				num2++;
 
 			}
-//		20~26¹ø ÁÂ¼® »ı¼º
+//			20~26ë²ˆ ì¢Œì„ ìƒì„±
 			else if (i < 26) {
 
 				btn[i] = new JButton((i + 1) + "");
 				btn[i].addActionListener(new seatButton(btn[i], i));
 
-				// ¹öÆ°ÀÇ À§Ä¡¸¦ Àâ¾ÆÁİ´Ï´Ù.
+				// ë²„íŠ¼ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤ë‹ˆë‹¤.
 				if (num3 < 7) {
 					btn[i].setBounds(72 + (num3 * 53), 440, 53, 90);
 					lbZone.add(btn[i]);
 				}
 				num3++;
 			}
-//		27~34¹ø ÁÂ¼®»ı¼º			
+//			27~34ë²ˆ ì¢Œì„ìƒì„±			
 			else {
 				btn[i] = new JButton((i + 1) + "");
 				btn[i].addActionListener(new seatButton(btn[i], i));
 
-				// ¹öÆ°ÀÇ À§Ä¡¸¦ Àâ¾ÆÁİ´Ï´Ù.
+				// ë²„íŠ¼ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì¤ë‹ˆë‹¤.
 				if (num4 < 8) {
 					btn[i].setBounds(13 + (num4 * 53), 755, 53, 90);
 					lbZone.add(btn[i]);
@@ -125,25 +117,23 @@ public class lbZone extends JPanel {
 			}
 			btn[i].setContentAreaFilled(false);
 			
-			// db ÆÄÀÏ¿¡ ÀúÀåÇÑ seat ¹öÆ°À» °¡Á®¿É´Ï´Ù.
+			// db íŒŒì¼ì— ì €ì¥í•œ seat ë²„íŠ¼ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
 			for (int j = 0; j < seat.size(); j++) {
-				// db ¹øÈ£¿Í ÁÂ¼®Ç¥ db¿Í °°Àº°æ¿ì ÄÚµå ½ÇÇà
+				// db ë²ˆí˜¸ì™€ ì¢Œì„í‘œ dbì™€ ê°™ì€ê²½ìš° ì½”ë“œ ì‹¤í–‰
 				
 				if (btn[i].getText().equals(seat.get(j))) {
-					// ¹Ù·Î»ç¿ëÀÇ ½Ã°£¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì »ö»óÁöÁ¤!
-					System.out.println("btn[i]:" + btn[i].getText());
-					System.out.println("seat:"+seat.get(j));
-					if (time.get(j) != null) {
-						btn[i].setBackground(new Color(000, 153, 102));
+					// ë°”ë¡œì‚¬ìš©ì˜ ì‹œê°„ì— ë°ì´í„°ê°€ ìˆëŠ” ê²½ìš° ìƒ‰ìƒì§€ì •!
+//					menuTypeì´ seat(ì¦‰ì‹œ ì´ìš©ì¼ ê²½ìš°)
+					if (menuType.get(j).equals("seat")) {
+						btn[i].setBackground(new Color(174,248,211));
 						btn[i].setContentAreaFilled(true);
-//						ÆÄ¶õ»ö 102¹ø °¡Á®¿À±â!
-						if (btn[i].getBackground().getBlue() == 102) {
+//						íŒŒë€ìƒ‰ 211ë²ˆ ê°€ì ¸ì˜¤ê¸°!
+						if (btn[i].getBackground().getBlue() == 211) {
 							JButton J = btn[i];
 							btn[i].addActionListener(new ActionListener() {
 								@Override
 								public void actionPerformed(ActionEvent e) {
-//									payment p = new payment(J.getText() ,Main_swing.getFrame(), "seat");
-//									p.getFrame().setVisible(true);
+									
 									// TODO Auto-generated method stub
 									for (int z = 0; z < seat.size(); z++) {
 										if (J.getText().equals(seat.get(z))) {
@@ -159,8 +149,8 @@ public class lbZone extends JPanel {
 											String start_t = fo.format(start);
 											String end_t = fo.format(end);
 
-											JOptionPane.showMessageDialog(null, "<HTML>" + "»ç¿ëÁßÀÎ ÀÚ¸®ÀÔ´Ï´Ù." + "<br>"
-													+ start_t + "~" + end_t + "</HTML>");
+											JOptionPane.showMessageDialog(null, "<HTML>" + "<font='í‹°ì›¨ì´_í•­ê³µ'>ì‚¬ìš©ì¤‘ì¸ ìë¦¬ì…ë‹ˆë‹¤." + "<br>"
+													+ start_t + "~" + end_t + "</font></HTML>");
 										}
 									}
 
@@ -168,66 +158,66 @@ public class lbZone extends JPanel {
 							});
 						}
 					}
-					// ¿¹¾à ½Ã°£¿¡ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì »ö»óÁöÁ¤
-//					else if (r_time.get(j) != null) {
-//						System.out.println("¿¹¾à½Ã°£:" + r_time.get(j));
-//						try {
-//							start = f.parse(r_time.get(j));
-//							end = f.parse(rendTime.get(j));
-//						} catch (ParseException e1) {
-//							e1.printStackTrace();
-//						}
-//						// ¿¹¾à ½Ã°£ ÇÑ½Ã°£ ÀüÀ» ±¸ÇÏ±â À§ÇÑ calendar»ç¿ë!
-//						Calendar cal = Calendar.getInstance();
-//						cal.setTime(start);
-//						cal.add(Calendar.HOUR, -1);
-//						System.out.println("cal:" + cal.getTime());
-//						String r_start = fo.format(cal.getTime());
-//						System.out.println("r_start:" + r_start);
-//
-//						Date dt_now = new Date();
-//						String now = fo.format(dt_now);
-//						System.out.println("now:" + now);
-//
-//						// ÇöÀç ½Ã°£°ú db½Ã°£ÀÌ °°À¸¸é ¿¹¾à »ö»óÀ¸·Î º¯°æ!
-//						if (r_start.equals(now)) {
-//							btn[i].setBackground(Color.yellow);
-//							btn[i].setContentAreaFilled(true);
-//							if (btn[i].getBackground().getBlue() == 0) {
-//								JButton c = btn[i];
-//								btn[i].addActionListener(new ActionListener() {
-//
-//									@Override
-//									public void actionPerformed(ActionEvent e) {
-//										// for¹®À¸·Î µ¥ÀÌÅÍ °¡Áö°í¿À±â!
-//										for (int k = 0; k < seat.size(); k++) {
-//											if (c.getText().equals(seat.get(k))) {
-//												try {
-//													start = f.parse(rstartTime.get(k));
-//													end = f.parse(rendTime.get(k));
-//												} catch (ParseException e1) {
-//													// TODO Auto-generated catch block
-//													e1.printStackTrace();
-//												}
-//												String start_t = fo.format(start);
-//												String end_t = fo.format(end);
-//
-//												JOptionPane.showMessageDialog(null, "<HTML>" + "¿¹¾à ÁßÀÎ ÀÚ¸®ÀÔ´Ï´Ù." + "<br>"
-//														+ start_t + "~" + end_t + "</HTML>");
-//											}
-//										}
-//
-//									}
-//
-//								});
-//							}
-//						}
-//					}
-//
+					// ì˜ˆì•½ ì‹œê°„ì— ë°ì´í„°ê°€ ìˆëŠ” ê²½ìš° ìƒ‰ìƒì§€ì •
+					// menuType.get(j).equals("reserv");
+					else if (startTime.get(j) != null) {
+						try {
+							start = f.parse(startTime.get(j));
+							end = f.parse(endTime.get(j));
+						} catch (ParseException e1) {
+							e1.printStackTrace();
+						}
+						/// ì˜ˆì•½ ì‹œê°„ í•œì‹œê°„ ì „ì„ êµ¬í•˜ê¸° ìœ„í•œ calendarì‚¬ìš©!
+						Calendar cal = Calendar.getInstance();
+						cal.setTime(start);
+						cal.add(Calendar.HOUR, -1);
+						String r_start = ho.format(cal.getTime());
+						Date dt_now = new Date();
+						String now = ho.format(dt_now);
+
+						// í˜„ì¬ ì‹œê°„ê³¼ dbì‹œê°„ì´ ê°™ìœ¼ë©´ ì˜ˆì•½ ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½!
+						if (r_start.equals(now)) {
+							btn[i].setBackground(new Color(248,229,175));
+							btn[i].setContentAreaFilled(true);
+							if (btn[i].getBackground().getBlue() == 175) {
+								JButton c = btn[i];
+								btn[i].addActionListener(new ActionListener() {
+
+									@Override
+									public void actionPerformed(ActionEvent e) {
+										// forë¬¸ìœ¼ë¡œ ë°ì´í„° ê°€ì§€ê³ ì˜¤ê¸°!
+										for (int k = 0; k < seat.size(); k++) {
+											if (c.getText().equals(seat.get(k))) {
+												try {
+													start = f.parse(startTime.get(k));
+													end = f.parse(endTime.get(k));
+												} catch (ParseException e1) {
+													// TODO Auto-generated catch block
+													e1.printStackTrace();
+												}
+												String start_t = fo.format(start);
+												String end_t = fo.format(end);
+
+												JOptionPane.showMessageDialog(null, "<HTML>" + "<font='í‹°ì›¨ì´_í•­ê³µ'>ì˜ˆì•½ ì¤‘ì¸ ìë¦¬ì…ë‹ˆë‹¤.." + "<br>"
+														+ start_t + "~" + end_t + "</font></HTML>");
+											}
+										}
+
+									}
+
+								});
+							}
+						}
+					}
+
 				}
 			}
 
 		}
 
+	}
+	public void back_img() {
+		seatingImage seatimg = new seatingImage(new ImageIcon("./src/image/lb_zone_1.jpg").getImage());
+		this.add(seatimg);
 	}
 }
