@@ -15,11 +15,11 @@ import javax.swing.JLabel;
 public class NonMember extends JPanel{
 	
 	JPanel NonMember = new JPanel();
-	JButton nonMemberButton = new JButton("비회원");
+	RoundButton nonMemberButton = new RoundButton("비회원");
 	JLabel cellPhoneNum = new JLabel("휴대폰 번호");
 	JLabel verifiedNum = new JLabel("인증번호");
-	JButton loginButtonNon = new JButton("로그인");
-	JButton returnButton = new JButton("돌아가기");
+	RoundButton loginButtonNon = new RoundButton("로그인");
+	RoundButton returnButton = new RoundButton("돌아가기");
 	
 	//폰트 설정
 	String font = "twayair";
@@ -36,7 +36,7 @@ public class NonMember extends JPanel{
 		
 		// 비회원 버튼 
 		nonMemberButton.setFont(new Font(font, Font.PLAIN, 14));
-		nonMemberButton.setBounds(373, 6, 91, 34);
+		nonMemberButton.setBounds(378, 8, 80, 30);
 		
 		// 휴대폰 번호 
 		cellPhoneNum.setFont(new Font(font, Font.PLAIN, 19));
@@ -58,12 +58,12 @@ public class NonMember extends JPanel{
 		
 		// 비회원 로그인 버튼 
 		loginButtonNon.setFont(new Font(font, Font.PLAIN, 15));
-		loginButtonNon.setBounds(297, 211, 103, 35);
+		loginButtonNon.setBounds(310, 211, 90, 30);
 		NonMember.add(loginButtonNon);
 		
 		// 돌아가기 
 		returnButton.setFont(new Font(font, Font.PLAIN, 14));
-		returnButton.setBounds(373, 6, 91, 34);
+		returnButton.setBounds(378, 8, 80, 30);
 		NonMember.add(returnButton);
 		
 	}

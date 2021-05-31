@@ -262,6 +262,7 @@ public class MainF extends JFrame implements ActionListener{
 		connect.add(connectP.SeatChange);
 		connect.add(connectP.In);
 		connect.add(connectP.Out);
+		connect.add(connectP.dream);
 		
 		ShowUp.add(connectP.Connect);
 		
@@ -289,12 +290,19 @@ public class MainF extends JFrame implements ActionListener{
 				}
 				break;
 			case "loginNon" :
+				if(!nonMember.cellPhoneNumField.getText().equals("") && !nonMember.verifiedNumField.getText().equals("")) {
 				if(forVerifiedNum.get(0).equals(nonMember.verifiedNumField.getText())) {
 					welcomePage = new WelcomePage();
 					welcomePage.welcomeLabel.setText("    " + "안녕하세요!");
 					switchPanels(connect);
 					connect.setVisible(true);
 					offFrame(welcomePage.frame);
+					}
+				}else {
+					warningMs = new WarningMs();
+					warningMs.warning.setBounds(60, 15, 330, 130);
+					warningMs.warning.setText("빈 공간이 없도록 해주세요!");
+					offFrame(warningMs.frame);
 				}
 				break;	
 			case "cancel" :

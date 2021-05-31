@@ -18,7 +18,7 @@ public class SignUp {
 	
 	JPanel SignUp = new JPanel();
 	JLabel signUp = new JLabel("회원이 아닌가요?");
-	JButton signUpButton = new JButton("회원가입");
+	RoundButton signUpButton = new RoundButton("회원가입");
 	JLabel signUpID = new JLabel("User ID");
 	JLabel signUpPassword = new JLabel("Password");
 	JLabel signUpName = new JLabel("이름");
@@ -28,8 +28,8 @@ public class SignUp {
 	JLabel signUpWord = new JLabel("소망(꿈) (기재시 꼭 이루어집니다!)");
 	JRadioButton GenderM = new JRadioButton("남");
 	JRadioButton GenderW = new JRadioButton("여");
-	JButton completeBtn = new JButton("가입하기");
-	JButton cancelBtn = new JButton("취소하기");
+	RoundButton completeBtn = new RoundButton("가입하기");
+	RoundButton cancelBtn = new RoundButton("취소하기");
 	
 	//폰트 설정
 	String font = "twayair";
@@ -57,7 +57,7 @@ public class SignUp {
 		
 		// 회원가입 
 		signUpButton.setFont(new Font(font, Font.PLAIN, 13));
-		signUpButton.setBounds(102, 233, 75, 28);
+		signUpButton.setBounds(110, 234, 55, 25);
 		
 		// Id
 		signUpID.setFont(new Font(font, Font.PLAIN, 20));
@@ -136,12 +136,12 @@ public class SignUp {
 		
 		// 가입하기 
 		completeBtn.setFont(new Font(font, Font.PLAIN, 15));
-		completeBtn.setBounds(253, 688, 100, 35);
+		completeBtn.setBounds(253, 688, 95, 35);
 		SignUp.add(completeBtn);
 		
 		// 취소하기 
 		cancelBtn.setFont(new Font(font, Font.PLAIN, 15));
-		cancelBtn.setBounds(360, 688, 100, 35);
+		cancelBtn.setBounds(360, 688, 95, 35);
 		SignUp.add(cancelBtn);
 		
 	}

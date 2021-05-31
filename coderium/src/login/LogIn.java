@@ -19,7 +19,7 @@ public class LogIn extends JPanel{
 	JLabel userPasswordLabel = new JLabel("Password");
 	JTextField userIDField = new JTextField();
 	JPasswordField userPasswordField = new JPasswordField();
-	JButton loginButton = new JButton("로그인");
+	RoundButton loginButton = new RoundButton("로그인");
 	
 	//폰트 설정
 	String font = "twayair";
@@ -49,7 +49,7 @@ public class LogIn extends JPanel{
 		
 		// 로그인 
 		loginButton.setFont(new Font(font, Font.PLAIN, 15));
-		loginButton.setBounds(297, 211, 103, 35);
+		loginButton.setBounds(310, 211, 90, 30);
 		LogIn.add(loginButton);
 	
 	}

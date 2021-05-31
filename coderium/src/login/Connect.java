@@ -9,6 +9,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,6 +39,8 @@ public class Connect {
 	JButton In = new JButton("입실");
 	JButton Out = new JButton("퇴실");
 	JButton SeatChange = new JButton("자리바꾸기");
+	JTextField dream = new JTextField();
+	MainF main = new MainF();
 	
 	//폰트 설정
 	String font = "twayair";
@@ -87,6 +95,7 @@ public class Connect {
 		inEvent(In);
 		reservEvent(Reservation);
 	}
+	
 		
 		//좌석 관련 이벤트 구현
 		public void seatEvent(JButton btn, String menuType) {
