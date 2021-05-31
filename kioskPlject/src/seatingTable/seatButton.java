@@ -57,6 +57,7 @@ public class seatButton implements ActionListener {
 
 		// ++wh modify
 		// 버튼에 색이 지정되어있으면 아무 일도 안일어나게 바꿔 놓았다.
+
 		if (btn.getBackground().getBlue() == 211 || btn.getBackground().getBlue() == 175) {
 			System.out.println("암것도 하지마!");
 		} else {
@@ -110,4 +111,5 @@ public class seatButton implements ActionListener {
 			}
 		}
 	}
+
 }

@@ -14,11 +14,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
+import reservation.RoundButton;
+
 public class SignUp {
 	
 	JPanel SignUp = new JPanel();
 	JLabel signUp = new JLabel("회원이 아닌가요?");
-	JButton signUpButton = new JButton("회원가입");
+	RoundButton signUpButton = new RoundButton("회원가입");
 	JLabel signUpID = new JLabel("User ID");
 	JLabel signUpPassword = new JLabel("Password");
 	JLabel signUpName = new JLabel("이름");
@@ -28,8 +30,8 @@ public class SignUp {
 	JLabel signUpWord = new JLabel("소망(꿈)");
 	JRadioButton GenderM = new JRadioButton("남");
 	JRadioButton GenderW = new JRadioButton("여");
-	JButton completeBtn = new JButton("가입하기");
-	JButton cancelBtn = new JButton("취소하기");
+	RoundButton completeBtn = new RoundButton("가입하기");
+	RoundButton cancelBtn = new RoundButton("취소하기");
 	
 	
 	JTextField signUpIDField;

@@ -302,7 +302,7 @@ public class MainF extends JFrame implements ActionListener{
 				ResultSet rs;
 				try {
 					Class.forName("com.mysql.jdbc.Driver");
-					con = DriverManager.getConnection("jdbc:mysql://localhost:3306/data", "root", "dlrlwk86532@");
+					con = DriverManager.getConnection("jdbc:mysql://localhost:3306/data", "root", "1234");
 					stmt = con.createStatement();
 					System.out.println("db connect");
 					String sql = "SELECT * FROM list WHERE Id ='"+userID+"' AND Pw ='"+password+"'";

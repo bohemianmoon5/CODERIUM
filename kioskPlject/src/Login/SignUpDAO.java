@@ -39,7 +39,7 @@ public class SignUpDAO {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/data", "root", "dlrlwk86532@");
+					"jdbc:mysql://localhost:3306/data", "root", "1234");
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, signUp.getId());
 			pstmt.setString(2, signUp.getPw());

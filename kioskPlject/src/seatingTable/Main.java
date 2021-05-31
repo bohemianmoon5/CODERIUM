@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 
 public class Main {
 	public static String type = "";
@@ -159,6 +160,11 @@ public class Main {
 		btn.setContentAreaFilled(false);
 		btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
+	}
+
+	public JPanel getMainPanel() {
+		// TODO Auto-generated method stub
+		return main_panel;
 	}
 
 }

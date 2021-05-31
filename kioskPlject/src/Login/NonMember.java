@@ -3,6 +3,8 @@ package Login;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import reservation.RoundButton;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,7 +17,7 @@ import javax.swing.JLabel;
 public class NonMember extends JPanel{
 	
 	JPanel NonMember = new JPanel();
-	JButton nonMemberButton = new JButton("비회원");
+	RoundButton nonMemberButton = new RoundButton("비회원");
 	JLabel cellPhoneNum = new JLabel("휴대폰 번호");
 	JLabel verifiedNum = new JLabel("인증번호");
 	JButton loginButtonNon = new JButton("로그인");
@@ -33,7 +35,7 @@ public class NonMember extends JPanel{
 		
 		// 비회원 버튼 
 		nonMemberButton.setFont(new Font("twayair", Font.PLAIN, 14));
-		nonMemberButton.setBounds(373, 6, 91, 34);
+		nonMemberButton.setBounds(373, 211, 91, 34);
 		
 		// 휴대폰 번호 
 		cellPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));

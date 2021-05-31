@@ -17,7 +17,7 @@ public class db {
 	// MySql private information
 	String jdbc = "jdbc:mysql://localhost:3306/data";
 	String root = "root";
-	String pwd = "dlrlwk86532@";
+	String pwd = "1234";
 
 	public db() {
 
