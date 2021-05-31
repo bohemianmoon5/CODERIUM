@@ -149,7 +149,7 @@ public class lbZone extends JPanel {
 											String start_t = fo.format(start);
 											String end_t = fo.format(end);
 
-											JOptionPane.showMessageDialog(null, "<HTML><font='티웨이_항공'>" + "사용중인 자리입니다." + "<br>"
+											JOptionPane.showMessageDialog(null, "<HTML><font face='티웨이_항공'>" + "사용중인 자리입니다." + "<br>"
 													+ start_t + "~" + end_t + "</font></HTML>");
 										}
 									}
@@ -198,7 +198,7 @@ public class lbZone extends JPanel {
 												String start_t = fo.format(start);
 												String end_t = fo.format(end);
 
-												JOptionPane.showMessageDialog(null, "<HTML>" + "<font='티웨이_항공'>예약 중인 자리입니다.." + "<br>"
+												JOptionPane.showMessageDialog(null, "<HTML>" + "<font face='티웨이_항공'>예약 중인 자리입니다.." + "<br>"
 														+ start_t + "~" + end_t + "</font></HTML>");
 											}
 										}

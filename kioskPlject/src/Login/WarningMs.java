@@ -19,7 +19,7 @@ public class WarningMs {
 		warning.setFont(new Font(font, Font.PLAIN, 20));
 		frame.add(warning);
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(540, 30, 350, 200);
 		frame.setLayout(null);
 		frame.setVisible(true);

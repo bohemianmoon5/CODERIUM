@@ -9,12 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import Login.MainF;
+import reservation.Rbtn_back;
+import reservation.Rbtn_home;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 
 public class Main {
 	public static String type = "";
@@ -23,7 +26,7 @@ public class Main {
 	public static mainPanel main_panel;
 	public static Component[] Main_p;
 	private static Component[] Sub_p;
-	JButton home;
+	Rbtn_home home;
 	JPanel show;
 
 //	public static void main(String[] args) {
@@ -93,18 +96,23 @@ public class Main {
 		main_panel.add(sub_panel);
 
 		// 백버튼 생성
-		JButton back = new JButton(new ImageIcon("./src/image/back_btn.png"));
+		Rbtn_back back = new Rbtn_back();
 		back.setBounds(600, 50, 48, 48);
 		designBtn(back);
 		main_panel.add(back);
 //		main_panel.back_img();
 
 		// 홈버튼 생성
-		home = new JButton(new ImageIcon("./src/image/home_btn.png"));
+		home = new Rbtn_home();
 		home.setBounds(500, 50, 48, 48);
 		designBtn(home);
 		main_panel.add(home);
-		main_panel.back_img();
+		main_panel.back_img();		
+		if(t.equals("now")) {
+			home.setEnabled(true);
+		}else {
+			home.setEnabled(false);
+		}
 
 		Main_p = main_panel.getComponents();
 		Sub_p = sub_panel.getComponents();
@@ -159,6 +167,11 @@ public class Main {
 		btn.setContentAreaFilled(false);
 		btn.setBorderPainted(false);
 		btn.setFocusPainted(false);
+	}
+
+	public JPanel getMainPanel() {
+		// TODO Auto-generated method stub
+		return main_panel;
 	}
 
 }

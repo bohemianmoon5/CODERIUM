@@ -73,7 +73,7 @@ public class payment {
 	private String font = "티웨이_항공";
 	// seatButton에서 좌석번호 가져옴
 	private String seatN = "1";
-	private JFrame prevF;
+	private static JFrame prevF;
 	private String menuType = "";
 
 	// reserv에서 가져온 데이터
@@ -123,7 +123,7 @@ public class payment {
 		getFrame().setTitle("결제");
 		getFrame().setVisible(true);
 		frame.getContentPane().setLayout(null);
-
+		frame.setAlwaysOnTop(true); 
 		// frame내 내용들을 모두 감싸는 container Panel 생성
 		containerPanel = new JPanel();
 		containerPanel.setBounds(0, 0, 684, 361);
@@ -443,6 +443,7 @@ public class payment {
 					done d = new done(mustCash, payCash);
 					d.getFrame().setVisible(true);
 					doneTimerEvent(3000, d, type);
+					payCash = 0;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -465,10 +466,17 @@ public class payment {
 	// 결제 완료 시 event
 	public void doneEvent(done d, String type) {
 		d.getFrame().dispose();
-		getFrame().dispose();
-		prevF.dispose();
-		resrvationMain.getFrame().dispose();
-		MainF.frame.dispose();
+		if(!d.getFrame().isDisplayable()) {
+			System.out.println("frame 1 "+d.getFrame().isDisplayable());
+			getFrame().dispose();
+			prevF.dispose();
+			resrvationMain.getFrame().dispose();
+			MainF.getFrame().dispose();						
+			System.out.println("frame 2" +getFrame().isDisplayable() );
+			System.out.println("frame 3" +prevF.isDisplayable() );
+			System.out.println("frame 4" +resrvationMain.frame.isDisplayable() );
+			System.out.println("frame 5" +MainF.getFrame().isDisplayable() );
+		}
 
 		// 응원문구 패널 생성
 		reMain();

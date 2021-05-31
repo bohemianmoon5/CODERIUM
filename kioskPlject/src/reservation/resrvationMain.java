@@ -36,13 +36,13 @@ public class resrvationMain {
 	ImageIcon icon;
 	public static String seatnum = "";
 	public static JButton btn_seat;
-	private static JFrame frame;
+	public static JFrame frame;
 	Component[] mainC;
 	String rt = "";
 	// ++js modify
 	private JPanel mainReservation;
 	public static JButton btn_pay;
-	private Rbtn_home_back home;
+	private Rbtn_home home;
 	JPanel show;
 	String StartT = "";
 	String EndT = "";
@@ -72,8 +72,8 @@ public class resrvationMain {
 	}
 
 	public resrvationMain(String rt, JFrame frame, JPanel show) {
-		this.frame = frame;
 		this.rt = rt;
+		this.frame = frame;
 		this.show = show;
 //		setFrame(frame);
 		initialize();
@@ -312,32 +312,42 @@ public class resrvationMain {
 		panel.add(btn_pay);
 		// 결제창으로 이동하는 actionlistener필요
 
+		MainF mf = new MainF();
+		db d = new db();
+		ArrayList<String> menu = d.select("Menu", "paydata where id = '" + mf.user + "';");
+
 		btn_pay.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectDate.yearBox.getSelectedItem().toString();
-				selectDate.monthBox.getSelectedItem().toString();
-				selectDate.dayBox.getSelectedItem().toString();
+				if (menu.size() >= 5) {
+					JOptionPane.showMessageDialog(null,
+							"<html><center><font face = '티웨이_항공'> 예약 할 수 없습니다. </font></center></html>", "confirm",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					selectDate.yearBox.getSelectedItem().toString();
+					selectDate.monthBox.getSelectedItem().toString();
+					selectDate.dayBox.getSelectedItem().toString();
 
-				// ++js modify
-				String yearB = selectDate.yearBox.getSelectedItem().toString();
-				String year = Integer.parseInt(yearB) < 10 ? "0" + yearB : yearB;
-				String month = selectDate.monthBox.getSelectedItem().toString();
-				String day = selectDate.dayBox.getSelectedItem().toString();
-				String hourTemp = selectDate.timelist.getSelectedItem().toString();
-				String hour = Integer.parseInt(hourTemp) < 10 ? "0" + hourTemp : hourTemp;
-				System.out.println(hour);
-				String stdDate = year + "/" + month + "/" + day + "/" + hour + ":00";
-				reservData rd = new reservData();
-				rd.modiProd(selectMenu.menuList.getSelectedItem().toString());
-				String prodName = rd.getProd();
-				String price = rd.getPrice();
-				String seatN = btn_seat.getText();
-				payment p = new payment(seatN.substring(0, seatN.length() - 4), getFrame(), "reserv", prodName, price,
-						stdDate, show);
-				p.getFrame().setVisible(true);
-				// ++
+					// ++js modify
+					String yearB = selectDate.yearBox.getSelectedItem().toString();
+					String year = Integer.parseInt(yearB) < 10 ? "0" + yearB : yearB;
+					String month = selectDate.monthBox.getSelectedItem().toString();
+					String day = selectDate.dayBox.getSelectedItem().toString();
+					String hourTemp = selectDate.timelist.getSelectedItem().toString();
+					String hour = Integer.parseInt(hourTemp) < 10 ? "0" + hourTemp : hourTemp;
+					System.out.println(hour);
+					String stdDate = year + "/" + month + "/" + day + "/" + hour + ":00";
+					reservData rd = new reservData();
+					rd.modiProd(selectMenu.menuList.getSelectedItem().toString());
+					String prodName = rd.getProd();
+					String price = rd.getPrice();
+					String seatN = btn_seat.getText();
+					payment p = new payment(seatN.substring(0, seatN.length() - 4), getFrame(), "reserv", prodName,
+							price, stdDate, show);
+					p.getFrame().setVisible(true);
+					// ++
+				}
 			}
 
 		});
@@ -461,14 +471,16 @@ public class resrvationMain {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 예약 취소 버튼 눌렀을때 '취소하시겠습니까?' 팝업창 생성
-				int result = JOptionPane.showConfirmDialog(null, "<html><font='티웨이_항공'>취소하시겠습니까?</font></html>", "confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "<html><font='티웨이_항공'>취소하시겠습니까?</font></html>",
+						"confirm", JOptionPane.YES_NO_OPTION);
 				// '취소하시겠습니까?' 팝업 창에 대해 'yes'옵션 선택한 경우
 				System.out.println("chkBoolggg " + chkBool);
 				if (result == JOptionPane.YES_OPTION) {
 					// 선택된 라디오 버튼이 없을 때 이벤트 처리
 					if (!chkBool) {
 						System.out.println("선택한 데이터 없음");
-						JOptionPane.showMessageDialog(null, "<html><font='티웨이_항공'>선택한 버튼이 없습니다.</font></html>", "Message", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "<html><font='티웨이_항공'>선택한 버튼이 없습니다.</font></html>",
+								"Message", JOptionPane.ERROR_MESSAGE);
 					} else { // 선택된 라디오 버튼이 있을 때 이벤트 처리
 						System.out.println("선택한 데이터 있음");
 						// 데이터 베이스에 접근하여 데이터 삭제하는 코드 들어갈 부분
@@ -478,7 +490,7 @@ public class resrvationMain {
 								+ "' AND EndTime<='" + getEnd() + "'");
 						JOptionPane.showMessageDialog(null, "<html><font='티웨이_항공'>예약이 취소되었습니다.</font></html>");
 						paintData(panel);
-						
+
 					}
 				}
 			}
@@ -516,12 +528,9 @@ public class resrvationMain {
 //    }
 
 	// ++js modify
-	// radioEvent에서 사용하기 위해 생성한 ArrayList
-	ArrayList<JPanel> panelArr = new ArrayList<JPanel>();
+	// chkEvent에서 사용하기 위해 생성한 ArrayList
 	ArrayList<JCheckBox> chkArr = new ArrayList<JCheckBox>();
-	ArrayList<JRadioButton> radioArr = new ArrayList<JRadioButton>();
-	ButtonGroup group = new ButtonGroup();
-	// 라디오 버튼이 선택되어 있는지 없는지 확인하는 chkBool 변수 생성
+	// 체크박스 선택되어 있는지 없는지 확인하는 chkBool 변수 생성
 	boolean chkBool = false;
 	// ++
 
@@ -529,46 +538,20 @@ public class resrvationMain {
 		// selectCancelRe 클래스 호출
 		selectCancelRe sr = new selectCancelRe(panel);
 		for (int i = 0; i < sr.dataSize(); i++) {
-			// selectCancelRe 클래스 내 함수를 통해 radioBtn 생성 후 group에 값 넣는 작업
-//			radioArr.add(sr.radioBtn(i));
-//			group.add(radioArr.get(i));
-			// radioBtn event 적용하는 부분
+			// chkBox event 적용하는 부분
 			// selectCancelRe 클래스 내 함수를 통해 label 생성
 			// sr.dataModify(sr.dataChk().get(i)) -> dataChk()함수를 통해 가져온 데이터값을 정제하여 label의
 			// text 값으로 넣는 작업
 			sr.selectReLabel(i, sr.dataModify(sr.dataChk().get(i)));
-			// 데이터 delete 조건 위해 start~end 추출 후 radioEvent()에 전달
+			// 데이터 delete 조건 위해 start~end 추출 후 chkEvent()에 전달
 			String tempData = sr.dataModify(sr.dataChk().get(i));
 			String[] tempDataArr = tempData.split(", ");
 			String temp = tempDataArr[1];
-//			chkArr.add(sr.chkBox(i));
-			// 라디오 버튼 선택되어 있으면 chkBool변수 true로 변경
-//			radioEvent(radioArr.get(i), temp);
-			chkEvent(sr.chkBox(i),temp);
-//			radioEvent(sr.radioBtn(i),temp);
+			chkEvent(sr.chkBox(i), temp);
 		}
 	}
 
-	// radioButton 이벤트
-	// 라디오 버튼이 선택되어있으면 bool=true로 변경, 아니면 초기값 false 그대로 가지고 있음
-	public void radioEvent(JRadioButton btn, String str) {
-		btn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (btn.isSelected()) {
-					String[] tmpTime = str.split("~");
-					setStart(tmpTime[0]);
-					setEnd(tmpTime[1]);
-					chkBool = true;
-//					System.out.println(group.getSelection());
-					System.out.println("chkBool " + chkBool);
-				}else {
-					System.out.println("chkBool " + chkBool);					
-				}
-			}
-		});
-	}
-	
+
 	public void chkEvent(JCheckBox box, String str) {
 		box.addActionListener(new ActionListener() {
 			@Override
@@ -580,7 +563,7 @@ public class resrvationMain {
 					chkBool = true;
 					System.out.println("chkBool " + chkBool);
 					chkDisabled(chkArr);
-				}else {
+				} else {
 					chkBool = false;
 					System.out.println("chkBool " + chkBool);
 					chkEnabled(chkArr);
@@ -608,10 +591,10 @@ public class resrvationMain {
 			cb.get(i).setEnabled(true);
 		}
 	}
-	
+
 	// 메뉴로 돌아가기 버튼 이벤트 구현
 	public void btn_home(JPanel panel) {
-		home = new Rbtn_home_back(new ImageIcon("./src/image/home_btn.png"));
+		home = new Rbtn_home();
 		home.setBounds(600, 50, 48, 48);
 		designBtn(home);
 		panel.add(home);
@@ -629,9 +612,9 @@ public class resrvationMain {
 
 	// 뒤로 가기 이벤트 하나의 함수로 구현
 	public void btn_back(JPanel panel, JButton btn) {
-		Rbtn_home_back btn_back = new Rbtn_home_back("\uB4A4\uB85C");
+		Rbtn_back btn_back = new Rbtn_back();
 		btn_back.setFont(new Font("티웨이_항공", Font.BOLD, 25));
-		btn_back.setBounds(558, 0, 158, 110);
+		btn_back.setBounds(600, 50, 48, 48);
 		btn_back.setContentAreaFilled(false);
 		btn_back.setBorderPainted(false);
 		btn_back.setFocusPainted(false);
