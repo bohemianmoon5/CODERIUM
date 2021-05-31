@@ -1,4 +1,4 @@
-package Login;
+package login;
 
 import java.util.ArrayList;
 import java.util.HashMap;

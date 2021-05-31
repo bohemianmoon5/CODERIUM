@@ -1,4 +1,4 @@
-package Login;
+package login;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -31,6 +31,8 @@ public class SignUp {
 	JButton completeBtn = new JButton("가입하기");
 	JButton cancelBtn = new JButton("취소하기");
 	
+	//폰트 설정
+	String font = "twayair";
 	
 	JTextField signUpIDField;
 	JPasswordField signUpPasswordField;
@@ -50,15 +52,15 @@ public class SignUp {
 		// 회원가입 권유 
 		signUp.setBackground(new Color(204, 204, 204));
 		signUp.setForeground(new Color(51, 102, 204));
-		signUp.setFont(new Font("twayair", Font.PLAIN, 13));
+		signUp.setFont(new Font(font, Font.PLAIN, 13));
 		signUp.setBounds(8, 230, 143, 34);
 		
 		// 회원가입 
-		signUpButton.setFont(new Font("twayair", Font.PLAIN, 13));
+		signUpButton.setFont(new Font(font, Font.PLAIN, 13));
 		signUpButton.setBounds(102, 233, 75, 28);
 		
 		// Id
-		signUpID.setFont(new Font("twayair", Font.PLAIN, 20));
+		signUpID.setFont(new Font(font, Font.PLAIN, 20));
 		signUpID.setBounds(60, 45, 91, 25);
 		SignUp.add(signUpID);
 		
@@ -67,7 +69,7 @@ public class SignUp {
 		SignUp.add(signUpIDField);
 		
 		// Pw
-		signUpPassword.setFont(new Font("twayair", Font.PLAIN, 20));
+		signUpPassword.setFont(new Font(font, Font.PLAIN, 20));
 		signUpPassword.setBounds(60, 118, 111, 42);
 		SignUp.add(signUpPassword);
 		
@@ -76,7 +78,7 @@ public class SignUp {
 		SignUp.add(signUpPasswordField);
 		
 		// 이름 
-		signUpName.setFont(new Font("twayair", Font.PLAIN, 19));
+		signUpName.setFont(new Font(font, Font.PLAIN, 19));
 		signUpName.setBounds(60, 209, 91, 25);
 		SignUp.add(signUpName);
 		
@@ -85,12 +87,12 @@ public class SignUp {
 		SignUp.add(signUpNameField);
 		
 		// 성별 
-		signUpGender.setFont(new Font("twayair", Font.PLAIN, 19));
+		signUpGender.setFont(new Font(font, Font.PLAIN, 19));
 		signUpGender.setBounds(60, 292, 91, 25);
 		SignUp.add(signUpGender);
 		
 		// 생년월일 
-		signUpIDNum.setFont(new Font("twayair", Font.PLAIN, 19));
+		signUpIDNum.setFont(new Font(font, Font.PLAIN, 19));
 		signUpIDNum.setBounds(60, 375, 201, 25);
 		SignUp.add(signUpIDNum);
 		
@@ -99,7 +101,7 @@ public class SignUp {
 		SignUp.add(signUpIDNumField);
 		
 		// 휴대폰 번호 
-		signUpPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
+		signUpPhoneNum.setFont(new Font(font, Font.PLAIN, 19));
 		signUpPhoneNum.setBounds(60, 455, 300, 25);
 		SignUp.add(signUpPhoneNum);
 		
@@ -108,7 +110,7 @@ public class SignUp {
 		SignUp.add(signUpPhoneNumField);
 		
 		// 소망(꿈)
-		signUpWord.setFont(new Font("twayair", Font.PLAIN, 19));
+		signUpWord.setFont(new Font(font, Font.PLAIN, 19));
 		signUpWord.setBounds(60, 534, 300, 25);
 		SignUp.add(signUpWord);
 		
@@ -120,12 +122,12 @@ public class SignUp {
 		ButtonGroup btnGender = new ButtonGroup();
 		
 		GenderM.setToolTipText("남");
-		GenderM.setFont(new Font("twayair", Font.PLAIN, 16));
+		GenderM.setFont(new Font(font, Font.PLAIN, 16));
 		GenderM.setBounds(70, 330, 54, 23);
 		SignUp.add(GenderM);
 		
 		GenderW.setToolTipText("여");
-		GenderW.setFont(new Font("twayair", Font.PLAIN, 16));
+		GenderW.setFont(new Font(font, Font.PLAIN, 16));
 		GenderW.setBounds(154, 330, 54, 23);
 		SignUp.add(GenderW);
 		
@@ -133,12 +135,12 @@ public class SignUp {
 		btnGender.add(GenderW);
 		
 		// 가입하기 
-		completeBtn.setFont(new Font("twayair", Font.PLAIN, 15));
+		completeBtn.setFont(new Font(font, Font.PLAIN, 15));
 		completeBtn.setBounds(253, 688, 100, 35);
 		SignUp.add(completeBtn);
 		
 		// 취소하기 
-		cancelBtn.setFont(new Font("twayair", Font.PLAIN, 15));
+		cancelBtn.setFont(new Font(font, Font.PLAIN, 15));
 		cancelBtn.setBounds(360, 688, 100, 35);
 		SignUp.add(cancelBtn);
 		

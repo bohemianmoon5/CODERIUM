@@ -1,4 +1,4 @@
-package Login;
+package login;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -21,6 +21,9 @@ public class NonMember extends JPanel{
 	JButton loginButtonNon = new JButton("로그인");
 	JButton returnButton = new JButton("돌아가기");
 	
+	//폰트 설정
+	String font = "twayair";
+	
 	JTextField cellPhoneNumField;
 	JTextField verifiedNumField;
 	
@@ -32,11 +35,11 @@ public class NonMember extends JPanel{
 		NonMember.setBounds(132, 214, 470, 266);
 		
 		// 비회원 버튼 
-		nonMemberButton.setFont(new Font("twayair", Font.PLAIN, 14));
+		nonMemberButton.setFont(new Font(font, Font.PLAIN, 14));
 		nonMemberButton.setBounds(373, 6, 91, 34);
 		
 		// 휴대폰 번호 
-		cellPhoneNum.setFont(new Font("twayair", Font.PLAIN, 19));
+		cellPhoneNum.setFont(new Font(font, Font.PLAIN, 19));
 		cellPhoneNum.setBounds(60, 63, 151, 25);
 		NonMember.add(cellPhoneNum);
 		
@@ -45,7 +48,7 @@ public class NonMember extends JPanel{
 		NonMember.add(cellPhoneNumField);
 		
 		// 인증번호 
-		verifiedNum.setFont(new Font("twayair", Font.PLAIN, 19));
+		verifiedNum.setFont(new Font(font, Font.PLAIN, 19));
 		verifiedNum.setBounds(60, 127, 168, 42);
 		NonMember.add(verifiedNum);
 		
@@ -54,12 +57,12 @@ public class NonMember extends JPanel{
 		NonMember.add(verifiedNumField);
 		
 		// 비회원 로그인 버튼 
-		loginButtonNon.setFont(new Font("twayair", Font.PLAIN, 15));
+		loginButtonNon.setFont(new Font(font, Font.PLAIN, 15));
 		loginButtonNon.setBounds(297, 211, 103, 35);
 		NonMember.add(loginButtonNon);
 		
 		// 돌아가기 
-		returnButton.setFont(new Font("twayair", Font.PLAIN, 14));
+		returnButton.setFont(new Font(font, Font.PLAIN, 14));
 		returnButton.setBounds(373, 6, 91, 34);
 		NonMember.add(returnButton);
 		

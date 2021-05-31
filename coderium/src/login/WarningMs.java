@@ -1,4 +1,4 @@
-package Login;
+package login;
 
 import java.awt.Font;
 
@@ -10,14 +10,17 @@ public class WarningMs {
 	JFrame frame = new JFrame();
 	JLabel warning = new JLabel("");
 	
+	//폰트 설정
+	String font = "twayair";
+	
 	WarningMs() {
 		
-		warning.setBounds(150, 0, 400, 150);
-		warning.setFont(new Font("twayair", Font.PLAIN, 20));
+		warning.setBounds(150, 0, 300, 150);
+		warning.setFont(new Font(font, Font.PLAIN, 20));
 		frame.add(warning);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(465, 30, 500, 200);
+		frame.setBounds(540, 30, 350, 200);
 		frame.setLayout(null);
 		frame.setVisible(true);
 		

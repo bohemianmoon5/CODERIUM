@@ -1,4 +1,4 @@
-package Login;
+package login;
 
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -21,23 +21,26 @@ public class LogIn extends JPanel{
 	JPasswordField userPasswordField = new JPasswordField();
 	JButton loginButton = new JButton("로그인");
 	
+	//폰트 설정
+	String font = "twayair";
+	
 	public LogIn() {
 		
 		LogIn.setBounds(132, 214, 470, 266);
 		LogIn.setToolTipText("");
-		LogIn.setBackground(new Color(220, 220, 220));
+		LogIn.setBackground(new Color(220, 220, 220,110));
 		LogIn.setLayout(null);
 		
 		// Id
 		userIDLabel.setBounds(60, 63, 91, 25);
-		userIDLabel.setFont(new Font("twayair", Font.PLAIN, 20));
+		userIDLabel.setFont(new Font(font, Font.PLAIN, 20));
 		LogIn.add(userIDLabel);
 		
 		userIDField.setBounds(60, 90, 340, 34);
 		LogIn.add(userIDField);
 		
 		// Pw
-		userPasswordLabel.setFont(new Font("twayair", Font.PLAIN, 20));
+		userPasswordLabel.setFont(new Font(font, Font.PLAIN, 20));
 		userPasswordLabel.setBounds(60, 127, 111, 42);
 		LogIn.add(userPasswordLabel);
 		
@@ -45,7 +48,7 @@ public class LogIn extends JPanel{
 		LogIn.add(userPasswordField);
 		
 		// 로그인 
-		loginButton.setFont(new Font("twayair", Font.PLAIN, 15));
+		loginButton.setFont(new Font(font, Font.PLAIN, 15));
 		loginButton.setBounds(297, 211, 103, 35);
 		LogIn.add(loginButton);
 	
