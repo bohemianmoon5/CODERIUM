@@ -39,8 +39,6 @@ public class Connect {
 	JButton In = new JButton("입실");
 	JButton Out = new JButton("퇴실");
 	JButton SeatChange = new JButton("자리바꾸기");
-	JTextField dream = new JTextField();
-	MainF main = new MainF();
 	
 	//폰트 설정
 	String font = "twayair";

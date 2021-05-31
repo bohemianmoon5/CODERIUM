@@ -262,7 +262,6 @@ public class MainF extends JFrame implements ActionListener{
 		connect.add(connectP.SeatChange);
 		connect.add(connectP.In);
 		connect.add(connectP.Out);
-		connect.add(connectP.dream);
 		
 		ShowUp.add(connectP.Connect);
 		
