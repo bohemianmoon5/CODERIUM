@@ -28,7 +28,7 @@ public class LogIn extends JPanel{
 		
 		LogIn.setBounds(132, 214, 470, 266);
 		LogIn.setToolTipText("");
-		LogIn.setBackground(new Color(220, 220, 220,110));
+		LogIn.setBackground(new Color(220, 220, 220));
 		LogIn.setLayout(null);
 		
 		// Id

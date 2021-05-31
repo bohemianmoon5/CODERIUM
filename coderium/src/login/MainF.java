@@ -150,7 +150,7 @@ public class MainF extends JFrame implements ActionListener{
 		signUp.completeBtn.addActionListener(this);
 		
 		// 유효성 검사(form) 
-		check = new CheckForm();
+		// check = new CheckForm();
 		// 유효성 검사 
 		signUp.signUpIDField.addActionListener(new ActionListener() {
 			
@@ -339,42 +339,49 @@ public class MainF extends JFrame implements ActionListener{
 				signUp.SignUp.setVisible(true);
 				break;
 			case "complete" :
-				signUpData = new SignUpDAO();
-				signUpData.signUp.setId(signUp.signUpIDField.getText());
-				// Pw 데이터 저장 
-				String stringPassword = "";
-				int i = 0;
+				//비밀번호 양식 
+				String checkPw = "";
+				int c = 0;
 				for(char a : signUp.signUpPasswordField.getPassword()) {
-					stringPassword += signUp.signUpPasswordField.getPassword()[i];
-					i++;
+					checkPw += signUp.signUpPasswordField.getPassword()[c];
+					c++;
 				}
-				signUpData.signUp.setPw(stringPassword);
-				signUpData.signUp.setName(signUp.signUpNameField.getText());
-				signUpData.signUp.setIdNum(signUp.signUpIDNumField.getText());
-				signUpData.signUp.setPhoneNum(signUp.signUpPhoneNumField.getText());
-				signUpData.signUp.setWord(signUp.signUpWordTxt.getText());
-				// 성별 데이터 저장
-				if(signUp.GenderM.isSelected()) {
-					signUpData.signUp.setGender(signUp.GenderM.getToolTipText());
-				}else if(signUp.GenderW.isSelected()) {
-					signUpData.signUp.setGender(signUp.GenderW.getToolTipText());
+				if(!signUp.signUpIDField.getText().equals("") && !checkPw.equals("") && !signUp.signUpNameField.getText().equals("") && !signUp.signUpIDNumField.getText().equals("") && !signUp.signUpPhoneNumField.getText().equals("")) {
+					signUpData = new SignUpDAO();
+					signUpData.signUp.setId(signUp.signUpIDField.getText());
+					signUpData.signUp.setPw(checkPw);
+					signUpData.signUp.setName(signUp.signUpNameField.getText());
+					signUpData.signUp.setIdNum(signUp.signUpIDNumField.getText());
+					signUpData.signUp.setPhoneNum(signUp.signUpPhoneNumField.getText());
+					signUpData.signUp.setWord(signUp.signUpWordTxt.getText());
+					// 성별 데이터 저장
+					if(signUp.GenderM.isSelected()) {
+						signUpData.signUp.setGender(signUp.GenderM.getToolTipText());
+					}else if(signUp.GenderW.isSelected()) {
+						signUpData.signUp.setGender(signUp.GenderW.getToolTipText());
+					}else {
+						warningMs = new WarningMs();
+						warningMs.warning.setBounds(90, 15, 330, 130);
+						warningMs.warning.setText("성별을 선택해주세요!");
+						offFrame(warningMs.frame);
+					} 
+					System.out.println(signUpData.SetSignUp());
+					if(!(signUpData.SignUpDAO() == -1)) {
+						switchPanels(login.LogIn);
+						login.LogIn.setVisible(true);
+						deleteAll();
+					}else {
+						signUpData.SignUpDAO();
+					}
+					break;
 				}else {
 					warningMs = new WarningMs();
-					warningMs.warning.setBounds(90, 15, 330, 130);
-					warningMs.warning.setText("성별을 선택해주세요!");
+					warningMs.warning.setBounds(60, 15, 330, 130);
+					warningMs.warning.setText("빈 공간이 없도록 해주세요!");
 					offFrame(warningMs.frame);
-				} 
-				System.out.println(signUpData.SetSignUp());
-				if(!(signUpData.SignUpDAO() == -1)) {
-					switchPanels(login.LogIn);
-					login.LogIn.setVisible(true);
-					deleteAll();
-				} else {
-					signUpData.SignUpDAO();
-				}
-				break;
-			}
-	}
+					}
+		}
+}
 	
 	public void vnOffFrame(JFrame f) {
 		Timer timer = new Timer();
