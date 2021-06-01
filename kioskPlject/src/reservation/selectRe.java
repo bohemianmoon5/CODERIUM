@@ -54,6 +54,7 @@ public class selectRe extends JPanel{
 	// 로그인한 사용자의 조건에 맞는 예약 데이터의 사이즈 반환 함수
 	public int dataSize() {
 		ArrayList<String> arr = dataChk();
+		System.out.println("arr.size()"+arr.size());
 		return arr.size();
 	}
 	

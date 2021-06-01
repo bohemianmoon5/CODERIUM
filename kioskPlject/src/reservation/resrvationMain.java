@@ -193,7 +193,7 @@ public class resrvationMain {
 				// createNew 함수 내 구현되어 있는 component들 add시킴!
 				mainReservation.removeAll();
 				cancelRe(mainReservation);
-				System.out.println("cnt cotn " + mainReservation.getComponentCount());
+//				System.out.println("cnt cotn " + mainReservation.getComponentCount());
 				// ++패널 repaint() 안하면 제대로 구현 안되므로 필요한 작업
 				mainReservation.repaint();
 			}
@@ -314,13 +314,13 @@ public class resrvationMain {
 
 		MainF mf = new MainF();
 		db d = new db();
-		ArrayList<String> menu = d.select("Menu", "paydata where id = '" + mf.user + "';");
+		ArrayList<String> menu = d.select("Menu", "paydata where id = '" + mf.user+"'");
+//		System.out.println("menusize "+menu.size());
 
 		btn_pay.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (menu.size() >= 5) {
+				if (menu.size() >= 3) {
 					JOptionPane.showMessageDialog(null,
 							"<html><center><font face = '티웨이_항공'> 예약 할 수 없습니다. </font></center></html>", "confirm",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -336,7 +336,7 @@ public class resrvationMain {
 					String day = selectDate.dayBox.getSelectedItem().toString();
 					String hourTemp = selectDate.timelist.getSelectedItem().toString();
 					String hour = Integer.parseInt(hourTemp) < 10 ? "0" + hourTemp : hourTemp;
-					System.out.println(hour);
+//					System.out.println(hour);
 					String stdDate = year + "/" + month + "/" + day + "/" + hour + ":00";
 					reservData rd = new reservData();
 					rd.modiProd(selectMenu.menuList.getSelectedItem().toString());
@@ -391,6 +391,7 @@ public class resrvationMain {
 		// ++js modify
 		// selectRe 클래스 호출
 		selectRe sr = new selectRe(panel);
+		System.out.println(sr.dataSize());
 		for (int i = 0; i < sr.dataSize(); i++) {
 			// selectRe 클래스 내 함수를 통해 label 생성
 			// sr.dataModify(sr.dataChk().get(i)) -> dataChk()함수를 통해 가져온 데이터값을 정제하여 label의
@@ -474,7 +475,7 @@ public class resrvationMain {
 				int result = JOptionPane.showConfirmDialog(null, "<html><font='티웨이_항공'>취소하시겠습니까?</font></html>",
 						"confirm", JOptionPane.YES_NO_OPTION);
 				// '취소하시겠습니까?' 팝업 창에 대해 'yes'옵션 선택한 경우
-				System.out.println("chkBoolggg " + chkBool);
+//				System.out.println("chkBoolggg " + chkBool);
 				if (result == JOptionPane.YES_OPTION) {
 					// 선택된 라디오 버튼이 없을 때 이벤트 처리
 					if (!chkBool) {
@@ -484,7 +485,7 @@ public class resrvationMain {
 					} else { // 선택된 라디오 버튼이 있을 때 이벤트 처리
 						System.out.println("선택한 데이터 있음");
 						// 데이터 베이스에 접근하여 데이터 삭제하는 코드 들어갈 부분
-						System.out.println("res" + result);
+//						System.out.println("res" + result);
 						db d = new db();
 						d.delete("paydata", " WHERE Id='" + MainF.user + "' AND StartTime='" + getStart()
 								+ "' AND EndTime<='" + getEnd() + "'");

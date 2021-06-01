@@ -59,12 +59,12 @@ public class seatButton implements ActionListener {
 		// 버튼에 색이 지정되어있으면 아무 일도 안일어나게 바꿔 놓았다.
 
 		if (btn.getBackground().getBlue() == 211 || btn.getBackground().getBlue() == 175) {
-			System.out.println("암것도 하지마!");
+//			System.out.println("암것도 하지마!");
 		} else {
-			System.out.println("들어오기 전이다아아아아");
-			System.out.println(Main.type);
+//			System.out.println("들어오기 전이다아아아아");
+//			System.out.println(Main.type);
 			if (seat.get(0) == null || Main.type.equals("reserve") || seat.size()==0) {
-				System.out.println("들어왓다아아아");
+//				System.out.println("들어왓다아아아");
 				int result = JOptionPane.showConfirmDialog(null, btn.getText() + "를  선택하겠습니까?", "confirm",
 						JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
@@ -81,7 +81,7 @@ public class seatButton implements ActionListener {
 					else if (prod.get(0) == null) {
 						payment p = new payment(btn.getText(), Main.getFrame(), "seat");
 						p.getFrame().setVisible(true);
-					} else if (prod.get(0).contains("weeks") || Main.t.equals("reserv")) {
+					} else if (prod.get(0).contains("days") || Main.t.equals("reserv")) {
 						int seatnum = Integer.parseInt(btn.getText());
 						d.dml("update paydata set SeatNum = " + seatnum + " where id = '" + mf.user + "';");
 						JOptionPane.showMessageDialog(null, mf.user + "님 좌석 선택 완료되었습니다!", "confirm",

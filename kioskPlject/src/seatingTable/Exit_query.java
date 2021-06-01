@@ -47,7 +47,7 @@ public class Exit_query {
 			System.out.println("hours로 들어옴");
 			d.dml("update paydata set seatNum =" + null + " where id = '" + id + "';");
 			d.dml("update paydata set payTime =" + null + " where id = '" + id + "';");
-//			d.dml("update paydata set startTime =" + null + " where id = '" + id + "';");
+			d.dml("update paydata set startTime =" + null + " where id = '" + id + "';");
 			d.dml("update paydata set endTime =" + null + " where id = '" + id + "';");
 			d.dml("update paydata set ProdName =" + null + " where id = '" + id + "';");
 			d.dml("update paydata set Price =" + null + " where id = '" + id + "';");
@@ -71,8 +71,8 @@ public class Exit_query {
 				if (after) {
 					d.dml("update paydata set seatNum =" + null + " where id = '" + id + "';");
 					d.dml("update paydata set payTime =" + null + " where id = '" + id + "';");
-//					d.dml("update paydata set startTime =" + null + " where id = '" + id + "';");
-					d.dml("update paydata set endTime =" + null + " where id = '" + id + "';");
+					d.dml("update paydata set startTime =" + null + " where id = '" + id + "';");
+//					d.dml("update paydata set endTime =" + null + " where id = '" + id + "';");
 					d.dml("update paydata set ProdName =" + null + " where id = '" + id + "';");
 					d.dml("update paydata set Price =" + null + " where id = '" + id + "';");
 					d.dml("update paydata set Menu =" + null + " where id = '" + id + "';");

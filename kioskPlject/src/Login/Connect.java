@@ -5,7 +5,9 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -53,7 +55,7 @@ public class Connect {
 		this.loginId = loginId;
 		this.loginPwd = loginPwd;
 		this.now = now;
-		
+
 		Connect.setBounds(0, 0, 720, 1080);
 		Connect.setLayout(null);
 		Connect.setToolTipText("");
@@ -79,8 +81,8 @@ public class Connect {
 		// 자리바꾸기
 		SeatChange.setBounds(170, 550, 180, 180);
 		SeatChange.setFont(new Font("twayair", Font.PLAIN, 22));
-		
-		//시간확인하기
+
+		// 시간확인하기
 		TimeConfirm.setBounds(370, 550, 180, 180);
 		TimeConfirm.setFont(new Font("twayair", Font.PLAIN, 22));
 
@@ -150,8 +152,8 @@ public class Connect {
 //							frame.add(mf.main_con[i]);
 //						}
 //					} else {
-						panel.setVisible(false);
-						resrvationMain rm = new resrvationMain("re", frame, panel);
+					panel.setVisible(false);
+					resrvationMain rm = new resrvationMain("re", frame, panel);
 //					}
 				}
 			}
@@ -171,11 +173,11 @@ public class Connect {
 					db d = new db();
 					// 조건에 맞는 데이터 검색하여 저장
 					data = d.selectAll("paydata WHERE Id='" + MainF.user
-							+ "' AND StartTime IS NOT NULL AND StartTime>='" + now + "' AND EndTime>='" + now + "'", 1);
+							+ "' AND StartTime IS NOT NULL AND StartTime>='" + now + "'", 1);
 					// 조건에 맞는 데이터가 있으면 메인으로 돌아감
 					if (data.size() == 1) {
 						JOptionPane.showMessageDialog(null, "<html><font face='티웨이_항공'>입실되었습니다.</font></html>",
-								"Message",JOptionPane.INFORMATION_MESSAGE);
+								"Message", JOptionPane.INFORMATION_MESSAGE);
 						for (int i = 0; i < panel.getComponentCount(); i++) {
 							panel.getComponent(i).setVisible(false);
 						}
@@ -246,7 +248,8 @@ public class Connect {
 				if (result == JOptionPane.YES_OPTION) {
 					MainF mf = new MainF();
 					db d = new db();
-					d.dml("update paydata set seatNum = null where id =" + "'" + mf.user + "';");
+					d.dml("update paydata set seatNum = null where id ='" + mf.user + "';");
+					d.dml("update paydata set StartTime = '"+now+"' where id ='" + mf.user + "' AND StartTime IS NULL;");
 					System.out.println("좌석이 초기화 되었습니다.!");
 					panel.setVisible(false);
 
@@ -272,15 +275,18 @@ public class Connect {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				int result = JOptionPane.showConfirmDialog(null, "<html><font face='티웨이_항공'>시간을 확인하시겠습니까.?</font></html>",
-						"confirm", JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null,
+						"<html><font face='티웨이_항공'>시간을 확인하시겠습니까.?</font></html>", "confirm", JOptionPane.YES_NO_OPTION);
 				if (result == JOptionPane.YES_OPTION) {
 					MainF mf = new MainF();
 					db d = new db();
 
-					ArrayList<String> startTime = d.select("StartTime", "paydata where id = '" + mf.user + "' order by StartTime;");
-					ArrayList<String> endTime = d.select("EndTime", "paydata where id = '" + mf.user + "' order by StartTime;");
-					ArrayList<String> seat = d.select("SeatNum", "paydata where id = '" + mf.user + "' order by StartTime;");
+					ArrayList<String> startTime = d.select("StartTime",
+							"paydata where id = '" + mf.user + "' order by StartTime;");
+					ArrayList<String> endTime = d.select("EndTime",
+							"paydata where id = '" + mf.user + "' order by StartTime;");
+					ArrayList<String> seat = d.select("SeatNum",
+							"paydata where id = '" + mf.user + "' order by StartTime;");
 
 					System.out.println("시작시간과 끝시간은:" + startTime.get(0) + "," + endTime.get(0));
 					if (startTime.get(0) != null & endTime.get(0) != null)
@@ -291,8 +297,8 @@ public class Connect {
 								+ "</font> ~ <font color = 'blue', size = 16, face = '티웨이_항공'>" + endTime.get(0)
 								+ "</font>까지", "confirm", JOptionPane.INFORMATION_MESSAGE);
 					else {
-						JOptionPane.showMessageDialog(null, "<html><font face='티웨이_항공'>결제 부탁 드립니다.</font><html>", "confirm",
-								JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "<html><font face='티웨이_항공'>결제 부탁 드립니다.</font><html>",
+								"confirm", JOptionPane.INFORMATION_MESSAGE);
 					}
 
 				}

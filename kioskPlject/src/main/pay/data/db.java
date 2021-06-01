@@ -53,7 +53,7 @@ public class db {
 	public void update(String id, String seat, String payT, String sTime, String eTime, String product, String price,
 			String payType, String menuType) {
 		String query = "UPDATE paydata SET SeatNum='"+seat+"',PayTime='"+payT+"',StartTime='"+sTime+"',EndTime='"+eTime+"',ProdName='"+product+"', Price='"+price+"',Method='"+payType+"',Menu='"+menuType+"' WHERE Id='"+id+"';";
-		System.out.println(query);
+//		System.out.println(query);
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 	
@@ -97,7 +97,7 @@ public class db {
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
 //			System.out.println("db 연결 성공");
-
+//			System.out.println(query);
 			Statement stat = conn.createStatement();
 			rs = stat.executeQuery(query);
 
@@ -144,7 +144,7 @@ public class db {
 		ResultSet rs;
 		try {
 			conn = DriverManager.getConnection(jdbc, root, pwd);
-			System.out.println("db 연결 성공");
+//			System.out.println("db 연결 성공");
 
 			PreparedStatement stat = conn.prepareStatement(query);
 			stat.executeUpdate();

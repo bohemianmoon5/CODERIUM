@@ -117,8 +117,8 @@ public class Main {
 		Main_p = main_panel.getComponents();
 		Sub_p = sub_panel.getComponents();
 
-		System.out.println(Main_p.length);
-		System.out.println(Sub_p.length);
+//		System.out.println(Main_p.length);
+//		System.out.println(Sub_p.length);
 		// 백버튼 클릭시
 		back.addActionListener(new ActionListener() {
 

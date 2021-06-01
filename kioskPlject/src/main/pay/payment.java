@@ -123,7 +123,7 @@ public class payment {
 		getFrame().setTitle("결제");
 		getFrame().setVisible(true);
 		frame.getContentPane().setLayout(null);
-		frame.setAlwaysOnTop(true); 
+		frame.setAlwaysOnTop(true);
 		// frame내 내용들을 모두 감싸는 container Panel 생성
 		containerPanel = new JPanel();
 		containerPanel.setBounds(0, 0, 684, 361);
@@ -466,17 +466,15 @@ public class payment {
 	// 결제 완료 시 event
 	public void doneEvent(done d, String type) {
 		d.getFrame().dispose();
-		if(!d.getFrame().isDisplayable()) {
-			System.out.println("frame 1 "+d.getFrame().isDisplayable());
-			getFrame().dispose();
-			prevF.dispose();
-			resrvationMain.getFrame().dispose();
-			MainF.getFrame().dispose();						
-			System.out.println("frame 2" +getFrame().isDisplayable() );
-			System.out.println("frame 3" +prevF.isDisplayable() );
-			System.out.println("frame 4" +resrvationMain.frame.isDisplayable() );
-			System.out.println("frame 5" +MainF.getFrame().isDisplayable() );
-		}
+//		System.out.println("frame 1 " + d.getFrame().isDisplayable());
+		getFrame().dispose();
+		prevF.dispose();
+		resrvationMain.getFrame().dispose();
+		MainF.getFrame().dispose();
+//		System.out.println("frame 2" + getFrame().isDisplayable());
+//		System.out.println("frame 3" + prevF.isDisplayable());
+//		System.out.println("frame 4" + resrvationMain.frame.isDisplayable());
+//		System.out.println("frame 5" + MainF.getFrame().isDisplayable());
 
 		// 응원문구 패널 생성
 		reMain();

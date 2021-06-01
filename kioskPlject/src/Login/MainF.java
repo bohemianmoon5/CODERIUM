@@ -254,7 +254,7 @@ public class MainF extends JFrame implements ActionListener {
 		});
 
 		first = ShowUp.getComponents();
-		System.out.println(first.length);
+//		System.out.println(first.length);
 		// 연결 패널
 		connectP = new Connect(frame, ShowUp, first, login.userIDField, login.userPasswordField, s.format(now));
 		connectP.Connect.add(connect);
@@ -279,12 +279,13 @@ public class MainF extends JFrame implements ActionListener {
 			switchPanels(nonMember.NonMember);
 			nonMember.NonMember.setVisible(true);
 			break;
+			
 		case "phone":
 			if (nonMember.cellPhoneNumField.getText().length() == 11) {
 				nonMember.cellPhoneNumField.setText(phone_format(nonMember.cellPhoneNumField.getText()));
 				VerifiedNum verifiedNum = new VerifiedNum();
 				list.add(verifiedNum.randomNum());
-				verifiedNum.randomNum.setText(list.get(0));
+				verifiedNum.randomNum.setText("<html>인증번호<br>"+list.get(0)+"</html>");
 				vnOffFrame(verifiedNum.frame);
 			}
 			break;
@@ -293,6 +294,11 @@ public class MainF extends JFrame implements ActionListener {
 				welcomePage = new WelcomePage();
 				welcomePage.welcomeLabel.setText("    " + "안녕하세요!");
 				switchPanels(connect);
+				db d = new db();
+				user=nonMember.cellPhoneNumField.getText();
+				d.dml("insert into paydata(id) value('" + user
+						+ "');");
+
 				connect.setVisible(true);
 				offFrame(welcomePage.frame);
 			}
@@ -351,7 +357,7 @@ public class MainF extends JFrame implements ActionListener {
 			id_list = d.select("Id", "list");
 			for (int i = 0; i < id_list.size(); i++) {
 				if (userID.equals(id_list.get(i))) {
-					d.dml("insert into paydata(id) select +'" + user
+					d.dml("insert into paydata(id) select '" + user
 							+ "' from dual where not exists(select id from paydata where id = '" + user + "');");
 				}
 			}
