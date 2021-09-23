@@ -1,5 +1,5 @@
-# CODERIUM
-## Team Project(GUI)
+## CODERIUM
+### Team Project(GUI)
 
 - 기획의도
  -- 예약 기능이 있는 스터디카페 키오스크 구현
