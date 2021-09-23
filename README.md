@@ -13,5 +13,5 @@
   - Dev Tool : Eclipse 4.17<br>
   - DB : MySQL<br>
 
-- 시연영상<br>
+- 시연영상<br><br>
 ![코더리움(시연영상)](https://user-images.githubusercontent.com/65845572/134523102-6c7bdd18-b209-45be-a81d-540a382b264f.gif)
