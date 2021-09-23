@@ -14,4 +14,4 @@
   - DB : MySQL<br>
 
 - 시연영상<br><br>
-![코더리움(시연영상)](https://user-images.githubusercontent.com/65845572/134523102-6c7bdd18-b209-45be-a81d-540a382b264f.gif)
+![코더리움(시연영상)](https://user-images.githubusercontent.com/65845572/134525436-77926af1-3f1b-4122-b046-30f651d6277b.gif)
