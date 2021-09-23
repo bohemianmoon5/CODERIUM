@@ -1,4 +1,4 @@
-# CODERIUM
+## CODERIUM
 #### Team Project(GUI)
 
 - 기획의도<br>
