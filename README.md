@@ -9,8 +9,9 @@
 
 - 개발환경<br>
   - Platform : Windows 10 x64, i7-8565U, 16G / macOS Big Sur, i5, 8G<br>
-  - Language : Java(JDK 1.8), MySQL<br>
+  - Language : Java(JDK 1.8)<br>
   - Dev Tool : Eclipse 4.17<br>
+  - Database : MySQL<br>
   - VCS : Git<br>
 
 - 시연영상
